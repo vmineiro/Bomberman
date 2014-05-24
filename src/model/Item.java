@@ -1,37 +1,63 @@
 package model;
 
+// TODO: Auto-generated Javadoc
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a ItemState subclass that defines the current state.
  */
 public class Item {
 
+	/** The state. */
 	private ItemState state;
+	
+	/** The draw position. */
 	private Position drawPosition;
+	
+	/** The board position. */
 	private Position boardPosition;
+	
+	/** The Animation of the Item. */
 	//private Animation animation;
+	
+	/** The has player. */
 	private boolean hasPlayer;
+	
+	/** The has monster alive. */
 	private boolean hasMonsterAlive;
+	
+	/** The has bomb. */
 	private boolean hasBomb;
 
+	/**
+	 * Instantiates a new item.
+	 */
 	public Item(){
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 
 	}
+
+	
 	/**
-	 * 
-	 * @param state
+	 * Sets the current state.
+	 *
+	 * @param state the new current state
 	 */
 	public void setCurrentState(ItemState state){
 
 	}
 
+
+	
 	/**
-	 * 
-	 * @param player
+	 * Manages the visit by the player.
+	 *
+	 * @param player the player
 	 */
 	public void accept(Player player){
 		//player->updateBoardPosition()
@@ -39,9 +65,11 @@ public class Item {
 
 	}
 
+
 	/**
-	 * 
-	 * @param monster
+	 * Manages the visit by the monster.
+	 *
+	 * @param monster the monster
 	 */
 	public void accept(Monster monster){
 		//monster->updateBoardPosition()
@@ -49,9 +77,9 @@ public class Item {
 
 	}
 
+
 	/**
-	 * 
-	 * @param animation
+	 * Sets the animation to be draw in the game window.
 	 */
 	public void setAnimation(/*Animation animation*/){
 

@@ -1,5 +1,6 @@
 package model;
 
+
 /**
  * This class GameModel defines an Instance operation that lets clients access its
  * unique instance, and may be responsible for creating its own unique
@@ -7,22 +8,45 @@ package model;
  */
 public class GameModel {
 
+	/** The unique instance. */
 	private static int uniqueInstance;
+	
+	/** The board. */
 	private Board board;
+	
+	/** The players. */
 	private Player players;
+	
+	/** The monsters. */
 	private Monster monsters;
+	
+	/** The m_ board. */
 	public Board m_Board;
+	
+	/** The m_ monster. */
 	public Monster m_Monster;
+	
+	/** The m_ player. */
 	public Player m_Player;
 
+	/**
+	 * Instantiates a new game model.
+	 */
 	public GameModel(){
 
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#finalize()
+	 */
 	public void finalize() throws Throwable {
 
 	}
 	
+	
+	/**
+	 * Instance.
+	 */
 	/*
 	public static Instance(){
 		//return uniqueInstance
@@ -31,29 +55,47 @@ public class GameModel {
 	}
 	*/
 	
+	/**
+	 * Draw. Calls draw method of all objects.
+	 */
 	public void draw(){
 
 	}
 
+	/**
+	 * Update the game state. Calls update method of all objects.
+	 */
 	public void update(){
 
 	}
 
+	/**
+	 * Save game.
+	 */
 	public void saveGame(){
 
 	}
 
+	/**
+	 * Load game.
+	 */
 	public void loadGame(){
 
 	}
 
+	/**
+	 * Game over.
+	 *
+	 * @return true, if the game is over.
+	 */
 	public boolean gameOver(){
 		return false;
 	}
 
 	/**
-	 * 
-	 * @param board
+	 * Sets the board.
+	 *
+	 * @param board the new board
 	 */
 	public void setBoard(Board board){
 

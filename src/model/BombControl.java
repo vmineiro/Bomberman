@@ -1,30 +1,41 @@
 package model;
 
+
 /**
- * 
+ * The Class BombControl.
  */
 public class BombControl extends Item {
 
+	/**
+	 * Instantiates a new bomb control.
+	 */
 	public BombControl(){
 
 	}
 
+	/* (non-Javadoc)
+	 * @see model.Item#finalize()
+	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
+	
 	/**
-	 * 
-	 * @param state
+	 * Sets the current state.
+	 *
+	 * @param state the new current state
 	 */
+	@Override
 	public void setCurrentState(ItemState state){
 
 	}
 
 	/**
-	 * 
-	 * @param player
-	 * @return 
+	 * Manages the visit by the player.
+	 *
+	 * @param player the player
 	 */
+	@Override
 	public void accept(Player player){
 		//player->updateBoardPosition()
 
@@ -32,10 +43,11 @@ public class BombControl extends Item {
 	}
 
 	/**
-	 * 
-	 * @param monster
-	 * @return 
+	 * Manages the visit by the monster.
+	 *
+	 * @param monster the monster
 	 */
+	@Override
 	public void accept(Monster monster){
 		//monster->updateBoardPosition()
 
@@ -43,9 +55,9 @@ public class BombControl extends Item {
 	}
 
 	/**
-	 * 
-	 * @param animation
+	 * Sets the animation to be draw in the game window.
 	 */
+	@Override
 	public void setAnimation(/*Animation animation*/){
 
 	}
