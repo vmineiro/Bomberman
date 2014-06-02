@@ -20,13 +20,13 @@ public class Item {
 	//private Animation animation;
 	
 	/** The has player. */
-	private boolean hasPlayer;
+	private boolean hasPlayer = false;
 	
 	/** The has monster alive. */
-	private boolean hasMonsterAlive;
+	private boolean hasMonsterAlive = false;
 	
 	/** The has bomb. */
-	private boolean hasBomb;
+	private boolean hasBomb = false;
 
 	/**
 	 * Instantiates a new item.
