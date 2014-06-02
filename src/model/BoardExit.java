@@ -10,6 +10,8 @@ public class BoardExit extends Item {
 	 * Instantiates a new board exit.
 	 */
 	public BoardExit(){
+		
+		//super()
 
 	}
 
