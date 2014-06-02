@@ -1,5 +1,9 @@
 package model;
 
+import model.board.Board;
+import model.monster.Monster;
+import model.player.Player;
+
 
 /**
  * This class GameModel defines an Instance operation that lets clients access its
