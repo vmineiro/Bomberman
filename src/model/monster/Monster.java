@@ -1,5 +1,6 @@
 package model.monster;
 
+import model.GameModel;
 import model.Position;
 
 // TODO: Auto-generated Javadoc
@@ -84,7 +85,7 @@ public class Monster {
 	 */
 	public void update(){
 		
-		//Random Monster Mov
+		//Random Monster Movement
 		Position Up = new Position(1,0);
 		Position Down = new Position(-1,0);
 		Position Left = new Position(0,-1);
@@ -94,8 +95,17 @@ public class Monster {
 		Position mov_selected = mov_options[(int)(Math.random() * mov_options.length)]; 
 		Position newPosMonster = boardPosition.add(mov_selected);
 		
-		//Check Monster new position
+		//Check Monster new position ---------------------------------------------------------- INCOMPLETE
+		GameModel.getInstance().getBoard().getItem(newPosMonster).accept(this);
 		
+		if(newPosMonster.getLine() == boardPosition.getLine() && newPosMonster.getCol() == boardPosition.getCol())
+		{
+			//Movement accepted
+		}
+		else
+		{
+			//Movement not accepted
+		}
 	}
 
 	/**
