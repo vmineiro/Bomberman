@@ -58,6 +58,12 @@ public class Monster {
 		this.boardPosition = n_pos;
 	}
 	
+	/**
+	 * Gets the current state
+	 */
+	public MonsterState getCurrentState(){
+		return state;
+	}
 	
 	/**
 	 * Sets the current state.
