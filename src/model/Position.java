@@ -80,10 +80,10 @@ public class Position {
 	}
 	
 	/**
-	 * Adds two positions and returns the result
+	 * Adds two positions return a new Position as result
 	 */
-	public Position add(Position p1, Position p2){
-		return new Position(p1.line + p2.line, p1.col + p2.col);
+	public Position add(Position p1){
+		return new Position(line + p1.line, col + p1.col);
 	}
 	
 }//end Position
