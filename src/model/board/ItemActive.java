@@ -23,6 +23,11 @@ public class ItemActive extends ItemState {
 	 * @param item the item
 	 */
 	public void explode(Item item){
+		
+		if (item.getClass() != BoardExit.class){
+			item.setCurrentState(new ItemInactive());
+			return;
+		}
 
 	}
 
@@ -32,6 +37,11 @@ public class ItemActive extends ItemState {
 	 */
 	public void pickUp(Item item){
 
+		if (item.getClass() != BoardExit.class){
+			item.setCurrentState(new ItemInactive());
+			return;
+		}
+		
 	}
 
 	/**

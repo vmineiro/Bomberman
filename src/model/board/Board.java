@@ -1,5 +1,7 @@
 package model.board;
 
+import model.Position;
+
 
 /**
  * This class represents the game board.
@@ -10,8 +12,6 @@ public class Board {
 	/** The maze. */
 	private Item[][] maze;
 	
-	/** The m_ item. */
-	public Item m_Item;
 
 	/**
 	 * Instantiates a new board.
@@ -46,7 +46,13 @@ public class Board {
 	 * @param j the column of the item
 	 * @return the item
 	 */
-	public Item getItem(int i, int j){
-		return maze[i][j];
+	public Item getItem(Position p){
+		return maze[p.getLine()][p.getCol()];
+	}
+	
+	public void explode(Position p){
+		
+		
+		
 	}
 }//end Board
