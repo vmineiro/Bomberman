@@ -40,9 +40,24 @@ public class Monster {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#finalize()
 	 */
-	public void finalize() throws Throwable {
-
+	public void finalize() throws Throwable {}
+	
+	/**
+	 * Get Monster board position
+	 */
+	public Position getBoardPosition(){
+		return boardPosition;
 	}
+	
+	/**
+	 * Set Monster board position
+	 * 
+	 * @param n_pos the new Monster board position
+	 */
+	public void setBoardPosition(Position n_pos){
+		this.boardPosition = n_pos;
+	}
+	
 	
 	/**
 	 * Sets the current state.
@@ -56,9 +71,7 @@ public class Monster {
 	/**
 	 * Draw.
 	 */
-	public void draw(){
-
-	}
+	public void draw(){}
 
 	/**
 	 * Update.
