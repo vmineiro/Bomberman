@@ -4,7 +4,6 @@ import model.board.Board;
 import model.monster.Monster;
 import model.player.Player;
 
-
 /**
  * This class GameModel defines an Instance operation that lets clients access its
  * unique instance, and may be responsible for creating its own unique
@@ -13,7 +12,7 @@ import model.player.Player;
 public class GameModel {
 
 	/** The unique instance. */
-	private static int uniqueInstance;
+	private static GameModel uniqueGameModel = null;
 	
 	/** The board. */
 	private Board board;
@@ -24,40 +23,52 @@ public class GameModel {
 	/** The monsters. */
 	private Monster monsters;
 	
-	/** The m_ board. */
-	public Board m_Board;
+	// =====================================================================
 	
-	/** The m_ monster. */
-	public Monster m_Monster;
-	
-	/** The m_ player. */
-	public Player m_Player;
-
 	/**
 	 * Instantiates a new game model.
 	 */
-	public GameModel(){
-
-	}
+	private GameModel(){}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#finalize()
 	 */
 	public void finalize() throws Throwable {
 
-	}
-	
+	}	
 	
 	/**
 	 * Instance.
 	 */
-	/*
-	public static Instance(){
-		//return uniqueInstance
-
-
+	public static GameModel getInstance(){
+			if(uniqueGameModel == null){
+				return uniqueGameModel = new GameModel();
+			}
+			else{
+				return uniqueGameModel;
+			}
 	}
-	*/
+	
+	/**
+	 * Get board
+	 */
+	public Board getBoard(){
+		return board;
+	}
+	
+	/**
+	 * Get players 
+	 */
+	public Player getPlayers(){
+		return players;
+	}
+	
+	/**
+	 * Get monsters
+	 */
+	public Monster getMonsters(){
+		return monsters;
+	}
 	
 	/**
 	 * Draw. Calls draw method of all objects.
