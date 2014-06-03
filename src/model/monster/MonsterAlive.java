@@ -41,8 +41,7 @@ public class MonsterAlive extends MonsterState {
 		// INCOMPLETE - Conditions for monster death
 		die(monster);
 		
-		//INCOMPLETE - Create a GameModel Function for decrementing MonstersAlive
-		GameModel.getInstance().getMonstersAlive();
+		GameModel.getInstance().decMonstersAlive();
 	}
 	
 }//end MonsterAlive
