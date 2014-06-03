@@ -59,6 +59,27 @@ public class GameModel {
 	}
 	
 	/**
+	 * Get board
+	 */
+	public Board getBoard(){
+		return board;
+	}
+	
+	/**
+	 * Get players 
+	 */
+	public Player getPlayers(){
+		return players;
+	}
+	
+	/**
+	 * Get monsters
+	 */
+	public Monster getMonsters(){
+		return monsters;
+	}
+	
+	/**
 	 * Draw. Calls draw method of all objects.
 	 */
 	public void draw(){
