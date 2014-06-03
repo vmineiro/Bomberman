@@ -9,28 +9,22 @@ import model.player.Player;
  * This class defines the interface of interest to clients and maintains an
  * instance of a ItemState subclass that defines the current state.
  */
-public class Item {
+public abstract class Item {
 
 	/** The state. */
-	private ItemState state;
-	
-	/** The draw position. */
-	private Position drawPosition;
-	
-	/** The board position. */
-	private Position boardPosition;
+	protected ItemState state;
 	
 	/** The Animation of the Item. */
 	//private Animation animation;
 	
 	/** The has player. */
-	private boolean hasPlayer = false;
+	protected boolean hasPlayer = false;
 	
 	/** The has monster alive. */
-	private boolean hasMonsterAlive = false;
+	protected boolean hasMonsterAlive = false;
 	
 	/** The has bomb. */
-	private boolean hasBomb = false;
+	protected boolean hasBomb = false;
 
 	/**
 	 * Instantiates a new item.
@@ -46,14 +40,19 @@ public class Item {
 
 	}
 
-	
+
 	/**
 	 * Sets the current state.
 	 *
 	 * @param state the new current state
 	 */
-	public void setCurrentState(ItemState state){
-
+	public void setCurrentState(ItemState state){	
+		this.state = state;
+	}
+	
+	
+	public ItemState getCurrentState(){	
+		return this.state;
 	}
 
 
@@ -63,11 +62,7 @@ public class Item {
 	 *
 	 * @param player the player
 	 */
-	public void accept(Player player){
-		//player->updateBoardPosition()
-
-
-	}
+	public abstract void accept(Player player);
 
 
 	/**
@@ -75,17 +70,21 @@ public class Item {
 	 *
 	 * @param monster the monster
 	 */
-	public void accept(Monster monster){
-		//monster->updateBoardPosition()
-
-
-	}
+	public abstract void accept(Monster monster);
 
 
 	/**
 	 * Sets the animation to be draw in the game window.
 	 */
-	public void setAnimation(/*Animation animation*/){
-
+	public abstract void setAnimation(/*Animation animation*/);
+	
+	/**
+	 * Explode
+	 * 
+	 */
+	public void explode() {
+		this.state.explode(this);
 	}
+	
+	
 }//end Item

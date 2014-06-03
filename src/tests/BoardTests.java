@@ -9,6 +9,17 @@ import org.junit.Test;
 public class BoardTests {
 
 	
+	/**
+	 * Item State change
+	 * 
+	 */
+	@Test
+	public void itemStateTest(){
+		
+		
+		
+	}
+	
 	
 	/**
 	 * Path test.
@@ -20,6 +31,8 @@ public class BoardTests {
 	@Test
 	public void pathTest(){
 
+		
+		
 	}
 
 	/**

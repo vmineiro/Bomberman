@@ -1,19 +1,45 @@
 package model.board;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+
 
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
 public class ItemDetonating extends ItemState {
 	
+	/** */
+	private Timer countDown;
+	
 	/** The count down for detonation end. */
-	private int timeOut = 3;
+	private int timeOut = 3000;
 
 	/**
 	 * Instantiates a new item detonating.
 	 */
-	public ItemDetonating(){
+	public ItemDetonating(final Item item){
 
+
+		countDown = new Timer(3000, new ActionListener() {
+			  @Override
+			  public void actionPerformed(ActionEvent arg0) {
+				  
+				  if (item.getClass() == BoardExit.class){
+					  
+				  }
+				 
+			  }
+			});
+		countDown.setRepeats(false); // Only execute once
+		countDown.start();
+		
+
+
+		
 	}
 
 	/* (non-Javadoc)
