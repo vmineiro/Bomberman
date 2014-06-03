@@ -23,8 +23,12 @@ public class GameModel {
 	/** The monsters. */
 	private Monster monsters;
 	
-	// =====================================================================
+	/** Number of monsters alive */
+	private int monstersAlive;
 	
+	// =====================================================================
+
+
 	/**
 	 * Instantiates a new game model.
 	 */
@@ -68,6 +72,14 @@ public class GameModel {
 	 */
 	public Monster getMonsters(){
 		return monsters;
+	}
+	/**
+	 * Get the number of monsters alive.
+	 * 
+	 * @return monstersAlive the number of monsters alive.
+	 */
+	public int getMonstersAlive() {
+		return monstersAlive;
 	}
 	
 	/**

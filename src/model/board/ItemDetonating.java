@@ -29,7 +29,7 @@ public class ItemDetonating extends ItemState {
 			  public void actionPerformed(ActionEvent arg0) {
 				  
 				  if (item.getClass() == BoardExit.class){
-					  //TODO status change
+					  
 				  }
 				 
 			  }
