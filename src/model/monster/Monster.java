@@ -24,9 +24,6 @@ public class Monster {
 	
 	/** The animation to be draw */
 	//private Animation animation;
-	
-	/** The m_ monster state. */
-	public MonsterState m_MonsterState;
 
 	/**
 	 * Instantiates a new monster.
