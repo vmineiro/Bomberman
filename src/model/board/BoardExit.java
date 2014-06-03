@@ -1,5 +1,13 @@
 package model.board;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.lang.Thread.State;
+
+
+
+import javax.swing.Timer;
+
 import model.monster.Monster;
 import model.player.Player;
 
@@ -14,7 +22,7 @@ public class BoardExit extends Item {
 	 */
 	public BoardExit(){
 		
-		//super()
+		super();
 
 	}
 
@@ -24,14 +32,6 @@ public class BoardExit extends Item {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	
-	/**
-	 * Set a new state of the board exit.
-	 * @param state the new state
-	 */
-	public void setCurrentState(ItemState state){
-
-	}
 
 
 	/**
@@ -40,7 +40,13 @@ public class BoardExit extends Item {
 	 */
 	@Override
 	public void accept(Player player){
-		//player->updateBoardPosition()
+		
+		if (this.state.getClass() == ItemHidden.class) return;
+		
+		player.updateBoardPosition();
+
+		
+		
 
 
 	}
@@ -51,8 +57,8 @@ public class BoardExit extends Item {
 	 * @param player the monster visitor
 	 */
 	public void accept(Monster monster){
-		//monster->updateBoardPosition()
 
+		if (this.state.getClass() == ItemHidden.class) return;
 
 	}
 
@@ -64,4 +70,7 @@ public class BoardExit extends Item {
 	public void setAnimation(/*Animation animation*/){
 
 	}
+
+	
+	
 }//end BoardExit
