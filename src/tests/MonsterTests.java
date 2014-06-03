@@ -15,34 +15,25 @@ import static org.junit.Assert.*;
 public class MonsterTests {
 
 	/**
-	 * Initializtion Tests
-	 * 
-	 * Neste teste pretende-se testar a criacao de monstros e avaliar o valor dos campos do objecto monstro
-	 */
-	@Test
-	public void initMonsterTests(){
-		
-		Monster monster_T = new Monster();
-		
-		assertNotNull(monster_T);
-		assertNotNull(monster_T.getBoardPosition());
-		assertNotNull(monster_T.getCurrentState());
-		
-		Position pos_T = new Position();
-		pos_T.setPosition(1,1);
-		monster_T.setBoardPosition(pos_T);
-		assertEquals(monster_T.getBoardPosition(),pos_T);
-		
-	}
-
-	/**
 	 * Move tests.
 	 * 
 	 * Neste teste pretende-se testar as movimentacoes dos tipos de monstros, incluindo colisoes contra as paredes, bombas. 
 	 */
 	@Test
 	public void moveTests(){
+		
+		Monster monster_T = new Monster();
 
+		assertNotNull(monster_T);
+		assertNotNull(monster_T.getBoardPosition());
+		assertNotNull(monster_T.getCurrentState());
+
+		monster_T.setBoardPosition(new Position(0, 0));
+		monster_T.setBoardPosition(monster_T.getBoardPosition().add(new Position(3, 3)));
+
+		assertEquals(monster_T.getBoardPosition().getLine(), 3);
+		assertEquals(monster_T.getBoardPosition().getCol(), 3);
+		
 	}
 
 	/**
