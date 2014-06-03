@@ -32,6 +32,9 @@ public class Monster {
 	 */
 	public Monster(){
 		this.state = new MonsterAlive();
+		this.boardPosition = new Position();
+		this.drawPosition = new Position();
+		this.speed = 1;
 	}
 
 	/* (non-Javadoc)
