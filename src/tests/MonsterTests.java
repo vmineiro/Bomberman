@@ -1,5 +1,6 @@
 package tests;
 
+import model.Position;
 import model.monster.Monster;
 import model.monster.MonsterAlive;
 
@@ -23,7 +24,14 @@ public class MonsterTests {
 		
 		Monster monster_T = new Monster();
 		
-		assertSame(new MonsterAlive(), monster_T.getCurrentState());
+		assertNotNull(monster_T);
+		assertNotNull(monster_T.getBoardPosition());
+		assertNotNull(monster_T.getCurrentState());
+		
+		Position pos_T = new Position();
+		pos_T.setPosition(1,1);
+		monster_T.setBoardPosition(pos_T);
+		assertEquals(monster_T.getBoardPosition(),pos_T);
 		
 	}
 
