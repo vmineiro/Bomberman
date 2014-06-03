@@ -13,7 +13,7 @@ import model.player.Player;
 public class GameModel {
 
 	/** The unique instance. */
-	private static int uniqueInstance;
+	private static GameModel uniqueGameModel = null;
 	
 	/** The board. */
 	private Board board;
@@ -36,9 +36,7 @@ public class GameModel {
 	/**
 	 * Instantiates a new game model.
 	 */
-	public GameModel(){
-
-	}
+	private GameModel(){}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#finalize()
@@ -51,13 +49,14 @@ public class GameModel {
 	/**
 	 * Instance.
 	 */
-	/*
-	public static Instance(){
-		//return uniqueInstance
-
-
+	public static GameModel getInstance(){
+			if(uniqueGameModel == null){
+				return uniqueGameModel = new GameModel();
+			}
+			else{
+				return uniqueGameModel;
+			}
 	}
-	*/
 	
 	/**
 	 * Draw. Calls draw method of all objects.
