@@ -1,8 +1,5 @@
 package model;
 
-
-
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class Position.
@@ -20,6 +17,17 @@ public class Position {
 	 */
 	public Position(){
 
+	}
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param lin is the line of the new position and col is the column of the new position 
+	 */
+	public Position(int lin, int col)
+	{
+		this.line = lin;
+		this.col = col;
 	}
 
 	/* (non-Javadoc)
