@@ -102,14 +102,7 @@ public class Monster {
 		v.visitConcreteElementA(this);
 		}
 		*/
-		if(newPosMonster.getLine() == boardPosition.getLine() && newPosMonster.getCol() == boardPosition.getCol())
-		{
-			//Movement accepted
-		}
-		else
-		{
-			//Movement not accepted
-		}
+		
 	}
 
 	/**
