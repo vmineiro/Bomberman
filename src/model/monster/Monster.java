@@ -25,11 +25,13 @@ public class Monster {
 	/** The animation to be draw */
 	//private Animation animation;
 
+	// =============================================================
+	
 	/**
 	 * Instantiates a new monster.
 	 */
 	public Monster(){
-
+		this.state = new MonsterAlive();
 	}
 
 	/* (non-Javadoc)
@@ -45,7 +47,7 @@ public class Monster {
 	 * @param state the new current state
 	 */
 	public void setCurrentState(MonsterState state){
-
+		this.state = state;
 	}
 
 	/**
@@ -59,7 +61,7 @@ public class Monster {
 	 * Update.
 	 */
 	public void update(){
-
+		
 	}
 
 	/**
