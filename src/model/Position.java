@@ -79,4 +79,11 @@ public class Position {
 		this.col = col;
 	}
 	
+	/**
+	 * Adds two positions and returns the result
+	 */
+	public Position add(Position p1, Position p2){
+		return new Position(p1.line + p2.line, p1.col + p2.col);
+	}
+	
 }//end Position
