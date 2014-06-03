@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import model.GameModel;
+
 
 
 /**
@@ -24,12 +26,16 @@ public class ItemDetonating extends ItemState {
 	public ItemDetonating(final Item item){
 
 
-		countDown = new Timer(3000, new ActionListener() {
+		countDown = new Timer(timeOut, new ActionListener() {
 			  @Override
 			  public void actionPerformed(ActionEvent arg0) {
 				  
 				  if (item.getClass() == BoardExit.class){
-					  
+					  if (GameModel.getInstance().getMonstersAlive() == 0) {
+						  item.setCurrentState(new ItemActive());
+					  } else {
+						  item.setCurrentState(new ItemInactive());
+					  }
 				  }
 				 
 			  }
