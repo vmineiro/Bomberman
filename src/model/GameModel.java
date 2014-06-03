@@ -4,7 +4,6 @@ import model.board.Board;
 import model.monster.Monster;
 import model.player.Player;
 
-
 /**
  * This class GameModel defines an Instance operation that lets clients access its
  * unique instance, and may be responsible for creating its own unique
@@ -24,15 +23,8 @@ public class GameModel {
 	/** The monsters. */
 	private Monster monsters;
 	
-	/** The m_ board. */
-	public Board m_Board;
+	// =====================================================================
 	
-	/** The m_ monster. */
-	public Monster m_Monster;
-	
-	/** The m_ player. */
-	public Player m_Player;
-
 	/**
 	 * Instantiates a new game model.
 	 */
@@ -43,8 +35,7 @@ public class GameModel {
 	 */
 	public void finalize() throws Throwable {
 
-	}
-	
+	}	
 	
 	/**
 	 * Instance.
