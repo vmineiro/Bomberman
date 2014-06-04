@@ -1,5 +1,6 @@
 package model.monster;
 
+import model.GameModel;
 import model.Position;
 
 // TODO: Auto-generated Javadoc
@@ -24,22 +25,45 @@ public class Monster {
 	
 	/** The animation to be draw */
 	//private Animation animation;
-	
-	/** The m_ monster state. */
-	public MonsterState m_MonsterState;
 
+	// =============================================================
+	
 	/**
 	 * Instantiates a new monster.
 	 */
 	public Monster(){
-
+		this.state = new MonsterAlive();
+		this.boardPosition = new Position();
+		this.drawPosition = new Position();
+		this.speed = 1;
 	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#finalize()
 	 */
-	public void finalize() throws Throwable {
-
+	public void finalize() throws Throwable {}
+	
+	/**
+	 * Get Monster board position
+	 */
+	public Position getBoardPosition(){
+		return boardPosition;
+	}
+	
+	/**
+	 * Set Monster board position
+	 * 
+	 * @param n_pos the new Monster board position
+	 */
+	public void setBoardPosition(Position n_pos){
+		this.boardPosition = n_pos;
+	}
+	
+	/**
+	 * Gets the current state
+	 */
+	public MonsterState getCurrentState(){
+		return state;
 	}
 	
 	/**
@@ -48,21 +72,32 @@ public class Monster {
 	 * @param state the new current state
 	 */
 	public void setCurrentState(MonsterState state){
-
+		this.state = state;
 	}
 
 	/**
 	 * Draw.
 	 */
-	public void draw(){
-
-	}
+	public void draw(){}
 
 	/**
 	 * Update.
 	 */
 	public void update(){
-
+		
+		//Random Monster Movement
+		Position Up = new Position(1,0);
+		Position Down = new Position(-1,0);
+		Position Left = new Position(0,-1);
+		Position Right = new Position(0,1);
+		
+		Position mov_options[] = {Up,Down,Left,Right};
+		Position mov_selected = mov_options[(int)(Math.random() * mov_options.length)]; 
+		Position newPosMonster = boardPosition.add(mov_selected);
+		
+		//Check Monster new position ---------------------------------------------------------- INCOMPLETE
+		GameModel.getInstance().getBoard().getItem(newPosMonster).accept(this);
+		
 	}
 
 	/**
