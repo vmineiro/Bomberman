@@ -19,6 +19,12 @@ import model.board.UndestructibleWall;
  */
 public class Monster implements GameChar{
 
+	//Random Monster Movement
+	private static final Position UP = new Position(-1,0);
+	private static final Position DOWN = new Position(1,0);
+	private static final Position LEFT = new Position(0,-1);
+	private static final Position RIGHT = new Position(0,1);
+
 	/** The state. */
 	private MonsterState state;
 	
@@ -92,14 +98,8 @@ public class Monster implements GameChar{
 	 * Update.
 	 */
 	public void update(){
-		
-		//Random Monster Movement
-		Position Up = new Position(1,0);
-		Position Down = new Position(-1,0);
-		Position Left = new Position(0,-1);
-		Position Right = new Position(0,1);
-		
-		Position mov_options[] = {Up,Down,Left,Right};
+			
+		Position mov_options[] = {UP,DOWN,LEFT,RIGHT};
 		Position mov_selected = mov_options[(int)(Math.random() * mov_options.length)]; 
 		Position newPosMonster = boardPosition.add(mov_selected);
 		
