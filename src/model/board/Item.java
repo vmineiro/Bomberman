@@ -18,7 +18,7 @@ public abstract class Item {
 	//private Animation animation;
 	
 	/** The has player. */
-	protected boolean hasPlayer = false;
+	protected int monsterInThisItem = 0;
 	
 	/** The has monster alive. */
 	protected boolean hasMonsterAlive = false;
@@ -32,6 +32,7 @@ public abstract class Item {
 	public Item(){
 
 	}
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#finalize()
@@ -56,6 +57,20 @@ public abstract class Item {
 	}
 
 
+	public int getMonsterInThisItem() {
+		return monsterInThisItem;
+	}
+	
+	
+	public void monsterIn() {
+		monsterInThisItem++;
+	}
+	
+	
+	public void monsterOut() {
+		monsterInThisItem--;
+	}
+	
 	
 	/**
 	 * Manages the visit by the player.
