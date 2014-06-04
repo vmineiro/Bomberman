@@ -94,7 +94,7 @@ public class Monster implements GameChar{
 	 */
 	public void update(){
 			
-		Position newPosMonster = generatNextMov();
+		Position newPosMonster = generateNextMov();
 		
 		//Check Monster new position ---------------------------------------------------------- INCOMPLETE
 		GameModel.getInstance().getBoard().getItem(newPosMonster).accept(this);
@@ -105,7 +105,7 @@ public class Monster implements GameChar{
 	 * 
 	 * @return newPosMonster
 	 */
-	private Position generatNextMov() {
+	public Position generateNextMov() {
 		Position mov_options[] = {UP,DOWN,LEFT,RIGHT};
 		Position mov_selected = mov_options[(int)(Math.random() * mov_options.length)]; 
 		Position newPosMonster = boardPosition.add(mov_selected);
