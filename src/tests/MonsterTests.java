@@ -28,12 +28,12 @@ public class MonsterTests {
 		assertNotNull(monster_T.getBoardPosition());
 		assertNotNull(monster_T.getCurrentState());
 
-		monster_T.setBoardPosition(new Position(0, 0));
 		monster_T.setBoardPosition(monster_T.getBoardPosition().add(new Position(3, 3)));
 
-		assertEquals(monster_T.getBoardPosition().getLine(), 3);
-		assertEquals(monster_T.getBoardPosition().getCol(), 3);
+		monster_T.update();
 		
+		assertTrue(monster_T.getBoardPosition().equals(new Position(4, 3)) || monster_T.getBoardPosition().equals(new Position(2, 3)) 
+				|| monster_T.getBoardPosition().equals(new Position(3, 4)) || monster_T.getBoardPosition().equals(new Position(3, 2)));
 	}
 
 	/**
