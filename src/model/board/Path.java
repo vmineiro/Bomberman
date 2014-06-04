@@ -1,6 +1,10 @@
 package model.board;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import model.GameModel;
 import model.monster.Monster;
@@ -12,11 +16,28 @@ import model.player.Player;
  */
 public class Path extends Item {
 
+	BufferedImage wallImg;
+	BufferedImage pathImg;
+	BufferedImage explosionImg;
+	
+	
+	
 	/**
 	 * Instantiates a new path.
 	 */
 	public Path(){
 
+		try {
+			
+			wallImg = ImageIO.read(new File("img/wall01.png"));
+			pathImg = ImageIO.read(new File("img/wall01.png"));
+			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 	/* (non-Javadoc)
@@ -36,7 +57,7 @@ public class Path extends Item {
 		
 		if (this.getCurrentState().getClass() == ItemHidden.class) return;
 		
-//TODO		player.update();
+		player.visitPath(this);
 
 
 	}
@@ -50,24 +71,24 @@ public class Path extends Item {
 
 		if (this.getCurrentState().getClass() == ItemHidden.class) return;
 		
-//TODO		player.update();
-
+		monster.visitPath(this);
+		
 	}
 
 	@Override
 	public void setAnimation(BufferedImage animation) {
 		
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
+		if (this.state.getClass() == ItemHidden.class){
+			this.setAnimation(wallImg);
 			return;
 		}
 		
-		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
+		if (this.state.getClass() == ItemExploding.class){
+			this.setAnimation(explosionImg);
 			return;
 		}
 			
-		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("path"));
+		this.setAnimation(pathImg);
 		
 	}
 

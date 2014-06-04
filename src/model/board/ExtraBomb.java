@@ -1,6 +1,10 @@
 package model.board;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import model.GameModel;
 import model.monster.Monster;
@@ -11,8 +15,29 @@ import model.player.Player;
  */
 public class ExtraBomb extends Item {
 
+	BufferedImage wallImg;
+	BufferedImage pathImg;
+	BufferedImage extraBombImg;
+	BufferedImage explosionImg;
+	
+
+	
 	public ExtraBomb(){
 
+		
+		try {
+			
+			wallImg = ImageIO.read(new File("img/wall01.png"));
+			pathImg = ImageIO.read(new File("img/wall01.png"));
+			extraBombImg = ImageIO.read(new File("img/wall01.png"));
+			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	/* (non-Javadoc)
@@ -34,17 +59,9 @@ public class ExtraBomb extends Item {
 
 		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
 
-		if (this.state.getClass() == ItemActive.class) {
+		setCurrentState(this.state.pickUp());
 
-			setCurrentState(this.state.pickUp());
-			
-			//TODO change method
-			//player->updateBoardPosition(this)
-			return;
-
-		}
-
-		//player->updateBoardPosition(this)
+		player.visitExtraBomb(this);
 
 
 	}
@@ -56,7 +73,8 @@ public class ExtraBomb extends Item {
 	 */
 	@Override
 	public void accept(Monster monster){
-		//monster->updateBoardPosition()
+		
+		monster.visitExtraBomb(this);
 
 
 	}
@@ -65,22 +83,22 @@ public class ExtraBomb extends Item {
 	public void setAnimation(BufferedImage animation) {
 
 		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
+			this.setAnimation(explosionImg);
 			return;
 		}
 
 		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
+			this.setAnimation(wallImg);
 			return;
 		}
 
 		if (this.state.getClass() == ItemActive.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("extraBomb"));
+			this.setAnimation(extraBombImg);
 			return;
 		}
 
 
-		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("path"));
+		this.setAnimation(pathImg);
 
 	}
 

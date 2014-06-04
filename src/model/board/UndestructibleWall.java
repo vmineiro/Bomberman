@@ -1,6 +1,10 @@
 package model.board;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import model.GameModel;
 import model.monster.Monster;
@@ -12,10 +16,25 @@ import model.player.Player;
  */
 public class UndestructibleWall extends Item {
 
+	BufferedImage steelImg;
+
 	/**
 	 * Instantiates a new undestructible wall.
 	 */
-	public UndestructibleWall(){}
+	public UndestructibleWall(){
+		
+		try {
+			
+			steelImg = ImageIO.read(new File("img/wall01.png"));
+			
+			setAnimation(steelImg);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	
 	
@@ -46,15 +65,13 @@ public class UndestructibleWall extends Item {
 	
 	
 	@Override
-	public void explode() {
-		
-	}
+	public void explode() {}
 	
 	
 	
 	@Override
 	public void setAnimation(BufferedImage animation) {
-		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("steel"));	
+		this.animation = animation;
 	}
 
 
