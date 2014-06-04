@@ -1,5 +1,12 @@
 package model.board;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.imageio.ImageIO;
+
 import model.Position;
 
 
@@ -12,11 +19,49 @@ public class Board {
 	/** The maze. */
 	private Item[][] maze;
 	
-
+	/**
+	 * The Enumeration of directions.
+	 */
+	private HashMap <String, BufferedImage> animations;
+	
 	/**
 	 * Instantiates a new board.
 	 */
 	public Board(){
+		
+		try {
+			
+			BufferedImage wallImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage steelImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage pathImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage boardExitActiveImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage boardExitInactiveImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage bombControlImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage bombPowerUpImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage boostSpeedlImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage extraBombImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage explosionImg = ImageIO.read(new File("img/templar01.jpg"));
+			
+			this.animations = new HashMap<String, BufferedImage>();
+			this.animations.put("wall",wallImg);
+			this.animations.put("steel",steelImg);
+			this.animations.put("path",pathImg);
+			this.animations.put("activeExit",boardExitActiveImg);
+			this.animations.put("inactiveExit",boardExitInactiveImg);
+			this.animations.put("bombControl",bombControlImg);
+			this.animations.put("bombPowerUP",bombPowerUpImg);
+			this.animations.put("boostSpeed",boostSpeedlImg);
+			this.animations.put("extraBomb",extraBombImg);
+			this.animations.put("explosion",explosionImg);
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 
 	}
 
@@ -54,5 +99,9 @@ public class Board {
 		
 		
 		
+	}
+
+	public BufferedImage getAnimation(String animation) {
+		return animations.get(animation);
 	}
 }//end Board

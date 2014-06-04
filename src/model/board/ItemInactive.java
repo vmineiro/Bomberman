@@ -4,12 +4,14 @@ package model.board;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemInactive extends ItemState {
+public class ItemInactive implements ItemState {
 
 	/**
 	 * Instantiates a new item inactive.
 	 */
 	public ItemInactive(){
+		
+		
 
 	}
 
@@ -19,38 +21,16 @@ public class ItemInactive extends ItemState {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	
-	/**
-	 * Explode. Trigger a state change.
-	 *
-	 * @param item the item
-	 */
-	public void explode(Item item){
 
+	@Override
+	public ItemState explode() {
+		return new ItemExploding();
 	}
 
-	/**
-	 * The item (power up item) is visited by the player. Trigger a state change.
-	 * 
-	 * @param item
-	 */
-	public void pickUp(Item item){
-
+	@Override
+	public ItemState pickUp() {
+		return this;
 	}
 
-	/**
-	 * Change the BoardExit item to Active.
-	 * 
-	 * @param item
-	 */
-	public void openExit(Item item){
 
-	}
-
-	/**
-	 * Updates the state of the item. Applies to ItemDetonating.
-	 */
-	public void update(){
-
-	}
 }//end ItemInactive

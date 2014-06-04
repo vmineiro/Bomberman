@@ -1,5 +1,8 @@
 package model.board;
 
+import java.awt.image.BufferedImage;
+
+import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
@@ -22,15 +25,7 @@ public class Path extends Item {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	
-	/**
-	 * Sets the current state.
-	 *
-	 * @param state the new current state
-	 */
-	public void setCurrentState(ItemState state){
 
-	}
 
 	/**
 	 * Accept.
@@ -38,7 +33,10 @@ public class Path extends Item {
 	 * @param player the player
 	 */
 	public void accept(Player player){
-		//player->updateBoardPosition()
+		
+		if (this.getCurrentState().getClass() == ItemHidden.class) return;
+		
+//TODO		player.update();
 
 
 	}
@@ -49,15 +47,30 @@ public class Path extends Item {
 	 * @param monster the monster
 	 */
 	public void accept(Monster monster){
-		//monster->updateBoardPosition()
 
-
-	}
-
-	/**
-	 * Sets the animation.
-	 */
-	public void setAnimation(/*Animation animation*/){
+		if (this.getCurrentState().getClass() == ItemHidden.class) return;
+		
+//TODO		player.update();
 
 	}
+
+	@Override
+	public void setAnimation(BufferedImage animation) {
+		
+		if (this.state.getClass() == ItemExploding.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
+			return;
+		}
+		
+		if (this.state.getClass() == ItemHidden.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
+			return;
+		}
+			
+		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("path"));
+		
+	}
+
+	
+	
 }//end Path

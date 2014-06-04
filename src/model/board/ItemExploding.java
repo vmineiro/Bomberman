@@ -1,35 +1,45 @@
 package model.board;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+import model.GameModel;
+
+
 
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemHidden implements ItemState {
-
-	/**
-	 * Instantiates a new item hidden.
-	 */
-	public ItemHidden(){
+public class ItemExploding implements ItemState {
 	
+	/**
+	 * Instantiates a new item detonating.
+	 */
+	public ItemExploding(){
+		
 	}
 
 	/* (non-Javadoc)
-	 * @see model.ItemState#finalize()
+	 * @see java.lang.Object#finalize()
 	 */
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	
 
+	
 	@Override
 	public ItemState explode() {
 		// TODO Auto-generated method stub
-		return new ItemDetonating();
+		return new ItemExploding();
 	}
-
+	
 	@Override
 	public ItemState pickUp() {
 		// TODO Auto-generated method stub
 		return this;
 	}
-}//end ItemHidden
+
+
+}//end ItemDetonating

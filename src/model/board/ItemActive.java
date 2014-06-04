@@ -1,10 +1,15 @@
 package model.board;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemActive extends ItemState {
+public class ItemActive implements ItemState {
 
 	public ItemActive(){
 
@@ -22,40 +27,12 @@ public class ItemActive extends ItemState {
 	 *
 	 * @param item the item
 	 */
-	public void explode(Item item){
-		
-		if (item.getClass() != BoardExit.class){
-			item.setCurrentState(new ItemInactive());
-			return;
-		}
-
+	public ItemState explode(){
+		return new ItemExploding();
 	}
 
-	/**
-	 * The item (power up item) is visited by the player. Trigger a state change.
-	 * @param item
-	 */
-	public void pickUp(Item item){
-
-		if (item.getClass() != BoardExit.class){
-			item.setCurrentState(new ItemInactive());
-			return;
-		}
-		
-	}
-
-	/**
-	 * Change the BoardExit item to Active.
-	 * @param item
-	 */
-	public void openExit(Item item){
-
-	}
-
-	/**
-	 * Updates the state of the item. Applies to ItemDetonating.
-	 */
-	public void update(){
-
+	@Override
+	public ItemState pickUp() {
+		return new ItemInactive();
 	}
 }//end ItemActive

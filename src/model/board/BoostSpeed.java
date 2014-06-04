@@ -1,5 +1,8 @@
 package model.board;
 
+import java.awt.image.BufferedImage;
+
+import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
@@ -18,17 +21,7 @@ public class BoostSpeed extends Item {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	
-	
-	/**
-	 * Sets the current state.
-	 *
-	 * @param state the new current state
-	 */
-	@Override
-	public void setCurrentState(ItemState state){
 
-	}
 
 	/**
 	 * Manages the visit by the player.
@@ -37,7 +30,22 @@ public class BoostSpeed extends Item {
 	 */
 	@Override
 	public void accept(Player player){
-		//player->updateBoardPosition()
+
+
+		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
+
+		if (this.state.getClass() == ItemActive.class) {
+
+			setCurrentState(this.state.pickUp());
+			
+			
+			//TODO change method
+			//player->updateBoardPosition(this)
+			return;
+
+		}
+
+		//player->updateBoardPosition(this)
 
 
 	}
@@ -57,7 +65,26 @@ public class BoostSpeed extends Item {
 	 * Sets the animation to be draw in the game window.
 	 */
 	@Override
-	public void setAnimation(/*Animation animation*/){
+	public void setAnimation(BufferedImage animation){
+
+		if (this.state.getClass() == ItemExploding.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
+			return;
+		}
+
+		if (this.state.getClass() == ItemHidden.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
+			return;
+		}
+
+		if (this.state.getClass() == ItemActive.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("boostSpeed"));
+			return;
+		}
+
+
+		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("path"));
 
 	}
+
 }//end BoostSpeed

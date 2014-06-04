@@ -1,5 +1,8 @@
 package model.board;
 
+import java.awt.image.BufferedImage;
+
+import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
@@ -12,10 +15,10 @@ public class UndestructibleWall extends Item {
 	/**
 	 * Instantiates a new undestructible wall.
 	 */
-	public UndestructibleWall(){
+	public UndestructibleWall(){}
 
-	}
-
+	
+	
 	/* (non-Javadoc)
 	 * @see model.Item#finalize()
 	 */
@@ -23,41 +26,36 @@ public class UndestructibleWall extends Item {
 		super.finalize();
 	}
 	
-	/**
-	 * Sets the current state.
-	 *
-	 * @param state the new current state
-	 */
-	public void setCurrentState(ItemState state){
-
-	}
 
 	/**
 	 * Accept.
 	 *
 	 * @param player the player
 	 */
-	public void accept(Player player){
-		//player->updateBoardPosition()
+	public void accept(Player player){}
 
-
-	}
-
+	
+	
 	/**
 	 * Accept.
 	 *
 	 * @param monster the monster
 	 */
-	public void accept(Monster monster){
-		//monster->updateBoardPosition()
+	public void accept(Monster monster){}
 
-
+	
+	
+	@Override
+	public void explode() {
+		
+	}
+	
+	
+	
+	@Override
+	public void setAnimation(BufferedImage animation) {
+		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("steel"));	
 	}
 
-	/**
-	 * Sets the animation.
-	 */
-	public void setAnimation(/*Animation animation*/){
 
-	}
 }//end UndestructibleWall

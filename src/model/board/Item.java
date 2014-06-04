@@ -1,8 +1,16 @@
 package model.board;
 
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+
 import model.Position;
 import model.monster.Monster;
 import model.player.Player;
+
+
+
+
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -10,18 +18,19 @@ import model.player.Player;
  * instance of a ItemState subclass that defines the current state.
  */
 public abstract class Item {
+	
+	
+	
 
 	/** The state. */
 	protected ItemState state;
 	
 	/** The Animation of the Item. */
-	//private Animation animation;
+	protected BufferedImage animation;
 	
 	/** The has player. */
 	protected int monsterInThisItem = 0;
-	
-	/** The has monster alive. */
-	protected boolean hasMonsterAlive = false;
+
 	
 	/** The has bomb. */
 	protected boolean hasBomb = false;
@@ -47,9 +56,9 @@ public abstract class Item {
 	 *
 	 * @param state the new current state
 	 */
-	public void setCurrentState(ItemState state){	
+	public void setCurrentState(ItemState state){
 		this.state = state;
-	}
+	};
 	
 	
 	public ItemState getCurrentState(){	
@@ -57,10 +66,14 @@ public abstract class Item {
 	}
 
 
-	public int getMonsterInThisItem() {
-		return monsterInThisItem;
+	public boolean hasMonsters() {
+		return monsterInThisItem > 0;
 	}
 	
+	
+	public boolean isDetonating() {
+		return state.getClass() == ItemExploding.class;
+	}
 	
 	public void monsterIn() {
 		monsterInThisItem++;
@@ -77,6 +90,15 @@ public abstract class Item {
 		this.hasBomb = true;
 	}
 	
+	/**
+	 * Explode
+	 * 
+	 */
+	public void explode() {
+		setCurrentState(state.explode());
+		this.hasBomb = false;
+	}
+	
 	
 	/**
 	 * Manages the visit by the player.
@@ -85,6 +107,7 @@ public abstract class Item {
 	 */
 	public abstract void accept(Player player);
 
+	
 
 	/**
 	 * Manages the visit by the monster.
@@ -94,19 +117,14 @@ public abstract class Item {
 	public abstract void accept(Monster monster);
 
 
+	
 	/**
 	 * Sets the animation to be draw in the game window.
 	 */
-	public abstract void setAnimation(/*Animation animation*/);
+	public abstract void setAnimation(BufferedImage animation);
 	
-	/**
-	 * Explode
-	 * 
-	 */
-	public void explode() {
-		this.state.explode(this);
-		this.hasBomb = false;
-	}
 	
+	
+
 	
 }//end Item
