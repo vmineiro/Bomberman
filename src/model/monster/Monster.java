@@ -90,16 +90,26 @@ public class Monster implements GameChar{
 	}
 
 	/**
-	 * Update.
+	 * Update Monster
 	 */
 	public void update(){
 			
-		Position mov_options[] = {UP,DOWN,LEFT,RIGHT};
-		Position mov_selected = mov_options[(int)(Math.random() * mov_options.length)]; 
-		Position newPosMonster = boardPosition.add(mov_selected);
+		Position newPosMonster = generatNextMov();
 		
 		//Check Monster new position ---------------------------------------------------------- INCOMPLETE
 		GameModel.getInstance().getBoard().getItem(newPosMonster).accept(this);
+	}
+
+	/**
+	 * Generate randomly next monster movement
+	 * 
+	 * @return newPosMonster
+	 */
+	private Position generatNextMov() {
+		Position mov_options[] = {UP,DOWN,LEFT,RIGHT};
+		Position mov_selected = mov_options[(int)(Math.random() * mov_options.length)]; 
+		Position newPosMonster = boardPosition.add(mov_selected);
+		return newPosMonster;
 	}
 	
 	/**
