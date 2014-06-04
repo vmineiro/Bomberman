@@ -1,6 +1,8 @@
 package tests;
 
 import model.Position;
+import model.board.ItemDetonating;
+import model.board.Path;
 import model.monster.Monster;
 import model.monster.MonsterAlive;
 import model.monster.MonsterDead;
@@ -52,7 +54,7 @@ public class MonsterTests {
 	/**
 	 * Death test.
 	 * 
-	 * Neste teste pretende-se testar a morte dos montros, ser serao apenas quando a celula, onde o monstro se situa, explode. 
+	 * Neste teste pretende-se testar a morte dos montros. 
 	 */
 	@Test
 	public void deathTest(){
@@ -63,12 +65,33 @@ public class MonsterTests {
 		assertNotNull(monster_T.getCurrentState());
 		
 		// Verify alive state
-		assertEquals(monster_T.getCurrentState().getClass(), MonsterAlive.class);
+		assertEquals("Monster is Alive", MonsterAlive.class, monster_T.getCurrentState().getClass());
 		
 		monster_T.setCurrentState(monster_T.getCurrentState().die());
 		
 		//Verify dead state
-		assertEquals(monster_T.getCurrentState().getClass(), MonsterDead.class);
-		
+		assertEquals("Monster is Dead", MonsterDead.class, monster_T.getCurrentState().getClass());
 	}
-}//end MonsterTests
+	
+	/**
+	 * Death by Detonation Test
+	 * 
+	 * Neste teste pretende-se testar a morte dos monstros, apenas quando a celula, onde o monstro se situa, explode.
+	 */
+	@Test
+	public void deathDetonationTests(){
+		Monster monster_t = new Monster();
+
+		//Testing Check Death
+		assertEquals("Monster is Alive before Detonation", MonsterAlive.class, monster_t.getCurrentState().getClass());
+
+		Path path_t = new Path();
+		path_t.setCurrentState(new ItemDetonating());
+		monster_t.checkDeath(path_t);
+		assertEquals("Monster is Dead after Detonation", MonsterDead.class, monster_t.getCurrentState().getClass());
+
+	}
+	
+}
+
+//end MonsterTests
