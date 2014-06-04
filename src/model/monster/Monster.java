@@ -1,7 +1,15 @@
 package model.monster;
 
+import model.GameChar;
 import model.GameModel;
 import model.Position;
+import model.board.BoardExit;
+import model.board.BombControl;
+import model.board.BombPowerUp;
+import model.board.BoostSpeed;
+import model.board.ExtraBomb;
+import model.board.Path;
+import model.board.UndestructibleWall;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -9,7 +17,7 @@ import model.Position;
  * instance of a MonsterState subclass that defines the current state.
  * 
  */
-public class Monster {
+public class Monster implements GameChar{
 
 	/** The state. */
 	private MonsterState state;
@@ -103,7 +111,41 @@ public class Monster {
 	/**
 	 * Sets the animation.
 	 */
-	public void setAnimation(/*Animation animation*/){
-
-	}
+	public void setAnimation(/*Animation animation*/){}
+	
+	/**
+	 * Monster visits bomb control item in game board
+	 */
+	public void visitBombControl(BombControl item){}
+	
+	/**
+	 * Monster visits extra bomb item in game board
+	 */
+	public void visitExtraBomb(ExtraBomb item){}
+	
+	/**
+	 * Monster visits bomb power up item in game board
+	 */
+	public void visitBombPowerUp(BombPowerUp item){}
+	
+	/**
+	 * Monster visits boost speed item in game board
+	 */
+	public void visitBoostSpeed(BoostSpeed item){}
+	
+	/**
+	 * Monster visits board exit item in game board
+	 */
+	public void visitBoardExit(BoardExit item){}
+	
+	/**
+	 * Monster visits path item in game board
+	 */
+	public void visitPath(Path item){}
+	
+	/**
+	 * Monster visits undestructible wall item in game board
+	 */
+	public void visitUndestructibleWall(UndestructibleWall item){}
+	
 }//end Monster
