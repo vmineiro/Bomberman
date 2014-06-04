@@ -83,6 +83,13 @@ public class GameModel {
 	}
 	
 	/**
+	 * Decrements the number of monsters alive
+	 */
+	public void decMonstersAlive(){
+		monstersAlive = monstersAlive - 1;
+	}
+	
+	/**
 	 * Draw. Calls draw method of all objects.
 	 */
 	public void draw(){

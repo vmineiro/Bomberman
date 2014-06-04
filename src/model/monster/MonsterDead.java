@@ -4,14 +4,12 @@ package model.monster;
 /**
  * This subclass implements a behaviour associated with a state of the Monster.
  */
-public class MonsterDead extends MonsterState {
+public class MonsterDead implements MonsterState {
 
 	/**
 	 * Instantiates a new monster dead.
 	 */
-	public MonsterDead(){
-
-	}
+	public MonsterDead(){}
 
 	/* (non-Javadoc)
 	 * @see model.MonsterState#finalize()
@@ -25,16 +23,10 @@ public class MonsterDead extends MonsterState {
 	 *
 	 * @param monster the monster
 	 */
-	public void die(Monster monster){
-
+	public MonsterState die(){
+		return this;
 	}
 
-	/**
-	 * Update.
-	 *
-	 * @param monster the monster
-	 */
-	public void update(Monster monster){
+}
 
-	}
-}//end MonsterDead
+//end MonsterDead

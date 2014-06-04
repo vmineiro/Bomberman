@@ -1,17 +1,17 @@
 package model.monster;
 
+import model.GameModel;
+
 // TODO: Auto-generated Javadoc
 /**
  * This subclass implements a behaviour associated with a state of the Monster.
  */
-public class MonsterAlive extends MonsterState {
+public class MonsterAlive implements MonsterState {
 
 	/**
 	 * Instantiates a new monster alive.
 	 */
-	public MonsterAlive(){
-
-	}
+	public MonsterAlive(){}
 
 	/* (non-Javadoc)
 	 * @see model.MonsterState#finalize()
@@ -25,16 +25,9 @@ public class MonsterAlive extends MonsterState {
 	 *
 	 * @param monster the monster
 	 */
-	public void die(Monster monster){
-
+	public MonsterState die(){
+		GameModel.getInstance().decMonstersAlive();
+		return new MonsterDead();
 	}
-
-	/**
-	 * Update.
-	 *
-	 * @param monster the monster
-	 */
-	public void update(Monster monster){
-
-	}
+	
 }//end MonsterAlive
