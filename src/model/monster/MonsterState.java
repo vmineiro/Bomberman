@@ -5,29 +5,15 @@ package model.monster;
  * This class defines an interface for encapsulating the behaviour associated with
  * a particular state of the Monster.
  */
-public abstract class MonsterState {
-
-	/**
-	 * Instantiates a new monster state.
-	 */
-	public MonsterState(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {
-
-	}
+public interface MonsterState {
 	
 	/**
 	 * Die.
 	 *
 	 * @param monster the monster
 	 */
-	public void die(Monster monster){
+	public abstract MonsterState die();
 
-	}
+}
 
-}//end MonsterState
+//end MonsterState
