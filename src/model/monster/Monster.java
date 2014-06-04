@@ -8,6 +8,7 @@ import model.board.BombControl;
 import model.board.BombPowerUp;
 import model.board.BoostSpeed;
 import model.board.ExtraBomb;
+import model.board.Item;
 import model.board.Path;
 import model.board.UndestructibleWall;
 
@@ -113,39 +114,64 @@ public class Monster implements GameChar{
 	}
 	
 	/**
+	 * Check if monster is killed by detonation and change MonsterStatus
+	 */
+	public boolean checkDeath(Item itemPos){
+		if(itemPos.isDetonating()){
+			setCurrentState(getCurrentState().die());
+			return true;
+		}
+		return false;
+	}
+	
+	/**
 	 * Monster visits bomb control item in game board
 	 */
-	public void visitBombControl(BombControl item){}
+	public void visitBombControl(BombControl item){
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits extra bomb item in game board
 	 */
-	public void visitExtraBomb(ExtraBomb item){}
+	public void visitExtraBomb(ExtraBomb item){
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits bomb power up item in game board
 	 */
-	public void visitBombPowerUp(BombPowerUp item){}
+	public void visitBombPowerUp(BombPowerUp item){
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits boost speed item in game board
 	 */
-	public void visitBoostSpeed(BoostSpeed item){}
+	public void visitBoostSpeed(BoostSpeed item){
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits board exit item in game board
 	 */
-	public void visitBoardExit(BoardExit item){}
+	public void visitBoardExit(BoardExit item){
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits path item in game board
 	 */
-	public void visitPath(Path item){}
+	public void visitPath(Path item){
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits undestructible wall item in game board
 	 */
-	public void visitUndestructibleWall(UndestructibleWall item){}
+	public void visitUndestructibleWall(UndestructibleWall item){
+		checkDeath(item);
+	}
 	
 	/**
 	 * Draw.
