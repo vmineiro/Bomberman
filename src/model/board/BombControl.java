@@ -22,7 +22,7 @@ public class BombControl extends Item {
 	public void finalize() throws Throwable {
 		super.finalize();
 	}
-	
+
 	/**
 	 * Sets the current state.
 	 *
@@ -40,8 +40,14 @@ public class BombControl extends Item {
 	 */
 	@Override
 	public void accept(Player player){
-		//player->updateBoardPosition()
 
+		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
+		
+		if (this.state.getClass() == ItemActive.class) {
+			//TODO change method
+			//player->updateBoardPosition(this)
+			return;
+		}
 
 	}
 
@@ -52,6 +58,9 @@ public class BombControl extends Item {
 	 */
 	@Override
 	public void accept(Monster monster){
+		
+		if (this.state.getClass() == ItemHidden.class) return;
+		//TODO change method
 		//monster->updateBoardPosition()
 
 
