@@ -36,17 +36,10 @@ public class BombControl extends Item {
 	public void accept(Player player){
 
 		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
-		
-		if (this.state.getClass() == ItemActive.class) {
-			
-			setCurrentState(this.state.pickUp());
-			//TODO change method
-			//player->updateBoardPosition(this)
-			return;
-			
-		}
-		
-		//player->updateBoardPosition(this)
+				
+		setCurrentState(this.state.pickUp());
+
+		player.visitBombControl(this);
 
 	}
 
@@ -59,9 +52,8 @@ public class BombControl extends Item {
 	public void accept(Monster monster){
 		
 		if (this.state.getClass() == ItemHidden.class) return;
-		//TODO change method
-		//monster->updateBoardPosition()
 
+		monster.visitBombControl(this);
 
 	}
 

@@ -46,9 +46,7 @@ public class UndestructibleWall extends Item {
 	
 	
 	@Override
-	public void explode() {
-		
-	}
+	public void explode() {}
 	
 	
 	

@@ -75,6 +75,12 @@ public abstract class Item {
 		return state.getClass() == ItemExploding.class;
 	}
 	
+	
+	public boolean isActive() {
+		return state.getClass() == ItemActive.class;
+	}
+	
+	
 	public void monsterIn() {
 		monsterInThisItem++;
 	}

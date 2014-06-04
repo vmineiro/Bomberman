@@ -47,8 +47,7 @@ public class BoardExit extends Item {
 		
 		if (this.state.getClass() == ItemHidden.class) return;
 		
-		//TODO change method
-//		player.updateBoardPosition();
+		player.visitBoardExit(this);
 
 
 	}
@@ -62,7 +61,8 @@ public class BoardExit extends Item {
 
 		if (this.state.getClass() == ItemHidden.class) return;
 		
-//		monster.updatePosition();
+		monster.visitBoardExit(this);
+		
 
 	}
 

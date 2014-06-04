@@ -36,7 +36,7 @@ public class Path extends Item {
 		
 		if (this.getCurrentState().getClass() == ItemHidden.class) return;
 		
-//TODO		player.update();
+		player.visitPath(this);
 
 
 	}
@@ -50,8 +50,8 @@ public class Path extends Item {
 
 		if (this.getCurrentState().getClass() == ItemHidden.class) return;
 		
-//TODO		player.update();
-
+		monster.visitPath(this);
+		
 	}
 
 	@Override

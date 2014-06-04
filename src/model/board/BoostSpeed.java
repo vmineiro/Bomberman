@@ -19,6 +19,7 @@ public class BoostSpeed extends Item {
 	 * @see model.Item#finalize()
 	 */
 	public void finalize() throws Throwable {
+		
 		super.finalize();
 	}
 
@@ -31,25 +32,15 @@ public class BoostSpeed extends Item {
 	@Override
 	public void accept(Player player){
 
-
 		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
 
-		if (this.state.getClass() == ItemActive.class) {
-
-			setCurrentState(this.state.pickUp());
+		setCurrentState(this.state.pickUp());
 			
-			
-			//TODO change method
-			//player->updateBoardPosition(this)
-			return;
-
-		}
-
-		//player->updateBoardPosition(this)
-
-
+		player.visitBoostSpeed(this);
 	}
 
+	
+	
 	/**
 	 * Manages the visit by the monster.
 	 *
@@ -57,8 +48,8 @@ public class BoostSpeed extends Item {
 	 */
 	@Override
 	public void accept(Monster monster){
-		//monster->updateBoardPosition()
-
+		
+		monster.visitBoostSpeed(this);
 	}
 
 	/**

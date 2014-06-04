@@ -34,17 +34,9 @@ public class ExtraBomb extends Item {
 
 		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
 
-		if (this.state.getClass() == ItemActive.class) {
+		setCurrentState(this.state.pickUp());
 
-			setCurrentState(this.state.pickUp());
-			
-			//TODO change method
-			//player->updateBoardPosition(this)
-			return;
-
-		}
-
-		//player->updateBoardPosition(this)
+		player.visitExtraBomb(this);
 
 
 	}
@@ -56,7 +48,8 @@ public class ExtraBomb extends Item {
 	 */
 	@Override
 	public void accept(Monster monster){
-		//monster->updateBoardPosition()
+		
+		monster.visitExtraBomb(this);
 
 
 	}
