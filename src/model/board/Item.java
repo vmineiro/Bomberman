@@ -72,6 +72,12 @@ public abstract class Item {
 	}
 	
 	
+	
+	public void bombDropped(){
+		this.hasBomb = true;
+	}
+	
+	
 	/**
 	 * Manages the visit by the player.
 	 *
@@ -99,6 +105,7 @@ public abstract class Item {
 	 */
 	public void explode() {
 		this.state.explode(this);
+		this.hasBomb = false;
 	}
 	
 	
