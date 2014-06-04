@@ -90,11 +90,6 @@ public class Monster implements GameChar{
 	}
 
 	/**
-	 * Draw.
-	 */
-	public void draw(){}
-
-	/**
 	 * Update.
 	 */
 	public void update(){
@@ -105,13 +100,7 @@ public class Monster implements GameChar{
 		
 		//Check Monster new position ---------------------------------------------------------- INCOMPLETE
 		GameModel.getInstance().getBoard().getItem(newPosMonster).accept(this);
-		
 	}
-
-	/**
-	 * Sets the animation.
-	 */
-	public void setAnimation(/*Animation animation*/){}
 	
 	/**
 	 * Monster visits bomb control item in game board
@@ -148,4 +137,16 @@ public class Monster implements GameChar{
 	 */
 	public void visitUndestructibleWall(UndestructibleWall item){}
 	
-}//end Monster
+	/**
+	 * Draw.
+	 */
+	public void draw(){}
+	
+	/**
+	 * Sets the animation.
+	 */
+	public void setAnimation(/*Animation animation*/){}
+	
+}
+
+//end Monster
