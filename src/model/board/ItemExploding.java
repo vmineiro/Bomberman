@@ -12,12 +12,13 @@ import model.GameModel;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemExploding implements ItemState {
+public class ItemExploding extends ItemState {
 	
 	/**
 	 * Instantiates a new item detonating.
 	 */
 	public ItemExploding(){
+		super();
 		
 	}
 
@@ -31,14 +32,17 @@ public class ItemExploding implements ItemState {
 	
 	@Override
 	public ItemState explode() {
-		// TODO Auto-generated method stub
 		return new ItemExploding();
 	}
 	
 	@Override
 	public ItemState pickUp() {
-		// TODO Auto-generated method stub
 		return this;
+	}
+
+	@Override
+	public ItemState explosionEnds() {
+		return new ItemInactive();
 	}
 
 

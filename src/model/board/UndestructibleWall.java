@@ -3,6 +3,7 @@ package model.board;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -16,7 +17,7 @@ import model.player.Player;
  */
 public class UndestructibleWall extends Item {
 
-	BufferedImage steelImg;
+
 
 	/**
 	 * Instantiates a new undestructible wall.
@@ -26,12 +27,20 @@ public class UndestructibleWall extends Item {
 		
 		try {
 			
-			steelImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage steelImg = ImageIO.read(new File("img/wall01.png"));
 			
-			setAnimation(steelImg);
+			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
+			
+			itemImages.put(ItemHidden.class, steelImg);
+			itemImages.put(ItemDetonating.class, steelImg);
+			itemImages.put(ItemActive.class, steelImg);
+			itemImages.put(ItemExploding.class, steelImg);
+			itemImages.put(ItemInactive.class, steelImg);
+			
+			setCurrentState(new ItemInactive());
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -68,12 +77,7 @@ public class UndestructibleWall extends Item {
 	@Override
 	public void explode() {}
 	
-	
-	
-	@Override
-	public void setAnimation(BufferedImage animation) {
-		this.animation = animation;
-	}
+
 
 
 }//end UndestructibleWall

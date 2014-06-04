@@ -3,6 +3,7 @@ package model.board;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -15,28 +16,32 @@ import model.player.Player;
  */
 public class ExtraBomb extends Item {
 
-	BufferedImage wallImg;
-	BufferedImage pathImg;
-	BufferedImage extraBombImg;
-	BufferedImage explosionImg;
-	
 
-	
 	public ExtraBomb(){
 		super();
 		
 		try {
 			
-			wallImg = ImageIO.read(new File("img/wall01.png"));
-			pathImg = ImageIO.read(new File("img/wall01.png"));
-			extraBombImg = ImageIO.read(new File("img/wall01.png"));
-			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage extraBombImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
+
+			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
+			
+			itemImages.put(ItemHidden.class, wallImg);
+			itemImages.put(ItemDetonating.class, explosionImg);
+			itemImages.put(ItemActive.class, extraBombImg);
+			itemImages.put(ItemExploding.class, explosionImg);
+			itemImages.put(ItemInactive.class, pathImg);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		setCurrentState(new ItemHidden());
+
 		
 	}
 
@@ -75,30 +80,6 @@ public class ExtraBomb extends Item {
 	public void accept(Monster monster){
 		
 		monster.visitExtraBomb(this);
-
-
-	}
-
-	@Override
-	public void setAnimation(BufferedImage animation) {
-
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(explosionImg);
-			return;
-		}
-
-		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(wallImg);
-			return;
-		}
-
-		if (this.state.getClass() == ItemActive.class){
-			this.setAnimation(extraBombImg);
-			return;
-		}
-
-
-		this.setAnimation(pathImg);
 
 	}
 
