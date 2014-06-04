@@ -29,12 +29,4 @@ public class MonsterDead extends MonsterState {
 
 	}
 
-	/**
-	 * Update.
-	 *
-	 * @param monster the monster
-	 */
-	public void update(Monster monster){
-
-	}
 }//end MonsterDead

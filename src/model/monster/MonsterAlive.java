@@ -29,18 +29,6 @@ public class MonsterAlive extends MonsterState {
 	 */
 	public void die(Monster monster){
 		monster.setCurrentState(new MonsterDead());
-	}
-
-	/**
-	 * Update.
-	 *
-	 * @param monster the monster
-	 */
-	public void update(Monster monster){
-		
-		// INCOMPLETE - Conditions for monster death
-		die(monster);
-		
 		GameModel.getInstance().decMonstersAlive();
 	}
 	
