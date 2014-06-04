@@ -1,13 +1,21 @@
 package model.player;
 
+import model.GameChar;
 import model.Position;
+import model.board.BoardExit;
+import model.board.BombControl;
+import model.board.BombPowerUp;
+import model.board.BoostSpeed;
+import model.board.ExtraBomb;
+import model.board.Path;
+import model.board.UndestructibleWall;
 
 // TODO: Auto-generated Javadoc
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a PlayerState subclass that defines the current state.
  */
-public class Player {
+public class Player implements GameChar{
 
 	/** The score. */
 	private int score = 0;
@@ -149,5 +157,40 @@ public class Player {
 	public void update(){
 
 	}
+	
+	/**
+	 * Monster visits bomb control item in game board
+	 */
+	public void visitBombControl(BombControl item){}
+	
+	/**
+	 * Monster visits extra bomb item in game board
+	 */
+	public void visitExtraBomb(ExtraBomb item){}
+	
+	/**
+	 * Monster visits bomb power up item in game board
+	 */
+	public void visitBombPowerUp(BombPowerUp item){}
+	
+	/**
+	 * Monster visits boost speed item in game board
+	 */
+	public void visitBoostSpeed(BoostSpeed item){}
+	
+	/**
+	 * Monster visits board exit item in game board
+	 */
+	public void visitBoardExit(BoardExit item){}
+	
+	/**
+	 * Monster visits path item in game board
+	 */
+	public void visitPath(Path item){}
+	
+	/**
+	 * Monster visits undestructible wall item in game board
+	 */
+	public void visitUndestructibleWall(UndestructibleWall item){}
 
 }//end Player
