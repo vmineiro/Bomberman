@@ -2,12 +2,16 @@ package model.board;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.lang.Thread.State;
+
+
 
 
 
 import javax.swing.Timer;
 
+import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
@@ -44,7 +48,7 @@ public class BoardExit extends Item {
 		if (this.state.getClass() == ItemHidden.class) return;
 		
 		//TODO change method
-		player.updateBoardPosition();
+//		player.updateBoardPosition();
 
 
 	}
@@ -57,18 +61,34 @@ public class BoardExit extends Item {
 	public void accept(Monster monster){
 
 		if (this.state.getClass() == ItemHidden.class) return;
-
-	}
-
-
-	/**
-	 * Sets a new animation to be draw in the game window, according the Item current state
-	 * @param player the player visitor
-	 */
-	public void setAnimation(/*Animation animation*/){
+		
+//		monster.updatePosition();
 
 	}
 
 	
+	
+	@Override
+	public void setAnimation(BufferedImage animation) {
+
+		if (this.state.getClass() == ItemExploding.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
+			return;
+		}
+		
+		if (this.state.getClass() == ItemHidden.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
+			return;
+		}
+		
+		if (this.state.getClass() == ItemActive.class){
+			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("activeExit"));
+			return;
+		}
+		
+			
+		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("inactiveExit"));
+		
+	}	
 	
 }//end BoardExit
