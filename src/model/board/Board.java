@@ -31,16 +31,16 @@ public class Board {
 		
 		try {
 			
-			BufferedImage wallImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage steelImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage pathImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage boardExitActiveImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage boardExitInactiveImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage bombControlImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage bombPowerUpImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage boostSpeedlImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage extraBombImg = ImageIO.read(new File("img/templar01.jpg"));
-			BufferedImage explosionImg = ImageIO.read(new File("img/templar01.jpg"));
+			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage steelImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage boardExitActiveImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage boardExitInactiveImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage bombControlImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage bombPowerUpImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage boostSpeedlImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage extraBombImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
 			
 			this.animations = new HashMap<String, BufferedImage>();
 			this.animations.put("wall",wallImg);
