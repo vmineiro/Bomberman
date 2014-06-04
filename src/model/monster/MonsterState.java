@@ -30,12 +30,4 @@ public abstract class MonsterState {
 
 	}
 
-	/**
-	 * Update.
-	 *
-	 * @param monster the monster
-	 */
-	public void update(Monster monster){
-
-	}
 }//end MonsterState
