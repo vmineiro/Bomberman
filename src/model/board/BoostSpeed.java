@@ -22,6 +22,7 @@ public class BoostSpeed extends Item {
 
 	
 	public BoostSpeed(){
+		super();
 		
 		try {
 			

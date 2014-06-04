@@ -28,7 +28,7 @@ public class BombControl extends Item {
 	 * Instantiates a new bomb control.
 	 */
 	public BombControl(){
-
+		super();
 		
 		try {
 			

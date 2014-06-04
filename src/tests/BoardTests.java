@@ -1,6 +1,13 @@
 package tests;
 
+import static org.junit.Assert.*;
+import model.board.ItemDetonating;
+import model.board.ItemExploding;
+import model.board.ItemHidden;
+import model.board.ItemPath;
+
 import org.junit.Test;
+
 
 /**
  * The Class BoardTests.
@@ -30,7 +37,13 @@ public class BoardTests {
 	 */
 	@Test
 	public void pathTest(){
-
+		
+		ItemPath path = new ItemPath();
+		
+		assertEquals(ItemHidden.class, path.getCurrentState().getClass());
+		
+		path.explode();
+		assertEquals(ItemDetonating.class, path.getCurrentState().getClass());
 		
 		
 	}

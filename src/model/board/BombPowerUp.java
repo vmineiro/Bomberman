@@ -24,6 +24,7 @@ public class BombPowerUp extends Item {
 	
 	
 	public BombPowerUp(){
+		super();
 		
 		try {
 			

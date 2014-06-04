@@ -22,6 +22,7 @@ public class UndestructibleWall extends Item {
 	 * Instantiates a new undestructible wall.
 	 */
 	public UndestructibleWall(){
+		super();
 		
 		try {
 			

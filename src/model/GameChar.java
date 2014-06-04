@@ -32,7 +32,7 @@ public interface GameChar {
 	/**
 	 * Monster visits path item in game board
 	 */
-	public abstract void visitPath(Path item);
+	public abstract void visitPath(ItemPath item);
 	
 	/**
 	 * Monster visits undestructible wall item in game board

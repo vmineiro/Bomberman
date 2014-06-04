@@ -8,7 +8,7 @@ import model.board.BombControl;
 import model.board.BombPowerUp;
 import model.board.BoostSpeed;
 import model.board.ExtraBomb;
-import model.board.Path;
+import model.board.ItemPath;
 import model.board.UndestructibleWall;
 
 // TODO: Auto-generated Javadoc
@@ -140,7 +140,7 @@ public class Monster implements GameChar{
 	/**
 	 * Monster visits path item in game board
 	 */
-	public void visitPath(Path item){}
+	public void visitPath(ItemPath item){}
 	
 	/**
 	 * Monster visits undestructible wall item in game board

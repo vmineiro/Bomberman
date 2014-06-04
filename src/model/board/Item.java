@@ -35,10 +35,14 @@ public abstract class Item {
 	/** The has bomb. */
 	protected boolean hasBomb = false;
 
+	
+	
 	/**
 	 * Instantiates a new item.
 	 */
-	public Item(){
+	public Item(){	
+		state = new ItemHidden();
+		
 
 	}
 

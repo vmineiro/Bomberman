@@ -14,7 +14,7 @@ import model.player.Player;
 /**
  * The Class Path.
  */
-public class Path extends Item {
+public class ItemPath extends Item {
 
 	BufferedImage wallImg;
 	BufferedImage pathImg;
@@ -25,7 +25,7 @@ public class Path extends Item {
 	/**
 	 * Instantiates a new path.
 	 */
-	public Path(){
+	public ItemPath(){
 
 		try {
 			
