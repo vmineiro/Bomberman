@@ -1,6 +1,10 @@
 package model.board;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import model.GameModel;
 import model.monster.Monster;
@@ -11,7 +15,25 @@ import model.player.Player;
  */
 public class BoostSpeed extends Item {
 
+	BufferedImage wallImg;
+	BufferedImage pathImg;
+	BufferedImage boostSpeedlImg;
+	BufferedImage explosionImg;
+
+	
 	public BoostSpeed(){
+		
+		try {
+			
+			wallImg = ImageIO.read(new File("img/wall01.png"));
+			pathImg = ImageIO.read(new File("img/wall01.png"));
+			boostSpeedlImg = ImageIO.read(new File("img/wall01.png"));
+			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -59,22 +81,22 @@ public class BoostSpeed extends Item {
 	public void setAnimation(BufferedImage animation){
 
 		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
+			this.setAnimation(explosionImg);
 			return;
 		}
 
 		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
+			this.setAnimation(wallImg);
 			return;
 		}
 
 		if (this.state.getClass() == ItemActive.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("boostSpeed"));
+			this.setAnimation(boostSpeedlImg);
 			return;
 		}
 
 
-		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("path"));
+		this.setAnimation(pathImg);
 
 	}
 

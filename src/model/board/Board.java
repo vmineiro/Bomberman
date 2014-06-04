@@ -29,38 +29,6 @@ public class Board {
 	 */
 	public Board(){
 		
-		try {
-			
-			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage steelImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage boardExitActiveImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage boardExitInactiveImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage bombControlImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage bombPowerUpImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage boostSpeedlImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage extraBombImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
-			
-			this.animations = new HashMap<String, BufferedImage>();
-			this.animations.put("wall",wallImg);
-			this.animations.put("steel",steelImg);
-			this.animations.put("path",pathImg);
-			this.animations.put("activeExit",boardExitActiveImg);
-			this.animations.put("inactiveExit",boardExitInactiveImg);
-			this.animations.put("bombControl",bombControlImg);
-			this.animations.put("bombPowerUP",bombPowerUpImg);
-			this.animations.put("boostSpeed",boostSpeedlImg);
-			this.animations.put("extraBomb",extraBombImg);
-			this.animations.put("explosion",explosionImg);
-			
-			
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 
 	}
@@ -101,7 +69,4 @@ public class Board {
 		
 	}
 
-	public BufferedImage getAnimation(String animation) {
-		return animations.get(animation);
-	}
 }//end Board

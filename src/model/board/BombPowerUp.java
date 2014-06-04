@@ -1,6 +1,10 @@
 package model.board;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import model.GameModel;
 import model.monster.Monster;
@@ -12,7 +16,26 @@ import model.player.Player;
  */
 public class BombPowerUp extends Item {
 
+	
+	BufferedImage wallImg;
+	BufferedImage pathImg;
+	BufferedImage bombPowerUpImg;
+	BufferedImage explosionImg;
+	
+	
 	public BombPowerUp(){
+		
+		try {
+			
+			wallImg = ImageIO.read(new File("img/wall01.png"));
+			pathImg = ImageIO.read(new File("img/wall01.png"));
+			bombPowerUpImg = ImageIO.read(new File("img/wall01.png"));
+			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -54,23 +77,23 @@ public class BombPowerUp extends Item {
 	@Override
 	public void setAnimation(BufferedImage animation) {
 
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
-			return;
-		}
 
 		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
+			this.setAnimation(wallImg);
 			return;
 		}
 
 		if (this.state.getClass() == ItemActive.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("bombPowerUp"));
+			this.setAnimation(bombPowerUpImg);
+			return;
+		}
+		
+		if (this.state.getClass() == ItemExploding.class){
+			this.setAnimation(explosionImg);
 			return;
 		}
 
-
-		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("path"));
+		this.setAnimation(pathImg);
 
 
 	}
