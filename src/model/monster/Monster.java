@@ -98,11 +98,6 @@ public class Monster {
 		//Check Monster new position ---------------------------------------------------------- INCOMPLETE
 		GameModel.getInstance().getBoard().getItem(newPosMonster).accept(this);
 		
-		/* INCORRECT ======> public void accept(Visitor v) {
-		v.visitConcreteElementA(this);
-		}
-		*/
-		
 	}
 
 	/**
