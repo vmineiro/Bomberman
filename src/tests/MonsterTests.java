@@ -3,6 +3,7 @@ package tests;
 import model.Position;
 import model.monster.Monster;
 import model.monster.MonsterAlive;
+import model.monster.MonsterDead;
 
 import org.junit.Test;
 
@@ -28,10 +29,11 @@ public class MonsterTests {
 		assertNotNull(monster_T.getBoardPosition());
 		assertNotNull(monster_T.getCurrentState());
 
-		monster_T.setBoardPosition(monster_T.getBoardPosition().add(new Position(3, 3)));
-
-		monster_T.update();
-		
+		// Set monster start position in (3,3)
+		monster_T.setBoardPosition(monster_T.getBoardPosition().add(new Position(3,3)));
+		// Generates randomly monster next position
+		monster_T.setBoardPosition(monster_T.generateNextMov());
+		//Verifies monster next position
 		assertTrue(monster_T.getBoardPosition().equals(new Position(4, 3)) || monster_T.getBoardPosition().equals(new Position(2, 3)) 
 				|| monster_T.getBoardPosition().equals(new Position(3, 4)) || monster_T.getBoardPosition().equals(new Position(3, 2)));
 	}
@@ -54,6 +56,19 @@ public class MonsterTests {
 	 */
 	@Test
 	public void deathTest(){
+		Monster monster_T = new Monster();
 
+		assertNotNull(monster_T);
+		assertNotNull(monster_T.getBoardPosition());
+		assertNotNull(monster_T.getCurrentState());
+		
+		// Verify alive state
+		assertEquals(monster_T.getCurrentState().getClass(), MonsterAlive.class);
+		
+		monster_T.setCurrentState(monster_T.getCurrentState().die());
+		
+		//Verify dead state
+		assertEquals(monster_T.getCurrentState().getClass(), MonsterDead.class);
+		
 	}
 }//end MonsterTests
