@@ -13,6 +13,9 @@ import java.lang.Thread.State;
 
 
 
+
+import java.util.HashMap;
+
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
@@ -27,27 +30,37 @@ import model.player.Player;
 public class BoardExit extends Item {
 	
 
-	BufferedImage wallImg;
-	BufferedImage boardExitImg;
-	BufferedImage explosionImg;
+	HashMap<Class<? extends ItemState>, BufferedImage> itemImages;
 
 
 	/**
 	 * Instantiates a new board exit.
 	 */
 	public BoardExit(){
+		
 		super();
 		
 		try {
 			
-			wallImg = ImageIO.read(new File("img/wall01.png"));
-			boardExitImg = ImageIO.read(new File("img/wall01.png"));
-			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage boardExitImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
+			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
+			
+			itemImages.put(ItemHidden.class, wallImg);
+			itemImages.put(ItemDetonating.class, explosionImg);
+			itemImages.put(ItemActive.class, boardExitImg);
+			itemImages.put(ItemExploding.class, explosionImg);
+			itemImages.put(ItemInactive.class, boardExitImg);
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		setCurrentState(new ItemHidden());
+		
 
 	}
 
@@ -88,22 +101,5 @@ public class BoardExit extends Item {
 	}
 
 	
-	
-	@Override
-	public void setAnimation(BufferedImage animation) {
-
-		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(wallImg);
-			return;
-		}
-		
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(explosionImg);
-			return;
-		}
-		
-		this.setAnimation(boardExitImg);
-		
-	}	
 	
 }//end BoardExit

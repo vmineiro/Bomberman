@@ -4,12 +4,13 @@ package model.board;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemHidden implements ItemState {
+public class ItemHidden extends ItemState {
 
 	/**
 	 * Instantiates a new item hidden.
 	 */
 	public ItemHidden(){
+		super();
 	
 	}
 
@@ -23,13 +24,18 @@ public class ItemHidden implements ItemState {
 
 	@Override
 	public ItemState explode() {
-		// TODO Auto-generated method stub
 		return new ItemDetonating();
 	}
 
 	@Override
 	public ItemState pickUp() {
-		// TODO Auto-generated method stub
 		return this;
 	}
+
+	@Override
+	public ItemState explosionEnds() {
+		return this;
+	}
+	
+	
 }//end ItemHidden

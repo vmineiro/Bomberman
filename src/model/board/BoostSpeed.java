@@ -3,6 +3,7 @@ package model.board;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -15,27 +16,33 @@ import model.player.Player;
  */
 public class BoostSpeed extends Item {
 
-	BufferedImage wallImg;
-	BufferedImage pathImg;
-	BufferedImage boostSpeedlImg;
-	BufferedImage explosionImg;
 
-	
 	public BoostSpeed(){
 		super();
 		
 		try {
 			
-			wallImg = ImageIO.read(new File("img/wall01.png"));
-			pathImg = ImageIO.read(new File("img/wall01.png"));
-			boostSpeedlImg = ImageIO.read(new File("img/wall01.png"));
-			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage boostSpeedlImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
+
+			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
+			
+			itemImages.put(ItemHidden.class, wallImg);
+			itemImages.put(ItemDetonating.class, explosionImg);
+			itemImages.put(ItemActive.class, boostSpeedlImg);
+			itemImages.put(ItemExploding.class, explosionImg);
+			itemImages.put(ItemInactive.class, pathImg);
+			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		setCurrentState(new ItemHidden());
+		
 	}
 
 	/* (non-Javadoc)
@@ -75,30 +82,6 @@ public class BoostSpeed extends Item {
 		monster.visitBoostSpeed(this);
 	}
 
-	/**
-	 * Sets the animation to be draw in the game window.
-	 */
-	@Override
-	public void setAnimation(BufferedImage animation){
 
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(explosionImg);
-			return;
-		}
-
-		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(wallImg);
-			return;
-		}
-
-		if (this.state.getClass() == ItemActive.class){
-			this.setAnimation(boostSpeedlImg);
-			return;
-		}
-
-
-		this.setAnimation(pathImg);
-
-	}
 
 }//end BoostSpeed

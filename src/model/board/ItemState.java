@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
  * This class defines an interface for encapsulating the behaviour associated with
  * a particular state of the Item.
  */
-public interface ItemState {
+public abstract class ItemState {
 	
 
 	
@@ -20,14 +20,24 @@ public interface ItemState {
 	 *
 	 * @param item the item
 	 */
-	public ItemState explode();
+	public abstract ItemState explode();
+	
+	
+	/**
+	 * Explode. Trigger a state change.
+	 *
+	 * @param item the item
+	 */
+	public abstract ItemState explosionEnds();
+	
+	
 
 	/**
 	 * The item (power up item) is visited by the player. Trigger a state change.
 	 * 
 	 * @param item
 	 */
-	public ItemState pickUp();
+	public abstract ItemState pickUp();
 
 
 }//end ItemState

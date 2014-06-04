@@ -3,6 +3,7 @@ package model.board;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
@@ -15,26 +16,30 @@ import model.player.Player;
  * The Class Path.
  */
 public class ItemPath extends Item {
-
-	BufferedImage wallImg;
-	BufferedImage pathImg;
-	BufferedImage explosionImg;
-	
-	
 	
 	/**
 	 * Instantiates a new path.
 	 */
 	public ItemPath(){
+		
+		super();
 
 		try {
 			
-			wallImg = ImageIO.read(new File("img/wall01.png"));
-			pathImg = ImageIO.read(new File("img/wall01.png"));
-			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
+			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
+			
+			itemImages.put(ItemHidden.class, wallImg);
+			itemImages.put(ItemDetonating.class, explosionImg);
+			itemImages.put(ItemActive.class, pathImg);
+			itemImages.put(ItemExploding.class, explosionImg);
+			itemImages.put(ItemInactive.class, pathImg);
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		
@@ -55,7 +60,7 @@ public class ItemPath extends Item {
 	 */
 	public void accept(Player player){
 		
-		if (this.getCurrentState().getClass() == ItemHidden.class) return;
+		if (this.state.getClass() == ItemHidden.class) return;
 		
 		player.visitPath(this);
 
@@ -69,26 +74,9 @@ public class ItemPath extends Item {
 	 */
 	public void accept(Monster monster){
 
-		if (this.getCurrentState().getClass() == ItemHidden.class) return;
+		if (this.state.getClass() == ItemHidden.class) return;
 		
 		monster.visitPath(this);
-		
-	}
-
-	@Override
-	public void setAnimation(BufferedImage animation) {
-		
-		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(wallImg);
-			return;
-		}
-		
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(explosionImg);
-			return;
-		}
-			
-		this.setAnimation(pathImg);
 		
 	}
 
