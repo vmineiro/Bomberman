@@ -23,7 +23,7 @@ public class ExtraBomb extends Item {
 
 	
 	public ExtraBomb(){
-
+		super();
 		
 		try {
 			
