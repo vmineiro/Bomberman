@@ -47,26 +47,26 @@ public class ManualBomb implements Bomb {
 	 */
 	public void detonate(){
 		// First Explosion
-				GameModel.getInstance().getBoard().getItem(boardPosition).explode();
-				
-				//TODO: Removed bomb from item 
-				GameModel.getInstance().getPlayers().resetNBombs();
-				
-				ActionListener proTimerListener = new ActionListener(){ 
-					public void actionPerformed(ActionEvent e) {
-						propagateExplosion(boardPosition, range_counter);
-						range_counter++;
-						
-						if(range_counter == range){
-							proTimer.stop();
-						}
-					}
-				};
-				
-				proTimer = new Timer(TIME_TO_PROPAGATION, proTimerListener);
-				
-				//Start Timer for next Explosion
-				proTimer.start();
+		GameModel.getInstance().getBoard().getItem(boardPosition).explode();
+
+		//TODO: Removed bomb from item 
+		GameModel.getInstance().getPlayers().incBombs();
+
+		ActionListener proTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				propagateExplosion(boardPosition, range_counter);
+				range_counter++;
+
+				if(range_counter == range){
+					proTimer.stop();
+				}
+			}
+		};
+
+		proTimer = new Timer(TIME_TO_PROPAGATION, proTimerListener);
+
+		//Start Timer for next Explosion
+		proTimer.start();
 	}
 	
 	/**
