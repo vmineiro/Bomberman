@@ -25,6 +25,7 @@ public class MonsterTests {
 	@Test
 	public void moveTests(){
 		
+		//TODO: Improve moveTests
 		Monster monster_T = new Monster();
 
 		assertNotNull(monster_T);
@@ -44,11 +45,11 @@ public class MonsterTests {
 	 * Power up tests.
 	 * 
 	 * Neste teste pretende-se testar as alteracoes de estado dos tipos de monstros,
-	 * quando visitam uma cas de PowerUp. 
+	 * quando visitam uma casa de PowerUp. 
 	 */
 	@Test
 	public void powerUpTests(){
-
+		
 	}
 
 	/**
@@ -58,6 +59,7 @@ public class MonsterTests {
 	 */
 	@Test
 	public void deathTest(){
+		//TODO: Improve deathTests
 		Monster monster_T = new Monster();
 
 		assertNotNull(monster_T);
@@ -80,6 +82,7 @@ public class MonsterTests {
 	 */
 	@Test
 	public void deathDetonationTests(){
+		//TODO: Improve deathDetonationTests
 		Monster monster_t = new Monster();
 
 		//Testing Check Death
