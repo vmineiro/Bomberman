@@ -5,7 +5,7 @@ import model.Position;
 /**
  * This subclass implements a behaviour associated with a state of the PlayerStationary
  */
-public class PlayerStationary implements PlayerState{
+public class PlayerStationary implements PlayerAlive {
 	
 	/**
 	 * Instantiates a new player down.

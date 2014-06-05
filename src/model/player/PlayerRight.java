@@ -5,7 +5,7 @@ import model.Position;
 /**
  * This subclass implements a behaviour associated with a state of the PlayerAlive.
  */
-public class PlayerRight implements PlayerState {
+public class PlayerRight implements PlayerAlive {
 
 	/**
 	 * Instantiates a new player right.
