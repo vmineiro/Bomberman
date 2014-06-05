@@ -4,86 +4,48 @@ package model.player;
 /**
  * This subclass implements a behaviour associated with a state of the Player.
  */
-public class PlayerAlive extends PlayerState {
+public class PlayerAlive implements PlayerState {
 
 	/**
 	 * Instantiates a new player alive.
 	 */
-	public PlayerAlive(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
+	public PlayerAlive(){}
 	
-	/* (non-Javadoc)
-	 * @see model.PlayerState#move()
+	/**
+	 * Turn up.
 	 */
-	public void move(){
-		//player->updateBoardPosition
-
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnUp()
-	 */
-	public void turnUp(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnLeft()
-	 */
-	public void turnLeft(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnDown()
-	 */
-	public void turnDown(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnRight()
-	 */
-	public void turnRight(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#die()
-	 */
-	public void die(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#respawn()
-	 */
-	public void respawn(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#update()
-	 */
-	public void update(){
-
+	public PlayerState turnUp(){
+		return new PlayerUp();
 	}
 
 	/**
-	 * Update draw rate.
-	 *
-	 * @param rate the rate
+	 * Turn left.
 	 */
-	public void updateDrawRate(int rate){
-
+	public PlayerState turnLeft(){
+		return new PlayerLeft();
 	}
-}//end PlayerAlive
+
+	/**
+	 * Turn down.
+	 */
+	public PlayerState turnDown(){
+		return new PlayerDown();
+	}
+
+	/**
+	 * Turn right.
+	 */
+	public PlayerState turnRight(){
+		return new PlayerRight();
+	}
+
+	/**
+	 * Die.
+	 */
+	public PlayerState die(){
+		return new PlayerDead();
+	}
+
+}
+
+//end PlayerAlive
