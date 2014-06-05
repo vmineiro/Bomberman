@@ -134,7 +134,7 @@ public class Monster implements GameChar{
 		GameModel.getInstance().getBoard().getItem(nextBoardPosition).monsterIn();
 		
 		// Change boardPosition to nextBoardPosition
-		boardPosition = nextBoardPosition;
+		setBoardPosition(nextBoardPosition);
 	}
 	
 	/**
