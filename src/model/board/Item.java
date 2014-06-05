@@ -145,10 +145,14 @@ public abstract class Item {
 	/**
 	 * Explode.
 	 */
-	public void explode() {
+	public boolean explode() {
+
+		boolean explosionContinue = true; 
 		
-		if (bomb != null) bomb.detonate();
-		
+		if (this.state.getClass() == ItemHidden.class ) 
+			explosionContinue = false;
+			
+			
 		setCurrentState(state.explode());
 		
 		ActionListener explodeListener = new ActionListener() {
@@ -166,6 +170,8 @@ public abstract class Item {
 		
 		// TODO: How do I know if it was this bomb that explode this item or if it was another bomb
 		this.bomb = null;
+		
+		return explosionContinue;
 	}
 	
 	

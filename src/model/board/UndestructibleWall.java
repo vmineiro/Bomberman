@@ -65,7 +65,9 @@ public class UndestructibleWall extends Item {
 	 * @see model.board.Item#explode()
 	 */
 	@Override
-	public void explode() {}
+	public boolean explode() {
+		return false;
+	}
 
 
 
