@@ -115,8 +115,13 @@ public class GameModel {
 	 * Update the game state. Calls update method of all objects.
 	 */
 	public void update(){
+		
 		players.update();
 		monsters.update();
+		
+		if(gameOver()){
+			gameTimer.stop();
+		}			
 	}
 
 	/**
