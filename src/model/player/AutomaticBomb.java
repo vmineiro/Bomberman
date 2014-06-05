@@ -26,7 +26,7 @@ public class AutomaticBomb implements Bomb {
 	/** The bomb timer */
 	private Timer bombTimer;
 	
-	/** The progation timer */
+	/** The propagation timer */
 	private Timer proTimer;
 	
 	/** The animation for the bomb */
@@ -49,7 +49,7 @@ public class AutomaticBomb implements Bomb {
 			}
 		};
 				
-		bombTimer = new Timer(1000, bombTimerListener);	
+		bombTimer = new Timer(TIME_TO_DETONATION, bombTimerListener);	
 		
 		bombTimer.start();
 	}
@@ -75,7 +75,7 @@ public class AutomaticBomb implements Bomb {
 			}
 		};
 		
-		proTimer = new Timer(500, proTimerListener);
+		proTimer = new Timer(TIME_TO_PROPAGATION, proTimerListener);
 		
 		//Start Timer for next Explosion
 		proTimer.start();

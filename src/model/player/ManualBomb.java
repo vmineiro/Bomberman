@@ -12,6 +12,9 @@ public class ManualBomb implements Bomb {
 	/** The range of explosion */
 	private int range;
 	
+	/** The range counter */
+	private int range_counter;
+	
 	/** The board position where the bomb was dropped */
 	private Position boardPosition;
 	
