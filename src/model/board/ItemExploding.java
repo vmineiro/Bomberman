@@ -1,11 +1,5 @@
 package model.board;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
-import model.GameModel;
 
 
 
@@ -23,24 +17,28 @@ public class ItemExploding extends ItemState {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
 	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#explode()
+	 */
 	@Override
 	public ItemState explode() {
 		return new ItemExploding();
 	}
 	
+	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#pickUp()
+	 */
 	@Override
 	public ItemState pickUp() {
 		return this;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#explosionEnds()
+	 */
 	@Override
 	public ItemState explosionEnds() {
 		return new ItemInactive();

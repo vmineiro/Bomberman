@@ -1,7 +1,10 @@
 package model.board;
 
-import javax.swing.Timer;
 
+
+/**
+ * The Class ItemDetonating.
+ */
 public class ItemDetonating extends ItemState {
 
 
@@ -15,33 +18,28 @@ public class ItemDetonating extends ItemState {
 	
 	}
 
-	
-	
+
 	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
+	 * @see model.board.ItemState#explode()
 	 */
-	public void finalize() throws Throwable{
-		super.finalize();
-	}
-
-
-
-
 	@Override
 	public ItemState explode() {
 		return this;
 	}
 
 
-
-
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#pickUp()
+	 */
 	@Override
 	public ItemState pickUp() {
 		return this;
 	}
 
 
-
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#explosionEnds()
+	 */
 	@Override
 	public ItemState explosionEnds() {
 		return new ItemActive();

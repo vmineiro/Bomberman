@@ -16,24 +16,26 @@ public class ItemInactive extends ItemState {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see model.ItemState#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
 	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#explode()
+	 */
 	public ItemState explode() {
 		return new ItemExploding();
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#pickUp()
+	 */
 	public ItemState pickUp() {
 		return this;
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#explosionEnds()
+	 */
 	public ItemState explosionEnds() {
 		return this;
 	}

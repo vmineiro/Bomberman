@@ -3,25 +3,27 @@ package model.board;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
 
 /**
- * 
+ * The Class BombPowerUp.
  */
 public class BombPowerUp extends Item {
 	
 	
 	
+	/** The bomb power up image. */
 	BufferedImage bombPowerUpImg;
 	
 	
+	/**
+	 * Instantiates a new bomb power up.
+	 */
 	public BombPowerUp(){
 		super();
 		
@@ -29,18 +31,17 @@ public class BombPowerUp extends Item {
 			
 			bombPowerUpImg = ImageIO.read(new File("img/wall01.png"));
 			
+			setCurrentState(new ItemHidden());
+			
 		} catch (IOException e) {
 			
 			
 		}
 
-		setCurrentState(new ItemHidden());
+		
 		
 	}
 
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 
 	/**
 	 * Manages the visit by the player.
@@ -50,7 +51,7 @@ public class BombPowerUp extends Item {
 	@Override
 	public void accept(Player player){
 
-		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
+		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
 
 		setCurrentState(this.state.pickUp());
 
@@ -73,6 +74,9 @@ public class BombPowerUp extends Item {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see model.board.Item#setCurrentState(model.board.ItemState)
+	 */
 	@Override
 	public void setCurrentState(ItemState state) {
 		this.state = state;

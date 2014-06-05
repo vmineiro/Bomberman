@@ -17,12 +17,6 @@ public class BoardFactory {
 
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {
-
-	}
 	
 	/**
 	 * Creates a new ExtraBomb Item and assigns to a random position in the maze.
@@ -62,6 +56,9 @@ public class BoardFactory {
 	/**
 	 * Initialize board construction with 'l' lines and 'c' columns.
 	 * Creates all the Path item (in hidden state) and the UndestrutibleWall Items.
+	 *
+	 * @param l the l
+	 * @param c the c
 	 */
 	public void initializeBoard(int l, int c){
 

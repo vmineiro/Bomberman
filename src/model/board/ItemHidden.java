@@ -15,24 +15,29 @@ public class ItemHidden extends ItemState {
 	
 	}
 
-	/* (non-Javadoc)
-	 * @see model.ItemState#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	
-
+	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#explode()
+	 */
 	@Override
 	public ItemState explode() {
 		return new ItemDetonating();
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#pickUp()
+	 */
 	@Override
 	public ItemState pickUp() {
 		return this;
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see model.board.ItemState#explosionEnds()
+	 */
 	@Override
 	public ItemState explosionEnds() {
 		return this;

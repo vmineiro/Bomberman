@@ -3,47 +3,45 @@ package model.board;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
+
 /**
- *The Boost Speed class
+ * The Boost Speed class.
  */
 public class BoostSpeed extends Item {
 
 	
 
+	/** The boost speed image. */
 	BufferedImage boostSpeedlImg;
 
 
+	/**
+	 * Instantiates a new boost speed.
+	 */
 	public BoostSpeed(){
 		super();
 		
 		try {
 			
 			boostSpeedlImg = ImageIO.read(new File("img/wall01.png"));
-	
+			
+			setCurrentState(new ItemHidden());
 			
 		} catch (IOException e) {
 			
 		}
 
-		setCurrentState(new ItemHidden());
+		
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see model.Item#finalize()
-	 */
-	public void finalize() throws Throwable {
-		
-		super.finalize();
-	}
+
 
 
 	/**
@@ -54,7 +52,7 @@ public class BoostSpeed extends Item {
 	@Override
 	public void accept(Player player){
 
-		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
+		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
 
 		setCurrentState(this.state.pickUp());
 			
@@ -74,6 +72,11 @@ public class BoostSpeed extends Item {
 		monster.visitBoostSpeed(this);
 	}
 
+	
+	
+	/* (non-Javadoc)
+	 * @see model.board.Item#setCurrentState(model.board.ItemState)
+	 */
 	@Override
 	public void setCurrentState(ItemState state) {
 		this.state = state;

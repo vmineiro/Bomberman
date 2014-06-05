@@ -1,27 +1,14 @@
 package model.board;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.Thread.State;
-
-
-
-
-
-
-
-
-import java.util.HashMap;
 
 import javax.imageio.ImageIO;
-import javax.swing.Timer;
 
-import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
+
 
 
 /**
@@ -32,6 +19,7 @@ public class BoardExit extends Item {
 
 	
 	
+	/** The board exit image. */
 	BufferedImage boardExitImg;
 
 
@@ -46,26 +34,20 @@ public class BoardExit extends Item {
 			
 			boardExitImg = ImageIO.read(new File("img/wall01.png"));
 			
+			setCurrentState(new ItemHidden());
+			
 		} catch (IOException e) {
 
 			
 		}
-		
-		setCurrentState(new ItemHidden());
-		
 
-	}
 
-	/* (non-Javadoc)
-	 * @see model.Item#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
 	}
 
 
 	/**
-	 * Manages the visit by the player
+	 * Manages the visit by the player.
+	 *
 	 * @param player the player visitor
 	 */
 	@Override
@@ -80,8 +62,9 @@ public class BoardExit extends Item {
 
 
 	/**
-	 * Manages the visit by the monster
-	 * @param player the monster visitor
+	 * Manages the visit by the monster.
+	 *
+	 * @param monster the monster
 	 */
 	public void accept(Monster monster){
 
@@ -92,6 +75,9 @@ public class BoardExit extends Item {
 
 	}
 
+	/* (non-Javadoc)
+	 * @see model.board.Item#setCurrentState(model.board.ItemState)
+	 */
 	@Override
 	public void setCurrentState(ItemState state) {
 		this.state = state;
