@@ -27,6 +27,7 @@ import model.player.Player;
 public abstract class Item {
 	
 
+	
 	/** The state. */
 	protected ItemState state;
 	

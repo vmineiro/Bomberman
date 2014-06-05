@@ -31,6 +31,7 @@ public class BoardExit extends Item {
 	
 
 	
+	
 	BufferedImage boardExitImg;
 
 

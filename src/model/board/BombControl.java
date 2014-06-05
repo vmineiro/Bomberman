@@ -18,6 +18,7 @@ import model.player.Player;
 public class BombControl extends Item {
 
 
+	
 	BufferedImage bombControlImg;
 
 	/**

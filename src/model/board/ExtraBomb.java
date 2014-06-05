@@ -17,6 +17,7 @@ import model.player.Player;
 public class ExtraBomb extends Item {
 
 
+	
 	BufferedImage extraBombImg;
 
 

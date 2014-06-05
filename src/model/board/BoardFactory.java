@@ -6,6 +6,7 @@ package model.board;
  */
 public class BoardFactory {
 
+	
 	/** The maze. */
 	private Item[][] maze;
 

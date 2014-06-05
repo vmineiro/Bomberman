@@ -18,6 +18,7 @@ import model.player.Player;
 public class ItemPath extends Item {
 	
 
+	
 	/**
 	 * Instantiates a new path.
 	 */

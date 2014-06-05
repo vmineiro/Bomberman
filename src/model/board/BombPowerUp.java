@@ -18,6 +18,7 @@ import model.player.Player;
 public class BombPowerUp extends Item {
 	
 	
+	
 	BufferedImage bombPowerUpImg;
 	
 	
