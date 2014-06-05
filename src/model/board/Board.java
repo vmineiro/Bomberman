@@ -51,9 +51,7 @@ public class Board {
 	 * @param p the position to explode
 	 */
 	public void explode(Position p){
-		
-		
-		
+		maze[p.getLine()][p.getCol()].explode();
 	}
 
 }//end Board
