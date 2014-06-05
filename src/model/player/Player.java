@@ -131,18 +131,19 @@ public class Player implements GameChar{
 		}
 	}
 	
+	/**
+	 * Detonate manual bombs
+	 */
+	public void detonateBomb(){
+		if(!queueMBombs.isEmpty()){
+			queueMBombs.poll().detonate();
+			incBombs();
+		}
+	}
+	
 	//TODO: checkDeath() - verify monster and explosion
 	
 	//TODO: Implement this functions =======================================
-
-	/**
-	 * Detonate bomb.
-	 *
-	 * @param bomb the bomb
-	 */
-	public void detonateBomb(Bomb bomb){
-
-	}
 
 	/**
 	 * Increase speed.
