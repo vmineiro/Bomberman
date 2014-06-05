@@ -52,6 +52,7 @@ public class Monster implements GameChar{
 	public Monster(){
 		this.state = new MonsterAlive();
 		this.boardPosition = new Position();
+		this.nextBoardPosition = new Position();
 		this.drawPosition = new Position();
 		this.speed = 1;
 	}
