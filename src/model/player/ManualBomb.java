@@ -34,6 +34,11 @@ public class ManualBomb implements Bomb {
 	 * 
 	 */
 	public void detonate(){}
+	
+	/**
+	 * Propagate bomb explosion
+	 */
+	public void propagateExplosion(Position initPos, int range_counter){}
 
 	/**
 	 * Draw.
