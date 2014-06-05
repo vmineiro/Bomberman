@@ -189,6 +189,16 @@ public class Player implements GameChar{
 	}
 	
 	/**
+	 * Check if player is dead
+	 */
+	public boolean isDead(){
+		if(getCurrentState().getClass() == PlayerDead.class){
+			return true;
+		}
+		return true;
+	}
+	
+	/**
 	 * Monster visits bomb control item in game board
 	 */
 	public void visitBombControl(BombControl item){
