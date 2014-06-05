@@ -2,7 +2,6 @@ package model.monster;
 
 import model.GameModel;
 
-// TODO: Auto-generated Javadoc
 /**
  * This subclass implements a behaviour associated with a state of the Monster.
  */

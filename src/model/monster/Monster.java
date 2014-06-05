@@ -12,7 +12,6 @@ import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a MonsterState subclass that defines the current state.
