@@ -60,7 +60,7 @@ public class BoardTests {
 		
 		path.explode();
 		assertEquals(ItemDetonating.class, path.getCurrentState().getClass());
-		assertFalse(path.isDetonating());
+		assertFalse(path.isExploding());
 		assertFalse(path.isActive());
 		
 		try {
@@ -75,7 +75,7 @@ public class BoardTests {
 			
 		path.explode();
 		assertEquals(ItemExploding.class, path.getCurrentState().getClass());
-		assertTrue(path.isDetonating());
+		assertTrue(path.isExploding());
 		
 		try {
 			Thread.sleep(3000);
@@ -105,7 +105,7 @@ public class BoardTests {
 		
 		extraBomb.explode();
 		assertEquals(ItemDetonating.class, extraBomb.getCurrentState().getClass());
-		assertFalse(extraBomb.isDetonating());
+		assertFalse(extraBomb.isExploding());
 		assertFalse(extraBomb.isActive());
 		
 		try {
@@ -120,7 +120,7 @@ public class BoardTests {
 			
 		extraBomb.explode();
 		assertEquals(ItemExploding.class, extraBomb.getCurrentState().getClass());
-		assertTrue(extraBomb.isDetonating());
+		assertTrue(extraBomb.isExploding());
 		
 		try {
 			Thread.sleep(3000);
@@ -150,7 +150,7 @@ public class BoardTests {
 		
 		bombControl.explode();
 		assertEquals(ItemDetonating.class, bombControl.getCurrentState().getClass());
-		assertFalse(bombControl.isDetonating());
+		assertFalse(bombControl.isExploding());
 		assertFalse(bombControl.isActive());
 		
 		try {
@@ -165,7 +165,7 @@ public class BoardTests {
 			
 		bombControl.explode();
 		assertEquals(ItemExploding.class, bombControl.getCurrentState().getClass());
-		assertTrue(bombControl.isDetonating());
+		assertTrue(bombControl.isExploding());
 		
 		try {
 			Thread.sleep(3000);
@@ -194,7 +194,7 @@ public class BoardTests {
 		
 		bombPowerUp.explode();
 		assertEquals(ItemDetonating.class, bombPowerUp.getCurrentState().getClass());
-		assertFalse(bombPowerUp.isDetonating());
+		assertFalse(bombPowerUp.isExploding());
 		assertFalse(bombPowerUp.isActive());
 		
 		try {
@@ -209,7 +209,7 @@ public class BoardTests {
 			
 		bombPowerUp.explode();
 		assertEquals(ItemExploding.class, bombPowerUp.getCurrentState().getClass());
-		assertTrue(bombPowerUp.isDetonating());
+		assertTrue(bombPowerUp.isExploding());
 		
 		try {
 			Thread.sleep(3000);
@@ -238,7 +238,7 @@ public class BoardTests {
 		
 		boostSpeed.explode();
 		assertEquals(ItemDetonating.class, boostSpeed.getCurrentState().getClass());
-		assertFalse(boostSpeed.isDetonating());
+		assertFalse(boostSpeed.isExploding());
 		assertFalse(boostSpeed.isActive());
 		
 		try {
@@ -253,7 +253,7 @@ public class BoardTests {
 			
 		boostSpeed.explode();
 		assertEquals(ItemExploding.class, boostSpeed.getCurrentState().getClass());
-		assertTrue(boostSpeed.isDetonating());
+		assertTrue(boostSpeed.isExploding());
 		
 		try {
 			Thread.sleep(3000);

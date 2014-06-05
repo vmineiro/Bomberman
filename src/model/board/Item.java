@@ -83,7 +83,7 @@ public abstract class Item {
 	}
 	
 	
-	public boolean isDetonating() {
+	public boolean isExploding() {
 		return state.getClass() == ItemExploding.class;
 	}
 	

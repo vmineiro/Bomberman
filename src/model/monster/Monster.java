@@ -117,7 +117,7 @@ public class Monster implements GameChar{
 	 * Check if monster is killed by detonation and change MonsterStatus
 	 */
 	public boolean checkDeath(Item itemPos){
-		if(itemPos.isDetonating()){
+		if(itemPos.isExploding()){
 			setCurrentState(getCurrentState().die());
 			return true;
 		}
