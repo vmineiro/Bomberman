@@ -179,7 +179,7 @@ public class Monster implements GameChar{
 	/**
 	 * Monster visits path item in game board
 	 */
-	public void visitItemPath(ItemPath item){
+	public void visitPath(ItemPath item){
 		moveMonster(item);
 		checkDeath(item);
 	}
