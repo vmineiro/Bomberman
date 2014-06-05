@@ -1,5 +1,6 @@
 package model.player;
 
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -11,6 +12,7 @@ import model.board.BombControl;
 import model.board.BombPowerUp;
 import model.board.BoostSpeed;
 import model.board.ExtraBomb;
+import model.board.Item;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 
@@ -27,7 +29,7 @@ public class Player implements GameChar{
 	private int lives = 3;
 	
 	/** The speed. */
-	//private int speed = 1;
+	private int speed = 1;
 	
 	/** The board position. */
 	private Position boardPosition;
@@ -56,8 +58,8 @@ public class Player implements GameChar{
 	/** Manual Bombs Queue */
 	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
 	
-	/** The animation. */
-	//private Animation animation;
+	/** The Animation of the Item. */
+	private BufferedImage animation;
 	
 	//============================================================================
 	
@@ -109,13 +111,6 @@ public class Player implements GameChar{
 	}
 	
 	/**
-	 * Resets number of bombs
-	 */
-	public void incBombs(){
-		this.availableBombs++;
-	}
-	
-	/**
 	 * Drop bomb.
 	 */
 	public void dropBomb(){
@@ -140,40 +135,59 @@ public class Player implements GameChar{
 		}
 	}
 	
-	//TODO: checkDeath() - verify monster and explosion
-	
-	//TODO: Implement this functions =======================================
-
 	/**
 	 * Increase speed.
 	 */
-	public void increaseSpeed(){}
+	public void increaseSpeed(){
+		this.speed++;
+	}
 
 	/**
 	 * Increase power bomb.
 	 */
-	public void increasePowerBomb(){}
+	public void increasePowerBomb(){
+		this.bombPower++;
+	}
 
 	/**
 	 * Life lost.
 	 */
-	public void lifeLost(){}
+	public void lifeLost(){
+		this.lives--;
+	}
 
 	/**
 	 * Adds the bomb.
 	 */
-	public void addBomb(){}
+	public void addBomb(){
+		this.availableBombs++;
+	}
+	
+	/**
+	 * Sets the animation.
+	 */
+	public void setAnimation(BufferedImage animation){
+		this.animation = animation;
+	}
+	
+	/**
+	 * Checks player death
+	 */
+	public boolean checkDeath(Item playerItem){
+		if(playerItem.isExploding() || playerItem.hasMonsters()){
+			setCurrentState(getCurrentState().die());
+			return true;
+		}
+		return false;
+	}
+	
+	//TODO: Implement this functions =======================================
 
 	//TODO:if the player died should reset his power ups.
 	/**
 	 * Respawn. Set the player in start position.
 	 */
 	public void respawn(){}
-
-	/**
-	 * Sets the animation.
-	 */
-	public void setAnimation(){}
 
 	/**
 	 * Draw.
