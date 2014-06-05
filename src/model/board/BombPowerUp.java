@@ -69,6 +69,8 @@ public class BombPowerUp extends Item {
 	@Override
 	public void accept(Monster monster){
 		
+		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
+		
 		monster.visitBombPowerUp(this);
 
 
