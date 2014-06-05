@@ -12,13 +12,6 @@ public class MonsterAlive implements MonsterState {
 	 * Instantiates a new monster alive.
 	 */
 	public MonsterAlive(){}
-
-	/* (non-Javadoc)
-	 * @see model.MonsterState#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	
 	/**
 	 * Die.

@@ -1,7 +1,7 @@
 package tests;
 
 import model.Position;
-import model.board.ItemDetonating;
+import model.board.ItemExploding;
 import model.board.ItemPath;
 import model.monster.Monster;
 import model.monster.MonsterAlive;
@@ -25,6 +25,7 @@ public class MonsterTests {
 	@Test
 	public void moveTests(){
 		
+		//TODO: Improve moveTests
 		Monster monster_T = new Monster();
 
 		assertNotNull(monster_T);
@@ -44,11 +45,11 @@ public class MonsterTests {
 	 * Power up tests.
 	 * 
 	 * Neste teste pretende-se testar as alteracoes de estado dos tipos de monstros,
-	 * quando visitam uma cas de PowerUp. 
+	 * quando visitam uma casa de PowerUp. 
 	 */
 	@Test
 	public void powerUpTests(){
-
+		
 	}
 
 	/**
@@ -58,6 +59,7 @@ public class MonsterTests {
 	 */
 	@Test
 	public void deathTest(){
+		//TODO: Improve deathTests
 		Monster monster_T = new Monster();
 
 		assertNotNull(monster_T);
@@ -80,15 +82,16 @@ public class MonsterTests {
 	 */
 	@Test
 	public void deathDetonationTests(){
+		//TODO: Improve deathDetonationTests
 		Monster monster_t = new Monster();
 
 		//Testing Check Death
-		assertEquals("Monster is Alive before Detonation", MonsterAlive.class, monster_t.getCurrentState().getClass());
+		assertEquals("Monster is Alive before Explosion", MonsterAlive.class, monster_t.getCurrentState().getClass());
 		
 		ItemPath path_t = new ItemPath();
-		path_t.setCurrentState(new ItemDetonating());
+		path_t.setCurrentState(new ItemExploding());
 		monster_t.checkDeath(path_t);
-		assertEquals("Monster is Dead after Detonation", MonsterDead.class, monster_t.getCurrentState().getClass());
+		assertEquals("Monster is Dead after Explosion", MonsterDead.class, monster_t.getCurrentState().getClass());
 	}
 	
 }

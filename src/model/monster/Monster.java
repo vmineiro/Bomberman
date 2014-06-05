@@ -52,6 +52,7 @@ public class Monster implements GameChar{
 	public Monster(){
 		this.state = new MonsterAlive();
 		this.boardPosition = new Position();
+		this.nextBoardPosition = new Position();
 		this.drawPosition = new Position();
 		this.speed = 1;
 	}
@@ -117,7 +118,7 @@ public class Monster implements GameChar{
 	 * Check if monster is killed by detonation and change MonsterStatus
 	 */
 	public boolean checkDeath(Item itemPos){
-		if(itemPos.isDetonating()){
+		if(itemPos.isExploding()){
 			setCurrentState(getCurrentState().die());
 			return true;
 		}
@@ -129,11 +130,11 @@ public class Monster implements GameChar{
 	 */
 	public void moveMonster(Item mov_item){
 		// Leaves previews item
-		GameModel.getInstance().getBoard().getItem(boardPosition).monsterOut();
+		GameModel.getInstance().getBoard().getItem(getBoardPosition()).monsterOut();
 		GameModel.getInstance().getBoard().getItem(nextBoardPosition).monsterIn();
 		
 		// Change boardPosition to nextBoardPosition
-		boardPosition = nextBoardPosition;
+		setBoardPosition(nextBoardPosition);
 	}
 	
 	/**

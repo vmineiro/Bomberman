@@ -9,8 +9,8 @@ import model.board.BoostSpeed;
 import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
+import model.monster.MonsterState;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a PlayerState subclass that defines the current state.
@@ -49,31 +49,61 @@ public class Player implements GameChar{
 	
 	/** The imortal. */
 	private boolean imortal = true;
-	
-	/** The m_ bomb. */
-	public Bomb m_Bomb;
 
+	//============================================================================
+	
 	/**
 	 * Instantiates a new player.
 	 */
 	public Player(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {
-
+		boardPosition = new Position();
+		drawPosition = new Position();
+		state = new PlayerDown();
 	}
 	
+	/**
+	 * Get board position
+	 */
+	public Position getBoardPosition(){
+		return boardPosition;
+	}
+	
+	/**
+	 * Update board position.
+	 */
+	public void updateBoardPosition(Position n_pos){
+		this.boardPosition = n_pos;
+	}
+	
+	/**
+	 * Gets the current state
+	 */
+	public PlayerState getCurrentState(){
+		return state;
+	}
+	
+	/**
+	 * Sets the current state.
+	 *
+	 * @param state the new current state
+	 */
+	public void setCurrentState(PlayerState state){
+		this.state = state;
+	}
+	
+	/**
+	 * Update.
+	 */
+	public void update(){
+		
+	}
+	
+	//TODO: Implement this functions ========================================
 	/**
 	 * Drop bomb.
 	 */
 	public void dropBomb(){
 		//new Bomb()
-
-
 	}
 
 	/**
@@ -102,62 +132,30 @@ public class Player implements GameChar{
 	/**
 	 * Life lost.
 	 */
-	public void lifeLost(){
-
-	}
+	public void lifeLost(){}
 
 	/**
 	 * Adds the bomb.
 	 */
-	public void addBomb(){
-
-	}
-
-	/**
-	 * Update board position.
-	 */
-	public void updateBoardPosition(){
-
-	}
+	public void addBomb(){}
 
 	/**
 	 * Respawn. Set the player in start position.
 	 */
 	public void respawn(){
 		 // if the player died should reset his power ups.
-
-	}
-
-	/**
-	 * Sets the current state.
-	 *
-	 * @param state the new current state
-	 */
-	public void setCurrentState(PlayerState state){
-
 	}
 
 	/**
 	 * Sets the animation.
 	 */
-	public void setAnimation(){
-
-	}
+	public void setAnimation(){}
 
 	/**
 	 * Draw.
 	 */
-	public void draw(){
+	public void draw(){}
 
-	}
-
-	/**
-	 * Update.
-	 */
-	public void update(){
-
-	}
-	
 	/**
 	 * Monster visits bomb control item in game board
 	 */
@@ -180,8 +178,10 @@ public class Player implements GameChar{
 	
 	/**
 	 * Monster visits board exit item in game board
-	 */
-	public void visitBoardExit(BoardExit item){}
+	 */ 
+	public void visitBoardExit(BoardExit item){
+		//TODO: Add check isActive()
+	}
 	
 	/**
 	 * Monster visits path item in game board
@@ -193,4 +193,6 @@ public class Player implements GameChar{
 	 */
 	public void visitUndestructibleWall(UndestructibleWall item){}
 
-}//end Player
+}
+
+//end Player

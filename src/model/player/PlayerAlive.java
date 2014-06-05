@@ -1,89 +1,25 @@
 package model.player;
 
-// TODO: Auto-generated Javadoc
+import model.Position;
+
 /**
- * This subclass implements a behaviour associated with a state of the Player.
+ * This class defines an interface for encapsulating the behaviour associated with
+ * a particular state of the Player.
  */
-public class PlayerAlive extends PlayerState {
-
-	/**
-	 * Instantiates a new player alive.
-	 */
-	public PlayerAlive(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
+public interface PlayerAlive extends PlayerState{
 	
-	/* (non-Javadoc)
-	 * @see model.PlayerState#move()
-	 */
-	public void move(){
-		//player->updateBoardPosition
-
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnUp()
-	 */
-	public void turnUp(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnLeft()
-	 */
-	public void turnLeft(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnDown()
-	 */
-	public void turnDown(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#turnRight()
-	 */
-	public void turnRight(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#die()
-	 */
-	public void die(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#respawn()
-	 */
-	public void respawn(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerState#update()
-	 */
-	public void update(){
-
-	}
-
+	//Player Movement Increments
+	public static final Position UP = new Position(-1,0);
+	public static final Position DOWN = new Position(1,0);
+	public static final Position LEFT = new Position(0,-1);
+	public static final Position RIGHT = new Position(0,1);
+	
 	/**
-	 * Update draw rate.
-	 *
-	 * @param rate the rate
+	 * Generate player next movement
+	 * 
+	 * @param player moving
+	 * @return newPosPlayer
 	 */
-	public void updateDrawRate(int rate){
-
-	}
-}//end PlayerAlive
+	public abstract Position generateNextMov(Player playerMoving);
+	
+}

@@ -1,80 +1,70 @@
 package model.player;
 
+import model.Position;
+
 // TODO: Auto-generated Javadoc
 /**
  * This subclass implements a behaviour associated with a state of the PlayerAlive.
  */
-public class PlayerLeft extends PlayerAlive {
+public class PlayerLeft implements PlayerAlive {
 
 	/**
 	 * Instantiates a new player left.
 	 */
-	public PlayerLeft(){
+	public PlayerLeft(){}
 
+	/**
+	 * Turn up.
+	 */
+	public PlayerState turnUp(){
+		return new PlayerUp();
 	}
 
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#finalize()
+	/**
+	 * Turn left.
 	 */
-	public void finalize() throws Throwable {
-		super.finalize();
+	public PlayerState turnLeft(){
+		return new PlayerLeft();
+	}
+
+	/**
+	 * Turn down.
+	 */
+	public PlayerState turnDown(){
+		return this;
+	}
+
+	/**
+	 * Turn right.
+	 */
+	public PlayerState turnRight(){
+		return new PlayerRight();
 	}
 	
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#move()
+	/**
+	 * Turn stationary.
 	 */
-	public void move(){
-		//player->updateBoardPosition
-
-
+	public PlayerState turnStationary(){
+		return new PlayerStationary();
 	}
 
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#turnUp()
+	/**
+	 * Die.
 	 */
-	public void turnUp(){
-
+	public PlayerState die(){
+		return new PlayerDead();
 	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#turnLeft()
+	
+	/**
+	 * Generate player next movement
+	 * 
+	 * @param player moving
+	 * @return newPosPlayer
 	 */
-	public void turnLeft(){
-
+	public Position generateNextMov(Player playerMoving){
+		return playerMoving.getBoardPosition().add(LEFT);
 	}
+	
+}
 
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#turnDown()
-	 */
-	public void turnDown(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#turnRight()
-	 */
-	public void turnRight(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#die()
-	 */
-	public void die(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#respawn()
-	 */
-	public void respawn(){
-
-	}
-
-	/* (non-Javadoc)
-	 * @see model.PlayerAlive#update()
-	 */
-	public void update(){
-
-	}
-}//end PlayerLeft
+//end PlayerLeft
