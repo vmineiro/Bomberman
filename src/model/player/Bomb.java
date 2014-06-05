@@ -1,7 +1,5 @@
 package model.player;
 
-import model.Position;
-
 /**
  * The Class Bomb.
  */
