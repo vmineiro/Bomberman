@@ -1,5 +1,10 @@
 package model;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import model.board.Board;
 import model.monster.Monster;
 import model.player.Player;
@@ -27,8 +32,10 @@ public class GameModel {
 	/** Number of monsters alive */
 	private int monstersAlive;
 	
+	/** The game timer */
+	private Timer gameTimer;
+	
 	// =====================================================================
-
 
 	/**
 	 * Instantiates a new game model.
@@ -37,13 +44,15 @@ public class GameModel {
 		this.board = new Board();
 		this.players = new Player();
 		this.monsters = new Monster();
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {
-
+		
+		ActionListener gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				update();
+			}
+		};
+		
+		gameTimer = new Timer(1000, gameTimerListener);
+		gameTimer.start();
 	}	
 	
 	/**
@@ -78,6 +87,7 @@ public class GameModel {
 	public Monster getMonsters(){
 		return monsters;
 	}
+	
 	/**
 	 * Get the number of monsters alive.
 	 * 
@@ -105,7 +115,8 @@ public class GameModel {
 	 * Update the game state. Calls update method of all objects.
 	 */
 	public void update(){
-
+		players.update();
+		monsters.update();
 	}
 
 	/**
@@ -163,9 +174,6 @@ public class GameModel {
 		//TODO: Update when game have multiple players in the game
 		this.players = player;
 	}
-	
-	
-	
 	
 	
 }//end GameModel
