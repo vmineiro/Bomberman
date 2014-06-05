@@ -2,7 +2,6 @@ package model.player;
 
 import model.Position;
 
-// TODO: Auto-generated Javadoc
 /**
  * This subclass implements a behaviour associated with a state of the PlayerAlive.
  */

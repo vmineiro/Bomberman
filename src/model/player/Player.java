@@ -49,7 +49,9 @@ public class Player implements GameChar{
 	
 	/** The imortal. */
 	private boolean imortal = true;
-
+	
+	//TODO: Bombs Queue field
+	
 	//============================================================================
 	
 	/**

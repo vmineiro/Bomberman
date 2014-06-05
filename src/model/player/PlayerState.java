@@ -1,6 +1,5 @@
 package model.player;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class defines an interface for encapsulating the behaviour associated with
  * a particular state of the Player.
