@@ -47,8 +47,8 @@ public class BoardExit extends Item {
 			boardExitImg = ImageIO.read(new File("img/wall01.png"));
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+			
 		}
 		
 		setCurrentState(new ItemHidden());

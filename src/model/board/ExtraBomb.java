@@ -29,10 +29,7 @@ public class ExtraBomb extends Item {
 			extraBombImg = ImageIO.read(new File("img/wall01.png"));
 
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (IOException e) {}
 		
 		setCurrentState(new ItemHidden());
 
