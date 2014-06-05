@@ -137,7 +137,6 @@ public class Player implements GameChar{
 	public void detonateBomb(){
 		if(!queueMBombs.isEmpty()){
 			queueMBombs.poll().detonate();
-			incBombs();
 		}
 	}
 	
