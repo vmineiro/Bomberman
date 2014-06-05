@@ -64,7 +64,8 @@ public class AutomaticBomb implements Bomb {
 		// First Explosion
 		GameModel.getInstance().getBoard().getItem(boardPosition).explode();
 		
-		//TODO: Removed bomb from item 
+		//TODO: Removed bomb from item
+		GameModel.getInstance().getPlayers().resetNBombs();
 		
 		ActionListener proTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
