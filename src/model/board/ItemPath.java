@@ -1,15 +1,10 @@
 package model.board;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-
-import javax.imageio.ImageIO;
-
-import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
+
+
+
 /**
  * The Class Path.
  */
@@ -28,12 +23,6 @@ public class ItemPath extends Item {
 		
 	}
 
-	/* (non-Javadoc)
-	 * @see model.Item#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 
 
 	/**
@@ -43,13 +32,15 @@ public class ItemPath extends Item {
 	 */
 	public void accept(Player player){
 		
-		if (this.state.getClass() == ItemHidden.class) return;
+		if (this.state.getClass() == ItemHidden.class  || this.bomb != null) return;
 		
 		player.visitPath(this);
 
 
 	}
 
+	
+	
 	/**
 	 * Accept.
 	 *
@@ -57,12 +48,17 @@ public class ItemPath extends Item {
 	 */
 	public void accept(Monster monster){
 
-		if (this.state.getClass() == ItemHidden.class) return;
+		if (this.state.getClass() == ItemHidden.class  || this.bomb != null) return;
 		
 		monster.visitPath(this);
 		
 	}
 
+	
+	
+	/* (non-Javadoc)
+	 * @see model.board.Item#setCurrentState(model.board.ItemState)
+	 */
 	@Override
 	public void setCurrentState(ItemState state) {
 		this.state = state;

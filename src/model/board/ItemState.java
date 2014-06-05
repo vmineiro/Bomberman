@@ -1,10 +1,5 @@
 package model.board;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 
 /**
@@ -19,15 +14,15 @@ public abstract class ItemState {
 	/**
 	 * Explode. Trigger a state change.
 	 *
-	 * @param item the item
+	 * @return the item state
 	 */
 	public abstract ItemState explode();
 	
 	
 	/**
-	 * Explode. Trigger a state change.
+	 * Explode end. Trigger a state change.
 	 *
-	 * @param item the item
+	 * @return the item state
 	 */
 	public abstract ItemState explosionEnds();
 	
@@ -35,8 +30,8 @@ public abstract class ItemState {
 
 	/**
 	 * The item (power up item) is visited by the player. Trigger a state change.
-	 * 
-	 * @param item
+	 *
+	 * @return the item state
 	 */
 	public abstract ItemState pickUp();
 

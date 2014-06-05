@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-import model.Position;
 import model.monster.Monster;
+import model.player.Bomb;
 import model.player.Player;
+
 
 /**
  * This class defines the interface of interest to clients and maintains an
@@ -31,77 +31,104 @@ public abstract class Item {
 	/** The has player. */
 	protected int monsterInThisItem = 0;
 
-	//TODO: Changed boolean to object type bomb
-	/** The has bomb. */
-	protected boolean hasBomb = false;
+	/** The bomb in this item. */
+	protected Bomb bomb;
 	
 	
+	/** The wall image. */
 	BufferedImage wallImg;
+	
+	/** The path image. */
 	BufferedImage pathImg;
+	
+	/** The explosion image. */
 	BufferedImage explosionImg;
 
-	//TODO solve IOException catch
-	
+
 	/**
 	 * Instantiates a new item.
 	 */
 	public Item(){
 		
 		try {
+			
 			wallImg = ImageIO.read(new File("img/wall01.png"));
 			pathImg = ImageIO.read(new File("img/wall01.png"));
 			explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
 		} catch (IOException e) {}
 		
 	}
 
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
+	
+	/**
+	 * Gets the current state.
+	 *
+	 * @return the current state
 	 */
-	public void finalize() throws Throwable {
-
-	}
-	
-	
 	public ItemState getCurrentState(){	
 		return this.state;
 	}
 
 
+	/**
+	 * Checks for monsters.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean hasMonsters() {
 		return monsterInThisItem > 0;
 	}
 	
 	
+	/**
+	 * Checks if is this item exploding.
+	 *
+	 * @return true, if is exploding
+	 */
 	public boolean isExploding() {
 		return state.getClass() == ItemExploding.class;
 	}
 	
 	
+	/**
+	 * Checks if this item is active.
+	 *
+	 * @return true, if is active
+	 */
 	public boolean isActive() {
 		return state.getClass() == ItemActive.class;
 	}
 	
 	
+	/**
+	 * Monster get in this item.
+	 */
 	public void monsterIn() {
 		monsterInThisItem++;
 	}
 	
 	
+	/**
+	 * Monster get out of this item.
+	 */
 	public void monsterOut() {
 		monsterInThisItem--;
 	}
 	
 	
-	//TODO: Receives a reference to the dropped bomb
-	public void bombDropped(){
-		this.hasBomb = true;
+	/**
+	 * Bomb dropped in this item.
+	 *
+	 * @param bomb the bomb
+	 */
+	public void bombDropped(Bomb bomb){
+		this.bomb = bomb;
 	}
 	
+	
 	/**
-	 * Explode
-	 * 
+	 * Explode.
 	 */
 	public void explode() {
 		
@@ -117,11 +144,16 @@ public abstract class Item {
 		countDown.setRepeats(false);
 		countDown.start();
 		
-		//TODO: change to null and detonate
-		this.hasBomb = false;
+		// TODO: How do I know if it was this bomb that explode this item or if it was another bomb
+		this.bomb = null;
 	}
 	
 	
+	/**
+	 * Sets the animation.
+	 *
+	 * @param animation the new animation
+	 */
 	public void setAnimation(BufferedImage animation) {
 		this.animation = animation;
 	}
@@ -144,6 +176,11 @@ public abstract class Item {
 	public abstract void accept(Monster monster);
 
 	
+	/**
+	 * Sets the current state.
+	 *
+	 * @param state the new current state
+	 */
 	public abstract void setCurrentState(ItemState state);
 
 	

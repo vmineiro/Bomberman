@@ -3,13 +3,12 @@ package model.board;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
+
 
 
 /**
@@ -18,6 +17,7 @@ import model.player.Player;
 public class UndestructibleWall extends Item {
 	
 	
+	/** The steel image. */
 	BufferedImage steelImg;
 
 	/**
@@ -30,24 +30,17 @@ public class UndestructibleWall extends Item {
 			
 			steelImg = ImageIO.read(new File("img/wall01.png"));
 			
+			setCurrentState(new ItemInactive());
 			
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
 		
-		setCurrentState(new ItemInactive());
 		
 	}
 
 	
-	
-	/* (non-Javadoc)
-	 * @see model.Item#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	
 
 	/**
@@ -68,11 +61,17 @@ public class UndestructibleWall extends Item {
 
 	
 	
+	/* (non-Javadoc)
+	 * @see model.board.Item#explode()
+	 */
 	@Override
 	public void explode() {}
 
 
 
+	/* (non-Javadoc)
+	 * @see model.board.Item#setCurrentState(model.board.ItemState)
+	 */
 	@Override
 	public void setCurrentState(ItemState state) {
 		this.state = state;
