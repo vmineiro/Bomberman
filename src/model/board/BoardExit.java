@@ -21,12 +21,31 @@ import model.player.Player;
  */
 public class BoardExit extends Item {
 
+	
+
+	
+	BufferedImage boardExitImg;
+
+
 	/**
 	 * Instantiates a new board exit.
 	 */
 	public BoardExit(){
 		
 		super();
+
+		
+		try {
+			
+			boardExitImg = ImageIO.read(new File("img/wall01.png"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		setCurrentState(new ItemHidden());
+		
 
 	}
 

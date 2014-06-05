@@ -16,35 +16,27 @@ import model.player.Player;
  * The Class BombControl.
  */
 public class BombControl extends Item {
-	
+
+
+	BufferedImage bombControlImg;
+
 	/**
 	 * Instantiates a new bomb control.
 	 */
 	public BombControl(){
 		super();
-		
+
 		try {
-			
-			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage bombControlImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
-			
-			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
-			
-			itemImages.put(ItemHidden.class, wallImg);
-			itemImages.put(ItemDetonating.class, explosionImg);
-			itemImages.put(ItemActive.class, bombControlImg);
-			itemImages.put(ItemExploding.class, explosionImg);
-			itemImages.put(ItemInactive.class, pathImg);
-			
+
+			bombControlImg = ImageIO.read(new File("img/wall01.png"));
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-		
+
 		setCurrentState(new ItemHidden());
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -64,7 +56,7 @@ public class BombControl extends Item {
 	public void accept(Player player){
 
 		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
-				
+
 		setCurrentState(this.state.pickUp());
 
 		player.visitBombControl(this);
@@ -78,10 +70,25 @@ public class BombControl extends Item {
 	 */
 	@Override
 	public void accept(Monster monster){
-		
+
 		if (this.state.getClass() == ItemHidden.class) return;
 
 		monster.visitBombControl(this);
+
+	}
+
+	@Override
+	public void setCurrentState(ItemState state) {
+
+		this.state = state;
+
+		if (this.state.getClass() == ItemHidden.class) {
+			setAnimation(wallImg);
+		} else if (this.state.getClass() == ItemDetonating.class || this.state.getClass() == ItemExploding.class) {
+			setAnimation(explosionImg);
+		} else {
+			setAnimation(bombControlImg);
+		}
 
 	}
 
