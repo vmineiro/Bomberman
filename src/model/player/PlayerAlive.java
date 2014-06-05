@@ -4,47 +4,32 @@ package model.player;
 /**
  * This subclass implements a behaviour associated with a state of the Player.
  */
-public class PlayerAlive implements PlayerState {
-
-	/**
-	 * Instantiates a new player alive.
-	 */
-	public PlayerAlive(){}
+public interface PlayerAlive extends PlayerState {
 	
 	/**
 	 * Turn up.
 	 */
-	public PlayerState turnUp(){
-		return new PlayerUp();
-	}
+	public PlayerState turnUp();
 
 	/**
 	 * Turn left.
 	 */
-	public PlayerState turnLeft(){
-		return new PlayerLeft();
-	}
+	public PlayerState turnLeft();
 
 	/**
 	 * Turn down.
 	 */
-	public PlayerState turnDown(){
-		return new PlayerDown();
-	}
+	public PlayerState turnDown();
 
 	/**
 	 * Turn right.
 	 */
-	public PlayerState turnRight(){
-		return new PlayerRight();
-	}
+	public PlayerState turnRight();
 
 	/**
 	 * Die.
 	 */
-	public PlayerState die(){
-		return new PlayerDead();
-	}
+	public PlayerState die();
 
 }
 
