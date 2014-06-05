@@ -3,6 +3,7 @@ package model.monster;
 import model.GameChar;
 import model.GameModel;
 import model.Position;
+import model.board.Item;
 import model.board.BoardExit;
 import model.board.BombControl;
 import model.board.BombPowerUp;
@@ -33,6 +34,9 @@ public class Monster implements GameChar{
 	
 	/** The board position. */
 	private Position boardPosition;
+	
+	/** The next board position */
+	private Position nextBoardPosition;
 	
 	/** The speed. */
 	private int speed; 
@@ -93,11 +97,8 @@ public class Monster implements GameChar{
 	 * Update Monster
 	 */
 	public void update(){
-			
-		Position newPosMonster = generatNextMov();
-		
-		//Check Monster new position ---------------------------------------------------------- INCOMPLETE
-		GameModel.getInstance().getBoard().getItem(newPosMonster).accept(this);
+		nextBoardPosition = generateNextMov();
+		GameModel.getInstance().getBoard().getItem(nextBoardPosition).accept(this);
 	}
 
 	/**
@@ -105,7 +106,7 @@ public class Monster implements GameChar{
 	 * 
 	 * @return newPosMonster
 	 */
-	private Position generatNextMov() {
+	public Position generateNextMov() {
 		Position mov_options[] = {UP,DOWN,LEFT,RIGHT};
 		Position mov_selected = mov_options[(int)(Math.random() * mov_options.length)]; 
 		Position newPosMonster = boardPosition.add(mov_selected);
@@ -113,39 +114,83 @@ public class Monster implements GameChar{
 	}
 	
 	/**
+	 * Check if monster is killed by detonation and change MonsterStatus
+	 */
+	public boolean checkDeath(Item itemPos){
+		if(itemPos.isDetonating()){
+			setCurrentState(getCurrentState().die());
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Moves to new board item
+	 */
+	public void moveMonster(Item mov_item){
+		// Leaves previews item
+		GameModel.getInstance().getBoard().getItem(boardPosition).monsterOut();
+		GameModel.getInstance().getBoard().getItem(nextBoardPosition).monsterIn();
+		
+		// Change boardPosition to nextBoardPosition
+		boardPosition = nextBoardPosition;
+	}
+	
+	/**
 	 * Monster visits bomb control item in game board
 	 */
-	public void visitBombControl(BombControl item){}
+	public void visitBombControl(BombControl item){
+		moveMonster(item);
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits extra bomb item in game board
 	 */
-	public void visitExtraBomb(ExtraBomb item){}
+	public void visitExtraBomb(ExtraBomb item){
+		moveMonster(item);
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits bomb power up item in game board
 	 */
-	public void visitBombPowerUp(BombPowerUp item){}
+	public void visitBombPowerUp(BombPowerUp item){
+		moveMonster(item);
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits boost speed item in game board
 	 */
-	public void visitBoostSpeed(BoostSpeed item){}
+	public void visitBoostSpeed(BoostSpeed item){
+		moveMonster(item);
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits board exit item in game board
 	 */
-	public void visitBoardExit(BoardExit item){}
+	public void visitBoardExit(BoardExit item){
+		moveMonster(item);
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits path item in game board
 	 */
-	public void visitPath(ItemPath item){}
+	public void visitPath(ItemPath item){
+		moveMonster(item);
+		checkDeath(item);
+	}
 	
 	/**
 	 * Monster visits undestructible wall item in game board
 	 */
-	public void visitUndestructibleWall(UndestructibleWall item){}
+	public void visitUndestructibleWall(UndestructibleWall item){
+		moveMonster(item);
+		checkDeath(item);
+	}
 	
 	/**
 	 * Draw.
