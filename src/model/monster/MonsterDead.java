@@ -10,13 +10,6 @@ public class MonsterDead implements MonsterState {
 	 * Instantiates a new monster dead.
 	 */
 	public MonsterDead(){}
-
-	/* (non-Javadoc)
-	 * @see model.MonsterState#finalize()
-	 */
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 	
 	/**
 	 * Die.
