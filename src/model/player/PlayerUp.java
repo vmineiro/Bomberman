@@ -1,10 +1,12 @@
 package model.player;
 
+import model.Position;
+
 // TODO: Auto-generated Javadoc
 /**
  * This subclass implements a behaviour associated with a state of the PlayerAlive.
  */
-public class PlayerUp implements PlayerState {
+public class PlayerUp implements PlayerAlive {
 
 	/**
 	 * Instantiates a new player up.
@@ -51,6 +53,16 @@ public class PlayerUp implements PlayerState {
 	 */
 	public PlayerState die(){
 		return new PlayerDead();
+	}
+	
+	/**
+	 * Generate player next movement
+	 * 
+	 * @param player moving
+	 * @return newPosPlayer
+	 */
+	public Position generateNextMov(Player playerMoving){
+		return playerMoving.getBoardPosition().add(UP);
 	}
 	
 }

@@ -1,10 +1,12 @@
 package model.player;
 
+import model.Position;
+
 // TODO: Auto-generated Javadoc
 /**
  * This subclass implements a behaviour associated with a state of the PlayerAlive.
  */
-public class PlayerLeft implements PlayerState {
+public class PlayerLeft implements PlayerAlive {
 
 	/**
 	 * Instantiates a new player left.
@@ -51,6 +53,16 @@ public class PlayerLeft implements PlayerState {
 	 */
 	public PlayerState die(){
 		return new PlayerDead();
+	}
+	
+	/**
+	 * Generate player next movement
+	 * 
+	 * @param player moving
+	 * @return newPosPlayer
+	 */
+	public Position generateNextMov(Player playerMoving){
+		return playerMoving.getBoardPosition().add(LEFT);
 	}
 	
 }
