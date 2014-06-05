@@ -77,6 +77,7 @@ public class ManualBomb implements Bomb {
 	 * Propagate bomb explosion
 	 */
 	public void propagateExplosion(Position initPos, int range_counter){
+		//TODO: Review propagate algorithm
 		GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine()+range_counter, boardPosition.getCol())).explode();
 		GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine()-range_counter, boardPosition.getCol())).explode();
 		GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine(), boardPosition.getCol()+range_counter)).explode();
