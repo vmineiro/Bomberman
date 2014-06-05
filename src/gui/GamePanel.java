@@ -44,35 +44,7 @@ public class GamePanel extends JPanel implements KeyListener
 	public GamePanel()
 	{
 		//TODO: Launch game
-		//TODO: DELETE AFTER TESTING
-		GameModel.getInstance();
-		GameModel.getInstance().getPlayers().updateBoardPosition(new Position(3,3));
-		GameModel.getInstance().getMonsters().setBoardPosition(new Position(1,1));
-		
-		Item hiddenPath = new ItemPath();
-		Item boardExit = new BoardExit();
-		Item bombControl = new BombControl();
-		Item bombPowerUp = new BombPowerUp();
-		Item boostSpeed = new BoostSpeed();
-		Item extraBomb = new ExtraBomb();
-	
-		Item normalPath = new ItemPath();
-		normalPath.setCurrentState(new ItemActive());
-	
-		Item undestructibleWall = new UndestructibleWall();	
-		
-		Item[][] maze = new Item[][]{
-				{undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall},
-				{undestructibleWall, normalPath, normalPath, normalPath, undestructibleWall},
-				{undestructibleWall, normalPath, undestructibleWall, normalPath, undestructibleWall},
-				{undestructibleWall, normalPath, normalPath, normalPath, undestructibleWall},
-				{undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall}		
-		};
-		
-		GameModel.getInstance().getBoard().setMaze(maze);
-		
-		//==========================================================================================
-		
+		GameModel.getInstance();		
 		addKeyListener(this);
 	}
 	
