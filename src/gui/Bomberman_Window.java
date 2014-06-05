@@ -16,10 +16,10 @@ public class Bomberman_Window {
 	private JFrame frame;
 
 	/** The menu bar panel */ 
-	private JPanel MenuBarPanel;
+	private JPanel menuBarPanel;
 
 	/** The game panel */
-	private JPanel GamePanel;
+	private GamePanel gamePanel;
 
 	/** The menu bar */
 	private JMenuBar menuBar;
@@ -68,8 +68,8 @@ public class Bomberman_Window {
 	private void createWidgets()
 	{
 		//Menu bar panel
-		MenuBarPanel = new JPanel();
-		MenuBarPanel.setLayout(new BoxLayout(MenuBarPanel, BoxLayout.X_AXIS));
+		menuBarPanel = new JPanel();
+		menuBarPanel.setLayout(new BoxLayout(menuBarPanel, BoxLayout.X_AXIS));
 
 		//Menu bar
 		menuBar = new JMenuBar();
@@ -90,7 +90,7 @@ public class Bomberman_Window {
 		mntmExitGame = new JMenuItem("Exit Game");
 
 		//Game Panel
-		GamePanel = new JPanel();		
+		gamePanel = new GamePanel();		
 
 	}
 
@@ -106,9 +106,9 @@ public class Bomberman_Window {
 		mnBomberman.add(mntmGameSettings);
 		mnBomberman.add(mntmExitGame);
 		menuBar.add(mnBomberman);
-		MenuBarPanel.add(menuBar);
+		menuBarPanel.add(menuBar);
 
-		cont.add(MenuBarPanel, BorderLayout.NORTH);	
-		cont.add(GamePanel, BorderLayout.CENTER);
+		cont.add(menuBarPanel, BorderLayout.NORTH);	
+		cont.add(gamePanel, BorderLayout.CENTER);
 	}
 }
