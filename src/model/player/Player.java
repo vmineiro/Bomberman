@@ -9,6 +9,7 @@ import model.board.BoostSpeed;
 import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
+import model.monster.MonsterState;
 
 /**
  * This class defines the interface of interest to clients and maintains an
@@ -61,6 +62,27 @@ public class Player implements GameChar{
 	}
 	
 	/**
+	 * Get board position
+	 */
+	public Position getBoardPosition(){
+		return boardPosition;
+	}
+	
+	/**
+	 * Update board position.
+	 */
+	public void updateBoardPosition(Position n_pos){
+		this.boardPosition = n_pos;
+	}
+	
+	/**
+	 * Gets the current state
+	 */
+	public PlayerState getCurrentState(){
+		return state;
+	}
+	
+	/**
 	 * Sets the current state.
 	 *
 	 * @param state the new current state
@@ -76,7 +98,7 @@ public class Player implements GameChar{
 		
 	}
 	
-	//TODO: Implement this functions
+	//TODO: Implement this functions ========================================
 	/**
 	 * Drop bomb.
 	 */
@@ -116,11 +138,6 @@ public class Player implements GameChar{
 	 * Adds the bomb.
 	 */
 	public void addBomb(){}
-
-	/**
-	 * Update board position.
-	 */
-	public void updateBoardPosition(){}
 
 	/**
 	 * Respawn. Set the player in start position.
