@@ -164,6 +164,13 @@ public class Player implements GameChar{
 	}
 	
 	/**
+	 * Get bomb control
+	 */
+	public void getBombControl(){
+		this.manualBomb = true;
+	}
+	
+	/**
 	 * Sets the animation.
 	 */
 	public void setAnimation(BufferedImage animation){
@@ -181,6 +188,64 @@ public class Player implements GameChar{
 		return false;
 	}
 	
+	/**
+	 * Monster visits bomb control item in game board
+	 */
+	public void visitBombControl(BombControl item){
+		updateBoardPosition(nextPlayerPosition);
+		getBombControl();
+		checkDeath(item);		
+	}
+	
+	/**
+	 * Monster visits extra bomb item in game board
+	 */
+	public void visitExtraBomb(ExtraBomb item){
+		updateBoardPosition(nextPlayerPosition);
+		addBomb();
+		checkDeath(item);	
+	}
+	
+	/**
+	 * Monster visits bomb power up item in game board
+	 */
+	public void visitBombPowerUp(BombPowerUp item){
+		updateBoardPosition(nextPlayerPosition);
+		increasePowerBomb();
+		checkDeath(item);
+	}
+	
+	/**
+	 * Monster visits boost speed item in game board
+	 */
+	public void visitBoostSpeed(BoostSpeed item){
+		updateBoardPosition(nextPlayerPosition);
+		increaseSpeed();
+		checkDeath(item);
+	}
+	
+	/**
+	 * Monster visits path item in game board
+	 */
+	public void visitPath(ItemPath item){
+		updateBoardPosition(nextPlayerPosition);
+		checkDeath(item);
+	}
+	
+	/**
+	 * Monster visits undestructible wall item in game board
+	 */
+	public void visitUndestructibleWall(UndestructibleWall item){}
+	
+	/**
+	 * Monster visits board exit item in game board
+	 */ 
+	public void visitBoardExit(BoardExit item){
+		//TODO: Add check isActive()
+		updateBoardPosition(nextPlayerPosition);
+		checkDeath(item);
+	}
+	
 	//TODO: Implement this functions =======================================
 
 	//TODO:if the player died should reset his power ups.
@@ -193,43 +258,6 @@ public class Player implements GameChar{
 	 * Draw.
 	 */
 	public void draw(){}
-
-	/**
-	 * Monster visits bomb control item in game board
-	 */
-	public void visitBombControl(BombControl item){}
-	
-	/**
-	 * Monster visits extra bomb item in game board
-	 */
-	public void visitExtraBomb(ExtraBomb item){}
-	
-	/**
-	 * Monster visits bomb power up item in game board
-	 */
-	public void visitBombPowerUp(BombPowerUp item){}
-	
-	/**
-	 * Monster visits boost speed item in game board
-	 */
-	public void visitBoostSpeed(BoostSpeed item){}
-	
-	/**
-	 * Monster visits board exit item in game board
-	 */ 
-	public void visitBoardExit(BoardExit item){
-		//TODO: Add check isActive()
-	}
-	
-	/**
-	 * Monster visits path item in game board
-	 */
-	public void visitPath(ItemPath item){}
-	
-	/**
-	 * Monster visits undestructible wall item in game board
-	 */
-	public void visitUndestructibleWall(UndestructibleWall item){}
 
 }
 
