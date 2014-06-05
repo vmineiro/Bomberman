@@ -3,6 +3,7 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import model.board.BoardExit;
 import model.board.BombControl;
 import model.board.BombPowerUp;
 import model.board.BoostSpeed;
@@ -11,7 +12,9 @@ import model.board.Item;
 import model.board.ItemDetonating;
 import model.board.ItemExploding;
 import model.board.ItemHidden;
+import model.board.ItemInactive;
 import model.board.ItemPath;
+import model.board.UndestructibleWall;
 
 import org.junit.Test;
 
@@ -276,6 +279,39 @@ public class BoardTests {
 	@Test
 	public void boardExitTest(){
 
+		
+		Item boardExit = new BoardExit();
+
+		assertTrue(ItemHidden.class == boardExit.getCurrentState().getClass());
+		
+		boardExit.explode();
+		assertEquals(ItemDetonating.class, boardExit.getCurrentState().getClass());
+		assertFalse(boardExit.isDetonating());
+		assertFalse(boardExit.isActive());
+		
+		try {
+			Thread.sleep(3100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(boardExit.isActive());		
+		
+
+			
+		boardExit.explode();
+		assertEquals(ItemExploding.class, boardExit.getCurrentState().getClass());
+		assertTrue(boardExit.isDetonating());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+		
+		assertFalse(boardExit.isActive());
+		
 	}
 
 	/**
@@ -286,6 +322,38 @@ public class BoardTests {
 	 */
 	@Test
 	public void undestructibleWallTest(){
+		
+		Item undestructibleWall = new UndestructibleWall();
+
+		assertTrue(ItemInactive.class == undestructibleWall.getCurrentState().getClass());
+		
+		undestructibleWall.explode();
+		assertEquals(ItemInactive.class, undestructibleWall.getCurrentState().getClass());
+		assertFalse(undestructibleWall.isDetonating());
+		assertFalse(undestructibleWall.isActive());
+		
+		try {
+			Thread.sleep(3100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		assertFalse(undestructibleWall.isActive());		
+		
+
+			
+		undestructibleWall.explode();
+		assertEquals(ItemInactive.class, undestructibleWall.getCurrentState().getClass());
+		assertFalse(undestructibleWall.isDetonating());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+		
+		assertFalse(undestructibleWall.isActive());
 
 	}
 

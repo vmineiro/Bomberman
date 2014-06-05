@@ -16,8 +16,7 @@ import model.player.Player;
  * The Class UndestructibleWall.
  */
 public class UndestructibleWall extends Item {
-
-
+	
 	
 	BufferedImage steelImg;
 
@@ -31,12 +30,13 @@ public class UndestructibleWall extends Item {
 			
 			steelImg = ImageIO.read(new File("img/wall01.png"));
 			
-			setCurrentState(new ItemInactive());
 			
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
+		
+		setCurrentState(new ItemInactive());
 		
 	}
 
@@ -75,6 +75,7 @@ public class UndestructibleWall extends Item {
 
 	@Override
 	public void setCurrentState(ItemState state) {
+		this.state = state;
 		setAnimation(steelImg);
 		
 	}
