@@ -30,8 +30,7 @@ public class BoostSpeed extends Item {
 	
 			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 
 		setCurrentState(new ItemHidden());

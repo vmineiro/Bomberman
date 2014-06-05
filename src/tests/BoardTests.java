@@ -286,7 +286,7 @@ public class BoardTests {
 		
 		boardExit.explode();
 		assertEquals(ItemDetonating.class, boardExit.getCurrentState().getClass());
-		assertFalse(boardExit.isDetonating());
+		assertFalse(boardExit.isExploding());
 		assertFalse(boardExit.isActive());
 		
 		try {
@@ -301,7 +301,7 @@ public class BoardTests {
 			
 		boardExit.explode();
 		assertEquals(ItemExploding.class, boardExit.getCurrentState().getClass());
-		assertTrue(boardExit.isDetonating());
+		assertTrue(boardExit.isExploding());
 		
 		try {
 			Thread.sleep(3000);
@@ -329,7 +329,7 @@ public class BoardTests {
 		
 		undestructibleWall.explode();
 		assertEquals(ItemInactive.class, undestructibleWall.getCurrentState().getClass());
-		assertFalse(undestructibleWall.isDetonating());
+		assertFalse(undestructibleWall.isExploding());
 		assertFalse(undestructibleWall.isActive());
 		
 		try {
@@ -344,12 +344,11 @@ public class BoardTests {
 			
 		undestructibleWall.explode();
 		assertEquals(ItemInactive.class, undestructibleWall.getCurrentState().getClass());
-		assertFalse(undestructibleWall.isDetonating());
+		assertFalse(undestructibleWall.isExploding());
 		
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 		
@@ -364,6 +363,11 @@ public class BoardTests {
 	 */
 	@Test
 	public void boardBuildTest(){
+		
+		
 
 	}
+	
+	
+	
 }//end BoardTests

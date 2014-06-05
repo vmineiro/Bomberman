@@ -11,7 +11,7 @@ import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class UndestructibleWall.
  */

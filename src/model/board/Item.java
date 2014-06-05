@@ -14,7 +14,6 @@ import model.Position;
 import model.monster.Monster;
 import model.player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a ItemState subclass that defines the current state.
@@ -41,7 +40,7 @@ public abstract class Item {
 	BufferedImage pathImg;
 	BufferedImage explosionImg;
 
-	
+	//TODO solve IOException catch
 	
 	/**
 	 * Instantiates a new item.
@@ -52,10 +51,7 @@ public abstract class Item {
 			wallImg = ImageIO.read(new File("img/wall01.png"));
 			pathImg = ImageIO.read(new File("img/wall01.png"));
 			explosionImg = ImageIO.read(new File("img/wall01.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (IOException e) {}
 		
 	}
 
