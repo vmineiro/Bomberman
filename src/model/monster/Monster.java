@@ -38,7 +38,7 @@ public class Monster implements GameChar{
 	private Position nextMonsterPosition;
 	
 	/** The speed. */
-	private int speed; 
+	//private int speed = 1; 
 	
 	/** The animation to be draw */
 	//private Animation animation;
@@ -53,7 +53,6 @@ public class Monster implements GameChar{
 		this.boardPosition = new Position();
 		this.nextMonsterPosition = new Position();
 		this.drawPosition = new Position();
-		this.speed = 1;
 	}
 
 	/* (non-Javadoc)
