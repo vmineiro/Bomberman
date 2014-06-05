@@ -54,5 +54,12 @@ public class Board {
 	public void explode(Position p){
 		maze[p.getLine()][p.getCol()].explode();
 	}
+	
+	/**
+	 * Get Maze
+	 */
+	public Item[][] getMaze(){
+		return maze;
+	}
 
 }//end Board
