@@ -1,5 +1,8 @@
 package model.player;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import model.GameChar;
 import model.GameModel;
 import model.Position;
@@ -10,7 +13,6 @@ import model.board.BoostSpeed;
 import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
-import model.monster.MonsterState;
 
 /**
  * This class defines the interface of interest to clients and maintains an
@@ -19,13 +21,13 @@ import model.monster.MonsterState;
 public class Player implements GameChar{
 
 	/** The score. */
-	private int score = 0;
+	//private int score = 0;
 	
 	/** The lives. */
 	private int lives = 3;
 	
 	/** The speed. */
-	private int speed;
+	//private int speed = 1;
 	
 	/** The board position. */
 	private Position boardPosition;
@@ -39,22 +41,23 @@ public class Player implements GameChar{
 	/** The state. */
 	private PlayerState state;
 	
-	/** The animation. */
-	//private Animation animation;
-	
 	/** The manual bomb. */
 	private boolean manualBomb = false;
 	
 	/** The bomb power. */
 	private int bombPower = 1;
 	
-	/** The n bombs. */
-	private int nBombs = 1;
+	/** The numbers of available bombs. */
+	private int availableBombs = 1;
 	
 	/** The imortal. */
-	private boolean imortal = true;
+	//private boolean imortal = true;
 	
-	//TODO: Bombs Queue field
+	/** Manual Bombs Queue */
+	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
+	
+	/** The animation. */
+	//private Animation animation;
 	
 	//============================================================================
 	
@@ -62,9 +65,9 @@ public class Player implements GameChar{
 	 * Instantiates a new player.
 	 */
 	public Player(){
-		boardPosition = new Position();
-		drawPosition = new Position();
-		state = new PlayerDown();
+		this.boardPosition = new Position();
+		this.drawPosition = new Position();
+		this.state = new PlayerDown();		
 	}
 	
 	/**
@@ -105,22 +108,42 @@ public class Player implements GameChar{
 		GameModel.getInstance().getBoard().getItem(nextPlayerPosition).accept(this);
 	}
 	
-	//TODO: Implement this functions ========================================
+	/**
+	 * Resets number of bombs
+	 */
+	public void incBombs(){
+		this.availableBombs++;
+	}
+	
 	/**
 	 * Drop bomb.
 	 */
 	public void dropBomb(){
-		//new Bomb()
+		if(availableBombs != 0)
+		{
+			this.availableBombs--;
+			
+			if(manualBomb){
+				queueMBombs.add(new ManualBomb(this));
+			} else{
+				new AutomaticBomb(this);
+			}
+		}
 	}
-
+	
 	/**
-	 * Detonate bomb.
-	 *
-	 * @param bomb the bomb
+	 * Detonate manual bombs
 	 */
-	public void detonateBomb(Bomb bomb){
-
+	public void detonateBomb(){
+		if(!queueMBombs.isEmpty()){
+			queueMBombs.poll().detonate();
+			incBombs();
+		}
 	}
+	
+	//TODO: checkDeath() - verify monster and explosion
+	
+	//TODO: Implement this functions =======================================
 
 	/**
 	 * Increase speed.
