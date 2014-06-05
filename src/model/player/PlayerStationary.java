@@ -1,9 +1,11 @@
 package model.player;
 
+import model.Position;
+
 /**
  * This subclass implements a behaviour associated with a state of the PlayerStationary
  */
-public class PlayerStationary implements PlayerState{
+public class PlayerStationary implements PlayerAlive {
 	
 	/**
 	 * Instantiates a new player down.
@@ -50,5 +52,15 @@ public class PlayerStationary implements PlayerState{
 	 */
 	public PlayerState die(){
 		return new PlayerDead();
+	}
+	
+	/**
+	 * Generate player next movement
+	 * 
+	 * @param player moving
+	 * @return newPosPlayer
+	 */
+	public Position generateNextMov(Player playerMoving){
+		return playerMoving.getBoardPosition();
 	}
 }

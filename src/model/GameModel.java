@@ -4,6 +4,7 @@ import model.board.Board;
 import model.monster.Monster;
 import model.player.Player;
 
+//TODO: Add Comments to all function
 /**
  * This class GameModel defines an Instance operation that lets clients access its
  * unique instance, and may be responsible for creating its own unique

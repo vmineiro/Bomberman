@@ -35,7 +35,7 @@ public class Monster implements GameChar{
 	private Position boardPosition;
 	
 	/** The next board position */
-	private Position nextBoardPosition;
+	private Position nextMonsterPosition;
 	
 	/** The speed. */
 	private int speed; 
@@ -51,7 +51,7 @@ public class Monster implements GameChar{
 	public Monster(){
 		this.state = new MonsterAlive();
 		this.boardPosition = new Position();
-		this.nextBoardPosition = new Position();
+		this.nextMonsterPosition = new Position();
 		this.drawPosition = new Position();
 		this.speed = 1;
 	}
@@ -97,8 +97,8 @@ public class Monster implements GameChar{
 	 * Update Monster
 	 */
 	public void update(){
-		nextBoardPosition = generateNextMov();
-		GameModel.getInstance().getBoard().getItem(nextBoardPosition).accept(this);
+		nextMonsterPosition = generateNextMov();
+		GameModel.getInstance().getBoard().getItem(nextMonsterPosition).accept(this);
 	}
 
 	/**
@@ -130,10 +130,10 @@ public class Monster implements GameChar{
 	public void moveMonster(Item mov_item){
 		// Leaves previews item
 		GameModel.getInstance().getBoard().getItem(getBoardPosition()).monsterOut();
-		GameModel.getInstance().getBoard().getItem(nextBoardPosition).monsterIn();
+		GameModel.getInstance().getBoard().getItem(nextMonsterPosition).monsterIn();
 		
 		// Change boardPosition to nextBoardPosition
-		setBoardPosition(nextBoardPosition);
+		setBoardPosition(nextMonsterPosition);
 	}
 	
 	/**

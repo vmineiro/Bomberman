@@ -1,5 +1,7 @@
 package model.player;
 
+import model.Position;
+
 /**
  * This subclass implements a behaviour associated with a state of the Player.
  */
@@ -50,6 +52,16 @@ public class PlayerDead implements PlayerState {
 	 */
 	public PlayerState die(){
 		return this;
+	}
+	
+	/**
+	 * Generate player next movement
+	 * 
+	 * @param player moving
+	 * @return newPosPlayer
+	 */
+	public Position generateNextMov(Player playerMoving){
+		return playerMoving.getBoardPosition();
 	}
 	
 }
