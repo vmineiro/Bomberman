@@ -1,6 +1,5 @@
 package model.player;
 
-// TODO: Auto-generated Javadoc
 /**
  * This subclass implements a behaviour associated with a state of the Player.
  */
