@@ -1,7 +1,6 @@
 package model.player;
 
-import model.board.Item;
-
+import model.Position;
 
 /**
  * The Class AutomaticBomb.
@@ -11,21 +10,24 @@ public class AutomaticBomb implements Bomb {
 	/** The range of explosion */
 	private int range;
 	
-	/** The cell where the bomb was dropped */
-	private Item cell;
-	
-	/** The animation for the bomb */
-	//private Animation animation;
+	/** The board position where the bomb was dropped */
+	private Position boardPosition;
 
 	/** The time out. */
 	private int timeOut = 5;
+	
+	/** The animation for the bomb */
+	//private Animation animation;
 	
 	//=======================================================
 
 	/**
 	 * Instantiates a new automatic bomb.
 	 */
-	public AutomaticBomb(){}
+	public AutomaticBomb(Position dropPos){
+		this.range = 3;
+		this.boardPosition = dropPos;
+	}
 	
 	/**
 	 * This method trigger the explosion of the bomb and detonates the cell where the bomb 

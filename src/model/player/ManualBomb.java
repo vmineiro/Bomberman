@@ -1,5 +1,6 @@
 package model.player;
 
+import model.Position;
 import model.board.Item;
 
 
@@ -11,8 +12,8 @@ public class ManualBomb implements Bomb {
 	/** The range of explosion */
 	private int range;
 	
-	/** The cell where the bomb was dropped */
-	private Item cell;
+	/** The board position where the bomb was dropped */
+	private Position boardPosition;
 	
 	/** The animation for the bomb */
 	//private Animation animation;
@@ -22,8 +23,9 @@ public class ManualBomb implements Bomb {
 	/**
 	 * Instantiates a new manual bomb.
 	 */
-	public ManualBomb(){
-
+	public ManualBomb(Position dropPos){
+		range = 3;
+		boardPosition = dropPos;
 	}
 	
 	/**
