@@ -9,11 +9,13 @@ import model.board.BombPowerUp;
 import model.board.BoostSpeed;
 import model.board.ExtraBomb;
 import model.board.Item;
+import model.board.ItemActive;
 import model.board.ItemDetonating;
 import model.board.ItemExploding;
 import model.board.ItemHidden;
 import model.board.ItemInactive;
 import model.board.ItemPath;
+import model.board.ItemState;
 import model.board.UndestructibleWall;
 
 import org.junit.Test;
@@ -35,13 +37,62 @@ public class BoardTests {
 	@Test
 	public void itemStateTest(){
 		
+		ItemState itemState01 = new ItemHidden();
 		
-//		ItemState itemState = new ItemHidden();
-//		
-//		itemState.explode();
-//		assertEquals(ItemDetonating.class, itemState.getClass());
+		/* Hidden State Tests */
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemHidden.class == itemState01.getClass());
 		
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemHidden.class == itemState01.getClass());
 		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemDetonating.class == itemState01.getClass());
+		
+		/* Detonating State Tests */
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemDetonating.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemDetonating.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemActive.class == itemState01.getClass());
+		
+		/* Active State Tests */
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemActive.class == itemState01.getClass());
+		
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemInactive.class == itemState01.getClass());
+		
+		ItemState itemState02 = new ItemActive();
+		
+		itemState02 = itemState02.explode();
+		assertTrue(ItemExploding.class == itemState02.getClass());
+		
+		itemState02 = itemState02.explosionEnds();
+		assertTrue(ItemInactive.class == itemState02.getClass());
+		
+		/* Inactive State Tests */
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemInactive.class == itemState01.getClass());
+		
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemInactive.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemExploding.class == itemState01.getClass());	
+		
+		/* Exploding State Tests */
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemExploding.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemExploding.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemInactive.class == itemState01.getClass());
 		
 		
 	}

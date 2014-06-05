@@ -13,7 +13,7 @@ public class BoardFactory {
 	/**
 	 * Instantiates a new board factory.
 	 */
-	public BoardFactory(){
+	public BoardFactory(int boardSize){
 
 	}
 
