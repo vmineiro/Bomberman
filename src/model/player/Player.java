@@ -1,6 +1,7 @@
 package model.player;
 
 import model.GameChar;
+import model.GameModel;
 import model.Position;
 import model.board.BoardExit;
 import model.board.BombControl;
@@ -28,6 +29,9 @@ public class Player implements GameChar{
 	
 	/** The board position. */
 	private Position boardPosition;
+	
+	/** The next board position */
+	private Position nextPlayerPosition;
 	
 	/** The draw position. */
 	private Position drawPosition;
@@ -97,7 +101,8 @@ public class Player implements GameChar{
 	 * Update.
 	 */
 	public void update(){
-		
+		nextPlayerPosition = getCurrentState().generateNextMov(this);
+		GameModel.getInstance().getBoard().getItem(nextPlayerPosition).accept(this);
 	}
 	
 	//TODO: Implement this functions ========================================
