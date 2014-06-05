@@ -20,6 +20,9 @@ public class AutomaticBomb implements Bomb {
 	/** The range counter */
 	private int range_counter;
 	
+	/** The player who dropped the bomb */
+	private Player dropPlayer;
+	
 	/** The board position where the bomb was dropped */
 	private Position boardPosition;
 	
@@ -37,10 +40,11 @@ public class AutomaticBomb implements Bomb {
 	/**
 	 * Instantiates a new automatic bomb.
 	 */
-	public AutomaticBomb(Position dropPos){
+	public AutomaticBomb(Player dropPlayer){
 		this.range = 3;
 		this.range_counter = 0;
-		this.boardPosition = dropPos;
+		this.dropPlayer = dropPlayer;
+		this.boardPosition = dropPlayer.getBoardPosition();
 		
 		ActionListener bombTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
@@ -65,7 +69,7 @@ public class AutomaticBomb implements Bomb {
 		GameModel.getInstance().getBoard().getItem(boardPosition).explode();
 		
 		//TODO: Removed bomb from item
-		GameModel.getInstance().getPlayers().incBombs();
+		dropPlayer.incBombs();
 		
 		ActionListener proTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
