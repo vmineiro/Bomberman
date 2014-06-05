@@ -147,16 +147,12 @@ public class Player implements GameChar{
 	/**
 	 * Increase speed.
 	 */
-	public void increaseSpeed(){
-
-	}
+	public void increaseSpeed(){}
 
 	/**
 	 * Increase power bomb.
 	 */
-	public void increasePowerBomb(){
-
-	}
+	public void increasePowerBomb(){}
 
 	/**
 	 * Life lost.
@@ -168,12 +164,11 @@ public class Player implements GameChar{
 	 */
 	public void addBomb(){}
 
+	//TODO:if the player died should reset his power ups.
 	/**
 	 * Respawn. Set the player in start position.
 	 */
-	public void respawn(){
-		 // if the player died should reset his power ups.
-	}
+	public void respawn(){}
 
 	/**
 	 * Sets the animation.
