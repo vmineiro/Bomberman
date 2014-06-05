@@ -8,6 +8,7 @@ import javax.swing.Timer;
 import model.board.Board;
 import model.monster.Monster;
 import model.player.Player;
+import model.player.PlayerDead;
 
 //TODO: Add Comments to all function
 /**
@@ -144,7 +145,10 @@ public class GameModel {
 	 * @return true, if the game is over.
 	 */
 	public boolean gameOver(){
-		return false;
+		if(getPlayers().isDead()){
+			return true;
+		}
+		return true;
 	}
 
 	/**
