@@ -62,9 +62,7 @@ public class GamePanel extends JPanel implements KeyListener
 			wallImg = ImageIO.read(new File("img/wall01.png"));
 		} catch (IOException e) {}
 		
-		//int n = game.getMaze().getBoard().length;
-		int n = 5;
-		
+		int n = GameModel.getInstance().getBoard().getMaze().length;
 		int elem_size = getParent().getWidth()/n;
 		int ajust = (getParent().getWidth()%n)/2;
 		
