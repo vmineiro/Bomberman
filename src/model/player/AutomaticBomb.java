@@ -17,8 +17,17 @@ public class AutomaticBomb implements Bomb {
 	/** The range of explosion */
 	private int range;
 	
-	/** The range counter */
-	private int range_counter;
+	/** The range counter - UP */
+	private int range_counter_up;
+	
+	/** The range counter - DOWN */
+	private int range_counter_down;
+	
+	/** The range counter - LEFT */
+	private int range_counter_left;
+	
+	/** The range counter - RIGHT */
+	private int range_counter_right;
 	
 	/** The player who dropped the bomb */
 	private Player dropPlayer;
@@ -42,7 +51,10 @@ public class AutomaticBomb implements Bomb {
 	 */
 	public AutomaticBomb(Player dropPlayer){
 		this.range = 3;
-		this.range_counter = 0;
+		this.range_counter_up = 0;
+		this.range_counter_down = 0;
+		this.range_counter_left = 0;
+		this.range_counter_right = 0;
 		this.dropPlayer = dropPlayer;
 		this.boardPosition = dropPlayer.getBoardPosition();
 		
@@ -73,10 +85,8 @@ public class AutomaticBomb implements Bomb {
 		
 		ActionListener proTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
-				propagateExplosion(boardPosition, range_counter);
-				range_counter++;
-				
-				if(range_counter == range){
+				propagateExplosion();
+				if(bombPropagationIsOver()){
 					proTimer.stop();
 				}
 			}
@@ -90,16 +100,69 @@ public class AutomaticBomb implements Bomb {
 	}
 	
 	/**
-	 * Propagate bomb explosion
+	 * Verify if bomb propagation is over
 	 */
-	public void propagateExplosion(Position initPos, int range_counter){
-		//TODO: Review propagate algorithm
-		GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine()+range_counter, boardPosition.getCol())).explode();
-		GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine()-range_counter, boardPosition.getCol())).explode();
-		GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine(), boardPosition.getCol()+range_counter)).explode();
-		GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine(), boardPosition.getCol()-range_counter)).explode();
+	public boolean bombPropagationIsOver(){
+		return (range_counter_up == range && range_counter_down == range && range_counter_left == range && range_counter_right == range);
 	}
 	
+	/**
+	 * Propagate bomb explosion
+	 */
+	public void propagateExplosion(){
+		
+		if(range_counter_up != range)
+		{
+			if(!explodeItem(-range_counter_up, 0))
+			{
+				range_counter_up = range;
+			}else{
+				range_counter_up++;
+			}
+		}
+		
+		if(range_counter_down != range)
+		{
+			if(!explodeItem(range_counter_down, 0))
+			{
+				range_counter_down = range;
+			}else{
+				range_counter_down++;
+			}
+			
+		}
+		
+		if(range_counter_left != range)
+		{
+			if(!explodeItem(0, range_counter_left))
+			{
+				range_counter_left = range;
+			}else{
+				range_counter_left++;
+			}
+		}
+		
+		if(range_counter_right != range)
+		{
+			if(!explodeItem(0, -range_counter_right))
+			{
+				range_counter_right = range;
+			}else{
+				range_counter_right++;
+			}
+		}
+	}
+	
+	/**
+	 * Explodes board item
+	 * 
+	 * @param incLine
+	 * @param incCol
+	 * @return true if explosion propagates
+	 */
+	public boolean explodeItem(int incLine, int incCol){
+		return GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine()+incLine, boardPosition.getCol()+incCol)).explode();
+	}
 
 	/**
 	 * Draw.

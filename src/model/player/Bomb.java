@@ -23,7 +23,7 @@ public interface Bomb {
 	/**
 	 * Propagate bomb explosion
 	 */
-	public void propagateExplosion(Position initPos, int range_counter);
+	public void propagateExplosion();
 
 	/**
 	 * Draw.
