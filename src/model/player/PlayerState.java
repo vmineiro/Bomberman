@@ -26,6 +26,11 @@ public interface PlayerState {
 	 * Turn right.
 	 */
 	public abstract PlayerState turnRight();
+	
+	/**
+	 * Turn stationary.
+	 */
+	public abstract PlayerState turnStationary();
 
 	/**
 	 * Die.

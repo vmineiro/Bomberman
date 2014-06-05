@@ -38,6 +38,13 @@ public class PlayerDead implements PlayerState {
 	public PlayerState turnRight(){
 		return this;
 	}
+	
+	/**
+	 * Turn stationary.
+	 */
+	public PlayerState turnStationary(){
+		return this;
+	}
 
 	/**
 	 * Die.

@@ -38,6 +38,13 @@ public class PlayerDown implements PlayerState {
 	public PlayerState turnRight(){
 		return new PlayerRight();
 	}
+	
+	/**
+	 * Turn stationary.
+	 */
+	public PlayerState turnStationary(){
+		return new PlayerStationary();
+	}
 
 	/**
 	 * Die.
