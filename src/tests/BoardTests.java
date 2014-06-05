@@ -1,6 +1,21 @@
 package tests;
 
+import static org.junit.Assert.*;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+import model.board.ItemActive;
+import model.board.ItemDetonating;
+import model.board.ItemExploding;
+import model.board.ItemHidden;
+import model.board.ItemPath;
+import model.board.ItemState;
+
 import org.junit.Test;
+
 
 /**
  * The Class BoardTests.
@@ -9,12 +24,21 @@ import org.junit.Test;
 public class BoardTests {
 
 	
+	
+	
 	/**
 	 * Item State change
 	 * 
 	 */
 	@Test
 	public void itemStateTest(){
+		
+		
+//		ItemState itemState = new ItemHidden();
+//		
+//		itemState.explode();
+//		assertEquals(ItemDetonating.class, itemState.getClass());
+		
 		
 		
 		
@@ -30,7 +54,25 @@ public class BoardTests {
 	 */
 	@Test
 	public void pathTest(){
+		
+		final ItemPath path = new ItemPath();
+		
+		assertEquals(ItemHidden.class, path.getCurrentState().getClass());
+		
+		path.explode();
+		assertEquals(ItemDetonating.class, path.getCurrentState().getClass());
+		assertFalse(path.isDetonating());
+		
+		assertTrue(path.isActive());		
+		
+		path.setCurrentState(new ItemActive());
+		
+		
+		path.explode();
+		assertEquals(ItemExploding.class, path.getCurrentState().getClass());
+		assertTrue(path.isDetonating());
 
+		
 		
 		
 	}
@@ -45,6 +87,21 @@ public class BoardTests {
 	@Test
 	public void extraBombTest(){
 
+		ItemPath path = new ItemPath();
+		
+		assertEquals(ItemHidden.class, path.getCurrentState().getClass());
+		
+		path.explode();
+		assertEquals(ItemDetonating.class, path.getCurrentState().getClass());
+		assertFalse(path.isDetonating());
+		
+		path.setCurrentState(new ItemActive());
+		assertTrue(path.isActive());
+		
+		path.explode();
+		assertEquals(ItemExploding.class, path.getCurrentState().getClass());
+		assertTrue(path.isDetonating());
+		
 	}
 
 	/**

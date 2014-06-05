@@ -9,9 +9,10 @@ import javax.imageio.ImageIO;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemActive implements ItemState {
+public class ItemActive extends ItemState {
 
 	public ItemActive(){
+		super();
 
 	}
 
@@ -34,5 +35,10 @@ public class ItemActive implements ItemState {
 	@Override
 	public ItemState pickUp() {
 		return new ItemInactive();
+	}
+
+	@Override
+	public ItemState explosionEnds() {
+		return this;
 	}
 }//end ItemActive

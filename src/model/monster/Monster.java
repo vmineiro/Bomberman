@@ -3,13 +3,13 @@ package model.monster;
 import model.GameChar;
 import model.GameModel;
 import model.Position;
+import model.board.Item;
 import model.board.BoardExit;
 import model.board.BombControl;
 import model.board.BombPowerUp;
 import model.board.BoostSpeed;
 import model.board.ExtraBomb;
-import model.board.Item;
-import model.board.Path;
+import model.board.ItemPath;
 import model.board.UndestructibleWall;
 
 // TODO: Auto-generated Javadoc
@@ -162,7 +162,7 @@ public class Monster implements GameChar{
 	/**
 	 * Monster visits path item in game board
 	 */
-	public void visitPath(Path item){
+	public void visitPath(ItemPath item){
 		checkDeath(item);
 	}
 	

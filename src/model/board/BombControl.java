@@ -1,6 +1,11 @@
 package model.board;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 
 import model.GameModel;
 import model.monster.Monster;
@@ -11,12 +16,35 @@ import model.player.Player;
  * The Class BombControl.
  */
 public class BombControl extends Item {
-
+	
 	/**
 	 * Instantiates a new bomb control.
 	 */
 	public BombControl(){
+		super();
+		
+		try {
+			
+			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage bombControlImg = ImageIO.read(new File("img/wall01.png"));
+			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
+			
+			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
+			
+			itemImages.put(ItemHidden.class, wallImg);
+			itemImages.put(ItemDetonating.class, explosionImg);
+			itemImages.put(ItemActive.class, bombControlImg);
+			itemImages.put(ItemExploding.class, explosionImg);
+			itemImages.put(ItemInactive.class, pathImg);
+			
+		} catch (IOException e) {
 
+			e.printStackTrace();
+		}
+		
+		setCurrentState(new ItemHidden());
+		
 	}
 
 	/* (non-Javadoc)
@@ -36,17 +64,10 @@ public class BombControl extends Item {
 	public void accept(Player player){
 
 		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
-		
-		if (this.state.getClass() == ItemActive.class) {
-			
-			setCurrentState(this.state.pickUp());
-			//TODO change method
-			//player->updateBoardPosition(this)
-			return;
-			
-		}
-		
-		//player->updateBoardPosition(this)
+				
+		setCurrentState(this.state.pickUp());
+
+		player.visitBombControl(this);
 
 	}
 
@@ -59,35 +80,10 @@ public class BombControl extends Item {
 	public void accept(Monster monster){
 		
 		if (this.state.getClass() == ItemHidden.class) return;
-		//TODO change method
-		//monster->updateBoardPosition()
 
+		monster.visitBombControl(this);
 
 	}
 
-	/**
-	 * Sets the animation to be draw in the game window.
-	 */
-	@Override
-	public void setAnimation(BufferedImage animation){
 
-		
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
-			return;
-		}
-		
-		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
-			return;
-		}
-		
-		if (this.state.getClass() == ItemActive.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("bombControl"));
-			return;
-		}
-		
-			
-		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("path"));
-	}
 }//end BombControl

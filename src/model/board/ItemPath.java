@@ -11,37 +11,37 @@ import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
+// TODO: Auto-generated Javadoc
 /**
- *The Boost Speed class
+ * The Class Path.
  */
-public class BoostSpeed extends Item {
-
-
-	public BoostSpeed(){
-		super();
+public class ItemPath extends Item {
+	
+	/**
+	 * Instantiates a new path.
+	 */
+	public ItemPath(){
 		
+		super();
+
 		try {
 			
 			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
 			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage boostSpeedlImg = ImageIO.read(new File("img/wall01.png"));
 			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
-
+			
 			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
 			
 			itemImages.put(ItemHidden.class, wallImg);
 			itemImages.put(ItemDetonating.class, explosionImg);
-			itemImages.put(ItemActive.class, boostSpeedlImg);
+			itemImages.put(ItemActive.class, pathImg);
 			itemImages.put(ItemExploding.class, explosionImg);
 			itemImages.put(ItemInactive.class, pathImg);
 			
-			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
-
-		setCurrentState(new ItemHidden());
 		
 	}
 
@@ -49,39 +49,37 @@ public class BoostSpeed extends Item {
 	 * @see model.Item#finalize()
 	 */
 	public void finalize() throws Throwable {
-		
 		super.finalize();
 	}
 
 
 	/**
-	 * Manages the visit by the player.
+	 * Accept.
 	 *
 	 * @param player the player
 	 */
-	@Override
 	public void accept(Player player){
+		
+		if (this.state.getClass() == ItemHidden.class) return;
+		
+		player.visitPath(this);
 
-		if (this.state.getClass() == ItemHidden.class || this.hasBomb) return;
 
-		setCurrentState(this.state.pickUp());
-			
-		player.visitBoostSpeed(this);
 	}
 
-	
-	
 	/**
-	 * Manages the visit by the monster.
+	 * Accept.
 	 *
 	 * @param monster the monster
 	 */
-	@Override
 	public void accept(Monster monster){
+
+		if (this.state.getClass() == ItemHidden.class) return;
 		
-		monster.visitBoostSpeed(this);
+		monster.visitPath(this);
+		
 	}
 
-
-
-}//end BoostSpeed
+	
+	
+}//end Path

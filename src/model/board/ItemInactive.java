@@ -4,14 +4,13 @@ package model.board;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemInactive implements ItemState {
+public class ItemInactive extends ItemState {
 
 	/**
 	 * Instantiates a new item inactive.
 	 */
 	public ItemInactive(){
-		
-		
+		super();
 
 	}
 
@@ -22,13 +21,18 @@ public class ItemInactive implements ItemState {
 		super.finalize();
 	}
 
-	@Override
+	
 	public ItemState explode() {
 		return new ItemExploding();
 	}
 
-	@Override
+	
 	public ItemState pickUp() {
+		return this;
+	}
+
+	
+	public ItemState explosionEnds() {
 		return this;
 	}
 

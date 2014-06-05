@@ -1,7 +1,11 @@
 package model.board;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
+
+import javax.swing.Timer;
 
 import model.Position;
 import model.monster.Monster;
@@ -20,7 +24,7 @@ import model.player.Player;
 public abstract class Item {
 	
 	
-	
+	HashMap<Class<? extends ItemState>, BufferedImage> itemImages;
 
 	/** The state. */
 	protected ItemState state;
@@ -35,12 +39,12 @@ public abstract class Item {
 	/** The has bomb. */
 	protected boolean hasBomb = false;
 
+	
+	
 	/**
 	 * Instantiates a new item.
 	 */
-	public Item(){
-
-	}
+	public Item(){}
 
 
 	/* (non-Javadoc)
@@ -49,16 +53,6 @@ public abstract class Item {
 	public void finalize() throws Throwable {
 
 	}
-
-
-	/**
-	 * Sets the current state.
-	 *
-	 * @param state the new current state
-	 */
-	public void setCurrentState(ItemState state){
-		this.state = state;
-	};
 	
 	
 	public ItemState getCurrentState(){	
@@ -74,6 +68,12 @@ public abstract class Item {
 	public boolean isDetonating() {
 		return state.getClass() == ItemExploding.class;
 	}
+	
+	
+	public boolean isActive() {
+		return state.getClass() == ItemActive.class;
+	}
+	
 	
 	public void monsterIn() {
 		monsterInThisItem++;
@@ -95,7 +95,19 @@ public abstract class Item {
 	 * 
 	 */
 	public void explode() {
+		
 		setCurrentState(state.explode());
+		
+		Timer countDown = new Timer(3000, new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setCurrentState(state.explosionEnds());
+			}
+		});
+		countDown.setRepeats(false);
+		countDown.start();
+		
 		this.hasBomb = false;
 	}
 	
@@ -118,13 +130,15 @@ public abstract class Item {
 
 
 	
-	/**
-	 * Sets the animation to be draw in the game window.
-	 */
-	public abstract void setAnimation(BufferedImage animation);
+	public void setAnimation(BufferedImage animation) {
+		this.animation = animation;
+	}
+
 	
-	
-	
+	public void setCurrentState(ItemState state) {
+		this.state = state;
+		setAnimation(itemImages.get(state));
+	}
 
 	
 }//end Item
