@@ -14,11 +14,6 @@ import model.Position;
 import model.monster.Monster;
 import model.player.Player;
 
-
-
-
-
-
 // TODO: Auto-generated Javadoc
 /**
  * This class defines the interface of interest to clients and maintains an
@@ -37,7 +32,7 @@ public abstract class Item {
 	/** The has player. */
 	protected int monsterInThisItem = 0;
 
-	
+	//TODO: Changed boolean to object type bomb
 	/** The has bomb. */
 	protected boolean hasBomb = false;
 	
@@ -103,7 +98,7 @@ public abstract class Item {
 	}
 	
 	
-	
+	//TODO: Receives a reference to the dropped bomb
 	public void bombDropped(){
 		this.hasBomb = true;
 	}
@@ -126,6 +121,7 @@ public abstract class Item {
 		countDown.setRepeats(false);
 		countDown.start();
 		
+		//TODO: change to null and detonate
 		this.hasBomb = false;
 	}
 	
