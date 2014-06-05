@@ -84,12 +84,11 @@ public class MonsterTests {
 
 		//Testing Check Death
 		assertEquals("Monster is Alive before Detonation", MonsterAlive.class, monster_t.getCurrentState().getClass());
-
+		
 		ItemPath path_t = new ItemPath();
 		path_t.setCurrentState(new ItemDetonating());
 		monster_t.checkDeath(path_t);
 		assertEquals("Monster is Dead after Detonation", MonsterDead.class, monster_t.getCurrentState().getClass());
-
 	}
 	
 }
