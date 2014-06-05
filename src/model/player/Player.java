@@ -1,5 +1,8 @@
 package model.player;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import model.GameChar;
 import model.GameModel;
 import model.Position;
@@ -10,7 +13,6 @@ import model.board.BoostSpeed;
 import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
-import model.monster.MonsterState;
 
 /**
  * This class defines the interface of interest to clients and maintains an
@@ -54,7 +56,8 @@ public class Player implements GameChar{
 	/** The imortal. */
 	private boolean imortal = true;
 	
-	//TODO: Bombs Queue field
+	/** Manual Bombs Queue */
+	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
 	
 	//============================================================================
 	
@@ -104,6 +107,8 @@ public class Player implements GameChar{
 		nextPlayerPosition = getCurrentState().generateNextMov(this);
 		GameModel.getInstance().getBoard().getItem(nextPlayerPosition).accept(this);
 	}
+	
+	//TODO: checkDeath() - verify monster and explosion
 	
 	//TODO: Implement this functions ========================================
 	/**
