@@ -33,7 +33,11 @@ public class GameModel {
 	/**
 	 * Instantiates a new game model.
 	 */
-	private GameModel(){}
+	private GameModel(){
+		this.board = new Board();
+		this.players = new Player();
+		this.monsters = new Monster();
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#finalize()
