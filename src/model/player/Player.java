@@ -41,16 +41,13 @@ public class Player implements GameChar{
 	/** The state. */
 	private PlayerState state;
 	
-	/** The animation. */
-	//private Animation animation;
-	
 	/** The manual bomb. */
 	private boolean manualBomb = false;
 	
 	/** The bomb power. */
 	private int bombPower = 1;
 	
-	/** The n bombs. */
+	/** The numbers of bombs. */
 	private int nBombs = 1;
 	
 	/** The imortal. */
@@ -58,6 +55,9 @@ public class Player implements GameChar{
 	
 	/** Manual Bombs Queue */
 	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
+	
+	/** The animation. */
+	//private Animation animation;
 	
 	//============================================================================
 	
@@ -108,15 +108,24 @@ public class Player implements GameChar{
 		GameModel.getInstance().getBoard().getItem(nextPlayerPosition).accept(this);
 	}
 	
-	//TODO: checkDeath() - verify monster and explosion
+	/**
+	 * Resets number of bombs
+	 */
+	public void resetNBombs(){
+		this.nBombs = 1;
+	}
 	
-	//TODO: Implement this functions ========================================
 	/**
 	 * Drop bomb.
 	 */
 	public void dropBomb(){
-		//new Bomb()
+		this.nBombs = 0;
+		
 	}
+	
+	//TODO: checkDeath() - verify monster and explosion
+	
+	//TODO: Implement this functions =======================================
 
 	/**
 	 * Detonate bomb.
