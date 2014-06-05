@@ -69,7 +69,7 @@ public class BombControl extends Item {
 	@Override
 	public void accept(Monster monster){
 
-		if (this.state.getClass() == ItemHidden.class) return;
+		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
 
 		monster.visitBombControl(this);
 

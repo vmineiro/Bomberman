@@ -53,7 +53,7 @@ public class BoardExit extends Item {
 	@Override
 	public void accept(Player player){
 		
-		if (this.state.getClass() == ItemHidden.class) return;
+		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
 		
 		player.visitBoardExit(this);
 
@@ -68,7 +68,7 @@ public class BoardExit extends Item {
 	 */
 	public void accept(Monster monster){
 
-		if (this.state.getClass() == ItemHidden.class) return;
+		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
 		
 		monster.visitBoardExit(this);
 		

@@ -3,18 +3,25 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import model.GameModel;
+import model.Position;
+import model.board.Board;
 import model.board.BoardExit;
 import model.board.BombControl;
 import model.board.BombPowerUp;
 import model.board.BoostSpeed;
 import model.board.ExtraBomb;
 import model.board.Item;
+import model.board.ItemActive;
 import model.board.ItemDetonating;
 import model.board.ItemExploding;
 import model.board.ItemHidden;
 import model.board.ItemInactive;
 import model.board.ItemPath;
+import model.board.ItemState;
 import model.board.UndestructibleWall;
+import model.monster.Monster;
+import model.player.Player;
 
 import org.junit.Test;
 
@@ -35,13 +42,62 @@ public class BoardTests {
 	@Test
 	public void itemStateTest(){
 		
+		ItemState itemState01 = new ItemHidden();
 		
-//		ItemState itemState = new ItemHidden();
-//		
-//		itemState.explode();
-//		assertEquals(ItemDetonating.class, itemState.getClass());
+		/* Hidden State Tests */
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemHidden.class == itemState01.getClass());
 		
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemHidden.class == itemState01.getClass());
 		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemDetonating.class == itemState01.getClass());
+		
+		/* Detonating State Tests */
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemDetonating.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemDetonating.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemActive.class == itemState01.getClass());
+		
+		/* Active State Tests */
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemActive.class == itemState01.getClass());
+		
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemInactive.class == itemState01.getClass());
+		
+		ItemState itemState02 = new ItemActive();
+		
+		itemState02 = itemState02.explode();
+		assertTrue(ItemExploding.class == itemState02.getClass());
+		
+		itemState02 = itemState02.explosionEnds();
+		assertTrue(ItemInactive.class == itemState02.getClass());
+		
+		/* Inactive State Tests */
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemInactive.class == itemState01.getClass());
+		
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemInactive.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemExploding.class == itemState01.getClass());	
+		
+		/* Exploding State Tests */
+		itemState01 = itemState01.pickUp();
+		assertTrue(ItemExploding.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explode();
+		assertTrue(ItemExploding.class == itemState01.getClass());
+		
+		itemState01 = itemState01.explosionEnds();
+		assertTrue(ItemInactive.class == itemState01.getClass());
 		
 		
 	}
@@ -366,6 +422,117 @@ public class BoardTests {
 		
 		
 
+	}
+	
+	
+	/**
+	 * Visits test.
+	 * 
+	 * Neste teste pretende-se testar a alteracoes de estado de cada item aquando da visita de um player ou de um monstro.
+	 */
+	@Test
+	public void visitTest(){
+		
+		
+			
+		Player player = new Player();
+		player.updateBoardPosition(new Position(3,3));
+		
+		Monster monster = new Monster();
+		monster.setBoardPosition(new Position(1,1));
+		
+		Item hiddenPath = new ItemPath();
+		
+		Item normalPath = new ItemPath();
+		normalPath.setCurrentState(new ItemActive());
+		
+		Item boardExit = new BoardExit();
+		
+		Item bombControl = new BombControl();
+		
+		Item bombPowerUp = new BombPowerUp();
+		
+		Item boostSpeed = new BoostSpeed();
+		
+		Item extraBomb = new ExtraBomb();
+		
+		Item undestructibleWall = new UndestructibleWall();
+		
+		
+		Item[][] maze = new Item[][]{
+				{undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall},
+				{undestructibleWall, normalPath, normalPath, normalPath, undestructibleWall},
+				{undestructibleWall, normalPath, undestructibleWall, normalPath, undestructibleWall},
+				{undestructibleWall, normalPath, normalPath, normalPath, undestructibleWall},
+				{undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall}		
+		};
+		
+		Board board = new Board();
+		board.setMaze(maze);
+		
+		GameModel game = GameModel.getInstance();		
+		game.setBoard(board);
+		game.addMonster(monster);
+		game.addPlayer(player);
+		
+		
+		/* Hidden Path Test */
+		hiddenPath.accept(player);
+		assertEquals("Expected to not change state", ItemHidden.class, hiddenPath.getCurrentState().getClass());
+		hiddenPath.accept(monster);
+		assertEquals("Expected to not change state", ItemHidden.class, hiddenPath.getCurrentState().getClass());
+		
+		/* Normal Path Test */
+		hiddenPath.accept(player);
+		assertEquals("Expected to not change state", ItemActive.class, normalPath.getCurrentState().getClass());
+		hiddenPath.accept(monster);
+		assertEquals("Expected to not change state", ItemActive.class, normalPath.getCurrentState().getClass());
+		
+		Item[] powerUpItems = new Item[] {
+				boardExit,
+				bombControl,
+				bombPowerUp,
+				boostSpeed,
+				extraBomb
+				};
+		
+		for (Item i: powerUpItems){
+			
+			i.accept(monster);
+			assertEquals("Expected to not change state", ItemHidden.class, i.getCurrentState().getClass());
+			i.accept(player);
+			assertEquals("Expected to not change state", ItemHidden.class, i.getCurrentState().getClass());
+			
+		}
+		
+
+		powerUpItems = new Item[] {
+				bombControl,
+				bombPowerUp,
+				boostSpeed,
+				extraBomb
+				};
+		
+		
+		for (Item i: powerUpItems){
+			
+			i.setCurrentState(new ItemActive());
+			
+			i.accept(monster);
+			assertEquals("Expected to not change state", ItemActive.class, i.getCurrentState().getClass());
+			i.accept(player);
+			assertEquals("Expected to change state", ItemInactive.class, i.getCurrentState().getClass());
+			
+		}
+		
+		boardExit.setCurrentState(new ItemInactive());
+		boardExit.accept(player);
+		assertEquals("Expected to not change state", ItemInactive.class, boardExit.getCurrentState().getClass());
+		
+		boardExit.setCurrentState(new ItemActive());
+		boardExit.accept(player);
+		assertEquals("Expected to not change state", ItemActive.class, boardExit.getCurrentState().getClass());
+		
 	}
 	
 	

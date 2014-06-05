@@ -20,7 +20,7 @@ import model.player.Player;
  */
 public abstract class Item {
 	
-
+	private static final int EXPLOSION_DURATION = 3000;
 	
 	/** The state. */
 	protected ItemState state;
@@ -33,6 +33,9 @@ public abstract class Item {
 
 	/** The bomb in this item. */
 	protected Bomb bomb;
+	
+	/** Timer to finish explosion */
+	private Timer countDown;
 	
 	
 	/** The wall image. */
@@ -128,19 +131,36 @@ public abstract class Item {
 	
 	
 	/**
+	 * Bomb dropped in this item.
+	 *
+	 * @param bomb the bomb
+	 */
+	public void bombExploded(){
+		this.bomb = null;
+		
+	}
+
+	
+	
+	/**
 	 * Explode.
 	 */
 	public void explode() {
 		
+		if (bomb != null) bomb.detonate();
+		
 		setCurrentState(state.explode());
 		
-		Timer countDown = new Timer(3000, new ActionListener() {
+		ActionListener explodeListener = new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setCurrentState(state.explosionEnds());
+				countDown.stop();
 			}
-		});
+		};
+
+		countDown = new Timer(EXPLOSION_DURATION, explodeListener);
 		countDown.setRepeats(false);
 		countDown.start();
 		

@@ -133,6 +133,35 @@ public class GameModel {
 	 * @param board the new board
 	 */
 	public void setBoard(Board board){
-
+		this.board = board;
 	}
+	
+	
+	/**
+	 * Add a monster to the game
+	 * 
+	 * @param monster the monster to be added.
+	 */
+	public void addMonster(Monster monster){
+		
+		//TODO: Update when game have multiple monsters in the game
+		this.monsters = monster;
+	}
+	
+	
+	/**
+	 * Add a player to the game
+	 * 
+	 * @param player the player to be added.
+	 */
+	public void addPlayer(Player player){
+		
+		//TODO: Update when game have multiple players in the game
+		this.players = player;
+	}
+	
+	
+	
+	
+	
 }//end GameModel
