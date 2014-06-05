@@ -14,6 +14,7 @@ import model.GameModel;
  */
 public class ItemExploding extends ItemState {
 	
+	
 	/**
 	 * Instantiates a new item detonating.
 	 */

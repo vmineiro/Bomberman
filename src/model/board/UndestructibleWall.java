@@ -18,6 +18,8 @@ import model.player.Player;
 public class UndestructibleWall extends Item {
 
 
+	
+	BufferedImage steelImg;
 
 	/**
 	 * Instantiates a new undestructible wall.
@@ -27,15 +29,7 @@ public class UndestructibleWall extends Item {
 		
 		try {
 			
-			BufferedImage steelImg = ImageIO.read(new File("img/wall01.png"));
-			
-			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
-			
-			itemImages.put(ItemHidden.class, steelImg);
-			itemImages.put(ItemDetonating.class, steelImg);
-			itemImages.put(ItemActive.class, steelImg);
-			itemImages.put(ItemExploding.class, steelImg);
-			itemImages.put(ItemInactive.class, steelImg);
+			steelImg = ImageIO.read(new File("img/wall01.png"));
 			
 			setCurrentState(new ItemInactive());
 			
@@ -76,6 +70,14 @@ public class UndestructibleWall extends Item {
 	
 	@Override
 	public void explode() {}
+
+
+
+	@Override
+	public void setCurrentState(ItemState state) {
+		setAnimation(steelImg);
+		
+	}
 	
 
 

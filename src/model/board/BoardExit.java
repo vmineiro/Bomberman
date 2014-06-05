@@ -3,12 +3,20 @@ package model.board;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.Thread.State;
 
 
 
 
 
+
+
+
+import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import model.GameModel;
@@ -20,6 +28,12 @@ import model.player.Player;
  * This class represents the exit of the maze.
  */
 public class BoardExit extends Item {
+	
+
+	
+	
+	BufferedImage boardExitImg;
+
 
 	/**
 	 * Instantiates a new board exit.
@@ -27,6 +41,18 @@ public class BoardExit extends Item {
 	public BoardExit(){
 		
 		super();
+		
+		try {
+			
+			boardExitImg = ImageIO.read(new File("img/wall01.png"));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		setCurrentState(new ItemHidden());
+		
 
 	}
 
@@ -47,8 +73,7 @@ public class BoardExit extends Item {
 		
 		if (this.state.getClass() == ItemHidden.class) return;
 		
-		//TODO change method
-//		player.updateBoardPosition();
+		player.visitBoardExit(this);
 
 
 	}
@@ -62,33 +87,25 @@ public class BoardExit extends Item {
 
 		if (this.state.getClass() == ItemHidden.class) return;
 		
-//		monster.updatePosition();
+		monster.visitBoardExit(this);
+		
 
 	}
 
-	
-	
 	@Override
-	public void setAnimation(BufferedImage animation) {
+	public void setCurrentState(ItemState state) {
+		this.state = state;
+		
+		if (this.state.getClass() == ItemHidden.class) {
+			setAnimation(wallImg);
+		} else if (this.state.getClass() == ItemDetonating.class || this.state.getClass() == ItemExploding.class) {
+			setAnimation(explosionImg);
+		} else {
+			setAnimation(boardExitImg);
+		}
+		
+	}
 
-		if (this.state.getClass() == ItemExploding.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("explosion"));
-			return;
-		}
-		
-		if (this.state.getClass() == ItemHidden.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("wall"));
-			return;
-		}
-		
-		if (this.state.getClass() == ItemActive.class){
-			this.setAnimation(GameModel.getInstance().getBoard().getAnimation("activeExit"));
-			return;
-		}
-		
-			
-		this.setAnimation(GameModel.getInstance().getBoard().getAnimation("inactiveExit"));
-		
-	}	
+	
 	
 }//end BoardExit

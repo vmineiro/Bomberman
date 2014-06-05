@@ -6,6 +6,7 @@ public class ItemDetonating extends ItemState {
 
 
 
+	
 	/**
 	 * Instantiates a new item detonating.
 	 */
@@ -28,7 +29,7 @@ public class ItemDetonating extends ItemState {
 
 	@Override
 	public ItemState explode() {
-		return new ItemDetonating();
+		return this;
 	}
 
 
