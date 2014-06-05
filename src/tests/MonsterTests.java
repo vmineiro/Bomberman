@@ -1,7 +1,7 @@
 package tests;
 
 import model.Position;
-import model.board.ItemDetonating;
+import model.board.ItemExploding;
 import model.board.ItemPath;
 import model.monster.Monster;
 import model.monster.MonsterAlive;
@@ -86,12 +86,12 @@ public class MonsterTests {
 		Monster monster_t = new Monster();
 
 		//Testing Check Death
-		assertEquals("Monster is Alive before Detonation", MonsterAlive.class, monster_t.getCurrentState().getClass());
+		assertEquals("Monster is Alive before Explosion", MonsterAlive.class, monster_t.getCurrentState().getClass());
 		
 		ItemPath path_t = new ItemPath();
-		path_t.setCurrentState(new ItemDetonating());
+		path_t.setCurrentState(new ItemExploding());
 		monster_t.checkDeath(path_t);
-		assertEquals("Monster is Dead after Detonation", MonsterDead.class, monster_t.getCurrentState().getClass());
+		assertEquals("Monster is Dead after Explosion", MonsterDead.class, monster_t.getCurrentState().getClass());
 	}
 	
 }
