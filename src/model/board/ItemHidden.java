@@ -6,6 +6,7 @@ package model.board;
  */
 public class ItemHidden extends ItemState {
 
+	
 	/**
 	 * Instantiates a new item hidden.
 	 */

@@ -16,6 +16,7 @@ import model.player.Player;
  */
 public class BoostSpeed extends Item {
 
+	
 
 	BufferedImage boostSpeedlImg;
 

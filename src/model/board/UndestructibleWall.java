@@ -18,6 +18,7 @@ import model.player.Player;
 public class UndestructibleWall extends Item {
 
 
+	
 	BufferedImage steelImg;
 
 	/**

@@ -16,6 +16,7 @@ import model.Position;
 public class Board {
 
 	
+	
 	/** The maze. */
 	private Item[][] maze;
 	

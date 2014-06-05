@@ -6,6 +6,8 @@ package model.board;
  */
 public class ItemInactive extends ItemState {
 
+	
+	
 	/**
 	 * Instantiates a new item inactive.
 	 */

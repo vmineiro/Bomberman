@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
  */
 public class ItemActive extends ItemState {
 
+	
 	public ItemActive(){
 		super();
 

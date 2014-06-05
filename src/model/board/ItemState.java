@@ -15,6 +15,7 @@ public abstract class ItemState {
 	
 
 	
+	
 	/**
 	 * Explode. Trigger a state change.
 	 *
