@@ -1,83 +1,114 @@
 package gui;
-import java.awt.EventQueue;
+
+import java.awt.Container;
+import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.JToolBar;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
-import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JMenuItem;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-
 
 public class Bomberman_Window {
 
+	/** The frame */
 	private JFrame frame;
+
+	/** The menu bar panel */ 
+	private JPanel MenuBarPanel;
+
+	/** The game panel */
+	private JPanel GamePanel;
+
+	/** The menu bar */
+	private JMenuBar menuBar;
+	private JMenu mnBomberman;
+	private JMenuItem mntmLoadGame;
+	private JMenuItem mntmSaveGame;
+	private JMenuItem mntmGameSettings;
+	private JMenuItem mntmExitGame;	
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Bomberman_Window window = new Bomberman_Window();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public static void main(String[] args) 
+	{
+		try 
+		{
+			Bomberman_Window window = new Bomberman_Window();
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * Create the application.
 	 */
-	public Bomberman_Window() {
-		initialize();
+	public Bomberman_Window() 
+	{
+		frame = new JFrame("BOMBERMAN");
+
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setBounds(100, 100, 450, 300);
+		frame.getContentPane().setLayout(new BorderLayout(0,0));
+
+		createWidgets();
+		addWidgets(frame.getContentPane());
+
+		//frame.pack();
+		frame.setVisible(true);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Creates the widgets
 	 */
-	private void initialize() {
-		frame = new JFrame("BOMBERMAN");
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		JPanel MenuBarPanel = new JPanel();
-		frame.getContentPane().add(MenuBarPanel, BorderLayout.NORTH);
+	private void createWidgets()
+	{
+		//Menu bar panel
+		MenuBarPanel = new JPanel();
 		MenuBarPanel.setLayout(new BoxLayout(MenuBarPanel, BoxLayout.X_AXIS));
-		
-		JMenuBar menuBar = new JMenuBar();
-		MenuBarPanel.add(menuBar);
-		
-		JMenu mnBomberman = new JMenu("Bomberman");
-		menuBar.add(mnBomberman);
-		
-		JMenuItem mntmLoadGame = new JMenuItem("Load Game");
-		mnBomberman.add(mntmLoadGame);
-		
-		JMenuItem mntmSaveGame = new JMenuItem("Save Game");
-		mnBomberman.add(mntmSaveGame);
-		
-		JMenuItem mntmGameSettings = new JMenuItem("Game Settings");
-		mnBomberman.add(mntmGameSettings);
-		
-		JMenuItem mntmExitGame = new JMenuItem("Exit Game");
-		mnBomberman.add(mntmExitGame);
-		
-		JPanel GamePanel = new JPanel();
-		frame.getContentPane().add(GamePanel, BorderLayout.CENTER);
-		GamePanel.setLayout(new BorderLayout(0, 0));
-		
-		JLabel lblBombermanPanel = new JLabel("Bomberman Panel - Displays Gameplay");
-		lblBombermanPanel.setHorizontalAlignment(SwingConstants.CENTER);
-		GamePanel.add(lblBombermanPanel);
+
+		//Menu bar
+		menuBar = new JMenuBar();
+
+		//Menu Bomberman
+		mnBomberman = new JMenu("Bomberman");
+
+		//Load Game Option
+		mntmLoadGame = new JMenuItem("Load Game");
+
+		//Save Game Option
+		mntmSaveGame = new JMenuItem("Save Game");
+
+		//Game Settings Option
+		mntmGameSettings = new JMenuItem("Game Settings");
+
+		//Exit Game Option
+		mntmExitGame = new JMenuItem("Exit Game");
+
+		//Game Panel
+		GamePanel = new JPanel();		
+
 	}
 
+	/**
+	 * Add the widgets
+	 * 
+	 * @param cont the container
+	 */
+	private void addWidgets(Container cont)
+	{
+		mnBomberman.add(mntmLoadGame);
+		mnBomberman.add(mntmSaveGame);
+		mnBomberman.add(mntmGameSettings);
+		mnBomberman.add(mntmExitGame);
+		menuBar.add(mnBomberman);
+		MenuBarPanel.add(menuBar);
+
+		cont.add(MenuBarPanel, BorderLayout.NORTH);	
+		cont.add(GamePanel, BorderLayout.CENTER);
+	}
 }
