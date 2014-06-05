@@ -124,9 +124,9 @@ public class Player implements GameChar{
 			this.availableBombs--;
 			
 			if(manualBomb){
-				new ManualBomb(getBoardPosition());
+				queueMBombs.add(new ManualBomb(this));
 			} else{
-				new AutomaticBomb(getBoardPosition());
+				new AutomaticBomb(this);
 			}
 		}
 	}
