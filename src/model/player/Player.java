@@ -21,13 +21,13 @@ import model.board.UndestructibleWall;
 public class Player implements GameChar{
 
 	/** The score. */
-	private int score = 0;
+	//private int score = 0;
 	
 	/** The lives. */
 	private int lives = 3;
 	
 	/** The speed. */
-	private int speed;
+	//private int speed = 1;
 	
 	/** The board position. */
 	private Position boardPosition;
@@ -47,11 +47,11 @@ public class Player implements GameChar{
 	/** The bomb power. */
 	private int bombPower = 1;
 	
-	/** The numbers of bombs. */
-	private int nBombs = 1;
+	/** The numbers of available bombs. */
+	private int availableBombs = 1;
 	
 	/** The imortal. */
-	private boolean imortal = true;
+	//private boolean imortal = true;
 	
 	/** Manual Bombs Queue */
 	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
@@ -65,9 +65,9 @@ public class Player implements GameChar{
 	 * Instantiates a new player.
 	 */
 	public Player(){
-		boardPosition = new Position();
-		drawPosition = new Position();
-		state = new PlayerDown();
+		this.boardPosition = new Position();
+		this.drawPosition = new Position();
+		this.state = new PlayerDown();		
 	}
 	
 	/**
@@ -111,16 +111,24 @@ public class Player implements GameChar{
 	/**
 	 * Resets number of bombs
 	 */
-	public void resetNBombs(){
-		this.nBombs = 1;
+	public void incBombs(){
+		this.availableBombs++;
 	}
 	
 	/**
 	 * Drop bomb.
 	 */
 	public void dropBomb(){
-		this.nBombs = 0;
-		
+		if(availableBombs != 0)
+		{
+			this.availableBombs--;
+			
+			if(manualBomb){
+				new ManualBomb(getBoardPosition());
+			} else{
+				new AutomaticBomb(getBoardPosition());
+			}
+		}
 	}
 	
 	//TODO: checkDeath() - verify monster and explosion
