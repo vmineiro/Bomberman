@@ -28,7 +28,7 @@ public class ItemDetonating extends ItemState {
 
 	@Override
 	public ItemState explode() {
-		return new ItemDetonating();
+		return this;
 	}
 
 

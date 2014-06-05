@@ -30,7 +30,8 @@ import model.player.Player;
 public class BoardExit extends Item {
 	
 
-	HashMap<Class<? extends ItemState>, BufferedImage> itemImages;
+	
+	BufferedImage boardExitImg;
 
 
 	/**
@@ -42,17 +43,7 @@ public class BoardExit extends Item {
 		
 		try {
 			
-			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage boardExitImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
-			
-			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
-			
-			itemImages.put(ItemHidden.class, wallImg);
-			itemImages.put(ItemDetonating.class, explosionImg);
-			itemImages.put(ItemActive.class, boardExitImg);
-			itemImages.put(ItemExploding.class, explosionImg);
-			itemImages.put(ItemInactive.class, boardExitImg);
+			boardExitImg = ImageIO.read(new File("img/wall01.png"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -98,6 +89,20 @@ public class BoardExit extends Item {
 		monster.visitBoardExit(this);
 		
 
+	}
+
+	@Override
+	public void setCurrentState(ItemState state) {
+		this.state = state;
+		
+		if (this.state.getClass() == ItemHidden.class) {
+			setAnimation(wallImg);
+		} else if (this.state.getClass() == ItemDetonating.class || this.state.getClass() == ItemExploding.class) {
+			setAnimation(explosionImg);
+		} else {
+			setAnimation(boardExitImg);
+		}
+		
 	}
 
 	

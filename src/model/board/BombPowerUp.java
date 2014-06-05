@@ -18,23 +18,15 @@ import model.player.Player;
 public class BombPowerUp extends Item {
 	
 	
+	BufferedImage bombPowerUpImg;
+	
+	
 	public BombPowerUp(){
 		super();
 		
 		try {
 			
-			BufferedImage wallImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage pathImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage bombPowerUpImg = ImageIO.read(new File("img/wall01.png"));
-			BufferedImage explosionImg = ImageIO.read(new File("img/wall01.png"));
-			
-			itemImages = new HashMap<Class<? extends ItemState>, BufferedImage>();
-			
-			itemImages.put(ItemHidden.class, wallImg);
-			itemImages.put(ItemDetonating.class, explosionImg);
-			itemImages.put(ItemActive.class, bombPowerUpImg);
-			itemImages.put(ItemExploding.class, explosionImg);
-			itemImages.put(ItemInactive.class, pathImg);
+			bombPowerUpImg = ImageIO.read(new File("img/wall01.png"));
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -77,6 +69,20 @@ public class BombPowerUp extends Item {
 		
 		monster.visitBombPowerUp(this);
 
+
+	}
+
+	@Override
+	public void setCurrentState(ItemState state) {
+		this.state = state;
+
+		if (this.state.getClass() == ItemHidden.class) {
+			setAnimation(wallImg);
+		} else if (this.state.getClass() == ItemDetonating.class || this.state.getClass() == ItemExploding.class) {
+			setAnimation(explosionImg);
+		} else {
+			setAnimation(bombPowerUpImg);
+		}
 
 	}
 

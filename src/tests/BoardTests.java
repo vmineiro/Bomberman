@@ -1,18 +1,17 @@
 package tests;
 
-import static org.junit.Assert.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
-
-import model.board.ItemActive;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import model.board.BombControl;
+import model.board.BombPowerUp;
+import model.board.BoostSpeed;
+import model.board.ExtraBomb;
+import model.board.Item;
 import model.board.ItemDetonating;
 import model.board.ItemExploding;
 import model.board.ItemHidden;
 import model.board.ItemPath;
-import model.board.ItemState;
 
 import org.junit.Test;
 
@@ -55,25 +54,37 @@ public class BoardTests {
 	@Test
 	public void pathTest(){
 		
-		final ItemPath path = new ItemPath();
+		Item path = new ItemPath();
 		
-		assertEquals(ItemHidden.class, path.getCurrentState().getClass());
+		assertTrue(ItemHidden.class == path.getCurrentState().getClass());
 		
 		path.explode();
 		assertEquals(ItemDetonating.class, path.getCurrentState().getClass());
 		assertFalse(path.isDetonating());
+		assertFalse(path.isActive());
+		
+		try {
+			Thread.sleep(3100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		
 		assertTrue(path.isActive());		
 		
-		path.setCurrentState(new ItemActive());
-		
-		
+
+			
 		path.explode();
 		assertEquals(ItemExploding.class, path.getCurrentState().getClass());
 		assertTrue(path.isDetonating());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
 
+			e.printStackTrace();
+		}
 		
-		
+		assertFalse(path.isActive());	
 		
 	}
 
@@ -87,20 +98,39 @@ public class BoardTests {
 	@Test
 	public void extraBombTest(){
 
-		ItemPath path = new ItemPath();
 		
-		assertEquals(ItemHidden.class, path.getCurrentState().getClass());
+		Item extraBomb = new ExtraBomb();
 		
-		path.explode();
-		assertEquals(ItemDetonating.class, path.getCurrentState().getClass());
-		assertFalse(path.isDetonating());
+		assertTrue(ItemHidden.class == extraBomb.getCurrentState().getClass());
 		
-		path.setCurrentState(new ItemActive());
-		assertTrue(path.isActive());
+		extraBomb.explode();
+		assertEquals(ItemDetonating.class, extraBomb.getCurrentState().getClass());
+		assertFalse(extraBomb.isDetonating());
+		assertFalse(extraBomb.isActive());
 		
-		path.explode();
-		assertEquals(ItemExploding.class, path.getCurrentState().getClass());
-		assertTrue(path.isDetonating());
+		try {
+			Thread.sleep(3100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(extraBomb.isActive());		
+		
+
+			
+		extraBomb.explode();
+		assertEquals(ItemExploding.class, extraBomb.getCurrentState().getClass());
+		assertTrue(extraBomb.isDetonating());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+		
+		assertFalse(extraBomb.isActive());	
+
 		
 	}
 
@@ -113,6 +143,38 @@ public class BoardTests {
 	 */
 	@Test
 	public void bombControlTest(){
+		
+		Item bombControl = new BombControl();
+
+		assertTrue(ItemHidden.class == bombControl.getCurrentState().getClass());
+		
+		bombControl.explode();
+		assertEquals(ItemDetonating.class, bombControl.getCurrentState().getClass());
+		assertFalse(bombControl.isDetonating());
+		assertFalse(bombControl.isActive());
+		
+		try {
+			Thread.sleep(3100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(bombControl.isActive());		
+		
+
+			
+		bombControl.explode();
+		assertEquals(ItemExploding.class, bombControl.getCurrentState().getClass());
+		assertTrue(bombControl.isDetonating());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+		
+		assertFalse(bombControl.isActive());	
 
 	}
 
@@ -126,6 +188,38 @@ public class BoardTests {
 	@Test
 	public void bombPowerUpTest(){
 
+		Item bombPowerUp = new BombPowerUp();
+
+		assertTrue(ItemHidden.class == bombPowerUp.getCurrentState().getClass());
+		
+		bombPowerUp.explode();
+		assertEquals(ItemDetonating.class, bombPowerUp.getCurrentState().getClass());
+		assertFalse(bombPowerUp.isDetonating());
+		assertFalse(bombPowerUp.isActive());
+		
+		try {
+			Thread.sleep(3100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(bombPowerUp.isActive());		
+		
+
+			
+		bombPowerUp.explode();
+		assertEquals(ItemExploding.class, bombPowerUp.getCurrentState().getClass());
+		assertTrue(bombPowerUp.isDetonating());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+		
+		assertFalse(bombPowerUp.isActive());
+		
 	}
 
 	/**
@@ -137,6 +231,38 @@ public class BoardTests {
 	 */
 	@Test
 	public void boostSpeedTest(){
+		
+		Item boostSpeed = new BoostSpeed();
+
+		assertTrue(ItemHidden.class == boostSpeed.getCurrentState().getClass());
+		
+		boostSpeed.explode();
+		assertEquals(ItemDetonating.class, boostSpeed.getCurrentState().getClass());
+		assertFalse(boostSpeed.isDetonating());
+		assertFalse(boostSpeed.isActive());
+		
+		try {
+			Thread.sleep(3100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		assertTrue(boostSpeed.isActive());		
+		
+
+			
+		boostSpeed.explode();
+		assertEquals(ItemExploding.class, boostSpeed.getCurrentState().getClass());
+		assertTrue(boostSpeed.isDetonating());
+		
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+
+			e.printStackTrace();
+		}
+		
+		assertFalse(boostSpeed.isActive());
 
 	}
 

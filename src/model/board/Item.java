@@ -3,8 +3,11 @@ package model.board;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 
+import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import model.Position;
@@ -23,8 +26,6 @@ import model.player.Player;
  */
 public abstract class Item {
 	
-	
-	HashMap<Class<? extends ItemState>, BufferedImage> itemImages;
 
 	/** The state. */
 	protected ItemState state;
@@ -38,13 +39,29 @@ public abstract class Item {
 	
 	/** The has bomb. */
 	protected boolean hasBomb = false;
+	
+	
+	BufferedImage wallImg;
+	BufferedImage pathImg;
+	BufferedImage explosionImg;
 
 	
 	
 	/**
 	 * Instantiates a new item.
 	 */
-	public Item(){}
+	public Item(){
+		
+		try {
+			wallImg = ImageIO.read(new File("img/wall01.png"));
+			pathImg = ImageIO.read(new File("img/wall01.png"));
+			explosionImg = ImageIO.read(new File("img/wall01.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 
 	/* (non-Javadoc)
@@ -112,6 +129,11 @@ public abstract class Item {
 	}
 	
 	
+	public void setAnimation(BufferedImage animation) {
+		this.animation = animation;
+	}
+	
+	
 	/**
 	 * Manages the visit by the player.
 	 *
@@ -128,17 +150,8 @@ public abstract class Item {
 	 */
 	public abstract void accept(Monster monster);
 
-
 	
-	public void setAnimation(BufferedImage animation) {
-		this.animation = animation;
-	}
-
-	
-	public void setCurrentState(ItemState state) {
-		this.state = state;
-		setAnimation(itemImages.get(state));
-	}
+	public abstract void setCurrentState(ItemState state);
 
 	
 }//end Item
