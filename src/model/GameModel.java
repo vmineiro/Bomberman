@@ -198,7 +198,6 @@ public class GameModel {
 	 * Update the game state. Calls update method of all objects.
 	 */
 	public void update(){
-		players.update();
 		
 		for(Monster monst : monsters){
 			monst.update();
@@ -217,7 +216,7 @@ public class GameModel {
 	 */
 	public void updateKeyUp(){
 		this.pressedUp = true;
-		update();
+		players.update();
 	}
 	
 	/**
@@ -225,7 +224,7 @@ public class GameModel {
 	 */
 	public void updateKeyDown(){
 		this.pressedDown = true;
-		update();
+		players.update();
 	}
 	
 	/**
@@ -233,7 +232,7 @@ public class GameModel {
 	 */
 	public void updateKeyLeft(){
 		this.pressedLeft = true;
-		update();
+		players.update();
 	}
 	
 	/**
@@ -241,7 +240,7 @@ public class GameModel {
 	 */
 	public void updateKeyRight(){
 		this.pressedRight = true;
-		update();
+		players.update();
 	}
 	
 	/**
