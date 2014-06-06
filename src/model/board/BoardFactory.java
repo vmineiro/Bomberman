@@ -21,36 +21,36 @@ public class BoardFactory {
 	/**
 	 * Creates a new ExtraBomb Item and assigns to a random position in the maze.
 	 */
-	public void createExtraBomb(){
-
+	public Item createExtraBomb(){
+		return new ExtraBomb();
 	}
 
 	/**
 	 * Creates a new BombControl Item and assigns to a random position in the maze.
 	 */
-	public void createBombControl(){
-
+	public Item createBombControl(){
+		return new BombControl();
 	}
 
 	/**
 	 * Creates a new BombPowerUp Item and assigns to a random position in the maze.
 	 */
-	public void createBombPowerUp(){
-
+	public Item createBombPowerUp(){
+		return new BombPowerUp();
 	}
 
 	/**
 	 * Creates a new BoarExit and assigns to a random position in the maze.
 	 */
-	public void createBoardExit(){
-
+	public Item createBoardExit(){
+		return new BoardExit();
 	}
 
 	/**
 	 * Creates a new BoostSpeed Item and assign to a random position in the maze.
 	 */
-	public void createBoostSpeed(){
-
+	public Item createBoostSpeed(){
+		return new BoostSpeed();
 	}
 
 	/**
@@ -60,8 +60,20 @@ public class BoardFactory {
 	 * @param l the l
 	 * @param c the c
 	 */
-	public void initializeBoard(int l, int c){
-
+	public Item[][] initializeBoard(int l, int c){
+		Item[][] tempMaze = new Item[l][c];
+		
+		
+		
+		for (int i = 0; i < l; i++){
+			for (int j = 0; j < c; j++){
+//				tempMaze[i][j] =
+			}
+			
+		}
+		
+		return tempMaze;
+		
 	}
 
 	/**
@@ -71,6 +83,7 @@ public class BoardFactory {
 	 * @param j the j
 	 */
 	public void tooglePath(int i, int j){
+		this.maze[i][j].setCurrentState(new ItemActive());
 
 	}
 
@@ -82,6 +95,13 @@ public class BoardFactory {
 	 * @param item the item
 	 */
 	public void setItem(int i, int j, Item item){
-
+		this.maze[i][j] = item;
 	}
+	
+	
+	
+	
+	
+	
+	
 }//end BoardFactory
