@@ -107,7 +107,7 @@ public class Player implements GameChar{
 	 * Update.
 	 */
 	public void update(){
-		nextPlayerPosition = getCurrentState().generateNextMov(this);
+		nextPlayerPosition = GameModel.getInstance().getNextMov(this);
 		GameModel.getInstance().getBoard().getItem(nextPlayerPosition).accept(this);
 	}
 	
