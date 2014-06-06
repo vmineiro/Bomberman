@@ -14,6 +14,7 @@ import model.board.BoostSpeed;
 import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
+import model.player.Player;
 
 /**
  * This class defines the interface of interest to clients and maintains an
@@ -121,6 +122,19 @@ public class Monster implements GameChar{
 		return false;
 	}
 	
+	//TODO: Only works with one player
+	/**
+	 * Checks collisions with players
+	 * @return
+	 */
+	public boolean checkCollision(){
+		if(boardPosition.equals(GameModel.getInstance().getPlayers().getBoardPosition())){
+			collidesWith(GameModel.getInstance().getPlayers());
+			return true;
+		}
+		return false;
+	}
+	
 	/**
 	 * Moves to new board item
 	 */
@@ -139,6 +153,7 @@ public class Monster implements GameChar{
 	public void visitBombControl(BombControl item){
 		moveMonster(item);
 		checkDeath(item);
+		checkCollision();
 	}
 	
 	/**
@@ -147,6 +162,7 @@ public class Monster implements GameChar{
 	public void visitExtraBomb(ExtraBomb item){
 		moveMonster(item);
 		checkDeath(item);
+		checkCollision();
 	}
 	
 	/**
@@ -155,6 +171,7 @@ public class Monster implements GameChar{
 	public void visitBombPowerUp(BombPowerUp item){
 		moveMonster(item);
 		checkDeath(item);
+		checkCollision();
 	}
 	
 	/**
@@ -163,6 +180,7 @@ public class Monster implements GameChar{
 	public void visitBoostSpeed(BoostSpeed item){
 		moveMonster(item);
 		checkDeath(item);
+		checkCollision();
 	}
 	
 	/**
@@ -171,6 +189,7 @@ public class Monster implements GameChar{
 	public void visitBoardExit(BoardExit item){
 		moveMonster(item);
 		checkDeath(item);
+		checkCollision();
 	}
 	
 	/**
@@ -179,6 +198,7 @@ public class Monster implements GameChar{
 	public void visitPath(ItemPath item){
 		moveMonster(item);
 		checkDeath(item);
+		checkCollision();
 	}
 	
 	/**
@@ -187,7 +207,30 @@ public class Monster implements GameChar{
 	public void visitUndestructibleWall(UndestructibleWall item){
 		moveMonster(item);
 		checkDeath(item);
+		checkCollision();
 	}
+	
+	/**
+	 * Collision Management
+	 * @param gameChar
+	 */
+	public void collidesWith(GameChar gameChar){
+		gameChar.visit(this);
+	}
+	
+	/**
+	 * Visited by Player
+	 * @param vPlayer
+	 */
+	public void visit(Player vPlayer){
+		vPlayer.setCurrentState(vPlayer.getCurrentState().die());
+	}
+	
+	/**
+	 * Visited by Monster
+	 * @param vMonster
+	 */
+	public void visit(Monster vMonster){}
 	
 	/**
 	 * Sets the animation.
