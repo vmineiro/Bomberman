@@ -2,7 +2,11 @@ package model;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import model.board.Board;
@@ -45,6 +49,9 @@ public class GameModel {
 	/** The game timer */
 	private Timer gameTimer;
 	
+	/** The bomberman animation */
+	private BufferedImage bombermanImage;
+	
 	// =====================================================================
 
 	/**
@@ -54,6 +61,13 @@ public class GameModel {
 		this.board = new Board();
 		this.players = new Player();
 		this.monsters = new Monster();
+		
+		try
+		{
+			bombermanImage = ImageIO.read(new File("img/Bomberman_2.jpg"));
+		} catch (IOException e) {}
+		
+		players.setAnimation(bombermanImage);
 		
 		//TODO: DELETE AFTER TESTING
 		//==========================================================================================
