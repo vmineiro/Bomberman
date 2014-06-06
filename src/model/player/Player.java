@@ -1,5 +1,6 @@
 package model.player;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -59,7 +60,7 @@ public class Player implements GameChar{
 	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
 	
 	/** The Animation of the Item. */
-	private BufferedImage animation;
+	private BufferedImage bombermanImg;
 	
 	//============================================================================
 	
@@ -69,7 +70,7 @@ public class Player implements GameChar{
 	public Player(){
 		this.boardPosition = new Position();
 		this.drawPosition = new Position();
-		this.state = new PlayerDown();		
+		this.state = new PlayerDown();	
 	}
 	
 	/**
@@ -174,7 +175,7 @@ public class Player implements GameChar{
 	 * Sets the animation.
 	 */
 	public void setAnimation(BufferedImage animation){
-		this.animation = animation;
+		this.bombermanImg = animation;
 	}
 	
 	/**
@@ -267,7 +268,13 @@ public class Player implements GameChar{
 	/**
 	 * Draw.
 	 */
-	public void draw(){}
+	public void draw(Graphics g, int width, int height){
+		int n = GameModel.getInstance().getBoard().getMaze().length;
+		int dstImgWid = width / n;
+		int dstImgHei = height / n;
+		
+		g.drawImage(bombermanImg, boardPosition.getLine()*dstImgWid, boardPosition.getLine()*dstImgHei, (boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 800, 800, null);
+	}
 
 }
 
