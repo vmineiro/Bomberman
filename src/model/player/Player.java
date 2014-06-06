@@ -16,6 +16,7 @@ import model.board.ExtraBomb;
 import model.board.Item;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
+import model.monster.Monster;
 
 /**
  * This class defines the interface of interest to clients and maintains an
@@ -182,10 +183,21 @@ public class Player implements GameChar{
 	 * Checks player death
 	 */
 	public boolean checkDeath(Item playerItem){
-		if(playerItem.isExploding() || playerItem.hasMonsters()){
+		//Checks explosion
+		if(playerItem.isExploding())
+		{
 			setCurrentState(getCurrentState().die());
 			return true;
 		}
+		
+		//Checks collision with monsters
+		for(Monster monster : GameModel.getInstance().getMonsters()){
+			if(boardPosition.equals(monster.getBoardPosition())){
+				collidesWith(monster);
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	
@@ -205,7 +217,10 @@ public class Player implements GameChar{
 	public void visitBombControl(BombControl item){
 		updateBoardPosition(nextPlayerPosition);
 		getBombControl();
-		checkDeath(item);		
+		checkDeath(item);
+		if(item.hasMonsters()){
+			collidesWith(new Monster());
+		}
 	}
 	
 	/**
@@ -214,7 +229,10 @@ public class Player implements GameChar{
 	public void visitExtraBomb(ExtraBomb item){
 		updateBoardPosition(nextPlayerPosition);
 		addBomb();
-		checkDeath(item);	
+		checkDeath(item);
+		if(item.hasMonsters()){
+			collidesWith(new Monster());
+		}		
 	}
 	
 	/**
@@ -224,6 +242,9 @@ public class Player implements GameChar{
 		updateBoardPosition(nextPlayerPosition);
 		increasePowerBomb();
 		checkDeath(item);
+		if(item.hasMonsters()){
+			collidesWith(new Monster());
+		}
 	}
 	
 	/**
@@ -233,6 +254,9 @@ public class Player implements GameChar{
 		updateBoardPosition(nextPlayerPosition);
 		increaseSpeed();
 		checkDeath(item);
+		if(item.hasMonsters()){
+			collidesWith(new Monster());
+		}
 	}
 	
 	/**
@@ -241,6 +265,9 @@ public class Player implements GameChar{
 	public void visitPath(ItemPath item){
 		updateBoardPosition(nextPlayerPosition);
 		checkDeath(item);
+		if(item.hasMonsters()){
+			collidesWith(new Monster());
+		}
 	}
 	
 	/**
@@ -255,6 +282,31 @@ public class Player implements GameChar{
 		//TODO: Add check isActive()
 		updateBoardPosition(nextPlayerPosition);
 		checkDeath(item);
+		if(item.hasMonsters()){
+			collidesWith(new Monster());
+		}
+	}
+	
+	/**
+	 * Collision Management
+	 * @param gameChar
+	 */
+	public void collidesWith(GameChar gameChar){
+		gameChar.visit(this);
+	}
+	
+	/**
+	 * Visited by Player
+	 * @param vPlayer
+	 */
+	public void visit(Player vPlayer){}
+	
+	/**
+	 * Visited by Monster
+	 * @param vMonster
+	 */
+	public void visit(Monster vMonster){
+		setCurrentState(getCurrentState().die());
 	}
 	
 	//TODO: Implement this functions =======================================
