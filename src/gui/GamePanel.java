@@ -63,19 +63,25 @@ public class GamePanel extends JPanel implements KeyListener
 		} catch (IOException e) {}
 		
 		int n = GameModel.getInstance().getBoard().getMaze().length;
-		int elem_size = getParent().getWidth()/n;
-		int ajust = (getParent().getWidth()%n)/2;
 		
+		int dstImgWid = getWidth()/n;
+		int dstImgHei = getHeight()/n;
+		
+		//int ajust = (getWidth()%n)/2;
+		
+	
 		for(int i=0; i<n;i++)
 		{
 			for(int j=0;j<n;j++)
 			{
 				if(GameModel.getInstance().getBoard().getItem(new Position(i,j)).getClass() == UndestructibleWall.class)
 				{
-					g.drawImage(wallImg, j*elem_size+ajust, i*elem_size+ajust, (j*elem_size)+elem_size+ajust, (i*elem_size)+elem_size+ajust, 0, 0, 256, 256, null);
+					g.drawImage(wallImg, j*dstImgWid, i*dstImgHei, (j*dstImgWid)+dstImgWid, (i*dstImgHei)+dstImgHei, 0, 0, 256, 256, null);
 				}
 			}
 		}
+		
+		GameModel.getInstance().getPlayers().draw(g, getWidth(), getHeight());
 	}	
 	
 	@Override
