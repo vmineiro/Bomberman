@@ -94,22 +94,22 @@ public class GameModel {
 		Item extraBomb = new ExtraBomb();
 		*/
 		
-		Item normalPath = new ItemPath();
-		normalPath.setCurrentState(new ItemActive());
+		Item n = new ItemPath();
+		n.setCurrentState(new ItemActive());
 	
-		Item unWall = new UndestructibleWall();	
+		Item x = new UndestructibleWall();	
 		
 		Item[][] maze = new Item[][]{
-				{unWall, unWall, unWall, unWall, unWall,unWall, unWall, unWall, unWall, unWall},
-				{unWall, normalPath, normalPath, normalPath, unWall,unWall, normalPath, normalPath, normalPath, unWall},
-				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
-				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
-				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
-				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
-				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
-				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
-				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
-				{unWall, unWall, unWall, unWall, unWall,unWall, unWall, unWall, unWall, unWall}
+				{x, x, x, x, x, x, x, x, x, x},
+				{x, n, n, n, n, n, n, x, n, x},
+				{x, n, x, n, x, x, n, x, n, x},
+				{x, n, x, n, x, x, n, x, n, x},
+				{x, n, x, n, x, x, n, x, n, x},
+				{x, n, n, n, x, x, n, n, n, x},
+				{x, n, x, n, x, x, n, x, n, x},
+				{x, n, x, n, x, x, n, x, n, x},
+				{x, n, x, n, n, n, n, x, n, x},
+				{x, x, x, x, x, x, x, x, x, x}
 		};
 		
 		board.setMaze(maze);
