@@ -214,7 +214,7 @@ public class Monster implements GameChar{
 		int dstImgWid = width / n;
 		int dstImgHei = height / n;
 		
-		g.drawImage(monsterImg, boardPosition.getLine()*dstImgWid, boardPosition.getLine()*dstImgHei, (boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 800, 800, null);
+		g.drawImage(monsterImg, boardPosition.getLine()*dstImgWid, boardPosition.getLine()*dstImgHei, (boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 130, 115, null);
 	}
 	
 }
