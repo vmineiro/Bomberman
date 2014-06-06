@@ -190,11 +190,6 @@ public class Monster implements GameChar{
 	}
 	
 	/**
-	 * Draw.
-	 */
-	public void draw(){}
-	
-	/**
 	 * Sets the animation.
 	 */
 	public void setAnimation(BufferedImage animation){
@@ -209,8 +204,8 @@ public class Monster implements GameChar{
 		int dstImgWid = width / n;
 		int dstImgHei = height / n;
 		
-		g.drawImage(monsterImg, boardPosition.getLine()*dstImgWid, boardPosition.getCol()*dstImgHei, 
-				(boardPosition.getLine()*dstImgWid)+dstImgWid, (boardPosition.getCol()*dstImgHei)+dstImgHei, 0, 0, 130, 115, null);
+		g.drawImage(monsterImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 130, 115, null);
 	}
 	
 }
