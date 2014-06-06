@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -310,7 +311,17 @@ public class GameModel {
 		this.players = player;
 	}
 	
-	
+	/**
+	 * Draw Game
+	 */
+	public void draw(Graphics g, int width, int height){
+		GameModel.getInstance().getBoard().draw(g, width, height);
+		GameModel.getInstance().getPlayers().draw(g, width, height);
+		
+		for(Monster monster : monsters){
+			monster.draw(g, width, height);
+		}
+	}
 }
 
 //end GameModel
