@@ -1,5 +1,7 @@
 package model.player;
 
+import java.awt.Graphics;
+
 /**
  * The Class Bomb.
  */
@@ -28,7 +30,7 @@ public interface Bomb {
 	 * This method is called by GUI and is responsible for draw the bomb in the game window.
 	 * 
 	 */
-	public abstract void draw();
+	public abstract void draw(Graphics g, int width, int height);
 
 }
 

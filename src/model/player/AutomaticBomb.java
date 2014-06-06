@@ -1,5 +1,6 @@
 package model.player;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -65,7 +66,7 @@ public class AutomaticBomb implements Bomb {
 		
 		try 
 		{
-			bombImg = ImageIO.read(new File("img/bomb.gif"));			
+			bombImg = ImageIO.read(new File("img/bomb_1.png"));			
 		} catch (IOException e) {}
 		
 		ActionListener bombTimerListener = new ActionListener(){ 
@@ -179,7 +180,14 @@ public class AutomaticBomb implements Bomb {
 	 * This method is called by GUI and is responsible for draw the bomb in the game window.
 	 * 
 	 */
-	public void draw(){}
+	public void draw(Graphics g, int width, int height){
+		int n = GameModel.getInstance().getBoard().getMaze().length;
+		int dstImgWid = width / n;
+		int dstImgHei = height / n;
+	
+		g.drawImage(this.bombImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 75, 68, null);
+	}
 
 }
 
