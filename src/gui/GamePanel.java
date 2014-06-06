@@ -31,10 +31,10 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements KeyListener
 {	
 	/** Game refresh rate */
-	private static final int REFRESH_RATE = 250;
+	private static final int REFRESH_RATE = 15;
 	
 	/** The game timer */
-	private Timer gameTimer;
+	private Timer refreshTimer;
 	
 	/** The key up. */
 	private int keyUp = KeyEvent.VK_UP;
@@ -55,27 +55,21 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	public GamePanel()
 	{
-		//TODO: Launch game
 		GameModel.getInstance();		
 		addKeyListener(this);
 		
 		ActionListener gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
-				GameModel.getInstance().update();
 				repaint();
-				
 				if(GameModel.getInstance().gameOver()){
-					gameTimer.stop();
-					
-					//TODO: DELETE AFTER TESTING
-					System.out.println("GAME OVER");
+					refreshTimer.stop();
 				}
 				
 			}
 		};
 		
-		gameTimer = new Timer(REFRESH_RATE, gameTimerListener);
-		gameTimer.start();
+		refreshTimer = new Timer(REFRESH_RATE, gameTimerListener);
+		refreshTimer.start();
 	}
 	
 	/**

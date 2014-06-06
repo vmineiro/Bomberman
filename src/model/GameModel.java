@@ -1,12 +1,15 @@
 package model;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
 
 import model.board.Board;
 import model.board.Item;
@@ -38,6 +41,12 @@ public class GameModel {
 	
 	/** Number of monsters alive */
 	private int monstersAlive;
+	
+	/** Game Logic Timer */
+	private Timer gameTimer;
+	
+	/** Game Logic refresh rate */
+	private static final int LOGIC_RATE = 500;
 	
 	/** The bomberman animation */
 	private BufferedImage bombermanImage;
@@ -124,6 +133,15 @@ public class GameModel {
 		board.setMaze(maze);
 		
 		//==========================================================================================
+		
+		ActionListener gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				GameModel.getInstance().update();	
+			}
+		};
+		
+		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
+		gameTimer.start();
 	}	
 	
 	/**
@@ -191,6 +209,13 @@ public class GameModel {
 		for(Monster monst : monsters){
 			monst.update();
 		}
+		
+		if(GameModel.getInstance().gameOver()){
+			gameTimer.stop();
+			
+			//TODO: DELETE AFTER TESTING
+			System.out.println("GAME OVER");
+		}
 	}
 	
 	/**
@@ -198,6 +223,7 @@ public class GameModel {
 	 */
 	public void updateKeyUp(){
 		this.pressedUp = true;
+		update();
 	}
 	
 	/**
@@ -205,6 +231,7 @@ public class GameModel {
 	 */
 	public void updateKeyDown(){
 		this.pressedDown = true;
+		update();
 	}
 	
 	/**
@@ -212,6 +239,7 @@ public class GameModel {
 	 */
 	public void updateKeyLeft(){
 		this.pressedLeft = true;
+		update();
 	}
 	
 	/**
@@ -219,6 +247,7 @@ public class GameModel {
 	 */
 	public void updateKeyRight(){
 		this.pressedRight = true;
+		update();
 	}
 	
 	/**
