@@ -31,7 +31,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements KeyListener
 {	
 	/** Game refresh rate */
-	private static final int REFRESH_RATE = 15;
+	private static final int REFRESH_RATE = 60;
 	
 	/** The game timer */
 	private Timer refreshTimer;
@@ -61,6 +61,7 @@ public class GamePanel extends JPanel implements KeyListener
 		ActionListener gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
 				repaint();
+				
 				if(GameModel.getInstance().gameOver()){
 					refreshTimer.stop();
 				}

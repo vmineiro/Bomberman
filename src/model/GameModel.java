@@ -46,7 +46,7 @@ public class GameModel {
 	private Timer gameTimer;
 	
 	/** Game Logic refresh rate */
-	private static final int LOGIC_RATE = 500;
+	private static final int LOGIC_RATE = 250;
 	
 	/** The monster animation */
 	private BufferedImage monsterImage;
