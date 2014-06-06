@@ -1,7 +1,9 @@
 package model.player;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
 
@@ -39,7 +41,7 @@ public class ManualBomb implements Bomb {
 	private Timer proTimer;
 	
 	/** The animation for the bomb */
-	//private Animation animation;
+	private BufferedImage bombImg;
 	
 	//====================================================
 	

@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.BorderLayout;
 
@@ -90,7 +91,7 @@ public class Bomberman_Window {
 		mntmExitGame = new JMenuItem("Exit Game");
 
 		//Game Panel
-		gamePanel = new GamePanel();		
+		gamePanel = new GamePanel();
 		gamePanel.setFocusable(true);
 	}
 

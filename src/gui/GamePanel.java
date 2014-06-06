@@ -55,10 +55,7 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	/** The player image */
 	private Image bombermanImg;
-	
-	/** The enemy image */
-	private Image monsterImg;
-	
+
 	//=============================================================
 	
 	public GamePanel()
@@ -69,13 +66,6 @@ public class GamePanel extends JPanel implements KeyListener
 		//TODO: Review code for multiplayer game
 		this.bombermanImg = getToolkit().createImage("img/bomberman.gif");
 		GameModel.getInstance().getPlayers().setAnimation(bombermanImg);
-		
-		//TODO: Review code for multiplayer game
-		this.monsterImg = getToolkit().createImage("img/goomba.gif");
-		for(Monster monster : GameModel.getInstance().getMonsters()){
-			monster.setAnimation(monsterImg);
-		}
-		
 		
 		ActionListener gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {

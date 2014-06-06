@@ -79,16 +79,10 @@ public class GameModel {
 		this.players = new Player();
 		this.monsters = new ArrayList<Monster>();
 		
-		try
-		{
-			monsterImage = ImageIO.read(new File("img/monster.png"));
-		} catch (IOException e) {}
-		
 		//TODO: DELETE AFTER TESTING
 		//TODO: Generate 3x Monsters
 		for(int i=0; i<3; i++){
 			Monster monst = new Monster();
-			monst.setAnimation(monsterImage);
 			monst.setBoardPosition(new Position(1,1));
 			addMonster(monst);
 		}		

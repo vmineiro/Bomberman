@@ -3,6 +3,10 @@ package model.monster;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import model.GameChar;
 import model.GameModel;
@@ -46,7 +50,7 @@ public class Monster implements GameChar{
 	//private int speed = 1; 
 	
 	/** The Animation of the Item. */
-	private Image monsterImg;
+	private BufferedImage monsterImg;
 
 	// =============================================================
 	
@@ -58,6 +62,11 @@ public class Monster implements GameChar{
 		this.boardPosition = new Position();
 		this.nextMonsterPosition = new Position();
 		this.drawPosition = new Position();
+		
+		try 
+		{
+			monsterImg = ImageIO.read(new File("img/monster_s.png"));			
+		} catch (IOException e) {}
 	}
 	
 	/**
@@ -236,7 +245,7 @@ public class Monster implements GameChar{
 	/**
 	 * Sets the animation.
 	 */
-	public void setAnimation(Image animation){
+	public void setAnimation(BufferedImage animation){
 		this.monsterImg = animation;
 	}
 	
@@ -248,8 +257,8 @@ public class Monster implements GameChar{
 		int dstImgWid = width / n;
 		int dstImgHei = height / n;
 		
-		g.drawImage(this.monsterImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
-				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 32, 32, null);
+		g.drawImage(monsterImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 61, 59, null);
 	}
 	
 }

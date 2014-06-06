@@ -21,7 +21,7 @@ public interface Bomb {
 	/**
 	 * Propagate bomb explosion
 	 */
-	public void propagateExplosion();
+	public abstract void propagateExplosion();
 
 	/**
 	 * Draw.
@@ -30,4 +30,6 @@ public interface Bomb {
 	 */
 	public abstract void draw();
 
-}//end Bomb
+}
+
+//end Bomb
