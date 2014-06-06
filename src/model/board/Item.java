@@ -1,5 +1,6 @@
 package model.board;
 
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -208,6 +209,10 @@ public abstract class Item {
 	 * @param state the new current state
 	 */
 	public abstract void setCurrentState(ItemState state);
-
+	
+	/**
+	 * Draw game item
+	 */
+	public abstract void draw(Graphics g, int pos_l, int pos_c, int width, int height);
 	
 }//end Item
