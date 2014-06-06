@@ -37,9 +37,6 @@ public class Monster implements GameChar{
 	/** The state. */
 	private MonsterState state;
 	
-	/** The draw position. */
-	private Position drawPosition;
-	
 	/** The board position. */
 	private Position boardPosition;
 	
@@ -61,7 +58,6 @@ public class Monster implements GameChar{
 		this.state = new MonsterAlive();
 		this.boardPosition = new Position();
 		this.nextMonsterPosition = new Position();
-		this.drawPosition = new Position();
 		
 		try 
 		{

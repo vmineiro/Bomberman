@@ -45,9 +45,6 @@ public class Player implements GameChar{
 	/** The next board position */
 	private Position nextPlayerPosition;
 	
-	/** The draw position. */
-	private Position drawPosition;
-	
 	/** The state. */
 	private PlayerState state;
 	
@@ -76,7 +73,6 @@ public class Player implements GameChar{
 	 */
 	public Player(){
 		this.boardPosition = new Position();
-		this.drawPosition = new Position();
 		this.state = new PlayerAlive();
 		
 		try 
@@ -132,9 +128,10 @@ public class Player implements GameChar{
 			this.availableBombs--;
 			
 			if(manualBomb){
+				//TODO: Place bomb in item
 				queueMBombs.add(new ManualBomb(this));
 			} else{
-				new AutomaticBomb(this);
+				GameModel.getInstance().getBoard().getItem(boardPosition).bombDropped(new AutomaticBomb(this));
 			}
 		}
 	}
