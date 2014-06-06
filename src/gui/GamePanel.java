@@ -39,6 +39,9 @@ public class GamePanel extends JPanel implements KeyListener
 	/** The key right. */
 	private int keyRight = KeyEvent.VK_RIGHT;
 	
+	/** The key drop bomb. */
+	private int keyDropBomb = KeyEvent.VK_SPACE;
+	
 	//=============================================================
 	
 	public GamePanel()
@@ -85,7 +88,40 @@ public class GamePanel extends JPanel implements KeyListener
 	}	
 	
 	@Override
-	public void keyPressed(KeyEvent e){}
+	public void keyPressed(KeyEvent e){
+		
+		int key = e.getKeyCode();
+
+		if(key == keyUp)
+		{
+			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnUp());
+			repaint();
+		}
+		else if(key == keyDown)
+		{
+			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnDown());
+			repaint();
+		}
+		else if (key == keyLeft)
+		{
+			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnLeft());
+			repaint();
+		}
+		else if(key == keyRight)
+		{
+			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnRight());
+			repaint();
+		}
+		else if(key == keyDropBomb)
+		{
+			GameModel.getInstance().getPlayers().dropBomb();
+			repaint();
+		}
+		else
+		{
+			repaint();
+		}
+	}
 	
 	@Override
 	public void keyReleased(KeyEvent e){}
