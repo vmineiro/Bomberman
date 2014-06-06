@@ -96,9 +96,6 @@ public class GamePanel extends JPanel implements KeyListener
 		
 		int dstImgWid = getWidth()/n;
 		int dstImgHei = getHeight()/n;
-		
-		//int ajust = (getWidth()%n)/2;
-		
 	
 		for(int i=0; i<n;i++)
 		{
@@ -122,19 +119,19 @@ public class GamePanel extends JPanel implements KeyListener
 
 		if(key == keyUp)
 		{
-			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnUp());
+			GameModel.getInstance().updateKeyUp();
 		}
 		else if(key == keyDown)
 		{
-			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnDown());
+			GameModel.getInstance().updateKeyDown();
 		}
 		else if (key == keyLeft)
 		{
-			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnLeft());
+			GameModel.getInstance().updateKeyLeft();
 		}
 		else if(key == keyRight)
 		{
-			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnRight());
+			GameModel.getInstance().updateKeyRight();
 		}
 		else if(key == keyDropBomb)
 		{
@@ -145,7 +142,7 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	@Override
 	public void keyReleased(KeyEvent e){
-		GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnStationary());
+		GameModel.getInstance().updateKeyReleased();
 	}
 
 
