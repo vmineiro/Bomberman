@@ -70,7 +70,7 @@ public class Player implements GameChar{
 	public Player(){
 		this.boardPosition = new Position();
 		this.drawPosition = new Position();
-		this.state = new PlayerStationary();	
+		this.state = new PlayerAlive();	
 	}
 	
 	/**
