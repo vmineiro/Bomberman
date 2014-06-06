@@ -83,9 +83,7 @@ public class GamePanel extends JPanel implements KeyListener
 	 */
 	public void paintComponent(Graphics g) 
 	{		
-		GameModel.getInstance().getBoard().draw(g, getWidth(), getHeight());
-		GameModel.getInstance().getPlayers().draw(g, getWidth(), getHeight());
-		GameModel.getInstance().getMonsters().draw(g, getWidth(), getHeight());
+		GameModel.getInstance().draw(g, getWidth(), getHeight());
 	}	
 	
 	@Override
