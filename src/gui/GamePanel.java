@@ -57,13 +57,17 @@ public class GamePanel extends JPanel implements KeyListener
 		addKeyListener(this);
 		
 		ActionListener gameTimerListener = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e) {				
+			public void actionPerformed(ActionEvent e) {
 				GameModel.getInstance().update();
 				repaint();
 				
 				if(GameModel.getInstance().gameOver()){
 					gameTimer.stop();
+					
+					//TODO: DELETE AFTER TESTING
+					System.out.println("GAME OVER");
 				}
+				
 			}
 		};
 		
