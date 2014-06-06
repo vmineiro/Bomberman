@@ -91,7 +91,7 @@ public class Bomberman_Window {
 
 		//Game Panel
 		gamePanel = new GamePanel();		
-
+		gamePanel.setFocusable(true);
 	}
 
 	/**
