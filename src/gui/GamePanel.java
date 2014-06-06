@@ -141,7 +141,9 @@ public class GamePanel extends JPanel implements KeyListener
 	}
 	
 	@Override
-	public void keyReleased(KeyEvent e){}
+	public void keyReleased(KeyEvent e){
+		GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnStationary());
+	}
 
 
 	@Override
