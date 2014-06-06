@@ -196,7 +196,7 @@ public class Player implements GameChar{
 		if(getCurrentState().getClass() == PlayerDead.class){
 			return true;
 		}
-		return true;
+		return false;
 	}
 	
 	/**
