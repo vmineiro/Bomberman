@@ -11,6 +11,7 @@ import model.board.Item;
 import model.board.ItemActive;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
+import model.monster.Monster;
 
 import java.awt.Graphics;
 import java.awt.Image;
@@ -55,6 +56,9 @@ public class GamePanel extends JPanel implements KeyListener
 	/** The player image */
 	private Image bombermanImg;
 	
+	/** The enemy image */
+	private Image monsterImg;
+	
 	//=============================================================
 	
 	public GamePanel()
@@ -62,8 +66,16 @@ public class GamePanel extends JPanel implements KeyListener
 		GameModel.getInstance();		
 		addKeyListener(this);
 		
+		//TODO: Review code for multiplayer game
 		this.bombermanImg = getToolkit().createImage("img/bomberman.gif");
 		GameModel.getInstance().getPlayers().setAnimation(bombermanImg);
+		
+		//TODO: Review code for multiplayer game
+		this.monsterImg = getToolkit().createImage("img/goomba.gif");
+		for(Monster monster : GameModel.getInstance().getMonsters()){
+			monster.setAnimation(monsterImg);
+		}
+		
 		
 		ActionListener gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
