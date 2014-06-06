@@ -66,9 +66,9 @@ public class GamePanel extends JPanel implements KeyListener
 		int elem_size = getParent().getWidth()/n;
 		int ajust = (getParent().getWidth()%n)/2;
 		
-		for(int i=0; i<5;i++)
+		for(int i=0; i<n;i++)
 		{
-			for(int j=0;j<5;j++)
+			for(int j=0;j<n;j++)
 			{
 				if(GameModel.getInstance().getBoard().getItem(new Position(i,j)).getClass() == UndestructibleWall.class)
 				{
