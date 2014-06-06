@@ -187,29 +187,39 @@ public class GameModel {
 	/**
 	 * Update key pressed to UP 
 	 */
-	public void updateUp(){
+	public void updateKeyUp(){
 		this.pressedUp = true;
 	}
 	
 	/**
 	 * Update key pressed to DOWN 
 	 */
-	public void updateDown(){
+	public void updateKeyDown(){
 		this.pressedDown = true;
 	}
 	
 	/**
 	 * Update key pressed to LEFT 
 	 */
-	public void updateLeft(){
+	public void updateKeyLeft(){
 		this.pressedLeft = true;
 	}
 	
 	/**
 	 * Update key pressed to RIGHT 
 	 */
-	public void updateRight(){
+	public void updateKeyRight(){
 		this.pressedRight = true;
+	}
+	
+	/**
+	 * Update key released  
+	 */
+	public void updateKeyReleased(){
+		this.pressedUp = false;
+		this.pressedDown = false;
+		this.pressedLeft = false;
+		this.pressedRight = false;
 	}
 
 	/**
