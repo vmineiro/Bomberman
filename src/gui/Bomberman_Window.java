@@ -52,7 +52,7 @@ public class Bomberman_Window {
 		frame = new JFrame("BOMBERMAN");
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 500, 500);
 		frame.getContentPane().setLayout(new BorderLayout(0,0));
 
 		createWidgets();
