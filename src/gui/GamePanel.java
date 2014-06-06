@@ -105,6 +105,7 @@ public class GamePanel extends JPanel implements KeyListener
 		}
 		
 		GameModel.getInstance().getPlayers().draw(g, getWidth(), getHeight());
+		GameModel.getInstance().getMonsters().draw(g, getWidth(), getHeight());
 	}	
 	
 	@Override
