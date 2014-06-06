@@ -1,5 +1,6 @@
 package model.board;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -94,5 +95,13 @@ public class BombControl extends Item {
 
 	}
 
+	/**
+	 * Draw undestructible Wall
+	 */
+	public void draw(Graphics g, int pos_l, int pos_c, int width, int height)
+	{
+		//TODO: Set final image resolution
+		g.drawImage(bombControlImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 512, 512, null);
+	}
 
 }//end BombControl
