@@ -273,8 +273,8 @@ public class Player implements GameChar{
 		int dstImgWid = width / n;
 		int dstImgHei = height / n;
 		
-		g.drawImage(bombermanImg, boardPosition.getLine()*dstImgWid, boardPosition.getCol()*dstImgHei, 
-				(boardPosition.getLine()*dstImgWid)+dstImgWid, (boardPosition.getCol()*dstImgHei)+dstImgHei, 0, 0, 800, 800, null);
+		g.drawImage(bombermanImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 800, 800, null);
 	}
 
 }
