@@ -52,9 +52,6 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	/** The key drop bomb. */
 	private int keyDropBomb = KeyEvent.VK_SPACE;
-	
-	/** The player image */
-	private Image bombermanImg;
 
 	//=============================================================
 	
@@ -62,10 +59,6 @@ public class GamePanel extends JPanel implements KeyListener
 	{
 		GameModel.getInstance();		
 		addKeyListener(this);
-		
-		//TODO: Review code for multiplayer game
-		this.bombermanImg = getToolkit().createImage("img/bomberman.gif");
-		GameModel.getInstance().getPlayers().setAnimation(bombermanImg);
 		
 		ActionListener gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {

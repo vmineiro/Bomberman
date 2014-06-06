@@ -48,9 +48,6 @@ public class GameModel {
 	/** Game Logic refresh rate */
 	private static final int LOGIC_RATE = 250;
 	
-	/** The monster animation */
-	private BufferedImage monsterImage;
-	
 	/** Key Pressed Up */
 	private boolean pressedUp = false;
 	

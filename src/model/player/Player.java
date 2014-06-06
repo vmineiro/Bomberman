@@ -67,7 +67,7 @@ public class Player implements GameChar{
 	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
 	
 	/** The Animation of the Item. */
-	private Image bombermanImg;
+	private BufferedImage bombermanImg;
 	
 	//============================================================================
 	
@@ -77,7 +77,12 @@ public class Player implements GameChar{
 	public Player(){
 		this.boardPosition = new Position();
 		this.drawPosition = new Position();
-		this.state = new PlayerAlive();	
+		this.state = new PlayerAlive();
+		
+		try 
+		{
+			bombermanImg = ImageIO.read(new File("img/bomberman_s.png"));			
+		} catch (IOException e) {}
 	}
 	
 	/**
@@ -181,7 +186,7 @@ public class Player implements GameChar{
 	/**
 	 * Sets the animation.
 	 */
-	public void setAnimation(Image animation){
+	public void setAnimation(BufferedImage animation){
 		this.bombermanImg = animation;
 	}
 	
@@ -333,7 +338,7 @@ public class Player implements GameChar{
 		int dstImgHei = height / n;
 	
 		g.drawImage(this.bombermanImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
-				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 32, 56, null);
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 77, 93, null);
 	}
 }
 
