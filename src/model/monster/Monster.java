@@ -1,5 +1,6 @@
 package model.monster;
 
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import model.GameChar;
@@ -43,7 +44,7 @@ public class Monster implements GameChar{
 	//private int speed = 1; 
 	
 	/** The Animation of the Item. */
-	private BufferedImage animation;
+	private BufferedImage monsterImg;
 
 	// =============================================================
 	
@@ -202,7 +203,18 @@ public class Monster implements GameChar{
 	 * Sets the animation.
 	 */
 	public void setAnimation(BufferedImage animation){
-		this.animation = animation;
+		this.monsterImg = animation;
+	}
+	
+	/**
+	 * Draw.
+	 */
+	public void draw(Graphics g, int width, int height){
+		int n = GameModel.getInstance().getBoard().getMaze().length;
+		int dstImgWid = width / n;
+		int dstImgHei = height / n;
+		
+		g.drawImage(monsterImg, boardPosition.getLine()*dstImgWid, boardPosition.getLine()*dstImgHei, (boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 800, 800, null);
 	}
 	
 }
