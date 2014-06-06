@@ -31,7 +31,7 @@ import javax.swing.Timer;
 public class GamePanel extends JPanel implements KeyListener
 {	
 	/** Game refresh rate */
-	private static final int REFRESH_RATE = 50;
+	private static final int REFRESH_RATE = 250;
 	
 	/** The game timer */
 	private Timer gameTimer;
