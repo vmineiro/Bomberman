@@ -195,7 +195,7 @@ public class GameModel {
 		if(getPlayers().isDead()){
 			return true;
 		}
-		return true;
+		return false;
 	}
 
 	/**
