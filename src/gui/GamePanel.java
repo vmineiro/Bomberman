@@ -13,6 +13,8 @@ import model.board.ItemPath;
 import model.board.UndestructibleWall;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -21,12 +23,16 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  * The Class GamePanel
  */
 public class GamePanel extends JPanel implements KeyListener
 {
+	/** The game timer */
+	private Timer gameTimer;
+	
 	/** The key up. */
 	private int keyUp = KeyEvent.VK_UP;
 	
@@ -49,6 +55,20 @@ public class GamePanel extends JPanel implements KeyListener
 		//TODO: Launch game
 		GameModel.getInstance();		
 		addKeyListener(this);
+		
+		ActionListener gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {				
+				GameModel.getInstance().update();
+				repaint();
+				
+				if(GameModel.getInstance().gameOver()){
+					gameTimer.stop();
+				}
+			}
+		};
+		
+		gameTimer = new Timer(1000, gameTimerListener);
+		gameTimer.start();
 	}
 	
 	/**
@@ -95,32 +115,24 @@ public class GamePanel extends JPanel implements KeyListener
 		if(key == keyUp)
 		{
 			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnUp());
-			repaint();
 		}
 		else if(key == keyDown)
 		{
 			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnDown());
-			repaint();
 		}
 		else if (key == keyLeft)
 		{
 			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnLeft());
-			repaint();
 		}
 		else if(key == keyRight)
 		{
 			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().turnRight());
-			repaint();
 		}
 		else if(key == keyDropBomb)
 		{
 			GameModel.getInstance().getPlayers().dropBomb();
-			repaint();
 		}
-		else
-		{
-			repaint();
-		}
+		
 	}
 	
 	@Override
