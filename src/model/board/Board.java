@@ -1,5 +1,8 @@
 package model.board;
 
+import java.awt.Graphics;
+
+import model.GameModel;
 import model.Position;
 
 
@@ -60,6 +63,24 @@ public class Board {
 	 */
 	public Item[][] getMaze(){
 		return maze;
+	}
+	
+	/**
+	 * Draw Game Board
+	 */
+	public void draw(Graphics g, int width, int height)
+	{
+		int n = GameModel.getInstance().getBoard().getMaze().length;
+		int dstImgWid = width/n;
+		int dstImgHei = height/n;
+
+		for(int i=0; i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				getItem(new Position(i, j)).draw(g, i, j, dstImgWid, dstImgHei);			
+			}
+		}
 	}
 
 }//end Board
