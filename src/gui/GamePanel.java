@@ -13,6 +13,7 @@ import model.board.ItemPath;
 import model.board.UndestructibleWall;
 
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -51,12 +52,18 @@ public class GamePanel extends JPanel implements KeyListener
 	/** The key drop bomb. */
 	private int keyDropBomb = KeyEvent.VK_SPACE;
 	
+	/** The player image */
+	private Image bombermanImg;
+	
 	//=============================================================
 	
 	public GamePanel()
 	{
 		GameModel.getInstance();		
 		addKeyListener(this);
+		
+		this.bombermanImg = getToolkit().createImage("img/bomberman.gif");
+		GameModel.getInstance().getPlayers().setAnimation(bombermanImg);
 		
 		ActionListener gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {

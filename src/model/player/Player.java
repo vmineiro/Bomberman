@@ -1,8 +1,7 @@
 package model.player;
 
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -11,8 +10,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.Timer;
 
 import model.GameChar;
 import model.GameModel;
@@ -70,21 +67,7 @@ public class Player implements GameChar{
 	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
 	
 	/** The Animation of the Item. */
-	private BufferedImage bombermanImg_1;
-	private BufferedImage bombermanImg_2;
-	private BufferedImage bombermanImg_3;
-	private BufferedImage bombermanImg_4;
-	private BufferedImage bombermanImg_5;
-	private BufferedImage bombermanImg_6;
-	private BufferedImage bombermanImg_7;
-	private BufferedImage bombermanImg_8;
-	private BufferedImage bombermanImg_9;
-	private BufferedImage bombermanImg_10;
-	private BufferedImage bombermanImg_11;
-	private BufferedImage bombermanImg_12;
-	private ArrayList<BufferedImage> animPlayer;
-	private Timer animTimer;
-	private int animIndex = 0;
+	private Image bombermanImg;
 	
 	//============================================================================
 	
@@ -95,37 +78,6 @@ public class Player implements GameChar{
 		this.boardPosition = new Position();
 		this.drawPosition = new Position();
 		this.state = new PlayerAlive();	
-	
-		try
-		{
-			bombermanImg_1 = ImageIO.read(new File("img/bomberman_1.png"));
-			bombermanImg_2 = ImageIO.read(new File("img/bomberman_2.png"));
-			bombermanImg_3 = ImageIO.read(new File("img/bomberman_3.png"));
-			bombermanImg_4 = ImageIO.read(new File("img/bomberman_4.png"));
-			bombermanImg_5 = ImageIO.read(new File("img/bomberman_5.png"));
-			bombermanImg_6 = ImageIO.read(new File("img/bomberman_6.png"));
-			bombermanImg_7 = ImageIO.read(new File("img/bomberman_7.png"));
-			bombermanImg_8 = ImageIO.read(new File("img/bomberman_8.png"));
-			bombermanImg_9 = ImageIO.read(new File("img/bomberman_9.png"));
-			bombermanImg_10 = ImageIO.read(new File("img/bomberman_10.png"));
-			bombermanImg_11 = ImageIO.read(new File("img/bomberman_11.png"));
-			bombermanImg_12 = ImageIO.read(new File("img/bomberman_12.png"));
-		} catch (IOException e) {}	
-		
-		animPlayer = new ArrayList<BufferedImage>();
-		animPlayer.add(bombermanImg_1);
-		animPlayer.add(bombermanImg_2);
-		animPlayer.add(bombermanImg_3);
-		animPlayer.add(bombermanImg_4);
-		animPlayer.add(bombermanImg_5);
-		animPlayer.add(bombermanImg_6);
-		animPlayer.add(bombermanImg_7);
-		animPlayer.add(bombermanImg_8);
-		animPlayer.add(bombermanImg_9);
-		animPlayer.add(bombermanImg_10);
-		animPlayer.add(bombermanImg_11);
-		animPlayer.add(bombermanImg_12);
-		
 	}
 	
 	/**
@@ -229,8 +181,8 @@ public class Player implements GameChar{
 	/**
 	 * Sets the animation.
 	 */
-	public void setAnimation(BufferedImage animation){
-		//this.bombermanImg = animation;
+	public void setAnimation(Image animation){
+		this.bombermanImg = animation;
 	}
 	
 	/**
@@ -375,31 +327,14 @@ public class Player implements GameChar{
 	 * Draw Player
 	 */
 	public void draw(Graphics g, int width, int height){
+		
 		int n = GameModel.getInstance().getBoard().getMaze().length;
 		int dstImgWid = width / n;
 		int dstImgHei = height / n;
-		
-		g.drawImage(animPlayer.get(animIndex), boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
-				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 32, 56, null);
-
-		animIndex++;
-		if(animIndex == 12){
-			animIndex = 0;
-		}
-		
-		//animTimer = new Timer(30, animTimerListener);
-		//animTimer.start();
-	}
 	
-	/*
-	ActionListener animTimerListener = new ActionListener(){ 
-		public void actionPerformed(ActionEvent e) {
-			GameModel.getInstance().update();
-			setCurrentState(new PlayerDead());
-		}
-	};
-	*/	
-
+		g.drawImage(this.bombermanImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 32, 56, null);
+	}
 }
 
 //end Player
