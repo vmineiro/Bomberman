@@ -82,32 +82,8 @@ public class GamePanel extends JPanel implements KeyListener
 	 * Draw game state
 	 */
 	public void paintComponent(Graphics g) 
-	{
-		
-		//TODO: DELETE AFTER TESTING
-		BufferedImage wallImg = null;
-		
-		try
-		{
-			wallImg = ImageIO.read(new File("img/wall01.png"));
-		} catch (IOException e) {}
-		
-		int n = GameModel.getInstance().getBoard().getMaze().length;
-		
-		int dstImgWid = getWidth()/n;
-		int dstImgHei = getHeight()/n;
-	
-		for(int i=0; i<n;i++)
-		{
-			for(int j=0;j<n;j++)
-			{
-				if(GameModel.getInstance().getBoard().getItem(new Position(i,j)).getClass() == UndestructibleWall.class)
-				{
-					g.drawImage(wallImg, j*dstImgWid, i*dstImgHei, (j*dstImgWid)+dstImgWid, (i*dstImgHei)+dstImgHei, 0, 0, 256, 256, null);
-				}
-			}
-		}
-		
+	{		
+		GameModel.getInstance().getBoard().draw(g, getWidth(), getHeight());
 		GameModel.getInstance().getPlayers().draw(g, getWidth(), getHeight());
 		GameModel.getInstance().getMonsters().draw(g, getWidth(), getHeight());
 	}	
