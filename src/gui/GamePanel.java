@@ -103,7 +103,7 @@ public class GamePanel extends JPanel implements KeyListener
 			{
 				if(GameModel.getInstance().getBoard().getItem(new Position(i,j)).getClass() == UndestructibleWall.class)
 				{
-					g.drawImage(wallImg, j*dstImgWid, i*dstImgHei, (j*dstImgWid)+dstImgWid, (i*dstImgHei)+dstImgHei, 0, 0, 256, 256, null);
+					g.drawImage(wallImg, i*dstImgWid, j*dstImgHei, (i*dstImgWid)+dstImgWid, (j*dstImgHei)+dstImgHei, 0, 0, 256, 256, null);
 				}
 			}
 		}
