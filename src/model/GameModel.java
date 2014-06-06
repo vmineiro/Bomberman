@@ -52,6 +52,9 @@ public class GameModel {
 	/** The bomberman animation */
 	private BufferedImage bombermanImage;
 	
+	/** The monster animation */
+	private BufferedImage monsterImage;
+	
 	// =====================================================================
 
 	/**
@@ -65,9 +68,11 @@ public class GameModel {
 		try
 		{
 			bombermanImage = ImageIO.read(new File("img/Bomberman_2.jpg"));
+			monsterImage = ImageIO.read(new File("img/monster.png"));
 		} catch (IOException e) {}
 		
 		players.setAnimation(bombermanImage);
+		monsters.setAnimation(monsterImage);
 		
 		//TODO: DELETE AFTER TESTING
 		//==========================================================================================
