@@ -46,9 +46,6 @@ public class GameModel {
 	/** Number of monsters alive */
 	private int monstersAlive;
 	
-	/** The game timer */
-	private Timer gameTimer;
-	
 	/** The bomberman animation */
 	private BufferedImage bombermanImage;
 	
@@ -109,15 +106,6 @@ public class GameModel {
 		board.setMaze(maze);
 		
 		//==========================================================================================
-		
-		ActionListener gameTimerListener = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e) {
-				update();
-			}
-		};
-		
-		gameTimer = new Timer(1000, gameTimerListener);
-		gameTimer.start();
 	}	
 	
 	/**
@@ -180,13 +168,8 @@ public class GameModel {
 	 * Update the game state. Calls update method of all objects.
 	 */
 	public void update(){
-		
 		players.update();
-		monsters.update();
-		
-		if(gameOver()){
-			gameTimer.stop();
-		}			
+		monsters.update();			
 	}
 
 	/**
