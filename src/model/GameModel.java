@@ -52,6 +52,18 @@ public class GameModel {
 	/** The monster animation */
 	private BufferedImage monsterImage;
 	
+	/** Key Pressed Up */
+	private boolean pressedUp = false;
+	
+	/** Key Pressed Down */
+	private boolean pressedDown = false;
+	
+	/** Key Pressed Left */
+	private boolean pressedLeft = false;
+	
+	/** Key Pressed Right */
+	private boolean pressedRight = false;
+	
 	// =====================================================================
 
 	/**
@@ -170,6 +182,34 @@ public class GameModel {
 	public void update(){
 		players.update();
 		monsters.update();			
+	}
+	
+	/**
+	 * Update key pressed to UP 
+	 */
+	public void updateUp(){
+		this.pressedUp = true;
+	}
+	
+	/**
+	 * Update key pressed to DOWN 
+	 */
+	public void updateDown(){
+		this.pressedDown = true;
+	}
+	
+	/**
+	 * Update key pressed to LEFT 
+	 */
+	public void updateLeft(){
+		this.pressedLeft = true;
+	}
+	
+	/**
+	 * Update key pressed to RIGHT 
+	 */
+	public void updateRight(){
+		this.pressedRight = true;
 	}
 
 	/**
