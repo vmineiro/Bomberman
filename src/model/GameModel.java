@@ -3,6 +3,7 @@ package model;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
@@ -32,7 +33,7 @@ public class GameModel {
 	private Player players;
 	
 	/** The monsters. */
-	private Monster monsters;
+	private ArrayList<Monster> monsters;
 	
 	/** Number of monsters alive */
 	private int monstersAlive;
@@ -69,7 +70,7 @@ public class GameModel {
 	private GameModel(){
 		this.board = new Board();
 		this.players = new Player();
-		this.monsters = new Monster();
+		this.monsters = new ArrayList<Monster>();
 		
 		try
 		{
@@ -78,12 +79,19 @@ public class GameModel {
 		} catch (IOException e) {}
 		
 		players.setAnimation(bombermanImage);
-		monsters.setAnimation(monsterImage);
 		
 		//TODO: DELETE AFTER TESTING
+		//TODO: Generate 3x Monsters
+		for(int i=0; i<3; i++){
+			Monster monst = new Monster();
+			monst.setAnimation(monsterImage);
+			monst.setBoardPosition(new Position(1,1));
+			addMonster(monst);
+		}		
+		
 		//==========================================================================================
+		
 		this.players.updateBoardPosition(new Position(3,3));
-		this.monsters.setBoardPosition(new Position(1,1));
 		
 		/*
 		Item hiddenPath = new ItemPath();
@@ -146,7 +154,7 @@ public class GameModel {
 	/**
 	 * Get monsters
 	 */
-	public Monster getMonsters(){
+	public ArrayList<Monster> getMonsters(){
 		return monsters;
 	}
 	
@@ -178,7 +186,10 @@ public class GameModel {
 	 */
 	public void update(){
 		players.update();
-		monsters.update();			
+		
+		for(Monster monst : monsters){
+			monst.update();
+		}
 	}
 	
 	/**
@@ -285,9 +296,7 @@ public class GameModel {
 	 * @param monster the monster to be added.
 	 */
 	public void addMonster(Monster monster){
-		
-		//TODO: Update when game have multiple monsters in the game
-		this.monsters = monster;
+		monsters.add(monster);
 	}
 	
 	
@@ -297,10 +306,11 @@ public class GameModel {
 	 * @param player the player to be added.
 	 */
 	public void addPlayer(Player player){
-		
 		//TODO: Update when game have multiple players in the game
 		this.players = player;
 	}
 	
 	
-}//end GameModel
+}
+
+//end GameModel
