@@ -57,11 +57,6 @@ public class Monster implements GameChar{
 		this.nextMonsterPosition = new Position();
 		this.drawPosition = new Position();
 	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {}
 	
 	/**
 	 * Get Monster board position
