@@ -48,9 +48,6 @@ public class GameModel {
 	/** Game Logic refresh rate */
 	private static final int LOGIC_RATE = 500;
 	
-	/** The bomberman animation */
-	private BufferedImage bombermanImage;
-	
 	/** The monster animation */
 	private BufferedImage monsterImage;
 	
@@ -84,11 +81,8 @@ public class GameModel {
 		
 		try
 		{
-			bombermanImage = ImageIO.read(new File("img/Bomberman_2.jpg"));
 			monsterImage = ImageIO.read(new File("img/monster.png"));
 		} catch (IOException e) {}
-		
-		players.setAnimation(bombermanImage);
 		
 		//TODO: DELETE AFTER TESTING
 		//TODO: Generate 3x Monsters
