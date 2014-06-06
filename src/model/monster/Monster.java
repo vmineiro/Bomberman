@@ -1,5 +1,7 @@
 package model.monster;
 
+import java.awt.image.BufferedImage;
+
 import model.GameChar;
 import model.GameModel;
 import model.Position;
@@ -38,10 +40,10 @@ public class Monster implements GameChar{
 	private Position nextMonsterPosition;
 	
 	/** The speed. */
-	private int speed; 
+	//private int speed = 1; 
 	
-	/** The animation to be draw */
-	//private Animation animation;
+	/** The Animation of the Item. */
+	private BufferedImage animation;
 
 	// =============================================================
 	
@@ -53,7 +55,6 @@ public class Monster implements GameChar{
 		this.boardPosition = new Position();
 		this.nextMonsterPosition = new Position();
 		this.drawPosition = new Position();
-		this.speed = 1;
 	}
 
 	/* (non-Javadoc)
@@ -200,7 +201,9 @@ public class Monster implements GameChar{
 	/**
 	 * Sets the animation.
 	 */
-	public void setAnimation(/*Animation animation*/){}
+	public void setAnimation(BufferedImage animation){
+		this.animation = animation;
+	}
 	
 }
 

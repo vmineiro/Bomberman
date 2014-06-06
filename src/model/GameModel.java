@@ -1,8 +1,23 @@
 package model;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
 import model.board.Board;
+import model.board.BoardExit;
+import model.board.BombControl;
+import model.board.BombPowerUp;
+import model.board.BoostSpeed;
+import model.board.ExtraBomb;
+import model.board.Item;
+import model.board.ItemActive;
+import model.board.ItemPath;
+import model.board.UndestructibleWall;
 import model.monster.Monster;
 import model.player.Player;
+import model.player.PlayerDead;
 
 //TODO: Add Comments to all function
 /**
@@ -27,19 +42,63 @@ public class GameModel {
 	/** Number of monsters alive */
 	private int monstersAlive;
 	
+	/** The game timer */
+	private Timer gameTimer;
+	
 	// =====================================================================
-
 
 	/**
 	 * Instantiates a new game model.
 	 */
-	private GameModel(){}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {
-
+	private GameModel(){
+		this.board = new Board();
+		this.players = new Player();
+		this.monsters = new Monster();
+		
+		//TODO: DELETE AFTER TESTING
+		//==========================================================================================
+		this.players.updateBoardPosition(new Position(3,3));
+		this.monsters.setBoardPosition(new Position(1,1));
+		
+		/*
+		Item hiddenPath = new ItemPath();
+		Item boardExit = new BoardExit();
+		Item bombControl = new BombControl();
+		Item bombPowerUp = new BombPowerUp();
+		Item boostSpeed = new BoostSpeed();
+		Item extraBomb = new ExtraBomb();
+		*/
+		
+		Item normalPath = new ItemPath();
+		normalPath.setCurrentState(new ItemActive());
+	
+		Item unWall = new UndestructibleWall();	
+		
+		Item[][] maze = new Item[][]{
+				{unWall, unWall, unWall, unWall, unWall,unWall, unWall, unWall, unWall, unWall},
+				{unWall, normalPath, normalPath, normalPath, unWall,unWall, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, unWall, unWall, unWall, unWall,unWall, unWall, unWall, unWall, unWall}
+		};
+		
+		board.setMaze(maze);
+		
+		//==========================================================================================
+		
+		ActionListener gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				update();
+			}
+		};
+		
+		gameTimer = new Timer(1000, gameTimerListener);
+		gameTimer.start();
 	}	
 	
 	/**
@@ -74,6 +133,7 @@ public class GameModel {
 	public Monster getMonsters(){
 		return monsters;
 	}
+	
 	/**
 	 * Get the number of monsters alive.
 	 * 
@@ -101,7 +161,13 @@ public class GameModel {
 	 * Update the game state. Calls update method of all objects.
 	 */
 	public void update(){
-
+		
+		players.update();
+		monsters.update();
+		
+		if(gameOver()){
+			gameTimer.stop();
+		}			
 	}
 
 	/**
@@ -124,7 +190,10 @@ public class GameModel {
 	 * @return true, if the game is over.
 	 */
 	public boolean gameOver(){
-		return false;
+		if(getPlayers().isDead()){
+			return true;
+		}
+		return true;
 	}
 
 	/**
@@ -159,9 +228,6 @@ public class GameModel {
 		//TODO: Update when game have multiple players in the game
 		this.players = player;
 	}
-	
-	
-	
 	
 	
 }//end GameModel
