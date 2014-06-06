@@ -1,5 +1,7 @@
 package model.board;
 
+import java.awt.Graphics;
+
 import model.monster.Monster;
 import model.player.Player;
 
@@ -73,6 +75,10 @@ public class ItemPath extends Item {
 		
 	}
 
+	/**
+	 * Draw Path
+	 */
+	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){}
 	
 	
 }//end Path
