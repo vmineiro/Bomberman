@@ -1,27 +1,18 @@
 package model;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.Timer;
 
 import model.board.Board;
-import model.board.BoardExit;
-import model.board.BombControl;
-import model.board.BombPowerUp;
-import model.board.BoostSpeed;
-import model.board.ExtraBomb;
 import model.board.Item;
 import model.board.ItemActive;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 import model.monster.Monster;
 import model.player.Player;
-import model.player.PlayerDead;
 
 //TODO: Add Comments to all function
 /**
@@ -63,6 +54,12 @@ public class GameModel {
 	
 	/** Key Pressed Right */
 	private boolean pressedRight = false;
+	
+	//Player Movement Increments
+	public static final Position UP = new Position(0,-1);
+	public static final Position DOWN = new Position(0,1);
+	public static final Position LEFT = new Position(-1,0);
+	public static final Position RIGHT = new Position(1,0);
 	
 	// =====================================================================
 
@@ -220,6 +217,30 @@ public class GameModel {
 		this.pressedDown = false;
 		this.pressedLeft = false;
 		this.pressedRight = false;
+	}
+	
+	/**
+	 * Get player next movement
+	 * 
+	 * @param player moving
+	 * @return newPosPlayer
+	 */
+	public Position getNextMov(Player playerMoving){
+		
+		if(pressedUp){
+			return playerMoving.getBoardPosition().add(UP);
+		}
+		else if(pressedDown){
+			return playerMoving.getBoardPosition().add(DOWN);
+		}
+		else if(pressedLeft){
+			return playerMoving.getBoardPosition().add(LEFT);
+		}
+		else if(pressedRight){
+			return playerMoving.getBoardPosition().add(RIGHT);
+		}
+		
+		return playerMoving.getBoardPosition();
 	}
 
 	/**
