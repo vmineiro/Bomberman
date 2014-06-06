@@ -6,6 +6,15 @@ import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 import model.board.Board;
+import model.board.BoardExit;
+import model.board.BombControl;
+import model.board.BombPowerUp;
+import model.board.BoostSpeed;
+import model.board.ExtraBomb;
+import model.board.Item;
+import model.board.ItemActive;
+import model.board.ItemPath;
+import model.board.UndestructibleWall;
 import model.monster.Monster;
 import model.player.Player;
 import model.player.PlayerDead;
@@ -45,6 +54,42 @@ public class GameModel {
 		this.board = new Board();
 		this.players = new Player();
 		this.monsters = new Monster();
+		
+		//TODO: DELETE AFTER TESTING
+		//==========================================================================================
+		this.players.updateBoardPosition(new Position(3,3));
+		this.monsters.setBoardPosition(new Position(1,1));
+		
+		/*
+		Item hiddenPath = new ItemPath();
+		Item boardExit = new BoardExit();
+		Item bombControl = new BombControl();
+		Item bombPowerUp = new BombPowerUp();
+		Item boostSpeed = new BoostSpeed();
+		Item extraBomb = new ExtraBomb();
+		*/
+		
+		Item normalPath = new ItemPath();
+		normalPath.setCurrentState(new ItemActive());
+	
+		Item unWall = new UndestructibleWall();	
+		
+		Item[][] maze = new Item[][]{
+				{unWall, unWall, unWall, unWall, unWall,unWall, unWall, unWall, unWall, unWall},
+				{unWall, normalPath, normalPath, normalPath, unWall,unWall, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, normalPath, normalPath, normalPath, normalPath,normalPath, normalPath, normalPath, normalPath, unWall},
+				{unWall, unWall, unWall, unWall, unWall,unWall, unWall, unWall, unWall, unWall}
+		};
+		
+		board.setMaze(maze);
+		
+		//==========================================================================================
 		
 		ActionListener gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
