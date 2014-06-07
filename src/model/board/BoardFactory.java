@@ -2,87 +2,92 @@ package model.board;
 
 import java.io.Serializable;
 
+import model.Position;
+
 /**
  * A factory for creating Board objects.
  */
 public class BoardFactory implements Serializable{
-
 	
 	/** The maze. */
-	private Item[][] maze;
+	private Board boardBuilt = new Board();
 
 	/**
 	 * Instantiates a new board factory.
 	 */
-	public BoardFactory(int boardSize){
+	public BoardFactory(int boardSize, int[][] boardInt){
 
+		Item[][] maze = new Item[boardSize][boardSize];
+
+		for(int i=0; i<boardInt.length; i++)
+		{
+			for(int j=0; j<boardInt.length; j++)
+			{
+				if(boardInt[i][j] == 0)
+				{
+					maze[i][j] = createUndWall();
+				}
+				else if(boardInt[i][j] == 1)
+				{
+					maze[i][j] = createPath();
+				}
+				else if(boardInt[i][j] == 2)
+				{
+					maze[i][j] = createBlockedPath();
+				}
+				else if(boardInt[i][j] == 3)
+				{
+					maze[i][j] = createBoardExit();					
+					boardBuilt.setExitPos(new Position(i, j));
+				}
+
+			}
+		}
+
+		boardBuilt.setMaze(maze);
 	}
-
 	
 	/**
-	 * Creates a new ExtraBomb Item and assigns to a random position in the maze.
+	 * Returns the built board
+	 * @return
 	 */
-	public void createExtraBomb(){
-
+	public Board getResult(){
+		return boardBuilt;
 	}
 
 	/**
-	 * Creates a new BombControl Item and assigns to a random position in the maze.
+	 * Creates a new BoarExit
 	 */
-	public void createBombControl(){
-
+	public BoardExit createBoardExit(){
+		BoardExit be = new BoardExit();
+		be.setCurrentState(new ItemHidden());
+		return be;		
 	}
 
 	/**
-	 * Creates a new BombPowerUp Item and assigns to a random position in the maze.
+	 * Creates a new Path
 	 */
-	public void createBombPowerUp(){
-
+	public ItemPath createPath(){
+		ItemPath itemPath = new ItemPath();
+		itemPath.setCurrentState(new ItemActive());
+		return itemPath;
 	}
-
+	
 	/**
-	 * Creates a new BoarExit and assigns to a random position in the maze.
+	 * Creates a blocked path
 	 */
-	public void createBoardExit(){
-
+	public ItemPath createBlockedPath(){
+		ItemPath itemPath = new ItemPath();
+		itemPath.setCurrentState(new ItemInactive());
+		return itemPath;
 	}
-
+	
 	/**
-	 * Creates a new BoostSpeed Item and assign to a random position in the maze.
+	 * Creates undestructable wall 
 	 */
-	public void createBoostSpeed(){
-
+	public UndestructibleWall createUndWall(){
+		return new UndestructibleWall();
 	}
+}
 
-	/**
-	 * Initialize board construction with 'l' lines and 'c' columns.
-	 * Creates all the Path item (in hidden state) and the UndestrutibleWall Items.
-	 *
-	 * @param l the l
-	 * @param c the c
-	 */
-	public void initializeBoard(int l, int c){
-
-	}
-
-	/**
-	 * Toogle path Item state, from hidden to active. 
-	 *
-	 * @param i the i
-	 * @param j the j
-	 */
-	public void tooglePath(int i, int j){
-
-	}
-
-	/**
-	 * Sets the Item, item, in the position (i,j) of the maze.
-	 *
-	 * @param i the i
-	 * @param j the j
-	 * @param item the item
-	 */
-	public void setItem(int i, int j, Item item){
-
-	}
-}//end BoardFactory
+//end BoardFactory

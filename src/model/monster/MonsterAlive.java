@@ -19,7 +19,6 @@ public class MonsterAlive implements MonsterState, Serializable {
 	 * @param monster the monster
 	 */
 	public MonsterState die(){
-		GameModel.getInstance().decMonstersAlive();
 		return new MonsterDead();
 	}
 	

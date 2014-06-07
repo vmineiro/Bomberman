@@ -1,6 +1,7 @@
 package gui;
 
 import model.GameModel;
+import model.board.BoardFactory;
 
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -42,7 +43,8 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	public GamePanel()
 	{		
-		GameModel.getInstance();
+		GameModel.getInstance().initGame(1);
+		
 		addKeyListener(this);
 		
 		ActionListener gameTimerListener = new ActionListener(){ 

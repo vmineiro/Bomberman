@@ -3,7 +3,9 @@ package model;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -11,11 +13,13 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectStreamException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.Timer;
 
 import model.board.Board;
 import model.board.BoardExit;
+import model.board.BoardFactory;
 import model.board.Item;
 import model.board.ItemActive;
 import model.board.ItemHidden;
@@ -44,9 +48,6 @@ public class GameModel implements Serializable{
 	
 	/** The monsters. */
 	private ArrayList<Monster> monsters;
-	
-	/** Number of monsters alive */
-	private int monstersAlive;
 	
 	/** Game Logic Timer */
 	private Timer gameTimer;
@@ -78,73 +79,9 @@ public class GameModel implements Serializable{
 	 * Instantiates a new game model.
 	 */
 	private GameModel(){
-
-		
 		this.board = new Board();
 		this.players = new Player();
 		this.monsters = new ArrayList<Monster>();
-
-		//TODO: DELETE AFTER TESTING
-		//TODO: Generate 3x Monsters
-		for(int i=0; i<1; i++){
-			Monster monst = new Monster();
-			monst.setBoardPosition(new Position(1,1));
-			addMonster(monst);
-		}		
-		
-		//==========================================================================================
-		
-		this.players.updateBoardPosition(new Position(3,3));
-		
-		//TODO: Test board composed only by two objects everything else is reference
-		char[][] mazeChar = new char[][]{
-				{'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
-				{'x', 'p', 'w', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
-				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
-				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
-				{'x', 'p', 'w', 'p', 'x', 'p', 'w', 'w', 'p', 'x'},
-				{'x', 'w', 'w', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
-				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
-				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
-				{'x', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
-				{'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'e', 'x'},
-		};
-			
-		
-		Item[][] maze = new Item[10][10];
-		
-		for(int i=0; i<mazeChar.length; i++){
-			for(int j=0; j<mazeChar.length; j++){
-				if(mazeChar[i][j] == 'x'){
-					maze[i][j] = new UndestructibleWall();
-				}else if(mazeChar[i][j] == 'p'){
-					maze[i][j] = new ItemPath();
-					maze[i][j].setCurrentState(new ItemActive());
-				}else if(mazeChar[i][j] == 'w'){
-					maze[i][j] = new ItemPath();
-					maze[i][j].setCurrentState(new ItemInactive());
-				}else if(mazeChar[i][j] == 'e'){
-					maze[i][j] = new BoardExit();
-					maze[i][j].setCurrentState(new ItemHidden());
-					this.board.setExitPos(new Position(i, j));
-				}
-				
-			}
-		}
-		
-		board.setMaze(maze);
-		
-		//==========================================================================================
-		
-		ActionListener gameTimerListener = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e) {
-				GameModel.getInstance().update();	
-			}
-		};
-		
-		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
-		gameTimer.start();
-		
 	}	
 	
 	/**
@@ -160,21 +97,92 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Get the number of monsters alive.
-	 * 
-	 * @return monstersAlive the number of monsters alive.
+	 * Initializes all game elements
+	 * @param board_number is the of the 
 	 */
-	public int getMonstersAlive() {
-		return monstersAlive;
+	public void initGame(int board_number){
+		
+		readBoardFile(board_number);
+
+		ActionListener gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				GameModel.getInstance().update();	
+			}
+		};
+
+		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
+		gameTimer.start();
+
 	}
 	
 	/**
-	 * Decrements the number of monsters alive
+	 * Reads board file and launches game
+	 * @param boardNumber
 	 */
-	public void decMonstersAlive(){
-		monstersAlive = monstersAlive - 1;
-	}
+	public void readBoardFile(int boardNumber){
 
+		int board_size = 0;
+		int nMonsters = 0; 
+		int boardInt [][];
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("board_files/board_");
+		sb.append(boardNumber);
+		sb.append(".txt");
+		String fileName = sb.toString();
+
+		try 
+		{
+			File fileIn = new File(fileName);
+			Scanner scanner = new Scanner(fileIn);
+
+			board_size = scanner.nextInt();
+			nMonsters = scanner.nextInt();
+
+			boardInt = new int[board_size][board_size];
+
+			for(int i=0; i<board_size; i++){
+				for(int j=0; j<board_size; j++){
+					boardInt[i][j] = scanner.nextInt();
+				}
+			}
+
+			scanner.close();
+			
+			//Initializes board game
+			BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
+			setBoard(boardBuilt.getResult());
+			
+			//Initializes monsters and player
+			addMonsters(nMonsters);
+			addPlayer(board_size);
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Adds monsters to the game
+	 * @param nMonsters is the number of game monsters
+	 */
+	public void addMonsters(int nMonsters){
+		for(int i=0; i<nMonsters; i++){
+			Monster monst = new Monster();
+			monst.setBoardPosition(new Position(1,1));
+			monsters.add(monst);
+		}
+	}	
+	
+	/**
+	 * Add a player to the game
+	 * 
+	 * @param player the player to be added.
+	 */
+	public void addPlayer(int boardSize){		
+		this.players.updateBoardPosition(new Position(boardSize-2,boardSize-2));
+	}
+	
 	/**
 	 * Update the game state. Calls update method of all objects.
 	 */
@@ -397,27 +405,6 @@ public class GameModel implements Serializable{
 		}
 		
 		return false;
-	}
-	
-	
-	/**
-	 * Add a monster to the game
-	 * 
-	 * @param monster the monster to be added.
-	 */
-	public void addMonster(Monster monster){
-		monsters.add(monster);
-	}
-	
-	
-	/**
-	 * Add a player to the game
-	 * 
-	 * @param player the player to be added.
-	 */
-	public void addPlayer(Player player){
-		//TODO: Update when game have multiple players in the game
-		this.players = player;
 	}
 	
 	/**
