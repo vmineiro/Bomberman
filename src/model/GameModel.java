@@ -262,17 +262,23 @@ public class GameModel implements Serializable{
 	 */
 	public Position getNextMov(Player playerMoving){
 		
-		if(pressedUp){
-			return playerMoving.getBoardPosition().add(UP);
-		}
-		else if(pressedDown){
-			return playerMoving.getBoardPosition().add(DOWN);
-		}
-		else if(pressedLeft){
-			return playerMoving.getBoardPosition().add(LEFT);
-		}
-		else if(pressedRight){
-			return playerMoving.getBoardPosition().add(RIGHT);
+		if((playerMoving.getBoardPosition().getCol() > 0) && (playerMoving.getBoardPosition().getCol() < board.getMaze().length))
+		{
+			if((playerMoving.getBoardPosition().getLine() > 0) && (playerMoving.getBoardPosition().getLine() < board.getMaze().length))
+			{
+				if(pressedUp){
+					return playerMoving.getBoardPosition().add(UP);
+				}
+				else if(pressedDown){
+					return playerMoving.getBoardPosition().add(DOWN);
+				}
+				else if(pressedLeft){
+					return playerMoving.getBoardPosition().add(LEFT);
+				}
+				else if(pressedRight){
+					return playerMoving.getBoardPosition().add(RIGHT);
+				}
+			}
 		}
 		
 		return playerMoving.getBoardPosition();
