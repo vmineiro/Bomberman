@@ -25,15 +25,6 @@ import model.monster.Monster;
  * instance of a PlayerState subclass that defines the current state.
  */
 public class Player implements GameChar{
-
-	/** The score. */
-	//private int score = 0;
-	
-	/** The lives. */
-	private int lives = 3;
-	
-	/** The speed. */
-	private int speed = 1;
 	
 	/** The board position. */
 	private Position boardPosition;
@@ -44,20 +35,8 @@ public class Player implements GameChar{
 	/** The state. */
 	private PlayerState state;
 	
-	/** The manual bomb. */
-	private boolean manualBomb = false;
-	
-	/** The bomb power. */
-	private int bombPower = 1;
-	
 	/** The numbers of available bombs. */
 	private int availableBombs = 1;
-	
-	/** The imortal. */
-	//private boolean imortal = true;
-	
-	/** Manual Bombs Queue */
-	private Queue<ManualBomb> queueMBombs = new LinkedList<ManualBomb>();
 	
 	/** The Animation of the Item. */
 	private BufferedImage bombermanImg;
@@ -122,58 +101,15 @@ public class Player implements GameChar{
 		if(availableBombs != 0)
 		{
 			this.availableBombs--;
-			
-			if(manualBomb){
-				//TODO: Place bomb in item
-				queueMBombs.add(new ManualBomb(this));
-			} else{
-				GameModel.getInstance().getBoard().getItem(boardPosition).bombDropped(new AutomaticBomb(this));
-			}
+			GameModel.getInstance().getBoard().getItem(boardPosition).bombDropped(new AutomaticBomb(this));
 		}
 	}
 	
-	/**
-	 * Detonate manual bombs
-	 */
-	public void detonateBomb(){
-		if(!queueMBombs.isEmpty()){
-			queueMBombs.poll().detonate();
-		}
-	}
-	
-	/**
-	 * Increase speed.
-	 */
-	public void increaseSpeed(){
-		this.speed++;
-	}
-
-	/**
-	 * Increase power bomb.
-	 */
-	public void increasePowerBomb(){
-		this.bombPower++;
-	}
-
-	/**
-	 * Life lost.
-	 */
-	public void lifeLost(){
-		this.lives--;
-	}
-
 	/**
 	 * Adds the bomb.
 	 */
 	public void addBomb(){
 		this.availableBombs++;
-	}
-	
-	/**
-	 * Get bomb control
-	 */
-	public void getBombControl(){
-		this.manualBomb = true;
 	}
 	
 	/**
@@ -253,15 +189,7 @@ public class Player implements GameChar{
 	 */
 	public void visit(Monster vMonster){
 		setCurrentState(getCurrentState().die());
-	}
-	
-	//TODO: Implement this functions =======================================
-
-	//TODO:if the player died should reset his power ups.
-	/**
-	 * Respawn. Set the player in start position.
-	 */
-	public void respawn(){}
+	}	
 
 	/**
 	 * Draw Player
