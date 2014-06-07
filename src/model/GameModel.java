@@ -77,7 +77,7 @@ public class GameModel {
 		
 		//TODO: DELETE AFTER TESTING
 		//TODO: Generate 3x Monsters
-		for(int i=0; i<3; i++){
+		for(int i=0; i<1; i++){
 			Monster monst = new Monster();
 			monst.setBoardPosition(new Position(1,1));
 			addMonster(monst);
@@ -117,6 +117,7 @@ public class GameModel {
 				}else if(mazeChar[i][j] == 'e'){
 					maze[i][j] = new BoardExit();
 					maze[i][j].setCurrentState(new ItemHidden());
+					this.board.setExitPos(new Position(i, j));
 				}
 				
 			}
@@ -200,6 +201,10 @@ public class GameModel {
 			{
 			monsters.get(i).update();
 			}
+		}
+		
+		if(getMonsters().isEmpty()){
+			getBoard().getExitItem().setCurrentState(getBoard().getExitItem().getCurrentState().openExit());
 		}
 		
 		if(GameModel.getInstance().gameOver()){
@@ -296,13 +301,14 @@ public class GameModel {
 	 * @return true, if the game is over.
 	 */
 	public boolean gameOver(){
+		
 		if(getPlayers().getCurrentState().isDead()){
 			//TODO: Delete System.out
 			System.out.println("Player is dead");
 			return true;
 		}
 		
-		if(getMonsters().isEmpty()){
+		if(getPlayers().getBoardPosition().equals(getBoard().getExitPos())){
 			//TODO: Delete System.out
 			System.out.println("Player won");
 			return true;
