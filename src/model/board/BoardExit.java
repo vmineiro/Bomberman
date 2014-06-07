@@ -74,7 +74,11 @@ public class BoardExit extends Item {
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height)
 	{
-		g.drawImage(boardExitImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 112, 112, null);
+		if(!getCurrentState().isHidden()){
+			g.drawImage(exitOpenImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 112, 112, null);
+		}else{
+			g.drawImage(boardExitImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 112, 112, null);
+		}
 	}
 	
 }

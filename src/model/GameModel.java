@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import javax.swing.Timer;
 
 import model.board.Board;
+import model.board.BoardExit;
 import model.board.Item;
 import model.board.ItemActive;
+import model.board.ItemHidden;
 import model.board.ItemInactive;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
@@ -96,7 +98,7 @@ public class GameModel {
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
-				{'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
+				{'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'e', 'x'},
 		};
 			
 		
@@ -112,6 +114,9 @@ public class GameModel {
 				}else if(mazeChar[i][j] == 'w'){
 					maze[i][j] = new ItemPath();
 					maze[i][j].setCurrentState(new ItemInactive());
+				}else if(mazeChar[i][j] == 'e'){
+					maze[i][j] = new BoardExit();
+					maze[i][j].setCurrentState(new ItemHidden());
 				}
 				
 			}
