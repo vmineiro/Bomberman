@@ -3,6 +3,11 @@ package model;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.Timer;
@@ -150,27 +155,6 @@ public class GameModel {
 	}
 	
 	/**
-	 * Get board
-	 */
-	public Board getBoard(){
-		return board;
-	}
-	
-	/**
-	 * Get players 
-	 */
-	public Player getPlayers(){
-		return players;
-	}
-	
-	/**
-	 * Get monsters
-	 */
-	public ArrayList<Monster> getMonsters(){
-		return monsters;
-	}
-	
-	/**
 	 * Get the number of monsters alive.
 	 * 
 	 * @return monstersAlive the number of monsters alive.
@@ -280,19 +264,103 @@ public class GameModel {
 		
 		return playerMoving.getBoardPosition();
 	}
+	
+	/**
+	 * Get board
+	 */
+	public Board getBoard(){
+		return board;
+	}	
+	
+	/**
+	 * Sets the board.
+	 *
+	 * @param board the new board
+	 */
+	public void setBoard(Board board2){
+		this.board = board2;
+	}
+	
+	/**
+	 * Get players 
+	 */
+	public Player getPlayers(){
+		return players;
+	}
+	
+	/**
+	 * Sets the players
+	 * @param player2
+	 */
+	public void setPlayers(Player player2){
+		this.players = player2;
+	}	
+	
+	/**
+	 * Get monsters
+	 */
+	public ArrayList<Monster> getMonsters(){
+		return monsters;
+	}
+	
+	/**
+	 * Sets the monsters
+	 * @param monsters2
+	 */
+	public void setMonsters(ArrayList<Monster> monsters2){
+		this.monsters = monsters2;
+	}
+	
+	/**
+	 * Sets the game.
+	 *
+	 * @param tempGame the new game
+	 */
+	public void setGame(GameModel tempGame) {
+		setBoard(tempGame.getBoard());
+		setPlayers(tempGame.getPlayers());
+		setMonsters(tempGame.getMonsters());
+	}
 
 	/**
 	 * Save game.
+	 *
+	 * @param path the path
+	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public void saveGame(){
+	public void saveGame(String path) throws IOException {
 
+		FileOutputStream fileOut = new FileOutputStream(path);
+		ObjectOutputStream os = new ObjectOutputStream(fileOut);
+
+		/* Write the game in a file */
+		os.writeObject(this);
+
+		fileOut.close();
+		os.close();
+		
 	}
 
 	/**
 	 * Load game.
+	 *
+	 * @param path the path
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 * @throws ClassNotFoundException the class not found exception
 	 */
-	public void loadGame(){
+	public void loadGame(String path) throws IOException, ClassNotFoundException {
+		
+		FileInputStream fileIn = new FileInputStream(path);
+		ObjectInputStream is = new ObjectInputStream(fileIn);
 
+		/* load the saved game in the file to the object tempGame */
+		GameModel tempGame = (GameModel) is.readObject();
+
+		is.close();
+		fileIn.close();
+
+		/* Change the Current Game */
+		setGame(tempGame);
 	}
 
 	/**
@@ -315,15 +383,6 @@ public class GameModel {
 		}
 		
 		return false;
-	}
-
-	/**
-	 * Sets the board.
-	 *
-	 * @param board the new board
-	 */
-	public void setBoard(Board board){
-		this.board = board;
 	}
 	
 	
