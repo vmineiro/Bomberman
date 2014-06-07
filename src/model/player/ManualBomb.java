@@ -173,6 +173,13 @@ public class ManualBomb implements Bomb {
 				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 124, 114, null);
 	}
 	
+	/**
+	 * Return bomb image
+	 * @return bomb image
+	 */
+	public BufferedImage getImgBomb(){
+		return bombImg;
+	}
 }
 
 //end ManualBomb

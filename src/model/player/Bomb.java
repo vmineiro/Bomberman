@@ -1,6 +1,7 @@
 package model.player;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 /**
  * The Class Bomb.
@@ -31,6 +32,12 @@ public interface Bomb {
 	 * 
 	 */
 	public abstract void draw(Graphics g, int width, int height);
+	
+	/**
+	 * Return bomb image
+	 * @return bomb image
+	 */
+	public abstract BufferedImage getImgBomb(); 
 
 }
 

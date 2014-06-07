@@ -188,6 +188,14 @@ public class AutomaticBomb implements Bomb {
 		g.drawImage(this.bombImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
 				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 124, 114, null);
 	}
+	
+	/**
+	 * Return bomb image
+	 * @return bomb image
+	 */
+	public BufferedImage getImgBomb(){
+		return bombImg;
+	}
 
 }
 

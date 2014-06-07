@@ -88,7 +88,7 @@ public class ItemPath extends Item {
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){
 		if(this.bomb != null){
-			bomb.draw(g, width, height);
+			g.drawImage(bomb.getImgBomb(), pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
 		}
 		else{
 			g.drawImage(pathImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
