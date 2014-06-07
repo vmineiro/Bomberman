@@ -152,7 +152,10 @@ public abstract class Item {
 		
 		if (this.state.getClass() == ItemHidden.class ) 
 			explosionContinue = false;
-			
+		
+		if(this.state.getClass() == ItemInactive.class){
+			explosionContinue = false;
+		}
 			
 		setCurrentState(state.explode());
 		

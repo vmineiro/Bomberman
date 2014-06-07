@@ -18,6 +18,9 @@ import model.player.Player;
  */
 public class ItemPath extends Item {
 	
+	/** The wall image */
+	BufferedImage wallImg;
+	
 	/** The path image. */
 	BufferedImage pathImg;
 	
@@ -30,11 +33,11 @@ public class ItemPath extends Item {
 	public ItemPath(){
 		
 		super();
-
 		setCurrentState(new ItemHidden());
 		
 		try {
 			pathImg = ImageIO.read(new File("img/path.png"));
+			wallImg = ImageIO.read(new File("img/wall_1.png"));
 			explodingImg = ImageIO.read(new File("img/explosion_center.png"));
 		} catch (IOException e) {
 
@@ -94,9 +97,10 @@ public class ItemPath extends Item {
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){
 		if(this.bomb != null){
 			g.drawImage(bomb.getImgBomb(), pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 114, null);
-			//bomb.draw(g, width, height);
 		}else if(isExploding()){
 			g.drawImage(explodingImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 96, 97, null);
+		}else if(!isActive()){
+			g.drawImage(wallImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 128, 128, null);
 		}else{
 			g.drawImage(pathImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
 		}

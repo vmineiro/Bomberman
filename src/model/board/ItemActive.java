@@ -16,31 +16,26 @@ public class ItemActive extends ItemState {
 		super();
 
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#explode()
+	/**
+	 * Explosion provokes transition
 	 */
 	public ItemState explode(){
 		return new ItemExploding();
 	}
-	
 
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#pickUp()
+	/**
+	 * Pickup provokes transition
 	 */
-	@Override
 	public ItemState pickUp() {
 		return new ItemInactive();
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#explosionEnds()
+	/**
+	 * Explosion end provokes transition
 	 */
-	@Override
 	public ItemState explosionEnds() {
-		return this;
+		return new ItemActive();
 	}
 	
 	
