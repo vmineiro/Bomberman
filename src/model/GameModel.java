@@ -179,13 +179,6 @@ public class GameModel {
 	public void decMonstersAlive(){
 		monstersAlive = monstersAlive - 1;
 	}
-	
-	/**
-	 * Draw. Calls draw method of all objects.
-	 */
-	public void draw(){
-
-	}
 
 	/**
 	 * Update the game state. Calls update method of all objects.
@@ -344,15 +337,19 @@ public class GameModel {
 	}
 	
 	/**
-	 * Draw Game
+	 * Draw Game - Calls draw method of all objects.
 	 */
 	public void draw(Graphics g, int width, int height){
+		
 		GameModel.getInstance().getBoard().draw(g, width, height);
+		
 		GameModel.getInstance().getPlayers().draw(g, width, height);
 		
 		for(Monster monster : monsters){
 			monster.draw(g, width, height);
 		}
+		
+		
 	}
 }
 
