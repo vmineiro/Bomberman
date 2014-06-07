@@ -10,24 +10,18 @@ import model.Position;
  * This class represents the game board.
  */
 public class Board {
-
-	
 	
 	/** The maze. */
 	private Item[][] maze;
 	
+	/** The exit board position */
+	private Position exitPos;
 	
 	/**
 	 * Instantiates a new board.
 	 */
-	public Board(){
-		
-		
-		
+	public Board(){}
 
-	}
-
-	
 	/**
 	 * Sets a new maze.
 	 *
@@ -35,9 +29,7 @@ public class Board {
 	 */
 	public void setMaze(Item[][] maze){
 		this.maze = maze;
-
 	}
-
 
 	/**
 	 * Gets the item, on the line i and column j, form the maze.
@@ -63,6 +55,21 @@ public class Board {
 	 */
 	public Item[][] getMaze(){
 		return maze;
+	}
+	
+	/**
+	 * Return the exit of the board
+	 * @return
+	 */
+	public Position getExitPos(){
+		return exitPos;
+	}
+	
+	/** 
+	 * Saves the position of exit
+	 */
+	public void setExitPos(Position exit){
+		this.exitPos = exit;
 	}
 	
 	/**
