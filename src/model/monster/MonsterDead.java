@@ -18,6 +18,14 @@ public class MonsterDead implements MonsterState {
 	public MonsterState die(){
 		return this;
 	}
+	
+	/**
+	 * Replies monster health
+	 * @return true if monster is dead
+	 */
+	public boolean isDead(){
+		return true;
+	}
 
 }
 

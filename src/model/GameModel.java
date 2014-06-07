@@ -200,8 +200,16 @@ public class GameModel {
 	 */
 	public void update(){
 		
-		for(Monster monst : monsters){
-			monst.update();
+		for(int i=0; i<monsters.size(); i++)
+		{
+			if(monsters.get(i).getCurrentState().isDead())
+			{
+				monsters.remove(i);
+			}
+			else
+			{
+			monsters.get(i).update();
+			}
 		}
 		
 		if(GameModel.getInstance().gameOver()){

@@ -22,4 +22,12 @@ public class MonsterAlive implements MonsterState {
 		return new MonsterDead();
 	}
 	
+	/**
+	 * Replies monster health
+	 * @return true if monster is dead
+	 */
+	public boolean isDead(){
+		return false;
+	}
+	
 }//end MonsterAlive
