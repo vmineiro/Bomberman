@@ -97,23 +97,33 @@ public class GameModel {
 		Item extraBomb = new ExtraBomb();
 		*/
 		
-		Item n = new ItemPath();
-		n.setCurrentState(new ItemActive());
-	
-		Item x = new UndestructibleWall();	
-		
-		Item[][] maze = new Item[][]{
-				{x, x, x, x, x, x, x, x, x, x},
-				{x, n, n, n, n, n, n, x, n, x},
-				{x, n, x, n, x, x, n, x, n, x},
-				{x, n, x, n, x, x, n, x, n, x},
-				{x, n, x, n, x, x, n, x, n, x},
-				{x, n, n, n, x, x, n, n, n, x},
-				{x, n, x, n, x, x, n, x, n, x},
-				{x, n, x, n, x, x, n, x, n, x},
-				{x, n, x, n, n, n, n, x, n, x},
-				{x, x, x, x, x, x, x, x, x, x}
+		//TODO: Test board composed only by two objects everything else is reference
+		char[][] mazeChar = new char[][]{
+				{'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
+				{'x', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
+				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
+				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
+				{'x', 'p', 'p', 'p', 'x', 'p', 'p', 'p', 'p', 'x'},
+				{'x', 'p', 'p', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
+				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
+				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
+				{'x', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
+				{'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
 		};
+			
+		
+		Item[][] maze = new Item[10][10];
+		
+		for(int i=0; i<mazeChar.length; i++){
+			for(int j=0; j<mazeChar.length; j++){
+				if(mazeChar[i][j] == 'x'){
+					maze[i][j] = new UndestructibleWall();
+				}else if(mazeChar[i][j] == 'p'){
+					maze[i][j] = new ItemPath();
+					maze[i][j].setCurrentState(new ItemActive());
+				}
+			}
+		}
 		
 		board.setMaze(maze);
 		
