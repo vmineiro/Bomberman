@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -36,25 +38,43 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	/** The key drop bomb. */
 	private int keyDropBomb = KeyEvent.VK_SPACE;
+	
+	/** The key pauPause. */
+	private int keyPause = KeyEvent.VK_ESCAPE;
+	
+	ActionListener gameTimerListener;
 
+	private MainWindow mainWindow;
+	
 	//=============================================================
 	
-	public GamePanel()
+	public GamePanel(final MainWindow mainWindow)
 	{
 		GameModel.getInstance();		
 		addKeyListener(this);
+		this.mainWindow = mainWindow;
 		
-		ActionListener gameTimerListener = new ActionListener(){ 
+		gameTimerListener = new ActionListener(){ 
 			public void actionPerformed(ActionEvent e) {
 				repaint();
 				
 				if(GameModel.getInstance().gameOver()){
+					
+					String exitGameMsg = "Exit Game?";
+					int reply = JOptionPane.showConfirmDialog(mainWindow.getFrame(),exitGameMsg,"Exit Game",JOptionPane.YES_NO_OPTION);
+
+					if(reply == JOptionPane.YES_OPTION)
+					{
+						setVisible(false);
+					}
+					else if(reply == JOptionPane.NO_OPTION || reply == JOptionPane.CLOSED_OPTION){}
+					
+					
 					refreshTimer.stop();
 				}
 				
 			}
 		};
-		
 		refreshTimer = new Timer(REFRESH_RATE, gameTimerListener);
 		refreshTimer.start();
 	}
@@ -72,6 +92,15 @@ public class GamePanel extends JPanel implements KeyListener
 	public void keyPressed(KeyEvent e){
 		
 		int key = e.getKeyCode();
+		
+		if (!refreshTimer.isRunning())
+		{
+			if(key == keyPause) {
+				refreshTimer.start();
+				return;
+			}
+			return;
+		}
 
 		if(key == keyUp)
 		{
@@ -92,6 +121,10 @@ public class GamePanel extends JPanel implements KeyListener
 		else if(key == keyDropBomb)
 		{
 			GameModel.getInstance().getPlayers().dropBomb();
+		}
+		else if(key == keyPause)
+		{
+			refreshTimer.stop();
 		}
 		
 	}

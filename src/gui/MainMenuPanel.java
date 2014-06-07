@@ -29,16 +29,16 @@ public class MainMenuPanel extends JPanel {
 	
 	private boolean configSettings = false;
 	
-	private JFrame frame;
+	private MainWindow mainWindow;
 	
 
 	/**
 	 * Create the dialog.
 	 */
-	public MainMenuPanel(final JFrame frame)  {
+	public MainMenuPanel(final MainWindow mainWindow)  {
 		
 		super();
-		this.frame = frame;
+		this.mainWindow = mainWindow;
 		
 		this.setLayout(new BorderLayout());
 		this.setBorder(new EmptyBorder(75, 225, 100, 225));
@@ -69,7 +69,10 @@ public class MainMenuPanel extends JPanel {
 						newGame = true;
 						loadGame = false;
 						configSettings = false;
+						
 						setVisible(false);
+						mainWindow.startNewGame();
+						
 					}
 				});
 				panel.add(btnNewGame);
@@ -131,16 +134,16 @@ public class MainMenuPanel extends JPanel {
 						configSettings = false;
 						
 						String exitGameMsg = "Exit Game?";
-						int reply = JOptionPane.showConfirmDialog(frame,exitGameMsg,"Exit Game",JOptionPane.YES_NO_OPTION);
+						int reply = JOptionPane.showConfirmDialog(mainWindow.getFrame(),exitGameMsg,"Exit Game",JOptionPane.YES_NO_OPTION);
 
 						if(reply == JOptionPane.YES_OPTION)
 						{
-							frame.getContentPane().setVisible(false);
+							mainWindow.getFrame().getContentPane().setVisible(false);
 							System.exit(0);
 						}
 						else if(reply == JOptionPane.NO_OPTION || reply == JOptionPane.CLOSED_OPTION){}
 
-						frame.getContentPane().requestFocusInWindow();
+						mainWindow.getFrame().getContentPane().requestFocusInWindow();
 
 					}
 				});

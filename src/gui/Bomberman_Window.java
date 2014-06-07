@@ -56,7 +56,7 @@ public class Bomberman_Window {
 		frame.setBounds(100, 100, 500, 500);
 		frame.getContentPane().setLayout(new BorderLayout(0,0));
 
-		createWidgets();
+		//createWidgets();
 		addWidgets(frame.getContentPane());
 
 		//frame.pack();
@@ -90,9 +90,9 @@ public class Bomberman_Window {
 		//Exit Game Option
 		mntmExitGame = new JMenuItem("Exit Game");
 
-		//Game Panel
-		gamePanel = new GamePanel();
-		gamePanel.setFocusable(true);
+//		//Game Panel
+//		gamePanel = new GamePanel(frame);
+//		gamePanel.setFocusable(true);
 	}
 
 	/**
