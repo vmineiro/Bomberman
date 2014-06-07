@@ -41,7 +41,7 @@ public class ItemExploding extends ItemState {
 	 */
 	@Override
 	public ItemState explosionEnds() {
-		return new ItemInactive();
+		return new ItemActive();
 	}
 
 

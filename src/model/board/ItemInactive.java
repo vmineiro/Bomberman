@@ -4,9 +4,7 @@ package model.board;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemInactive extends ItemState {
-
-	
+public class ItemInactive extends ItemState {	
 	
 	/**
 	 * Instantiates a new item inactive.
@@ -16,28 +14,25 @@ public class ItemInactive extends ItemState {
 
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#explode()
+	/**
+	 * Explosion provokes transition
 	 */
 	public ItemState explode() {
 		return new ItemExploding();
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#pickUp()
+	/**
+	 * Pickup provokes transition
 	 */
 	public ItemState pickUp() {
 		return this;
 	}
 
-	
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#explosionEnds()
+	/**
+	 * Explosion end provokes transition
 	 */
 	public ItemState explosionEnds() {
-		return this;
+		return new ItemActive();
 	}
 
 

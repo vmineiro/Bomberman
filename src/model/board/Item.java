@@ -28,9 +28,6 @@ public abstract class Item {
 	
 	/** The Animation of the Item. */
 	protected BufferedImage animation;
-	
-	/** The has player. */
-	protected int monsterInThisItem = 0;
 
 	/** The bomb in this item. */
 	protected Bomb bomb;
@@ -73,17 +70,6 @@ public abstract class Item {
 	public ItemState getCurrentState(){	
 		return this.state;
 	}
-
-
-	/**
-	 * Checks for monsters.
-	 *
-	 * @return true, if successful
-	 */
-	public boolean hasMonsters() {
-		return monsterInThisItem > 0;
-	}
-	
 	
 	/**
 	 * Checks if is this item exploding.
@@ -102,24 +88,7 @@ public abstract class Item {
 	 */
 	public boolean isActive() {
 		return state.getClass() == ItemActive.class;
-	}
-	
-	
-	/**
-	 * Monster get in this item.
-	 */
-	public void monsterIn() {
-		monsterInThisItem++;
-	}
-	
-	
-	/**
-	 * Monster get out of this item.
-	 */
-	public void monsterOut() {
-		monsterInThisItem--;
-	}
-	
+	}		
 	
 	/**
 	 * Bomb dropped in this item.
@@ -152,7 +121,10 @@ public abstract class Item {
 		
 		if (this.state.getClass() == ItemHidden.class ) 
 			explosionContinue = false;
-			
+		
+		if(this.state.getClass() == ItemInactive.class){
+			explosionContinue = false;
+		}
 			
 		setCurrentState(state.explode());
 		
