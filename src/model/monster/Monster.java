@@ -15,13 +15,14 @@ import model.board.BoardExit;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 import model.player.Player;
+import java.io.Serializable;
 
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a MonsterState subclass that defines the current state.
  * 
  */
-public class Monster implements GameChar{
+public class Monster implements GameChar, Serializable{
 
 	//Random Monster Movement
 	private static final Position UP = new Position(-1,0);

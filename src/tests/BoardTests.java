@@ -282,8 +282,9 @@ public class BoardTests {
 		
 		GameModel game = GameModel.getInstance();		
 		game.setBoard(board);
-		game.addMonster(monster);
-		game.addPlayer(player);
+		
+		//game.addMonster(monster);
+		//game.addPlayer(player);
 		
 		
 		/* Hidden Path Test */

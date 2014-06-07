@@ -15,12 +15,13 @@ import model.board.Item;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 import model.monster.Monster;
+import java.io.Serializable;
 
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a PlayerState subclass that defines the current state.
  */
-public class Player implements GameChar{
+public class Player implements GameChar, Serializable{
 	
 	/** The board position. */
 	private Position boardPosition;

@@ -9,20 +9,17 @@ import javax.imageio.ImageIO;
 
 import model.monster.Monster;
 import model.player.Player;
-
-
-
+import java.io.Serializable;
 /**
  * This class represents the exit of the maze.
  */
-public class BoardExit extends Item {
-	
-
-	
+public class BoardExit extends Item implements Serializable{
 	
 	/** The board exit image. */
 	BufferedImage boardExitImg;
-
+	
+	/** The board exit open image */
+	BufferedImage exitOpenImg;
 
 	/**
 	 * Instantiates a new board exit.
@@ -30,21 +27,13 @@ public class BoardExit extends Item {
 	public BoardExit(){
 		
 		super();
+		setCurrentState(new ItemHidden());
 		
-		try {
-			
-			boardExitImg = ImageIO.read(new File("img/wall01.png"));
-			
-			setCurrentState(new ItemHidden());
-			
-		} catch (IOException e) {
-
-			
-		}
-
-
+		try {	
+			boardExitImg = ImageIO.read(new File("img/exit.png"));
+			exitOpenImg = ImageIO.read(new File("img/path.png"));			
+		} catch (IOException e) {}
 	}
-
 
 	/**
 	 * Manages the visit by the player.
@@ -55,12 +44,8 @@ public class BoardExit extends Item {
 	public void accept(Player player){
 		
 		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
-		
 		player.visitBoardExit(this);
-
-
 	}
-
 
 	/**
 	 * Manages the visit by the monster.
@@ -68,18 +53,10 @@ public class BoardExit extends Item {
 	 * @param monster the monster
 	 */
 	public void accept(Monster monster){
-
 		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
-		
 		monster.visitBoardExit(this);
-		
-
 	}
 
-	/* (non-Javadoc)
-	 * @see model.board.Item#setCurrentState(model.board.ItemState)
-	 */
-	@Override
 	public void setCurrentState(ItemState state) {
 		this.state = state;
 		
@@ -89,8 +66,7 @@ public class BoardExit extends Item {
 			setAnimation(explosionImg);
 		} else {
 			setAnimation(boardExitImg);
-		}
-		
+		}		
 	}
 
 	/**
@@ -98,8 +74,13 @@ public class BoardExit extends Item {
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height)
 	{
-		//TODO: Set final image resolution
-		g.drawImage(boardExitImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 512, 512, null);
+		if(!getCurrentState().isHidden()){
+			g.drawImage(exitOpenImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 112, 112, null);
+		}else{
+			g.drawImage(boardExitImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 112, 112, null);
+		}
 	}
 	
-}//end BoardExit
+}
+
+//end BoardExit

@@ -1,49 +1,47 @@
 package model.board;
 
-
+import java.io.Serializable;
 
 /**
  * The Class ItemDetonating.
  */
-public class ItemDetonating extends ItemState {
+public class ItemDetonating implements ItemState, Serializable {
 
-
-
-	
 	/**
 	 * Instantiates a new item detonating.
 	 */
 	public ItemDetonating(){
 		super();
-	
+
 	}
 
 
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#explode()
-	 */
-	@Override
 	public ItemState explode() {
 		return this;
 	}
 
 
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#pickUp()
-	 */
-	@Override
 	public ItemState pickUp() {
 		return this;
 	}
 
-
-	/* (non-Javadoc)
-	 * @see model.board.ItemState#explosionEnds()
-	 */
-	@Override
 	public ItemState explosionEnds() {
 		return new ItemActive();
 	}
+
+	/**
+	 * Checks if item state is hidden
+	 * @return true if item is hidden
+	 */
+	public boolean isHidden(){
+		return false;
+	}
 	
+	/**
+	 * Opens the exit door
+	 */
+	public ItemState openExit(){
+		return this;
+	}
 
 }

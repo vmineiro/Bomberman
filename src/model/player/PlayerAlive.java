@@ -1,6 +1,8 @@
 package model.player;
 
-public class PlayerAlive implements PlayerState{
+import java.io.Serializable;
+
+public class PlayerAlive implements PlayerState, Serializable{
 	
 	/**
 	 * Instantiates a new player dead.

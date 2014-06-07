@@ -1,11 +1,12 @@
 package model.monster;
 
 import model.GameModel;
+import java.io.Serializable;
 
 /**
  * This subclass implements a behaviour associated with a state of the Monster.
  */
-public class MonsterAlive implements MonsterState {
+public class MonsterAlive implements MonsterState, Serializable {
 
 	/**
 	 * Instantiates a new monster alive.
@@ -18,7 +19,6 @@ public class MonsterAlive implements MonsterState {
 	 * @param monster the monster
 	 */
 	public MonsterState die(){
-		GameModel.getInstance().decMonstersAlive();
 		return new MonsterDead();
 	}
 	

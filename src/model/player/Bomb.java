@@ -10,19 +10,21 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
+import model.GameChar;
 import model.GameModel;
 import model.Position;
+import java.io.Serializable;
 
 /**
  * The Class Bomb.
  */
-public class Bomb {
+public class Bomb implements Serializable{
 
 	// Bomb detonation timer
-	public static final int TIME_TO_DETONATION = 3000;
+	public static final int TIME_TO_DETONATION = 1000;
 
 	// Bomb propagation timer
-	public static final int TIME_TO_PROPAGATION = 500;
+	public static final int TIME_TO_PROPAGATION = 100;
 
 	/** The range of explosion */
 	private int range;
@@ -183,7 +185,13 @@ public class Bomb {
 	 * @return true if explosion propagates
 	 */
 	public boolean explodeItem(int incLine, int incCol){
-		return GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine()+incLine, boardPosition.getCol()+incCol)).explode();
+		Position explosionPos = new Position(boardPosition.getLine()+incLine, boardPosition.getCol()+incCol);
+		
+		if(GameModel.getInstance().getPlayers().getBoardPosition().equals(explosionPos)){
+			GameModel.getInstance().getPlayers().setCurrentState(GameModel.getInstance().getPlayers().getCurrentState().die());
+		}
+		
+		return GameModel.getInstance().getBoard().getItem(explosionPos).explode();
 	}
 
 	/**

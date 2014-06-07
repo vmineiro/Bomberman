@@ -1,10 +1,11 @@
 package model.board;
 
+import java.io.Serializable;
 
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemInactive extends ItemState {	
+public class ItemInactive implements ItemState,Serializable {	
 	
 	/**
 	 * Instantiates a new item inactive.
@@ -33,6 +34,21 @@ public class ItemInactive extends ItemState {
 	 */
 	public ItemState explosionEnds() {
 		return new ItemActive();
+	}
+	
+	/**
+	 * Checks if item state is hidden
+	 * @return true if item is hidden
+	 */
+	public boolean isHidden(){
+		return false;
+	}
+	
+	/**
+	 * Opens the exit door
+	 */
+	public ItemState openExit(){
+		return this;
 	}
 
 
