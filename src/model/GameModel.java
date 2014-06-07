@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamException;
 import java.util.ArrayList;
 
 import javax.swing.Timer;
@@ -76,9 +77,11 @@ public class GameModel {
 	 * Instantiates a new game model.
 	 */
 	private GameModel(){
+		
 		this.board = new Board();
 		this.players = new Player();
 		this.monsters = new ArrayList<Monster>();
+		
 		
 		//TODO: DELETE AFTER TESTING
 		//TODO: Generate 3x Monsters
@@ -140,13 +143,6 @@ public class GameModel {
 		
 		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
 		gameTimer.start();
-		
-		//TODO: DELETE
-		try
-		{
-		saveGame("./saved_games/teste.dat");
-		} catch(IOException e){}
-		
 	}	
 	
 	/**
@@ -317,6 +313,16 @@ public class GameModel {
 	public void setMonsters(ArrayList<Monster> monsters2){
 		this.monsters = monsters2;
 	}
+	
+	/**
+	  * Special hook provided by serialization where developer can control what object needs to sent.
+	  * However this method is invoked on the new object instance created by de serialization process.
+	  * @return
+	  * @throws ObjectStreamException
+	  */
+	 private Object readResolve() throws ObjectStreamException{
+	  return getInstance();
+	 }
 	
 	/**
 	 * Sets the game.
