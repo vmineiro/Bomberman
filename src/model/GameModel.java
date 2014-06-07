@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.swing.Timer;
@@ -30,7 +31,7 @@ import model.player.Player;
  * unique instance, and may be responsible for creating its own unique
  * instance.
  */
-public class GameModel {
+public class GameModel implements Serializable{
 
 	/** The unique instance. */
 	private static GameModel uniqueGameModel = null;
@@ -78,10 +79,11 @@ public class GameModel {
 	 */
 	private GameModel(){
 
+		
 		this.board = new Board();
 		this.players = new Player();
 		this.monsters = new ArrayList<Monster>();
-		
+
 		//TODO: DELETE AFTER TESTING
 		//TODO: Generate 3x Monsters
 		for(int i=0; i<1; i++){
@@ -142,6 +144,7 @@ public class GameModel {
 		
 		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
 		gameTimer.start();
+		
 	}	
 	
 	/**
@@ -198,16 +201,7 @@ public class GameModel {
 			
 			//TODO: DELETE AFTER TESTING
 			System.out.println("GAME OVER");
-		}
-		
-		//TODO: delete
-		try
-		{
-			GameModel.getInstance().loadGame("./saved_games/teste.dat");
-		}
-		catch (IOException i ){}
-		catch (ClassNotFoundException i){}
-		
+		}		
 	}
 	
 	/**
@@ -380,7 +374,7 @@ public class GameModel {
 		fileIn.close();
 
 		/* Change the Current Game */
-		//setGame(tempGame);
+		setGame(tempGame);
 	}
 
 	/**
