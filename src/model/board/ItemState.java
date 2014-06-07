@@ -1,16 +1,11 @@
 package model.board;
 
-
-
 /**
  * This class defines an interface for encapsulating the behaviour associated with
  * a particular state of the Item.
  */
-public abstract class ItemState {
-	
-
-	
-	
+public interface ItemState {
+		
 	/**
 	 * Explode. Trigger a state change.
 	 *
@@ -34,6 +29,12 @@ public abstract class ItemState {
 	 * @return the item state
 	 */
 	public abstract ItemState pickUp();
+	
+	/**
+	 * Checks if item state is hidden
+	 * @return true if item is hidden
+	 */
+	public abstract boolean isHidden();
+}
 
-
-}//end ItemState
+//end ItemState

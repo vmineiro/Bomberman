@@ -4,7 +4,7 @@ package model.board;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemInactive extends ItemState {	
+public class ItemInactive implements ItemState {	
 	
 	/**
 	 * Instantiates a new item inactive.
@@ -33,6 +33,14 @@ public class ItemInactive extends ItemState {
 	 */
 	public ItemState explosionEnds() {
 		return new ItemActive();
+	}
+	
+	/**
+	 * Checks if item state is hidden
+	 * @return true if item is hidden
+	 */
+	public boolean isHidden(){
+		return false;
 	}
 
 

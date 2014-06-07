@@ -6,7 +6,7 @@ package model.board;
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemActive extends ItemState {
+public class ItemActive implements ItemState {
 
 	
 	/**
@@ -36,6 +36,14 @@ public class ItemActive extends ItemState {
 	 */
 	public ItemState explosionEnds() {
 		return new ItemActive();
+	}
+	
+	/**
+	 * Checks if item state is hidden
+	 * @return true if item is hidden
+	 */
+	public boolean isHidden(){
+		return false;
 	}
 	
 	
