@@ -3,6 +3,8 @@ package model.player;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import model.Position;
+
 /**
  * The Class Bomb.
  */
@@ -39,6 +41,11 @@ public interface Bomb {
 	 */
 	public abstract BufferedImage getImgBomb(); 
 
+	/**
+	 * Return bomb board position
+	 */
+	public abstract Position getBombPos();
+	
 }
 
 //end Bomb

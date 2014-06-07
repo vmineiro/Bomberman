@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
@@ -46,7 +47,7 @@ public class ItemPath extends Item {
 	 */
 	public void accept(Player player){
 		
-		if (this.state.getClass() == ItemHidden.class  /*|| this.bomb != null*/) return;
+		if (this.state.getClass() == ItemHidden.class  || this.bomb != null) return;
 		
 		player.visitPath(this);
 	}
@@ -89,6 +90,7 @@ public class ItemPath extends Item {
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){
 		if(this.bomb != null){
 			g.drawImage(bomb.getImgBomb(), pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
+			//bomb.draw(g, width, height);
 		}
 		else{
 			g.drawImage(pathImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);

@@ -68,6 +68,13 @@ public class ManualBomb implements Bomb {
 	}
 	
 	/**
+	 * Return bomb board position
+	 */
+	public Position getBombPos(){
+		return boardPosition;
+	}
+	
+	/**
 	 * This method trigger the explosion of the bomb and detonates the cell where the bomb 
 	 * was dropped and the cells got in the bomb range. This object is destroyed.
 	 * 
