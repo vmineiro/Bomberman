@@ -140,11 +140,7 @@ public class Monster implements GameChar{
 	/**
 	 * Moves to new board item
 	 */
-	public void moveMonster(Item mov_item){
-		// Leaves previous  item
-		GameModel.getInstance().getBoard().getItem(getBoardPosition()).monsterOut();
-		GameModel.getInstance().getBoard().getItem(nextMonsterPosition).monsterIn();
-		
+	public void moveMonster(Item mov_item){		
 		// Change boardPosition to nextBoardPosition
 		setBoardPosition(nextMonsterPosition);
 	}

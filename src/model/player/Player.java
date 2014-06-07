@@ -211,9 +211,6 @@ public class Player implements GameChar{
 	public void visitPath(ItemPath item){
 		updateBoardPosition(nextPlayerPosition);
 		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}
 	}
 	
 	/**
@@ -228,9 +225,6 @@ public class Player implements GameChar{
 		//TODO: Add check isActive()
 		updateBoardPosition(nextPlayerPosition);
 		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}
 	}
 	
 	/**
