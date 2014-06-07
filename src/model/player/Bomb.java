@@ -21,10 +21,10 @@ import java.io.Serializable;
 public class Bomb implements Serializable{
 
 	// Bomb detonation timer
-	public static final int TIME_TO_DETONATION = 3000;
+	public static final int TIME_TO_DETONATION = 1000;
 
 	// Bomb propagation timer
-	public static final int TIME_TO_PROPAGATION = 500;
+	public static final int TIME_TO_PROPAGATION = 100;
 
 	/** The range of explosion */
 	private int range;

@@ -22,7 +22,7 @@ import model.player.Player;
  */
 public abstract class Item implements Serializable{
 	
-	private static final int EXPLOSION_DURATION = 3000;
+	private static final int EXPLOSION_DURATION = 500;
 	
 	/** The state. */
 	protected ItemState state;
