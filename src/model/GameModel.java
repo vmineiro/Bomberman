@@ -72,16 +72,15 @@ public class GameModel {
 	public static final Position RIGHT = new Position(0,1);
 	
 	// =====================================================================
-
+	
 	/**
 	 * Instantiates a new game model.
 	 */
 	private GameModel(){
-		
+
 		this.board = new Board();
 		this.players = new Player();
 		this.monsters = new ArrayList<Monster>();
-		
 		
 		//TODO: DELETE AFTER TESTING
 		//TODO: Generate 3x Monsters
@@ -200,6 +199,15 @@ public class GameModel {
 			//TODO: DELETE AFTER TESTING
 			System.out.println("GAME OVER");
 		}
+		
+		//TODO: delete
+		try
+		{
+			GameModel.getInstance().loadGame("./saved_games/teste.dat");
+		}
+		catch (IOException i ){}
+		catch (ClassNotFoundException i){}
+		
 	}
 	
 	/**
@@ -321,7 +329,7 @@ public class GameModel {
 	  * @throws ObjectStreamException
 	  */
 	 private Object readResolve() throws ObjectStreamException{
-	  return getInstance();
+	  return uniqueGameModel;
 	 }
 	
 	/**
@@ -351,7 +359,6 @@ public class GameModel {
 
 		fileOut.close();
 		os.close();
-		
 	}
 
 	/**
@@ -367,13 +374,13 @@ public class GameModel {
 		ObjectInputStream is = new ObjectInputStream(fileIn);
 
 		/* load the saved game in the file to the object tempGame */
-		GameModel tempGame = (GameModel) is.readObject();
+		GameModel tempGame = (GameModel)is.readObject();
 
 		is.close();
 		fileIn.close();
 
 		/* Change the Current Game */
-		setGame(tempGame);
+		//setGame(tempGame);
 	}
 
 	/**
