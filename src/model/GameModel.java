@@ -306,9 +306,18 @@ public class GameModel {
 	 * @return true, if the game is over.
 	 */
 	public boolean gameOver(){
-		if(getPlayers().isDead()){
+		if(getPlayers().getCurrentState().isDead()){
+			//TODO: Delete System.out
+			System.out.println("Player is dead");
 			return true;
 		}
+		
+		if(getMonsters().isEmpty()){
+			//TODO: Delete System.out
+			System.out.println("Player won");
+			return true;
+		}
+		
 		return false;
 	}
 
