@@ -16,6 +16,13 @@ public class PlayerDead implements PlayerState {
 	public PlayerState die(){
 		return this;
 	}	
+	
+	/**
+	 * Check if player is dead
+	 */
+	public boolean isDead(){
+		return true;
+	}
 }
 
 //end PlayerDead
