@@ -3,17 +3,14 @@ package model;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import model.board.Board;
 import model.board.Item;
 import model.board.ItemActive;
+import model.board.ItemInactive;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 import model.monster.Monster;
@@ -103,7 +100,7 @@ public class GameModel {
 				{'x', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
-				{'x', 'p', 'p', 'p', 'x', 'p', 'p', 'p', 'p', 'x'},
+				{'x', 'p', 'p', 'p', 'x', 'p', 'w', 'w', 'p', 'x'},
 				{'x', 'p', 'p', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
@@ -121,7 +118,11 @@ public class GameModel {
 				}else if(mazeChar[i][j] == 'p'){
 					maze[i][j] = new ItemPath();
 					maze[i][j].setCurrentState(new ItemActive());
+				}else if(mazeChar[i][j] == 'w'){
+					maze[i][j] = new ItemPath();
+					maze[i][j].setCurrentState(new ItemInactive());
 				}
+				
 			}
 		}
 		

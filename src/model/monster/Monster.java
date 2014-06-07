@@ -1,7 +1,6 @@
 package model.monster;
 
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -13,10 +12,6 @@ import model.GameModel;
 import model.Position;
 import model.board.Item;
 import model.board.BoardExit;
-import model.board.BombControl;
-import model.board.BombPowerUp;
-import model.board.BoostSpeed;
-import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 import model.player.Player;
@@ -134,9 +129,11 @@ public class Monster implements GameChar{
 	 * @return
 	 */
 	public boolean checkCollision(){
-		if(boardPosition.equals(GameModel.getInstance().getPlayers().getBoardPosition())){
-			collidesWith(GameModel.getInstance().getPlayers());
-			return true;
+		if(!getCurrentState().isDead()){
+			if(boardPosition.equals(GameModel.getInstance().getPlayers().getBoardPosition())){
+				collidesWith(GameModel.getInstance().getPlayers());
+				return true;
+			}
 		}
 		return false;
 	}
@@ -144,49 +141,9 @@ public class Monster implements GameChar{
 	/**
 	 * Moves to new board item
 	 */
-	public void moveMonster(Item mov_item){
-		// Leaves previous  item
-		GameModel.getInstance().getBoard().getItem(getBoardPosition()).monsterOut();
-		GameModel.getInstance().getBoard().getItem(nextMonsterPosition).monsterIn();
-		
+	public void moveMonster(Item mov_item){		
 		// Change boardPosition to nextBoardPosition
 		setBoardPosition(nextMonsterPosition);
-	}
-	
-	/**
-	 * Monster visits bomb control item in game board
-	 */
-	public void visitBombControl(BombControl item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
-	}
-	
-	/**
-	 * Monster visits extra bomb item in game board
-	 */
-	public void visitExtraBomb(ExtraBomb item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
-	}
-	
-	/**
-	 * Monster visits bomb power up item in game board
-	 */
-	public void visitBombPowerUp(BombPowerUp item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
-	}
-	
-	/**
-	 * Monster visits boost speed item in game board
-	 */
-	public void visitBoostSpeed(BoostSpeed item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
 	}
 	
 	/**
@@ -229,7 +186,10 @@ public class Monster implements GameChar{
 	 * @param vPlayer
 	 */
 	public void visit(Player vPlayer){
-		vPlayer.setCurrentState(vPlayer.getCurrentState().die());
+		if(!getCurrentState().isDead())
+		{
+			vPlayer.setCurrentState(vPlayer.getCurrentState().die());
+		}		
 	}
 	
 	/**

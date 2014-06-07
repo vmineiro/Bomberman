@@ -1,51 +1,213 @@
 package model.player;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.Timer;
+
+import model.GameModel;
 import model.Position;
 
 /**
  * The Class Bomb.
  */
-public interface Bomb {
-	
+public class Bomb {
+
 	// Bomb detonation timer
 	public static final int TIME_TO_DETONATION = 3000;
-	
+
 	// Bomb propagation timer
 	public static final int TIME_TO_PROPAGATION = 500;
-	
+
+	/** The range of explosion */
+	private int range;
+
+	/** The range counter - UP */
+	private int range_counter_up;
+
+	/** The range counter - DOWN */
+	private int range_counter_down;
+
+	/** The range counter - LEFT */
+	private int range_counter_left;
+
+	/** The range counter - RIGHT */
+	private int range_counter_right;
+
+	/** The player who dropped the bomb */
+	private Player dropPlayer;
+
+	/** The board position where the bomb was dropped */
+	private Position boardPosition;
+
+	/** The bomb timer */
+	private Timer bombTimer;
+
+	/** The propagation timer */
+	private Timer proTimer;
+
+	/** The animation for the bomb */
+	private BufferedImage bombImg;
+
+	//=======================================================
+
+	/**
+	 * Instantiates a new automatic bomb.
+	 */
+	public Bomb(Player dropPlayer){
+		this.range = 3;
+		this.range_counter_up = 0;
+		this.range_counter_down = 0;
+		this.range_counter_left = 0;
+		this.range_counter_right = 0;
+		this.dropPlayer = dropPlayer;
+		this.boardPosition = dropPlayer.getBoardPosition();
+
+		try 
+		{
+			bombImg = ImageIO.read(new File("img/bomb_1.png"));			
+		} catch (IOException e) {}
+
+		ActionListener bombTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				detonate();
+				bombTimer.stop();
+			}
+		};
+
+		bombTimer = new Timer(TIME_TO_DETONATION, bombTimerListener);	
+
+		bombTimer.start();
+	}
+
+	/**
+	 * Return bomb board position
+	 */
+	public Position getBombPos(){
+		return boardPosition;
+	}
+
 	/**
 	 * This method trigger the explosion of the bomb and detonates the cell where the bomb 
 	 * was dropped and the cells got in the bomb range. This object is destroyed.
 	 * 
 	 */
-	public abstract void detonate();
-	
+	public void detonate(){
+
+		// First Explosion
+		GameModel.getInstance().getBoard().getItem(boardPosition).explode();
+
+		//TODO: Removed bomb from item
+		dropPlayer.addBomb();
+
+		ActionListener proTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				propagateExplosion();
+				if(bombPropagationIsOver()){
+					proTimer.stop();
+				}
+			}
+		};
+
+		proTimer = new Timer(TIME_TO_PROPAGATION, proTimerListener);
+
+		//Start Timer for next Explosion
+		proTimer.start();
+
+	}
+
+	/**
+	 * Verify if bomb propagation is over
+	 */
+	public boolean bombPropagationIsOver(){
+		return (range_counter_up == range && range_counter_down == range && range_counter_left == range && range_counter_right == range);
+	}
+
 	/**
 	 * Propagate bomb explosion
 	 */
-	public abstract void propagateExplosion();
+	public void propagateExplosion(){
+
+		if(range_counter_up != range)
+		{
+			if(!explodeItem(-range_counter_up, 0))
+			{
+				range_counter_up = range;
+			}else{
+				range_counter_up++;
+			}
+		}
+
+		if(range_counter_down != range)
+		{
+			if(!explodeItem(range_counter_down, 0))
+			{
+				range_counter_down = range;
+			}else{
+				range_counter_down++;
+			}
+
+		}
+
+		if(range_counter_left != range)
+		{
+			if(!explodeItem(0, range_counter_left))
+			{
+				range_counter_left = range;
+			}else{
+				range_counter_left++;
+			}
+		}
+
+		if(range_counter_right != range)
+		{
+			if(!explodeItem(0, -range_counter_right))
+			{
+				range_counter_right = range;
+			}else{
+				range_counter_right++;
+			}
+		}
+	}
+
+	/**
+	 * Explodes board item
+	 * 
+	 * @param incLine
+	 * @param incCol
+	 * @return true if explosion propagates
+	 */
+	public boolean explodeItem(int incLine, int incCol){
+		return GameModel.getInstance().getBoard().getItem(new Position(boardPosition.getLine()+incLine, boardPosition.getCol()+incCol)).explode();
+	}
 
 	/**
 	 * Draw.
 	 * This method is called by GUI and is responsible for draw the bomb in the game window.
 	 * 
 	 */
-	public abstract void draw(Graphics g, int width, int height);
-	
+	public void draw(Graphics g, int width, int height){
+		int n = GameModel.getInstance().getBoard().getMaze().length;
+		int dstImgWid = width / n;
+		int dstImgHei = height / n;
+
+		g.drawImage(this.bombImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 124, 114, null);
+	}
+
 	/**
 	 * Return bomb image
 	 * @return bomb image
 	 */
-	public abstract BufferedImage getImgBomb(); 
+	public BufferedImage getImgBomb(){
+		return bombImg;
+	}
 
-	/**
-	 * Return bomb board position
-	 */
-	public abstract Position getBombPos();
-	
 }
 
 //end Bomb
