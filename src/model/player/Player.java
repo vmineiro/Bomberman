@@ -15,10 +15,6 @@ import model.GameChar;
 import model.GameModel;
 import model.Position;
 import model.board.BoardExit;
-import model.board.BombControl;
-import model.board.BombPowerUp;
-import model.board.BoostSpeed;
-import model.board.ExtraBomb;
 import model.board.Item;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
@@ -207,54 +203,6 @@ public class Player implements GameChar{
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * Monster visits bomb control item in game board
-	 */
-	public void visitBombControl(BombControl item){
-		updateBoardPosition(nextPlayerPosition);
-		getBombControl();
-		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}
-	}
-	
-	/**
-	 * Monster visits extra bomb item in game board
-	 */
-	public void visitExtraBomb(ExtraBomb item){
-		updateBoardPosition(nextPlayerPosition);
-		addBomb();
-		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}		
-	}
-	
-	/**
-	 * Monster visits bomb power up item in game board
-	 */
-	public void visitBombPowerUp(BombPowerUp item){
-		updateBoardPosition(nextPlayerPosition);
-		increasePowerBomb();
-		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}
-	}
-	
-	/**
-	 * Monster visits boost speed item in game board
-	 */
-	public void visitBoostSpeed(BoostSpeed item){
-		updateBoardPosition(nextPlayerPosition);
-		increaseSpeed();
-		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}
 	}
 	
 	/**

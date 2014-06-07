@@ -7,10 +7,6 @@ import model.GameModel;
 import model.Position;
 import model.board.Board;
 import model.board.BoardExit;
-import model.board.BombControl;
-import model.board.BombPowerUp;
-import model.board.BoostSpeed;
-import model.board.ExtraBomb;
 import model.board.Item;
 import model.board.ItemActive;
 import model.board.ItemDetonating;
@@ -145,185 +141,7 @@ public class BoardTests {
 		
 		assertFalse(path.isActive());	
 		
-	}
-
-	/**
-	 * Extra bomb test.
-	 * 
-	 * Neste teste pretende-se testar a criação (limite de objectos), alteração de estados e parametros do objeto ExtraBomb.
-	 * Mais concretamente, quando é detonado (nos possíveis estado), quando é visitado por um jogador, aumentando o número de
-	 * disponiveis do jogador e quando é visitado por um monstro.
-	 */
-	@Test
-	public void extraBombTest(){
-
-		
-		Item extraBomb = new ExtraBomb();
-		
-		assertTrue(ItemHidden.class == extraBomb.getCurrentState().getClass());
-		
-		extraBomb.explode();
-		assertEquals(ItemDetonating.class, extraBomb.getCurrentState().getClass());
-		assertFalse(extraBomb.isExploding());
-		assertFalse(extraBomb.isActive());
-		
-		try {
-			Thread.sleep(3100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		assertTrue(extraBomb.isActive());		
-		
-
-			
-		extraBomb.explode();
-		assertEquals(ItemExploding.class, extraBomb.getCurrentState().getClass());
-		assertTrue(extraBomb.isExploding());
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
-		
-		assertFalse(extraBomb.isActive());	
-
-		
-	}
-
-	/**
-	 * Bomb control test.
-	 * 
-	 * Neste teste pretende-se testar a criação (limite de objectos), alteração de estados e parametros do objeto BombControl.
-	 * Mais concretamente, quando é detonado (nos possíveis estado), quando é visitado por um jogador, alterando o tipo
-	 * das suas bombas e quando é visitado por um monstro.
-	 */
-	@Test
-	public void bombControlTest(){
-		
-		Item bombControl = new BombControl();
-
-		assertTrue(ItemHidden.class == bombControl.getCurrentState().getClass());
-		
-		bombControl.explode();
-		assertEquals(ItemDetonating.class, bombControl.getCurrentState().getClass());
-		assertFalse(bombControl.isExploding());
-		assertFalse(bombControl.isActive());
-		
-		try {
-			Thread.sleep(3100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		assertTrue(bombControl.isActive());		
-		
-
-			
-		bombControl.explode();
-		assertEquals(ItemExploding.class, bombControl.getCurrentState().getClass());
-		assertTrue(bombControl.isExploding());
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
-		
-		assertFalse(bombControl.isActive());	
-
-	}
-
-	/**
-	 * Bomb power up test.
-	 * 
-	 * Neste teste pretende-se testar a criação (limite de objectos), alteração de estados e parametros do objeto BombPowerUp.
-	 * Mais concretamente, quando é detonado (nos possíveis estado), quando é visitado por um jogador, aumentando a intensidade
-	 * das suas bombas e quando é visitado por um monstro.
-	 */
-	@Test
-	public void bombPowerUpTest(){
-
-		Item bombPowerUp = new BombPowerUp();
-
-		assertTrue(ItemHidden.class == bombPowerUp.getCurrentState().getClass());
-		
-		bombPowerUp.explode();
-		assertEquals(ItemDetonating.class, bombPowerUp.getCurrentState().getClass());
-		assertFalse(bombPowerUp.isExploding());
-		assertFalse(bombPowerUp.isActive());
-		
-		try {
-			Thread.sleep(3100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		assertTrue(bombPowerUp.isActive());		
-		
-
-			
-		bombPowerUp.explode();
-		assertEquals(ItemExploding.class, bombPowerUp.getCurrentState().getClass());
-		assertTrue(bombPowerUp.isExploding());
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
-		
-		assertFalse(bombPowerUp.isActive());
-		
-	}
-
-	/**
-	 * Boost speed test.
-	 * 
-	 * Neste teste pretende-se testar a criação (limite de objectos), alteração de estados e parametros do objeto BoostSpeed.
-	 * Mais concretamente, quando é detonado (nos possíveis estado), quando é visitado por um jogador, aumentando a velocidade
-	 * de deslocação do jogador e quando é visitado por um monstro.
-	 */
-	@Test
-	public void boostSpeedTest(){
-		
-		Item boostSpeed = new BoostSpeed();
-
-		assertTrue(ItemHidden.class == boostSpeed.getCurrentState().getClass());
-		
-		boostSpeed.explode();
-		assertEquals(ItemDetonating.class, boostSpeed.getCurrentState().getClass());
-		assertFalse(boostSpeed.isExploding());
-		assertFalse(boostSpeed.isActive());
-		
-		try {
-			Thread.sleep(3100);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		assertTrue(boostSpeed.isActive());		
-		
-
-			
-		boostSpeed.explode();
-		assertEquals(ItemExploding.class, boostSpeed.getCurrentState().getClass());
-		assertTrue(boostSpeed.isExploding());
-		
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-
-			e.printStackTrace();
-		}
-		
-		assertFalse(boostSpeed.isActive());
-
-	}
+	}	
 
 	/**
 	 * Board exit test.
@@ -448,14 +266,6 @@ public class BoardTests {
 		
 		Item boardExit = new BoardExit();
 		
-		Item bombControl = new BombControl();
-		
-		Item bombPowerUp = new BombPowerUp();
-		
-		Item boostSpeed = new BoostSpeed();
-		
-		Item extraBomb = new ExtraBomb();
-		
 		Item undestructibleWall = new UndestructibleWall();
 		
 		
@@ -487,43 +297,6 @@ public class BoardTests {
 		assertEquals("Expected to not change state", ItemActive.class, normalPath.getCurrentState().getClass());
 		hiddenPath.accept(monster);
 		assertEquals("Expected to not change state", ItemActive.class, normalPath.getCurrentState().getClass());
-		
-		Item[] powerUpItems = new Item[] {
-				boardExit,
-				bombControl,
-				bombPowerUp,
-				boostSpeed,
-				extraBomb
-				};
-		
-		for (Item i: powerUpItems){
-			
-			i.accept(monster);
-			assertEquals("Expected to not change state", ItemHidden.class, i.getCurrentState().getClass());
-			i.accept(player);
-			assertEquals("Expected to not change state", ItemHidden.class, i.getCurrentState().getClass());
-			
-		}
-		
-
-		powerUpItems = new Item[] {
-				bombControl,
-				bombPowerUp,
-				boostSpeed,
-				extraBomb
-				};
-		
-		
-		for (Item i: powerUpItems){
-			
-			i.setCurrentState(new ItemActive());
-			
-			i.accept(monster);
-			assertEquals("Expected to not change state", ItemActive.class, i.getCurrentState().getClass());
-			i.accept(player);
-			assertEquals("Expected to change state", ItemInactive.class, i.getCurrentState().getClass());
-			
-		}
 		
 		boardExit.setCurrentState(new ItemInactive());
 		boardExit.accept(player);

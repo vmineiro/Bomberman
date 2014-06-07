@@ -13,10 +13,6 @@ import model.GameModel;
 import model.Position;
 import model.board.Item;
 import model.board.BoardExit;
-import model.board.BombControl;
-import model.board.BombPowerUp;
-import model.board.BoostSpeed;
-import model.board.ExtraBomb;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 import model.player.Player;
@@ -151,42 +147,6 @@ public class Monster implements GameChar{
 		
 		// Change boardPosition to nextBoardPosition
 		setBoardPosition(nextMonsterPosition);
-	}
-	
-	/**
-	 * Monster visits bomb control item in game board
-	 */
-	public void visitBombControl(BombControl item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
-	}
-	
-	/**
-	 * Monster visits extra bomb item in game board
-	 */
-	public void visitExtraBomb(ExtraBomb item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
-	}
-	
-	/**
-	 * Monster visits bomb power up item in game board
-	 */
-	public void visitBombPowerUp(BombPowerUp item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
-	}
-	
-	/**
-	 * Monster visits boost speed item in game board
-	 */
-	public void visitBoostSpeed(BoostSpeed item){
-		moveMonster(item);
-		checkDeath(item);
-		checkCollision();
 	}
 	
 	/**
