@@ -1,11 +1,11 @@
 package model.board;
 
-
+import java.io.Serializable;
 
 /**
  * The Class ItemDetonating.
  */
-public class ItemDetonating implements ItemState {
+public class ItemDetonating implements ItemState, Serializable {
 
 	/**
 	 * Instantiates a new item detonating.

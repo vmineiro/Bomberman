@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
@@ -19,7 +20,7 @@ import model.player.Player;
  * This class defines the interface of interest to clients and maintains an
  * instance of a ItemState subclass that defines the current state.
  */
-public abstract class Item {
+public abstract class Item implements Serializable{
 	
 	private static final int EXPLOSION_DURATION = 3000;
 	

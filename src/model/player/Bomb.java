@@ -13,11 +13,12 @@ import javax.swing.Timer;
 import model.GameChar;
 import model.GameModel;
 import model.Position;
+import java.io.Serializable;
 
 /**
  * The Class Bomb.
  */
-public class Bomb {
+public class Bomb implements Serializable{
 
 	// Bomb detonation timer
 	public static final int TIME_TO_DETONATION = 3000;

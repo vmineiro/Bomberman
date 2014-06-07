@@ -10,13 +10,12 @@ import javax.imageio.ImageIO;
 import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
-
-
+import java.io.Serializable;
 
 /**
  * The Class Path.
  */
-public class ItemPath extends Item {
+public class ItemPath extends Item implements Serializable{
 	
 	/** The wall image */
 	BufferedImage wallImg;

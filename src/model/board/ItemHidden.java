@@ -1,11 +1,11 @@
 package model.board;
 
+import java.io.Serializable;
 
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemHidden implements ItemState {
-
+public class ItemHidden implements ItemState, Serializable {
 
 	/**
 	 * Instantiates a new item hidden.

@@ -1,12 +1,11 @@
 package model.board;
 
-
-
+import java.io.Serializable;
 
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemExploding implements ItemState {
+public class ItemExploding implements ItemState, Serializable {
 	
 	
 	/**

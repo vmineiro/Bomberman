@@ -1,10 +1,11 @@
 package model.board;
 
+import java.io.Serializable;
 
 /**
  * This subclass implements a behaviour associated with a state of the Item.
  */
-public class ItemInactive implements ItemState {	
+public class ItemInactive implements ItemState,Serializable {	
 	
 	/**
 	 * Instantiates a new item inactive.

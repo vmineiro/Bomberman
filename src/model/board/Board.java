@@ -1,6 +1,7 @@
 package model.board;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import model.GameModel;
 import model.Position;
@@ -9,7 +10,7 @@ import model.Position;
 /**
  * This class represents the game board.
  */
-public class Board {
+public class Board implements Serializable{
 	
 	/** The maze. */
 	private Item[][] maze;

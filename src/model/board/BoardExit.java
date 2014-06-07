@@ -9,11 +9,11 @@ import javax.imageio.ImageIO;
 
 import model.monster.Monster;
 import model.player.Player;
-
+import java.io.Serializable;
 /**
  * This class represents the exit of the maze.
  */
-public class BoardExit extends Item {
+public class BoardExit extends Item implements Serializable{
 	
 	/** The board exit image. */
 	BufferedImage boardExitImg;

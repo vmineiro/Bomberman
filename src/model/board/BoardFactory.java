@@ -1,10 +1,11 @@
 package model.board;
 
+import java.io.Serializable;
 
 /**
  * A factory for creating Board objects.
  */
-public class BoardFactory {
+public class BoardFactory implements Serializable{
 
 	
 	/** The maze. */

@@ -1,9 +1,11 @@
 package model.monster;
 
+import java.io.Serializable;
+
 /**
  * This subclass implements a behaviour associated with a state of the Monster.
  */
-public class MonsterDead implements MonsterState {
+public class MonsterDead implements MonsterState, Serializable {
 
 	/**
 	 * Instantiates a new monster dead.

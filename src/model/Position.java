@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * The Class Position.
  */
-public class Position {
+public class Position implements Serializable{
 	
 	/** The line. */
 	private int line;

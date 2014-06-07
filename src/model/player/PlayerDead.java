@@ -1,9 +1,11 @@
 package model.player;
 
+import java.io.Serializable;
+
 /**
  * This subclass implements a behaviour associated with a state of the Player.
  */
-public class PlayerDead implements PlayerState {
+public class PlayerDead implements PlayerState, Serializable {
 
 	/**
 	 * Instantiates a new player dead.

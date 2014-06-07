@@ -10,13 +10,12 @@ import javax.imageio.ImageIO;
 import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
-
-
+import java.io.Serializable;
 
 /**
  * The Class UndestructibleWall.
  */
-public class UndestructibleWall extends Item {
+public class UndestructibleWall extends Item implements Serializable{
 	
 	
 	/** The steel image. */
