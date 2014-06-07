@@ -125,15 +125,17 @@ public class Player implements GameChar{
 			setCurrentState(getCurrentState().die());
 			return true;
 		}
-		
+
 		//Checks collision with monsters
 		for(Monster monster : GameModel.getInstance().getMonsters()){
-			if(boardPosition.equals(monster.getBoardPosition())){
-				collidesWith(monster);
-				return true;
+			if(!monster.getCurrentState().isDead()){
+				if(boardPosition.equals(monster.getBoardPosition())){
+					collidesWith(monster);
+					return true;
+				}
 			}
 		}
-		
+
 		return false;
 	}
 	
@@ -143,9 +145,6 @@ public class Player implements GameChar{
 	public void visitPath(ItemPath item){
 		updateBoardPosition(nextPlayerPosition);
 		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}
 	}
 	
 	/**
@@ -160,9 +159,6 @@ public class Player implements GameChar{
 		//TODO: Add check isActive()
 		updateBoardPosition(nextPlayerPosition);
 		checkDeath(item);
-		if(item.hasMonsters()){
-			collidesWith(new Monster());
-		}
 	}
 	
 	/**
@@ -184,6 +180,8 @@ public class Player implements GameChar{
 	 * @param vMonster
 	 */
 	public void visit(Monster vMonster){
+		//TODO: DELETE
+		System.out.println("PLAYER MATOU SE");
 		setCurrentState(getCurrentState().die());
 	}	
 

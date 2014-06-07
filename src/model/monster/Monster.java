@@ -129,9 +129,11 @@ public class Monster implements GameChar{
 	 * @return
 	 */
 	public boolean checkCollision(){
-		if(boardPosition.equals(GameModel.getInstance().getPlayers().getBoardPosition())){
-			collidesWith(GameModel.getInstance().getPlayers());
-			return true;
+		if(!getCurrentState().isDead()){
+			if(boardPosition.equals(GameModel.getInstance().getPlayers().getBoardPosition())){
+				collidesWith(GameModel.getInstance().getPlayers());
+				return true;
+			}
 		}
 		return false;
 	}
@@ -188,7 +190,10 @@ public class Monster implements GameChar{
 	 * @param vPlayer
 	 */
 	public void visit(Player vPlayer){
-		vPlayer.setCurrentState(vPlayer.getCurrentState().die());
+		if(!getCurrentState().isDead())
+		{
+			vPlayer.setCurrentState(vPlayer.getCurrentState().die());
+		}		
 	}
 	
 	/**
