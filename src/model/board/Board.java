@@ -73,6 +73,14 @@ public class Board {
 	}
 	
 	/**
+	 * Return the exit item
+	 * @return
+	 */
+	public Item getExitItem(){
+		return this.getItem(this.getExitPos());
+	}
+	
+	/**
 	 * Draw Game Board
 	 */
 	public void draw(Graphics g, int width, int height)
