@@ -103,8 +103,6 @@ public class Bomb implements Serializable{
 
 		// First Explosion
 		GameModel.getInstance().getBoard().getItem(boardPosition).explode();
-
-		//TODO: Removed bomb from item
 		dropPlayer.addBomb();
 
 		ActionListener proTimerListener = new ActionListener(){ 

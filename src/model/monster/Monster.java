@@ -124,7 +124,6 @@ public class Monster implements GameChar, Serializable{
 		return false;
 	}
 	
-	//TODO: Only works with one player
 	/**
 	 * Checks collisions with players
 	 * @return

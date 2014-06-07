@@ -393,8 +393,6 @@ public class GameModel implements Serializable{
 	public boolean gameOver(){
 		
 		if(getPlayers().getCurrentState().isDead()){
-			//TODO: Delete System.out
-			System.out.println("Player is dead");
 			return true;
 		}
 		
