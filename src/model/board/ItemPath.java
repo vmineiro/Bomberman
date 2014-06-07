@@ -21,6 +21,9 @@ public class ItemPath extends Item {
 	/** The path image. */
 	BufferedImage pathImg;
 	
+	/** The path exploding image */
+	BufferedImage explodingImg;
+	
 	/**
 	 * Instantiates a new path.
 	 */
@@ -32,6 +35,7 @@ public class ItemPath extends Item {
 		
 		try {
 			pathImg = ImageIO.read(new File("img/path.png"));
+			explodingImg = ImageIO.read(new File("img/explosion_center.png"));
 		} catch (IOException e) {
 
 			e.printStackTrace();
@@ -89,10 +93,11 @@ public class ItemPath extends Item {
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){
 		if(this.bomb != null){
-			g.drawImage(bomb.getImgBomb(), pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
+			g.drawImage(bomb.getImgBomb(), pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 114, null);
 			//bomb.draw(g, width, height);
-		}
-		else{
+		}else if(isExploding()){
+			g.drawImage(explodingImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 96, 97, null);
+		}else{
 			g.drawImage(pathImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
 		}
 		
