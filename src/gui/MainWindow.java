@@ -12,6 +12,8 @@ import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import javax.swing.border.EmptyBorder;
 
+import model.GameModel;
+
 public class MainWindow {
 
 	private JFrame frame;
@@ -55,6 +57,9 @@ public class MainWindow {
 		frame.getContentPane().setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);		
+		
+		
+		GameModel.getInstance();
 		
 		gotoMainMenu();	
 

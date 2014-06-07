@@ -49,8 +49,7 @@ public class GamePanel extends JPanel implements KeyListener
 	//=============================================================
 	
 	public GamePanel(final MainWindow mainWindow)
-	{
-		GameModel.getInstance();		
+	{		
 		addKeyListener(this);
 		this.mainWindow = mainWindow;
 		

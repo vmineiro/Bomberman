@@ -12,6 +12,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,6 +20,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
+
+import model.GameModel;
 
 
 public class MainMenuPanel extends JPanel {
@@ -30,6 +33,8 @@ public class MainMenuPanel extends JPanel {
 	private boolean configSettings = false;
 	
 	private MainWindow mainWindow;
+	
+	private JFileChooser loadFileChooser;
 	
 
 	/**
@@ -88,10 +93,23 @@ public class MainMenuPanel extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						newGame = false;
-						loadGame = true;
-						configSettings = false;
+						
+						
+//						JButton btnLoadGame = new JButton("Load Game");
+						
+						loadFileChooser = new JFileChooser();
+						loadFileChooser.setMultiSelectionEnabled(false);
+						loadFileChooser.showOpenDialog(mainWindow.getFrame().getContentPane());
+								
+						String path = loadFileChooser.getSelectedFile().getAbsolutePath();
+						
+						
+						//TODO add path to loadGame() call
+//						GameModel.getInstance().loadGame();
+						
 						setVisible(false);
+						
+						mainWindow.startNewGame();
 					}
 				});
 				panel.add(btnLoadGame);
@@ -152,34 +170,4 @@ public class MainMenuPanel extends JPanel {
 		}
 	}
 	
-	public boolean isNewGame() {
-		return newGame;
-	}
-
-
-	public void setNewGame(boolean newGame) {
-		this.newGame = newGame;
-	}
-
-
-	public boolean isLoadGame() {
-		return loadGame;
-	}
-
-
-	public void setLoadGame(boolean loadGame) {
-		this.loadGame = loadGame;
-	}
-
-
-	public boolean isConfigSettings() {
-		return configSettings;
-	}
-
-
-	public void setConfigSettings(boolean configSettings) {
-		this.configSettings = configSettings;
-	}
-
-
 }
