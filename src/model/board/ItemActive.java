@@ -46,5 +46,12 @@ public class ItemActive implements ItemState {
 		return false;
 	}
 	
+	/**
+	 * Opens the exit door
+	 */
+	public ItemState openExit(){
+		return this;
+	}
+	
 	
 }//end ItemActive

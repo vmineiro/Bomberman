@@ -35,6 +35,13 @@ public class ItemHidden implements ItemState {
 	public boolean isHidden(){
 		return true;
 	}
+	
+	/**
+	 * Opens the exit door
+	 */
+	public ItemState openExit(){
+		return new ItemActive();
+	}
 
 	
 }

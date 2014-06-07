@@ -36,5 +36,12 @@ public class ItemDetonating implements ItemState {
 	public boolean isHidden(){
 		return false;
 	}
+	
+	/**
+	 * Opens the exit door
+	 */
+	public ItemState openExit(){
+		return this;
+	}
 
 }

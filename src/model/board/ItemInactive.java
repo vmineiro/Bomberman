@@ -42,6 +42,13 @@ public class ItemInactive implements ItemState {
 	public boolean isHidden(){
 		return false;
 	}
+	
+	/**
+	 * Opens the exit door
+	 */
+	public ItemState openExit(){
+		return this;
+	}
 
 
 }//end ItemInactive

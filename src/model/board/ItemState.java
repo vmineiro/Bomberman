@@ -20,8 +20,6 @@ public interface ItemState {
 	 * @return the item state
 	 */
 	public abstract ItemState explosionEnds();
-	
-	
 
 	/**
 	 * The item (power up item) is visited by the player. Trigger a state change.
@@ -35,6 +33,11 @@ public interface ItemState {
 	 * @return true if item is hidden
 	 */
 	public abstract boolean isHidden();
+	
+	/**
+	 * Opens the exit door
+	 */
+	public abstract ItemState openExit();
 }
 
 //end ItemState
