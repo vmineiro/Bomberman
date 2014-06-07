@@ -41,7 +41,7 @@ public class ItemDetonating implements ItemState, Serializable {
 	 * Opens the exit door
 	 */
 	public ItemState openExit(){
-		return this;
+		return new ItemInactive();
 	}
 
 }

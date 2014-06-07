@@ -33,7 +33,7 @@ public class ItemInactive implements ItemState,Serializable {
 	 * Explosion end provokes transition
 	 */
 	public ItemState explosionEnds() {
-		return new ItemActive();
+		return this;
 	}
 	
 	/**
@@ -48,7 +48,7 @@ public class ItemInactive implements ItemState,Serializable {
 	 * Opens the exit door
 	 */
 	public ItemState openExit(){
-		return this;
+		return new ItemActive();
 	}
 
 

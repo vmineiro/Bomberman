@@ -40,7 +40,7 @@ public class ItemHidden implements ItemState, Serializable {
 	 * Opens the exit door
 	 */
 	public ItemState openExit(){
-		return new ItemActive();
+		return new ItemInactive();
 	}
 
 	

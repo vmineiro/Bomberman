@@ -27,7 +27,7 @@ public class BoardExit extends Item implements Serializable{
 	public BoardExit(){
 		
 		super();
-		setCurrentState(new ItemHidden());
+		setCurrentState(new ItemInactive());
 		
 		try {	
 			boardExitImg = ImageIO.read(new File("img/exit.png"));
@@ -43,7 +43,7 @@ public class BoardExit extends Item implements Serializable{
 	@Override
 	public void accept(Player player){
 		
-		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
+		if (this.state.getClass() == ItemInactive.class || this.bomb != null) return;
 		player.visitBoardExit(this);
 	}
 
@@ -68,13 +68,17 @@ public class BoardExit extends Item implements Serializable{
 			setAnimation(boardExitImg);
 		}		
 	}
+	
+	public boolean explode() {
+		return false;
+	}
 
 	/**
 	 * Draw Board Exit
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height)
 	{
-		if(!getCurrentState().isHidden()){
+		if(getCurrentState().getClass() == ItemActive.class){
 			g.drawImage(exitOpenImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 112, 112, null);
 		}else{
 			g.drawImage(boardExitImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 112, 112, null);

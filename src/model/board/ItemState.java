@@ -38,6 +38,8 @@ public interface ItemState {
 	 * Opens the exit door
 	 */
 	public abstract ItemState openExit();
+	
+
 }
 
 //end ItemState
