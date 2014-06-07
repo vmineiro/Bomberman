@@ -140,6 +140,13 @@ public class GameModel {
 		
 		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
 		gameTimer.start();
+		
+		//TODO: DELETE
+		try
+		{
+		saveGame("./saved_games/teste.dat");
+		} catch(IOException e){}
+		
 	}	
 	
 	/**
