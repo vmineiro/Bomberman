@@ -1,0 +1,182 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.ImageProducer;
+
+import javax.swing.Box;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+
+
+public class MainMenuPanel extends JPanel {
+	
+	private boolean newGame = false;
+	
+	private boolean loadGame = false;
+	
+	private boolean configSettings = false;
+	
+	private JFrame frame;
+	
+
+	/**
+	 * Create the dialog.
+	 */
+	public MainMenuPanel(final JFrame frame)  {
+		
+		super();
+		this.frame = frame;
+		
+		this.setLayout(new BorderLayout());
+		this.setBorder(new EmptyBorder(75, 225, 100, 225));
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		{
+			JPanel panel = new JPanel();
+			this.add(panel);
+			{
+				JLabel lblBomberman = new JLabel("BOMBERMAN");
+				lblBomberman.setFont(new Font("Courier New", Font.TRUETYPE_FONT, 40));
+				panel.add(lblBomberman);
+			}
+		}
+		{
+			this.add(Box.createVerticalStrut(50));
+		}
+		{
+			JPanel panel = new JPanel();
+			this.add(panel);
+			panel.setLayout(new BorderLayout(0, 0));
+			{
+				JButton btnNewGame = new JButton("New Game");
+				btnNewGame.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						newGame = true;
+						loadGame = false;
+						configSettings = false;
+						setVisible(false);
+					}
+				});
+				panel.add(btnNewGame);
+			}
+		}
+		{
+			JPanel panel = new JPanel();
+			this.add(panel);
+			panel.setLayout(new BorderLayout(0, 0));
+			{
+				JButton btnLoadGame = new JButton("Load Game");
+				btnLoadGame.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						newGame = false;
+						loadGame = true;
+						configSettings = false;
+						setVisible(false);
+					}
+				});
+				panel.add(btnLoadGame);
+			}
+		}
+		{
+			JPanel panel = new JPanel();
+			this.add(panel);
+			panel.setLayout(new BorderLayout(0, 0));
+			{
+				JButton btnGameSettings = new JButton("Game Settings");
+				btnGameSettings.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						newGame = false;
+						loadGame = false;
+						configSettings = true;
+						setVisible(false);
+					}
+				});
+				panel.add(btnGameSettings, BorderLayout.CENTER);
+			}
+		}
+		{
+			this.add(Box.createVerticalStrut(75));
+		}
+		{
+			JPanel panel = new JPanel();
+			this.add(panel);
+			panel.setLayout(new BorderLayout(0, 0));
+			{
+				JButton btnExitGame = new JButton("Exit Game");
+				btnExitGame.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						newGame = false;
+						loadGame = false;
+						configSettings = false;
+						
+						String exitGameMsg = "Exit Game?";
+						int reply = JOptionPane.showConfirmDialog(frame,exitGameMsg,"Exit Game",JOptionPane.YES_NO_OPTION);
+
+						if(reply == JOptionPane.YES_OPTION)
+						{
+							frame.getContentPane().setVisible(false);
+							System.exit(0);
+						}
+						else if(reply == JOptionPane.NO_OPTION || reply == JOptionPane.CLOSED_OPTION){}
+
+						frame.getContentPane().requestFocusInWindow();
+
+					}
+				});
+				panel.add(btnExitGame, BorderLayout.CENTER);
+			}
+		}
+	}
+	
+	public boolean isNewGame() {
+		return newGame;
+	}
+
+
+	public void setNewGame(boolean newGame) {
+		this.newGame = newGame;
+	}
+
+
+	public boolean isLoadGame() {
+		return loadGame;
+	}
+
+
+	public void setLoadGame(boolean loadGame) {
+		this.loadGame = loadGame;
+	}
+
+
+	public boolean isConfigSettings() {
+		return configSettings;
+	}
+
+
+	public void setConfigSettings(boolean configSettings) {
+		this.configSettings = configSettings;
+	}
+
+
+}
