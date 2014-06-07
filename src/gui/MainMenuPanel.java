@@ -71,12 +71,9 @@ public class MainMenuPanel extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						newGame = true;
-						loadGame = false;
-						configSettings = false;
 						
 						setVisible(false);
-						mainWindow.startNewGame();
+						MainMenuPanel.this.mainWindow.startNewGame();
 						
 					}
 				});
@@ -94,9 +91,6 @@ public class MainMenuPanel extends JPanel {
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						
-						
-//						JButton btnLoadGame = new JButton("Load Game");
-						
 						loadFileChooser = new JFileChooser();
 						loadFileChooser.setMultiSelectionEnabled(false);
 						loadFileChooser.showOpenDialog(mainWindow.getFrame().getContentPane());
@@ -109,7 +103,8 @@ public class MainMenuPanel extends JPanel {
 						
 						setVisible(false);
 						
-						mainWindow.startNewGame();
+						MainMenuPanel.this.mainWindow.startNewGame();
+						
 					}
 				});
 				panel.add(btnLoadGame);
@@ -125,10 +120,9 @@ public class MainMenuPanel extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						newGame = false;
-						loadGame = false;
-						configSettings = true;
 						setVisible(false);
+						
+						MainMenuPanel.this.mainWindow.configSettings();
 					}
 				});
 				panel.add(btnGameSettings, BorderLayout.CENTER);

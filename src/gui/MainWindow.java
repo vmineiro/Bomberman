@@ -22,6 +22,8 @@ public class MainWindow {
 	
 	/** The game panel */
 	private GamePanel gamePanel;
+
+	private GameSettings settingsPanel;
 	
 	
 
@@ -65,8 +67,12 @@ public class MainWindow {
 
 		
 	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
 
-	private void gotoMainMenu() {
+	public void gotoMainMenu() {
 		
 		mainMenu = new MainMenuPanel(this);
 		
@@ -74,11 +80,11 @@ public class MainWindow {
 		
 		mainMenu.requestFocusInWindow();
 		
+		frame.getContentPane().repaint();
+		
 	}
 
-	public JFrame getFrame() {
-		return frame;
-	}
+
 
 	public void startNewGame() {
 		
@@ -89,6 +95,16 @@ public class MainWindow {
 		frame.getContentPane().add(gamePanel);
 		
 		gamePanel.requestFocusInWindow();
+		
+		frame.getContentPane().repaint();
+		
+		
+	}
+
+	public void configSettings() {
+		
+
+		settingsPanel = new GameSettings(this,true);
 		
 		
 	}

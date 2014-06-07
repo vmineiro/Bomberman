@@ -59,17 +59,16 @@ public class GamePanel extends JPanel implements KeyListener
 				
 				if(GameModel.getInstance().gameOver()){
 					
-					String exitGameMsg = "Exit Game?";
-					int reply = JOptionPane.showConfirmDialog(mainWindow.getFrame(),exitGameMsg,"Exit Game",JOptionPane.YES_NO_OPTION);
-
-					if(reply == JOptionPane.YES_OPTION)
-					{
-						setVisible(false);
-					}
-					else if(reply == JOptionPane.NO_OPTION || reply == JOptionPane.CLOSED_OPTION){}
 					
+					if (GameModel.getInstance().getMonstersAlive() == 0){
+						JOptionPane.showMessageDialog(GamePanel.this.mainWindow.getFrame(),"You WIN!");
+					} else {
+						JOptionPane.showMessageDialog(GamePanel.this.mainWindow.getFrame(),"You LOST!");
+					}
 					
 					refreshTimer.stop();
+					setVisible(false);
+					GamePanel.this.mainWindow.gotoMainMenu();
 				}
 				
 			}
