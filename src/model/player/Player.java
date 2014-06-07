@@ -101,7 +101,7 @@ public class Player implements GameChar{
 		if(availableBombs != 0)
 		{
 			this.availableBombs--;
-			GameModel.getInstance().getBoard().getItem(boardPosition).bombDropped(new AutomaticBomb(this));
+			GameModel.getInstance().getBoard().getItem(boardPosition).bombDropped(new Bomb(this));
 		}
 	}
 	
