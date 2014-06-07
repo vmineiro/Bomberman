@@ -140,8 +140,7 @@ public abstract class Item {
 		countDown = new Timer(EXPLOSION_DURATION, explodeListener);
 		countDown.setRepeats(false);
 		countDown.start();
-		
-		// TODO: How do I know if it was this bomb that explode this item or if it was another bomb
+
 		this.bomb = null;
 		
 		return explosionContinue;
