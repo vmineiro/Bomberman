@@ -89,23 +89,14 @@ public class GameModel {
 		
 		this.players.updateBoardPosition(new Position(3,3));
 		
-		/*
-		Item hiddenPath = new ItemPath();
-		Item boardExit = new BoardExit();
-		Item bombControl = new BombControl();
-		Item bombPowerUp = new BombPowerUp();
-		Item boostSpeed = new BoostSpeed();
-		Item extraBomb = new ExtraBomb();
-		*/
-		
 		//TODO: Test board composed only by two objects everything else is reference
 		char[][] mazeChar = new char[][]{
 				{'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x', 'x'},
-				{'x', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
+				{'x', 'p', 'w', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
-				{'x', 'p', 'p', 'p', 'x', 'p', 'w', 'w', 'p', 'x'},
-				{'x', 'p', 'p', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
+				{'x', 'p', 'w', 'p', 'x', 'p', 'w', 'w', 'p', 'x'},
+				{'x', 'w', 'w', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'x', 'p', 'x', 'p', 'x', 'x', 'p', 'x'},
 				{'x', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'x'},
