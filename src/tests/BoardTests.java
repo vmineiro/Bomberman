@@ -73,11 +73,11 @@ public class BoardTests {
 		assertTrue(ItemExploding.class == itemState02.getClass());
 		
 		itemState02 = itemState02.explosionEnds();
-		assertTrue(ItemInactive.class == itemState02.getClass());
+		assertTrue(ItemActive.class == itemState02.getClass());
 		
 		/* Inactive State Tests */
 		itemState01 = itemState01.explosionEnds();
-		assertTrue(ItemInactive.class == itemState01.getClass());
+		assertTrue(ItemActive.class == itemState01.getClass());
 		
 		itemState01 = itemState01.pickUp();
 		assertTrue(ItemInactive.class == itemState01.getClass());
@@ -93,7 +93,7 @@ public class BoardTests {
 		assertTrue(ItemExploding.class == itemState01.getClass());
 		
 		itemState01 = itemState01.explosionEnds();
-		assertTrue(ItemInactive.class == itemState01.getClass());
+		assertTrue(ItemActive.class == itemState01.getClass());
 		
 		
 	}
