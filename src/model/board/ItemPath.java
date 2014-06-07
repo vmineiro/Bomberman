@@ -1,6 +1,11 @@
 package model.board;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import model.monster.Monster;
 import model.player.Player;
@@ -12,7 +17,8 @@ import model.player.Player;
  */
 public class ItemPath extends Item {
 	
-
+	/** The path image. */
+	BufferedImage pathImg;
 	
 	/**
 	 * Instantiates a new path.
@@ -23,6 +29,12 @@ public class ItemPath extends Item {
 
 		setCurrentState(new ItemHidden());
 		
+		try {
+			pathImg = ImageIO.read(new File("img/path.png"));
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 
@@ -34,11 +46,9 @@ public class ItemPath extends Item {
 	 */
 	public void accept(Player player){
 		
-		if (this.state.getClass() == ItemHidden.class  || this.bomb != null) return;
+		if (this.state.getClass() == ItemHidden.class  /*|| this.bomb != null*/) return;
 		
 		player.visitPath(this);
-
-
 	}
 
 	
@@ -55,8 +65,6 @@ public class ItemPath extends Item {
 		monster.visitPath(this);
 		
 	}
-
-	
 	
 	/* (non-Javadoc)
 	 * @see model.board.Item#setCurrentState(model.board.ItemState)
@@ -78,7 +86,15 @@ public class ItemPath extends Item {
 	/**
 	 * Draw Path
 	 */
-	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){}
+	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){
+		if(this.bomb != null){
+			bomb.draw(g, width, height);
+		}
+		else{
+			g.drawImage(pathImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
+		}
+		
+	}
 	
 	
 }//end Path

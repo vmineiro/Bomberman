@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import model.GameModel;
 import model.monster.Monster;
 import model.player.Player;
 
@@ -29,7 +30,7 @@ public class UndestructibleWall extends Item {
 		
 		try {
 			
-			steelImg = ImageIO.read(new File("img/wall01.png"));
+			steelImg = ImageIO.read(new File("img/steel.png"));
 			
 			setCurrentState(new ItemInactive());
 			
@@ -86,8 +87,8 @@ public class UndestructibleWall extends Item {
 	 * Draw undestructible Wall
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height)
-	{
-		g.drawImage(steelImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 512, 512, null);
+	{		
+		g.drawImage(steelImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 159, 159, null);
 	}
 	
 

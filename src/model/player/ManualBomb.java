@@ -170,7 +170,7 @@ public class ManualBomb implements Bomb {
 		int dstImgHei = height / n;
 	
 		g.drawImage(this.bombImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
-				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 75, 68, null);
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 124, 114, null);
 	}
 	
 }
