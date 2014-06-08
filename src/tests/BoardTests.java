@@ -7,6 +7,7 @@ import model.GameModel;
 import model.Position;
 import model.board.Board;
 import model.board.BoardExit;
+import model.board.BoardFactory;
 import model.board.Item;
 import model.board.ItemActive;
 import model.board.ItemDetonating;
@@ -18,6 +19,8 @@ import model.board.ItemState;
 import model.board.UndestructibleWall;
 import model.monster.Monster;
 import model.player.Player;
+import model.player.PlayerAlive;
+import model.player.PlayerDead;
 
 import org.junit.Test;
 
@@ -233,82 +236,47 @@ public class BoardTests {
 	/**
 	 * Board build test.
 	 * 
-	 * Neste teste pretende-se testar a geração de tabuleiro, ou seja que o jogador não se encontra preso.
+	 * Neste teste pretende-se testar a geração de tabuleiro
 	 */
 	@Test
 	public void boardBuildTest(){
 		
+		int board_size = 11;
+		int boardInt [][] = {
+				{0,0,0,0,0,0,0,0,0,0,0},
+				{3,1,2,1,1,1,1,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,2,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,2,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,1,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,0,0,0,0,0,0,0,0,0,0},
+		};
 		
+		BoardFactory bf_t = new BoardFactory(board_size, boardInt);
+		Board b_t = bf_t.getResult();
+		
+		assertEquals(11, b_t.getMaze().length);
+		
+		//UndestructibleWall
+		assertEquals(UndestructibleWall.class, b_t.getMaze()[0][0].getClass());
+		
+		//Path
+		assertEquals(ItemPath.class, b_t.getMaze()[1][1].getClass());
+		
+		//Inactive Path
+		assertEquals(ItemInactive.class, b_t.getMaze()[1][2].getCurrentState().getClass());
+		
+		//Board Exit
+		assertEquals(BoardExit.class, b_t.getMaze()[1][0].getClass());
 
 	}
 	
 	
-	/**
-	 * Visits test.
-	 * 
-	 * Neste teste pretende-se testar a alteracoes de estado de cada item aquando da visita de um player ou de um monstro.
-	 */
-	@Test
-	public void visitTest(){
-		
-		
-			
-		Player player = new Player();
-		player.updateBoardPosition(new Position(3,3));
-		
-		Monster monster = new Monster();
-		monster.setBoardPosition(new Position(1,1));
-		
-		Item hiddenPath = new ItemPath();
-		
-		Item normalPath = new ItemPath();
-		normalPath.setCurrentState(new ItemActive());
-		
-		Item boardExit = new BoardExit();
-		
-		Item undestructibleWall = new UndestructibleWall();
-		
-		
-		Item[][] maze = new Item[][]{
-				{undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall},
-				{undestructibleWall, normalPath, normalPath, normalPath, undestructibleWall},
-				{undestructibleWall, normalPath, undestructibleWall, normalPath, undestructibleWall},
-				{undestructibleWall, normalPath, normalPath, normalPath, undestructibleWall},
-				{undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall, undestructibleWall}		
-		};
-		
-		Board board = new Board();
-		board.setMaze(maze);
-		
-		GameModel game = GameModel.getInstance();		
-		game.setBoard(board);
-		
-		//game.addMonster(monster);
-		//game.addPlayer(player);
-		
-		
-		/* Hidden Path Test */
-		hiddenPath.accept(player);
-		assertEquals("Expected to not change state", ItemHidden.class, hiddenPath.getCurrentState().getClass());
-		hiddenPath.accept(monster);
-		assertEquals("Expected to not change state", ItemHidden.class, hiddenPath.getCurrentState().getClass());
-		
-		/* Normal Path Test */
-		hiddenPath.accept(player);
-		assertEquals("Expected to not change state", ItemActive.class, normalPath.getCurrentState().getClass());
-		hiddenPath.accept(monster);
-		assertEquals("Expected to not change state", ItemActive.class, normalPath.getCurrentState().getClass());
-		
-		boardExit.setCurrentState(new ItemInactive());
-		boardExit.accept(player);
-		assertEquals("Expected to not change state", ItemInactive.class, boardExit.getCurrentState().getClass());
-		
-		boardExit.setCurrentState(new ItemActive());
-		boardExit.accept(player);
-		assertEquals("Expected to not change state", ItemActive.class, boardExit.getCurrentState().getClass());
-		
-	}
 	
-	
-	
-}//end BoardTests
+}
+
+//end BoardTests
