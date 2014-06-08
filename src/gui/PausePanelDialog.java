@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -16,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
 
 public class PausePanelDialog extends JDialog{
 
@@ -24,96 +23,65 @@ public class PausePanelDialog extends JDialog{
 	public PausePanelDialog(MainWindow mainWindow, boolean modal){
 		super(mainWindow.getFrame(),modal);
 
-		setLocationRelativeTo(mainWindow.getFrame());
-		KeyListener keyListener = new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					PausePanelDialog.this.mainWindow.pauseGame();
-					setVisible(false);
-					
-				}
-				
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					PausePanelDialog.this.mainWindow.pauseGame();
-					setVisible(false);
-					
-				}
-				
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					PausePanelDialog.this.mainWindow.pauseGame();
-					setVisible(false);
-					
-				}
-				
-			}
-		};
-		
-		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		getContentPane().addKeyListener(keyListener);
-		
-		
-		//TODO remove comments
-		//setUndecorated(true);
-		this.mainWindow = mainWindow;
 
+
+		//TODO remove comments
+		setUndecorated(true);
+		this.mainWindow = mainWindow;
+		getContentPane().setLayout(new BorderLayout(0, 0));
+
+		JPanel panel_2 = new JPanel();
+		panel_2.setPreferredSize(new Dimension(150, 270));
+		getContentPane().add(panel_2);
+		panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.Y_AXIS));
 
 		JPanel panel = new JPanel();
+		panel_2.add(panel);
 		panel.setPreferredSize(new Dimension(100,50));
 		panel.setBorder(null);
-		getContentPane().add(panel);
 		panel.setLayout(new GridLayout(0, 1, 0, 0));
 
 
 		JLabel lblPausee = new JLabel("Pause");
-		lblPausee.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblPausee);
+		lblPausee.setHorizontalAlignment(SwingConstants.CENTER);
 
 		JPanel panel_1 = new JPanel();
+		panel_2.add(panel_1);
 		panel_1.setPreferredSize(new Dimension(100,150));
-		getContentPane().add(panel_1);
 		panel_1.setLayout(new GridLayout(3, 1, 0, 0));
 
 		JButton btnNewButton = new JButton("Resume");
+		panel_1.add(btnNewButton);
+
+		JButton btnSaveGame = new JButton("Save Game");
+		panel_1.add(btnSaveGame);
+
+		JButton btnLoadGame = new JButton("Load Game");
+		panel_1.add(btnLoadGame);
+		btnLoadGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PausePanelDialog.this.mainWindow.loadGame();
+			}
+		});
+		btnSaveGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PausePanelDialog.this.mainWindow.saveGame();
+			}
+		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PausePanelDialog.this.mainWindow.pauseGame();
 				setVisible(false);
 			}
 		});
-		panel_1.add(btnNewButton);
-
-		JButton btnSaveGame = new JButton("Save Game");
-		btnSaveGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PausePanelDialog.this.mainWindow.saveGame();
-			}
-		});
-		panel_1.add(btnSaveGame);
-
-		JButton btnLoadGame = new JButton("Load Game");
-		btnLoadGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				PausePanelDialog.this.mainWindow.loadGame();
-			}
-		});
-		panel_1.add(btnLoadGame);
 
 		Component verticalStrut = Box.createVerticalStrut(20);
-		getContentPane().add(verticalStrut);
+		panel_2.add(verticalStrut);
 
 		JPanel panel_4 = new JPanel();
+		panel_2.add(panel_4);
 		panel_4.setPreferredSize(new Dimension(100,50));
-		getContentPane().add(panel_4);
 		panel_4.setLayout(new GridLayout(0, 1, 0, 0));
 
 
@@ -135,8 +103,9 @@ public class PausePanelDialog extends JDialog{
 			}
 		});
 		panel_4.add(btnMainMenu);
-		
-		
+
+		this.pack();
+		setLocationRelativeTo(mainWindow.getFrame());
 		this.setVisible(true);
 		this.requestFocusInWindow();
 		setLocationRelativeTo(this.mainWindow.getFrame());

@@ -1,22 +1,15 @@
 package gui;
 
-import java.awt.Container;
-import java.awt.EventQueue;
-
-import javax.swing.JComponent;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.Timer;
-
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.BoxLayout;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -30,8 +23,6 @@ public class MainWindow {
 	
 	/** The game panel */
 	private GamePanel gamePanel;
-
-	private SettingsDialog settingsPanel;
 
 	private PausePanelDialog pausePanel;
 	
@@ -149,7 +140,7 @@ public class MainWindow {
 			gamePanel = new GamePanel(this);
 		}
 		
-		settingsPanel = new SettingsDialog(this.frame,true, gamePanel);
+		new SettingsDialog(this.frame,true, gamePanel);
 		
 	}
 
