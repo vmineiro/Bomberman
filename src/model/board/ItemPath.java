@@ -12,18 +12,19 @@ import model.monster.Monster;
 import model.player.Player;
 import java.io.Serializable;
 
+
 /**
  * The Class Path.
  */
 public class ItemPath extends Item implements Serializable{
 	
-	/** The wall image */
+	/**  The wall image. */
 	BufferedImage wallImg;
 	
 	/** The path image. */
 	BufferedImage pathImg;
 	
-	/** The path exploding image */
+	/**  The path exploding image. */
 	BufferedImage explodingImg;
 	
 	/**
@@ -91,7 +92,13 @@ public class ItemPath extends Item implements Serializable{
 	}
 
 	/**
-	 * Draw Path
+	 * Draw Path.
+	 *
+	 * @param g the g
+	 * @param pos_l the pos_l
+	 * @param pos_c the pos_c
+	 * @param width the width
+	 * @param height the height
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height){
 		if(this.bomb != null){

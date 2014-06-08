@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+
 /**
  * The Class Position.
  */
@@ -21,9 +22,10 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * Constructor
-	 * 
-	 * @param lin is the line of the new position and col is the column of the new position 
+	 * Constructor.
+	 *
+	 * @param lin is the line of the new position and col is the column of the new position
+	 * @param col the col
 	 */
 	public Position(int lin, int col)
 	{
@@ -81,7 +83,10 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * Adds two positions return a new Position as result
+	 * Adds two positions return a new Position as result.
+	 *
+	 * @param p1 the p1
+	 * @return the position
 	 */
 	public Position add(Position p1){
 		return new Position(line + p1.line, col + p1.col);

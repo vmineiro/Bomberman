@@ -17,28 +17,35 @@ public class ItemActive implements ItemState, Serializable {
 	}
 
 	/**
-	 * Explosion provokes transition
+	 * Explosion provokes transition.
+	 *
+	 * @return the item state
 	 */
 	public ItemState explode(){
 		return new ItemExploding();
 	}
 
 	/**
-	 * Pickup provokes transition
+	 * Pickup provokes transition.
+	 *
+	 * @return the item state
 	 */
 	public ItemState pickUp() {
 		return new ItemInactive();
 	}
 
 	/**
-	 * Explosion end provokes transition
+	 * Explosion end provokes transition.
+	 *
+	 * @return the item state
 	 */
 	public ItemState explosionEnds() {
 		return new ItemActive();
 	}
 	
 	/**
-	 * Checks if item state is hidden
+	 * Checks if item state is hidden.
+	 *
 	 * @return true if item is hidden
 	 */
 	public boolean isHidden(){
@@ -46,7 +53,9 @@ public class ItemActive implements ItemState, Serializable {
 	}
 	
 	/**
-	 * Opens the exit door
+	 * Opens the exit door.
+	 *
+	 * @return the item state
 	 */
 	public ItemState openExit(){
 		return this;

@@ -2,6 +2,7 @@ package model.monster;
 
 import java.io.Serializable;
 
+
 /**
  * This subclass implements a behaviour associated with a state of the Monster.
  */
@@ -15,14 +16,15 @@ public class MonsterDead implements MonsterState, Serializable {
 	/**
 	 * Die.
 	 *
-	 * @param monster the monster
+	 * @return the monster state
 	 */
 	public MonsterState die(){
 		return this;
 	}
 	
 	/**
-	 * Replies monster health
+	 * Replies monster health.
+	 *
 	 * @return true if monster is dead
 	 */
 	public boolean isDead(){

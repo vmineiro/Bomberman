@@ -16,16 +16,24 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
 
+
+/**
+ * The Class PausePanelDialog.
+ */
 public class PausePanelDialog extends JDialog{
 
+	/** The main window. */
 	private MainWindow mainWindow;
 
+	/**
+	 * Instantiates a new pause panel dialog.
+	 *
+	 * @param mainWindow the main window
+	 * @param modal the modal
+	 */
 	public PausePanelDialog(MainWindow mainWindow, boolean modal){
 		super(mainWindow.getFrame(),modal);
 
-
-
-		//TODO remove comments
 		setUndecorated(true);
 		this.mainWindow = mainWindow;
 		getContentPane().setLayout(new BorderLayout(0, 0));

@@ -2,6 +2,10 @@ package model.player;
 
 import java.io.Serializable;
 
+
+/**
+ * The Class PlayerAlive.
+ */
 public class PlayerAlive implements PlayerState, Serializable{
 	
 	/**
@@ -11,13 +15,17 @@ public class PlayerAlive implements PlayerState, Serializable{
 	
 	/**
 	 * Die.
+	 *
+	 * @return the player state
 	 */
 	public PlayerState die(){
 		return new PlayerDead();
 	}
 	
 	/**
-	 * Check if player is dead
+	 * Check if player is dead.
+	 *
+	 * @return true, if is dead
 	 */
 	public boolean isDead(){
 		return false;

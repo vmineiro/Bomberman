@@ -1,5 +1,6 @@
 package model.board;
 
+
 /**
  * This class defines an interface for encapsulating the behaviour associated with
  * a particular state of the Item.
@@ -29,13 +30,16 @@ public interface ItemState {
 	public abstract ItemState pickUp();
 	
 	/**
-	 * Checks if item state is hidden
+	 * Checks if item state is hidden.
+	 *
 	 * @return true if item is hidden
 	 */
 	public abstract boolean isHidden();
 	
 	/**
-	 * Opens the exit door
+	 * Opens the exit door.
+	 *
+	 * @return the item state
 	 */
 	public abstract ItemState openExit();
 	

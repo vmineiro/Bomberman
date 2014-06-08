@@ -12,6 +12,7 @@ import model.monster.Monster;
 import model.player.Player;
 import java.io.Serializable;
 
+
 /**
  * The Class UndestructibleWall.
  */
@@ -83,7 +84,13 @@ public class UndestructibleWall extends Item implements Serializable{
 	}
 	
 	/**
-	 * Draw undestructible Wall
+	 * Draw undestructible Wall.
+	 *
+	 * @param g the g
+	 * @param pos_l the pos_l
+	 * @param pos_c the pos_c
+	 * @param width the width
+	 * @param height the height
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height)
 	{		

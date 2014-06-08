@@ -14,6 +14,9 @@ public class BoardFactory implements Serializable{
 
 	/**
 	 * Instantiates a new board factory.
+	 *
+	 * @param boardSize the board size
+	 * @param boardInt the board int
 	 */
 	public BoardFactory(int boardSize, int[][] boardInt){
 
@@ -48,15 +51,18 @@ public class BoardFactory implements Serializable{
 	}
 	
 	/**
-	 * Returns the built board
-	 * @return
+	 * Returns the built board.
+	 *
+	 * @return the result
 	 */
 	public Board getResult(){
 		return boardBuilt;
 	}
 
 	/**
-	 * Creates a new BoarExit
+	 * Creates a new BoarExit.
+	 *
+	 * @return the board exit
 	 */
 	public BoardExit createBoardExit(){
 		BoardExit be = new BoardExit();
@@ -64,7 +70,9 @@ public class BoardFactory implements Serializable{
 	}
 
 	/**
-	 * Creates a new Path
+	 * Creates a new Path.
+	 *
+	 * @return the item path
 	 */
 	public ItemPath createPath(){
 		ItemPath itemPath = new ItemPath();
@@ -73,7 +81,9 @@ public class BoardFactory implements Serializable{
 	}
 	
 	/**
-	 * Creates a blocked path
+	 * Creates a blocked path.
+	 *
+	 * @return the item path
 	 */
 	public ItemPath createBlockedPath(){
 		ItemPath itemPath = new ItemPath();
@@ -82,7 +92,9 @@ public class BoardFactory implements Serializable{
 	}
 	
 	/**
-	 * Creates undestructable wall 
+	 * Creates undestructable wall.
+	 *
+	 * @return the undestructible wall
 	 */
 	public UndestructibleWall createUndWall(){
 		return new UndestructibleWall();

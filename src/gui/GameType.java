@@ -12,12 +12,18 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 
+/**
+ * The Class GameType.
+ */
 public class GameType extends JDialog {
 
+	/** The content panel. */
 	private final JPanel contentPanel = new JPanel();
 
 	/**
 	 * Launch the application.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		try {

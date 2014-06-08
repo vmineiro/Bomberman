@@ -27,20 +27,30 @@ import javax.swing.JSeparator;
 import model.GameModel;
 
 
+
+/**
+ * The Class MainMenuPanel.
+ */
 public class MainMenuPanel extends JPanel {
 	
+	/** The new game. */
 	private boolean newGame = false;
 	
+	/** The load game. */
 	private boolean loadGame = false;
 	
+	/** The config settings. */
 	private boolean configSettings = false;
 	
+	/** The main window. */
 	private MainWindow mainWindow;
 	
 
 
 	/**
 	 * Create the dialog.
+	 *
+	 * @param mainWindow the main window
 	 */
 	public MainMenuPanel(final MainWindow mainWindow)  {
 		

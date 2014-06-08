@@ -10,6 +10,7 @@ import javax.imageio.ImageIO;
 import model.monster.Monster;
 import model.player.Player;
 import java.io.Serializable;
+
 /**
  * This class represents the exit of the maze.
  */
@@ -18,7 +19,7 @@ public class BoardExit extends Item implements Serializable{
 	/** The board exit image. */
 	BufferedImage boardExitImg;
 	
-	/** The board exit open image */
+	/**  The board exit open image. */
 	BufferedImage exitOpenImg;
 
 	/**
@@ -53,10 +54,12 @@ public class BoardExit extends Item implements Serializable{
 	 * @param monster the monster
 	 */
 	public void accept(Monster monster){
-//		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
-//		monster.visitBoardExit(this);
+
 	}
 
+	/* (non-Javadoc)
+	 * @see model.board.Item#setCurrentState(model.board.ItemState)
+	 */
 	public void setCurrentState(ItemState state) {
 		this.state = state;
 		
@@ -69,12 +72,21 @@ public class BoardExit extends Item implements Serializable{
 		}		
 	}
 	
+	/* (non-Javadoc)
+	 * @see model.board.Item#explode()
+	 */
 	public boolean explode() {
 		return false;
 	}
 
 	/**
-	 * Draw Board Exit
+	 * Draw Board Exit.
+	 *
+	 * @param g the g
+	 * @param pos_l the pos_l
+	 * @param pos_c the pos_c
+	 * @param width the width
+	 * @param height the height
 	 */
 	public void draw(Graphics g, int pos_l, int pos_c, int width, int height)
 	{

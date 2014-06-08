@@ -15,30 +15,41 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.GameModel;
 
+
+/**
+ * The Class MainWindow.
+ */
 public class MainWindow {
 
+	/** The frame. */
 	private JFrame frame;
 	
+	/** The main menu. */
 	private MainMenuPanel mainMenu;
 	
-	/** The game panel */
+	/**  The game panel. */
 	private GamePanel gamePanel;
 
+	/** The pause panel. */
 	private PausePanelDialog pausePanel;
 	
-	/** The game timer */
+	/**  The game timer. */
 	private Timer refreshTimer;
 	
-	/** Game refresh rate */
+	/**  Game refresh rate. */
 	private static final int REFRESH_RATE = 60;
 	
+	/** The game timer listener. */
 	private ActionListener gameTimerListener;
 	
+	/** The file chooser. */
 	private JFileChooser fileChooser;
 	
 
 	/**
 	 * Launch the application.
+	 *
+	 * @param args the arguments
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -78,10 +89,18 @@ public class MainWindow {
 		
 	}
 	
+	/**
+	 * Gets the frame.
+	 *
+	 * @return the frame
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * Goto main menu.
+	 */
 	public void gotoMainMenu() {
 		
 		frame.getContentPane().removeAll();
@@ -98,11 +117,13 @@ public class MainWindow {
 
 
 
+	/**
+	 * Start new game.
+	 */
 	public void startNewGame() {
 		
 		frame.getContentPane().removeAll();
 		
-		//TODO integrate game model
 		GameModel.getInstance().initGame(1);
 		
 		gamePanel = new GamePanel(this);
@@ -134,6 +155,9 @@ public class MainWindow {
 		
 	}
 
+	/**
+	 * Config settings.
+	 */
 	public void configSettings() {
 		
 		if (gamePanel == null) {
@@ -144,6 +168,9 @@ public class MainWindow {
 		
 	}
 
+	/**
+	 * Pause game.
+	 */
 	public void pauseGame() {
 		
 		if (refreshTimer.isRunning()){
@@ -159,15 +186,26 @@ public class MainWindow {
 		
 	}
 
+	/**
+	 * Checks if is running.
+	 *
+	 * @return true, if is running
+	 */
 	public boolean isRunning() {
 		return refreshTimer.isRunning();
 	}
 
+	/**
+	 * Run game.
+	 */
 	public void runGame() {
 		refreshTimer.start();		
 	}
 	
 	
+	/**
+	 * Game ended.
+	 */
 	public void gameEnded(){
 		
 		if (GameModel.getInstance().getMonsters().size() == 0){
@@ -183,6 +221,9 @@ public class MainWindow {
 	}
 	
 	
+	/**
+	 * Load game.
+	 */
 	public void loadGame() {
 		
 		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");
@@ -202,13 +243,13 @@ public class MainWindow {
 			} catch (ClassNotFoundException | IOException e1) {
 				JOptionPane.showMessageDialog(frame,"Error while loading the game");
 			}
-
-			// TODO load the game
-			startNewGame();
 		}
 		
 	}
 
+	/**
+	 * Save game.
+	 */
 	public void saveGame() {
 			
 		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");

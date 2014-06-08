@@ -35,8 +35,7 @@ public class BoardTests {
 	
 	
 	/**
-	 * Item State change
-	 * 
+	 * Item State change.
 	 */
 	@Test
 	public void itemStateTest(){
@@ -105,9 +104,9 @@ public class BoardTests {
 	/**
 	 * Path test.
 	 * 
-	 * Neste teste pretende-se testar a criação, alteração de estados e parametros do objeto path.
-	 * Mais concretamente, quando é detonado (nos possíveis estados), quando é visitado por um jogador 
-	 * ou um monstro e quando é colocado uma bomba.
+	 * Neste teste pretende-se testar a criacao, alteracao de estados e parametros do objeto path.
+	 * Mais concretamente, quando e detonado (nos possiveis estados), quando e visitado por um jogador 
+	 * ou um monstro e quando e colocado uma bomba.
 	 */
 	@Test
 	public void pathTest(){
@@ -149,9 +148,9 @@ public class BoardTests {
 	/**
 	 * Board exit test.
 	 * 
-	 * Neste teste pretende-se testar a criação (limite de objectos), alteração de estados e parametros do objeto BoardExit.
-	 * Mais concretamente, quando é detonado (nos possíveis estado), quando é visitado por um jogador, sem que a saída esteja activa
-	 * (quando existem monstros vivos no jogo) e quando está activo (quando não existem monstros vivos no jogo), ou seja fim do jogo.
+	 * Neste teste pretende-se testar a criacao (limite de objectos), alteracao de estados e parametros do objeto BoardExit.
+	 * Mais concretamente, quando e detonado (nos possiveis estado), quando e visitado por um jogador, sem que a saida esteja activa
+	 * (quando existem monstros vivos no jogo) e quando esta activo (quando nao existem monstros vivos no jogo), ou seja fim do jogo.
 	 */
 	@Test
 	public void boardExitTest(){
@@ -194,8 +193,8 @@ public class BoardTests {
 	/**
 	 * Undestructible wall test.
 	 * 
-	 * Neste teste pretende-se testar a criação, a não alteração de estados e parametros do objeto UndestrutibleWall.
-	 * Mais concretamente, quando é detonado uma bomba nas celulas vizinhas (cima, baixo, esquerda, direita).
+	 * Neste teste pretende-se testar a criacao, a nao alteracao de estados e parametros do objeto UndestrutibleWall.
+	 * Mais concretamente, quando e detonado uma bomba nas celulas vizinhas (cima, baixo, esquerda, direita).
 	 */
 	@Test
 	public void undestructibleWallTest(){
@@ -236,7 +235,7 @@ public class BoardTests {
 	/**
 	 * Board build test.
 	 * 
-	 * Neste teste pretende-se testar a geração de tabuleiro
+	 * Neste teste pretende-se testar a geracao de tabuleiro
 	 */
 	@Test
 	public void boardBuildTest(){

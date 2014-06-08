@@ -17,6 +17,7 @@ import model.player.PlayerDead;
 
 import org.junit.Test;
 
+
 /**
  * The Class PlayerTests.
  *
@@ -27,7 +28,7 @@ public class PlayerTests {
 	/**
 	 * Move tests.
 	 * 
-	 * Neste teste pretende-se testar as movimentações do jogador 
+	 * Neste teste pretende-se testar as movimentacoes do jogador 
 	 */
 	@Test
 	public void moveTests(){
@@ -67,9 +68,9 @@ public class PlayerTests {
 	/**
 	 * Drop bomb test.
 	 * 
-	 * Neste teste pretende-se testar a utilização das bombas. Pretende -se testar a criação das bombas, detonação 
+	 * Neste teste pretende-se testar a utilizacao das bombas. Pretende -se testar a criacao das bombas, detonacao 
 	 * das bombas. Incluindo testes para amorte do jogador 
-	 * caso seja apanhado pela explosão.  
+	 * caso seja apanhado pela explosao.  
 	 */
 	@Test
 	public void bombTest(){
@@ -128,7 +129,7 @@ public class PlayerTests {
 	/**
 	 * Monster collision test.
 	 * 
-	 * Neste teste pretende-se testar as colisões do jogador com os monstros. Esperando que o jogador morra.
+	 * Neste teste pretende-se testar as colisoes do jogador com os monstros. Esperando que o jogador morra.
 	 */
 	@Test
 	public void monsterCollisionTest(){
@@ -150,7 +151,7 @@ public class PlayerTests {
 	/**
 	 * State tests.
 	 * 
-	 * Neste teste pretende testar as alterações de estado 
+	 * Neste teste pretende testar as alteracoes de estado 
 	 */
 	@Test
 	public void stateTests(){
@@ -199,7 +200,7 @@ public class PlayerTests {
 	/**
 	 * Win tests.
 	 * 
-	 * Neste teste pretende-se testar as condiçoes de vitória. O jogador mata todos os monstros e encontra a saida.
+	 * Neste teste pretende-se testar as condicoes de vitoria. O jogador mata todos os monstros e encontra a saida.
 	 */
 	@Test
 	public void winTests(){

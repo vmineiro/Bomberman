@@ -15,51 +15,56 @@ import model.GameModel;
 import model.Position;
 import java.io.Serializable;
 
+
 /**
  * The Class Bomb.
  */
 public class Bomb implements Serializable{
 
 	// Bomb detonation timer
+	/** The Constant TIME_TO_DETONATION. */
 	public static final int TIME_TO_DETONATION = 1000;
 
 	// Bomb propagation timer
+	/** The Constant TIME_TO_PROPAGATION. */
 	public static final int TIME_TO_PROPAGATION = 100;
 
-	/** The range of explosion */
+	/**  The range of explosion. */
 	private int range;
 
-	/** The range counter - UP */
+	/**  The range counter - UP. */
 	private int range_counter_up;
 
-	/** The range counter - DOWN */
+	/**  The range counter - DOWN. */
 	private int range_counter_down;
 
-	/** The range counter - LEFT */
+	/**  The range counter - LEFT. */
 	private int range_counter_left;
 
-	/** The range counter - RIGHT */
+	/**  The range counter - RIGHT. */
 	private int range_counter_right;
 
-	/** The player who dropped the bomb */
+	/**  The player who dropped the bomb. */
 	private Player dropPlayer;
 
-	/** The board position where the bomb was dropped */
+	/**  The board position where the bomb was dropped. */
 	private Position boardPosition;
 
-	/** The bomb timer */
+	/**  The bomb timer. */
 	private Timer bombTimer;
 
-	/** The propagation timer */
+	/**  The propagation timer. */
 	private Timer proTimer;
 
-	/** The animation for the bomb */
+	/**  The animation for the bomb. */
 	private BufferedImage bombImg;
 
 	//=======================================================
 
 	/**
 	 * Instantiates a new automatic bomb.
+	 *
+	 * @param dropPlayer the drop player
 	 */
 	public Bomb(Player dropPlayer){
 		this.range = 3;
@@ -88,7 +93,9 @@ public class Bomb implements Serializable{
 	}
 
 	/**
-	 * Return bomb board position
+	 * Return bomb board position.
+	 *
+	 * @return the bomb pos
 	 */
 	public Position getBombPos(){
 		return boardPosition;
@@ -122,14 +129,16 @@ public class Bomb implements Serializable{
 	}
 
 	/**
-	 * Verify if bomb propagation is over
+	 * Verify if bomb propagation is over.
+	 *
+	 * @return true, if successful
 	 */
 	public boolean bombPropagationIsOver(){
 		return (range_counter_up == range && range_counter_down == range && range_counter_left == range && range_counter_right == range);
 	}
 
 	/**
-	 * Propagate bomb explosion
+	 * Propagate bomb explosion.
 	 */
 	public void propagateExplosion(){
 
@@ -176,10 +185,10 @@ public class Bomb implements Serializable{
 	}
 
 	/**
-	 * Explodes board item
-	 * 
-	 * @param incLine
-	 * @param incCol
+	 * Explodes board item.
+	 *
+	 * @param incLine the inc line
+	 * @param incCol the inc col
 	 * @return true if explosion propagates
 	 */
 	public boolean explodeItem(int incLine, int incCol){
@@ -195,7 +204,10 @@ public class Bomb implements Serializable{
 	/**
 	 * Draw.
 	 * This method is called by GUI and is responsible for draw the bomb in the game window.
-	 * 
+	 *
+	 * @param g the g
+	 * @param width the width
+	 * @param height the height
 	 */
 	public void draw(Graphics g, int width, int height){
 		int n = GameModel.getInstance().getBoard().getMaze().length;
@@ -207,7 +219,8 @@ public class Bomb implements Serializable{
 	}
 
 	/**
-	 * Return bomb image
+	 * Return bomb image.
+	 *
 	 * @return bomb image
 	 */
 	public BufferedImage getImgBomb(){

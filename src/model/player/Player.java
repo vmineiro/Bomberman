@@ -17,6 +17,7 @@ import model.board.UndestructibleWall;
 import model.monster.Monster;
 import java.io.Serializable;
 
+
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a PlayerState subclass that defines the current state.
@@ -26,7 +27,7 @@ public class Player implements GameChar, Serializable{
 	/** The board position. */
 	private Position boardPosition;
 	
-	/** The next board position */
+	/**  The next board position. */
 	private Position nextPlayerPosition;
 	
 	/** The state. */
@@ -49,12 +50,14 @@ public class Player implements GameChar, Serializable{
 		
 		try 
 		{
-			bombermanImg = ImageIO.read(new File("img/bomberman_s.png"));			
+			bombermanImg = ImageIO.read(new File("img/bomberman.gif"));			
 		} catch (IOException e) {}
 	}
 	
 	/**
-	 * Get board position
+	 * Get board position.
+	 *
+	 * @return the board position
 	 */
 	public Position getBoardPosition(){
 		return boardPosition;
@@ -62,13 +65,17 @@ public class Player implements GameChar, Serializable{
 	
 	/**
 	 * Update board position.
+	 *
+	 * @param n_pos the n_pos
 	 */
 	public void updateBoardPosition(Position n_pos){
 		this.boardPosition = n_pos;
 	}
 	
 	/**
-	 * Gets the current state
+	 * Gets the current state.
+	 *
+	 * @return the current state
 	 */
 	public PlayerState getCurrentState(){
 		return state;
@@ -103,8 +110,9 @@ public class Player implements GameChar, Serializable{
 	}
 	
 	/**
-	 * Returns available bombs
-	 * @return
+	 * Returns available bombs.
+	 *
+	 * @return the int
 	 */
 	public int availableBombs(){
 		return availableBombs;
@@ -119,13 +127,18 @@ public class Player implements GameChar, Serializable{
 	
 	/**
 	 * Sets the animation.
+	 *
+	 * @param animation the new animation
 	 */
 	public void setAnimation(BufferedImage animation){
 		this.bombermanImg = animation;
 	}
 	
 	/**
-	 * Checks player death
+	 * Checks player death.
+	 *
+	 * @param playerItem the player item
+	 * @return true, if successful
 	 */
 	public boolean checkDeath(Item playerItem){
 		//Checks explosion
@@ -149,7 +162,9 @@ public class Player implements GameChar, Serializable{
 	}
 	
 	/**
-	 * Monster visits path item in game board
+	 * Monster visits path item in game board.
+	 *
+	 * @param item the item
 	 */
 	public void visitPath(ItemPath item){
 		updateBoardPosition(nextPlayerPosition);
@@ -157,12 +172,16 @@ public class Player implements GameChar, Serializable{
 	}
 	
 	/**
-	 * Monster visits undestructible wall item in game board
+	 * Monster visits undestructible wall item in game board.
+	 *
+	 * @param item the item
 	 */
 	public void visitUndestructibleWall(UndestructibleWall item){}
 	
 	/**
-	 * Monster visits board exit item in game board
+	 * Monster visits board exit item in game board.
+	 *
+	 * @param item the item
 	 */ 
 	public void visitBoardExit(BoardExit item){
 		updateBoardPosition(nextPlayerPosition);
@@ -170,29 +189,36 @@ public class Player implements GameChar, Serializable{
 	}
 	
 	/**
-	 * Collision Management
-	 * @param gameChar
+	 * Collision Management.
+	 *
+	 * @param gameChar the game char
 	 */
 	public void collidesWith(GameChar gameChar){
 		gameChar.visit(this);
 	}
 	
 	/**
-	 * Visited by Player
-	 * @param vPlayer
+	 * Visited by Player.
+	 *
+	 * @param vPlayer the v player
 	 */
 	public void visit(Player vPlayer){}
 	
 	/**
-	 * Visited by Monster
-	 * @param vMonster
+	 * Visited by Monster.
+	 *
+	 * @param vMonster the v monster
 	 */
 	public void visit(Monster vMonster){
 		setCurrentState(getCurrentState().die());
 	}	
 
 	/**
-	 * Draw Player
+	 * Draw Player.
+	 *
+	 * @param g the g
+	 * @param width the width
+	 * @param height the height
 	 */
 	public void draw(Graphics g, int width, int height){
 		
@@ -201,7 +227,7 @@ public class Player implements GameChar, Serializable{
 		int dstImgHei = height / n;
 	
 		g.drawImage(this.bombermanImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
-				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 139, 209, null);
+				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 32, 56, null);
 	}
 }
 

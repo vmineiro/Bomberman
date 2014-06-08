@@ -16,12 +16,14 @@ import model.player.Bomb;
 import model.player.Player;
 
 
+
 /**
  * This class defines the interface of interest to clients and maintains an
  * instance of a ItemState subclass that defines the current state.
  */
 public abstract class Item implements Serializable{
 	
+	/** The Constant EXPLOSION_DURATION. */
 	private static final int EXPLOSION_DURATION = 500;
 	
 	/** The state. */
@@ -33,7 +35,7 @@ public abstract class Item implements Serializable{
 	/** The bomb in this item. */
 	protected Bomb bomb;
 	
-	/** Timer to finish explosion */
+	/**  Timer to finish explosion. */
 	private Timer countDown;
 	
 	
@@ -103,8 +105,6 @@ public abstract class Item implements Serializable{
 	
 	/**
 	 * Bomb dropped in this item.
-	 *
-	 * @param bomb the bomb
 	 */
 	public void bombExploded(){
 		this.bomb = null;
@@ -115,6 +115,8 @@ public abstract class Item implements Serializable{
 	
 	/**
 	 * Explode.
+	 *
+	 * @return true, if successful
 	 */
 	public boolean explode() {
 
@@ -183,7 +185,13 @@ public abstract class Item implements Serializable{
 	public abstract void setCurrentState(ItemState state);
 	
 	/**
-	 * Draw game item
+	 * Draw game item.
+	 *
+	 * @param g the g
+	 * @param pos_l the pos_l
+	 * @param pos_c the pos_c
+	 * @param width the width
+	 * @param height the height
 	 */
 	public abstract void draw(Graphics g, int pos_l, int pos_c, int width, int height);
 	

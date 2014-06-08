@@ -6,7 +6,6 @@ import java.io.Serializable;
 import model.GameModel;
 import model.Position;
 
-
 /**
  * This class represents the game board.
  */
@@ -15,7 +14,7 @@ public class Board implements Serializable{
 	/** The maze. */
 	private Item[][] maze;
 	
-	/** The exit board position */
+	/**  The exit board position. */
 	private Position exitPos;
 	
 	/**
@@ -52,37 +51,48 @@ public class Board implements Serializable{
 	}
 	
 	/**
-	 * Get Maze
+	 * Get Maze.
+	 *
+	 * @return the maze
 	 */
 	public Item[][] getMaze(){
 		return maze;
 	}
 	
 	/**
-	 * Return the exit of the board
-	 * @return
+	 * Return the exit of the board.
+	 *
+	 * @return the exit pos
 	 */
 	public Position getExitPos(){
 		return exitPos;
 	}
 	
-	/** 
-	 * Saves the position of exit
+	/**
+	 *  
+	 * Saves the position of exit.
+	 *
+	 * @param exit the new exit pos
 	 */
 	public void setExitPos(Position exit){
 		this.exitPos = exit;
 	}
 	
 	/**
-	 * Return the exit item
-	 * @return
+	 * Return the exit item.
+	 *
+	 * @return the exit item
 	 */
 	public Item getExitItem(){
 		return this.getItem(this.getExitPos());
 	}
 	
 	/**
-	 * Draw Game Board
+	 * Draw Game Board.
+	 *
+	 * @param g the g
+	 * @param width the width
+	 * @param height the height
 	 */
 	public void draw(Graphics g, int width, int height)
 	{

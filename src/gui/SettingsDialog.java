@@ -19,12 +19,19 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+
+/**
+ * The Class SettingsDialog.
+ */
 public class SettingsDialog extends JDialog {
 
+	/** The keys panel. */
 	private JPanel keysPanel = new JPanel();
 	
+	/** The new settings. */
 	private boolean newSettings = false;
 	
+	/** The up p1. */
 	private JTextField upP1;
 	
 	/** The selected up key. */
@@ -45,31 +52,58 @@ public class SettingsDialog extends JDialog {
     /** The drop bomb key. */
     private int explodeBombKeyP1;
     
+	/** The explode bomb key p2. */
 	private int explodeBombKeyP2;
 
+	/** The bomb key p2. */
 	private int bombKeyP2;
 
+	/** The right key p2. */
 	private int rightKeyP2;
 
+	/** The down key p2. */
 	private int downKeyP2;
 
+	/** The left key p2. */
 	private int leftKeyP2;
 
+	/** The up key p2. */
 	private int upKeyP2;
     
+	/** The left p1. */
 	private JTextField leftP1;
+	
+	/** The down p1. */
 	private JTextField downP1;
+	
+	/** The right p1. */
 	private JTextField rightP1;
+	
+	/** The drop bomb p1. */
 	private JTextField dropBombP1;
+	
+	/** The detonate bomb p1. */
 	private JTextField detonateBombP1;
 	
+	/** The up p2. */
 	private JTextField upP2;
+	
+	/** The detonate bomb p2. */
 	private JTextField detonateBombP2;
+	
+	/** The drop bomb p2. */
 	private JTextField dropBombP2;
+	
+	/** The right p2. */
 	private JTextField rightP2;
+	
+	/** The down p2. */
 	private JTextField downP2;
+	
+	/** The left p2. */
 	private JTextField leftP2;
 
+	/** The game panel. */
 	private GamePanel gamePanel;
 
 
@@ -77,7 +111,10 @@ public class SettingsDialog extends JDialog {
 
 	/**
 	 * Create the dialog.
-	 * @param gamePanel 
+	 *
+	 * @param frame the frame
+	 * @param modal the modal
+	 * @param gamePanel the game panel
 	 */
 	public SettingsDialog(JFrame frame, boolean modal, GamePanel gamePanel) {
 		super(frame, modal);
@@ -567,6 +604,9 @@ public class SettingsDialog extends JDialog {
 
 
 
+	/**
+	 * Load game settings.
+	 */
 	private void loadGameSettings() {
 	
 		
@@ -587,6 +627,9 @@ public class SettingsDialog extends JDialog {
 	}
 
 
+	/**
+	 * Sets the new settings.
+	 */
 	private void setNewSettings() {
 	    gamePanel.setKeyUpP1(upKeyP1);
 	    gamePanel.setKeyDownP1(downKeyP1);
@@ -605,6 +648,11 @@ public class SettingsDialog extends JDialog {
 	}
 
 
+	/**
+	 * New settings.
+	 *
+	 * @return true, if successful
+	 */
 	public boolean newSettings() {
 		return newSettings;
 	}
@@ -612,6 +660,11 @@ public class SettingsDialog extends JDialog {
 
 
 
+	/**
+	 * Sets the new settings.
+	 *
+	 * @param newSettings the new new settings
+	 */
 	public void setNewSettings(boolean newSettings) {
 		this.newSettings = newSettings;
 	}

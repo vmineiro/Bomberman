@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+
 /**
  * The Class MonsterTests.
  *
@@ -91,8 +92,7 @@ public class MonsterTests {
 	/**
 	 * Visit by Player Tests
 	 * 
-	 * Avaliar a visita do player com diferentes estados dos monstros
-	 * 
+	 * Avaliar a visita do player com diferentes estados dos monstros.
 	 */
 	@Test
 	public void playerVisitTests(){
@@ -138,7 +138,7 @@ public class MonsterTests {
 	
 	/**
 	 * Items visit by monster Tests
-	 * Nestes testes pretende-se verificar o comportamento do monstro nos varios items do tabuleiro
+	 * Nestes testes pretende-se verificar o comportamento do monstro nos varios items do tabuleiro.
 	 */
 	@Test
 	public void itemsVisitTests(){

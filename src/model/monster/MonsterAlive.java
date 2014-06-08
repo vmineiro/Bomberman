@@ -1,6 +1,5 @@
 package model.monster;
 
-import model.GameModel;
 import java.io.Serializable;
 
 /**
@@ -16,14 +15,15 @@ public class MonsterAlive implements MonsterState, Serializable {
 	/**
 	 * Die.
 	 *
-	 * @param monster the monster
+	 * @return the monster state
 	 */
 	public MonsterState die(){
 		return new MonsterDead();
 	}
 	
 	/**
-	 * Replies monster health
+	 * Replies monster health.
+	 *
 	 * @return true if monster is dead
 	 */
 	public boolean isDead(){

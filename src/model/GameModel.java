@@ -29,7 +29,6 @@ import model.board.UndestructibleWall;
 import model.monster.Monster;
 import model.player.Player;
 
-//TODO: Add Comments to all function
 /**
  * This class GameModel defines an Instance operation that lets clients access its
  * unique instance, and may be responsible for creating its own unique
@@ -49,28 +48,29 @@ public class GameModel implements Serializable{
 	/** The monsters. */
 	private ArrayList<Monster> monsters;
 	
-//	/** Game Logic Timer */
-//	private Timer gameTimer;
-	
-//	/** Game Logic refresh rate */
-//	private static final int LOGIC_RATE = 250;
-	
-	/** Key Pressed Up */
+	/**  Key Pressed Up. */
 	private boolean pressedUp = false;
 	
-	/** Key Pressed Down */
+	/**  Key Pressed Down. */
 	private boolean pressedDown = false;
 	
-	/** Key Pressed Left */
+	/**  Key Pressed Left. */
 	private boolean pressedLeft = false;
 	
-	/** Key Pressed Right */
+	/**  Key Pressed Right. */
 	private boolean pressedRight = false;
 	
 	//Player Movement Increments
+	/** The Constant UP. */
 	public static final Position UP = new Position(-1,0);
+	
+	/** The Constant DOWN. */
 	public static final Position DOWN = new Position(1,0);
+	
+	/** The Constant LEFT. */
 	public static final Position LEFT = new Position(0,-1);
+	
+	/** The Constant RIGHT. */
 	public static final Position RIGHT = new Position(0,1);
 	
 	// =====================================================================
@@ -86,6 +86,8 @@ public class GameModel implements Serializable{
 	
 	/**
 	 * Instance.
+	 *
+	 * @return single instance of GameModel
 	 */
 	public static GameModel getInstance(){
 			if(uniqueGameModel == null){
@@ -97,27 +99,20 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Initializes all game elements
-	 * @param board_number is the of the 
+	 * Initializes all game elements.
+	 *
+	 * @param board_number is the of the
 	 */
 	public void initGame(int board_number){
 		
 		readBoardFile(board_number);
 
-//		ActionListener gameTimerListener = new ActionListener(){ 
-//			public void actionPerformed(ActionEvent e) {
-//				GameModel.getInstance().update();	
-//			}
-//		};
-//
-//		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
-//		gameTimer.start();
-
 	}
 	
 	/**
-	 * Reads board file and launches game
-	 * @param boardNumber
+	 * Reads board file and launches game.
+	 *
+	 * @param boardNumber the board number
 	 */
 	public void readBoardFile(int boardNumber){
 
@@ -170,8 +165,9 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Initializes standard game
-	 * @param n_Monsters
+	 * Initializes standard game.
+	 *
+	 * @param n_Monsters the n_ monsters
 	 */
 	public void standardInitGame(int n_Monsters) {
 		
@@ -196,19 +192,19 @@ public class GameModel implements Serializable{
 
 		//Initializes monsters and player
 		addMonsters(n_Monsters);
-//		addMonsters(1);
 		addPlayer(board_size);
 	}
 	
 	/**
-	 * Reset GameModel singleton instance (For testing use only)
+	 * Reset GameModel singleton instance (For testing use only).
 	 */
 	public void resetGameModel(){
 		uniqueGameModel = new GameModel();
 	}
 	
 	/**
-	 * Adds monsters to the game
+	 * Adds monsters to the game.
+	 *
 	 * @param nMonsters is the number of game monsters
 	 */
 	public void addMonsters(int nMonsters){
@@ -220,9 +216,9 @@ public class GameModel implements Serializable{
 	}	
 	
 	/**
-	 * Add a player to the game
-	 * 
-	 * @param player the player to be added.
+	 * Add a player to the game.
+	 *
+	 * @param boardSize the board size
 	 */
 	public void addPlayer(int boardSize){		
 		this.players.updateBoardPosition(new Position(boardSize-2,boardSize-2));
@@ -249,14 +245,10 @@ public class GameModel implements Serializable{
 			getBoard().getExitItem().setCurrentState(getBoard().getExitItem().getCurrentState().openExit());
 		}
 		
-//		if(GameModel.getInstance().gameOver()){
-//			gameTimer.stop();
-//
-//		}		
 	}
 	
 	/**
-	 * Update key pressed to UP 
+	 * Update key pressed to UP.
 	 */
 	public void updateKeyUp(){
 		this.pressedUp = true;
@@ -264,7 +256,7 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Update key pressed to DOWN 
+	 * Update key pressed to DOWN.
 	 */
 	public void updateKeyDown(){
 		this.pressedDown = true;
@@ -272,7 +264,7 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Update key pressed to LEFT 
+	 * Update key pressed to LEFT.
 	 */
 	public void updateKeyLeft(){
 		this.pressedLeft = true;
@@ -280,7 +272,7 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Update key pressed to RIGHT 
+	 * Update key pressed to RIGHT.
 	 */
 	public void updateKeyRight(){
 		this.pressedRight = true;
@@ -288,7 +280,7 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Update key released  
+	 * Update key released.
 	 */
 	public void updateKeyReleased(){
 		this.pressedUp = false;
@@ -298,9 +290,9 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Get player next movement
-	 * 
-	 * @param player moving
+	 * Get player next movement.
+	 *
+	 * @param playerMoving the player moving
 	 * @return newPosPlayer
 	 */
 	public Position getNextMov(Player playerMoving){
@@ -328,7 +320,9 @@ public class GameModel implements Serializable{
 	}
 	
 	/**
-	 * Get board
+	 * Get board.
+	 *
+	 * @return the board
 	 */
 	public Board getBoard(){
 		return board;
@@ -337,48 +331,55 @@ public class GameModel implements Serializable{
 	/**
 	 * Sets the board.
 	 *
-	 * @param board the new board
+	 * @param board2 the new board
 	 */
 	public void setBoard(Board board2){
 		this.board = board2;
 	}
 	
 	/**
-	 * Get players 
+	 * Get players.
+	 *
+	 * @return the players
 	 */
 	public Player getPlayers(){
 		return players;
 	}
 	
 	/**
-	 * Sets the players
-	 * @param player2
+	 * Sets the players.
+	 *
+	 * @param player2 the new players
 	 */
 	public void setPlayers(Player player2){
 		this.players = player2;
 	}	
 	
 	/**
-	 * Get monsters
+	 * Get monsters.
+	 *
+	 * @return the monsters
 	 */
 	public ArrayList<Monster> getMonsters(){
 		return monsters;
 	}
 	
 	/**
-	 * Sets the monsters
-	 * @param monsters2
+	 * Sets the monsters.
+	 *
+	 * @param monsters2 the new monsters
 	 */
 	public void setMonsters(ArrayList<Monster> monsters2){
 		this.monsters = monsters2;
 	}
 	
 	/**
-	  * Special hook provided by serialization where developer can control what object needs to sent.
-	  * However this method is invoked on the new object instance created by de serialization process.
-	  * @return
-	  * @throws ObjectStreamException
-	  */
+	 * Special hook provided by serialization where developer can control what object needs to sent.
+	 * However this method is invoked on the new object instance created by de serialization process.
+	 *
+	 * @return the object
+	 * @throws ObjectStreamException the object stream exception
+	 */
 	 private Object readResolve() throws ObjectStreamException{
 	  return uniqueGameModel;
 	 }
@@ -454,6 +455,10 @@ public class GameModel implements Serializable{
 	
 	/**
 	 * Draw Game - Calls draw method of all objects.
+	 *
+	 * @param g the g
+	 * @param width the width
+	 * @param height the height
 	 */
 	public void draw(Graphics g, int width, int height){
 		
