@@ -44,7 +44,8 @@ public class GamePanel extends JPanel implements KeyListener
 	public GamePanel()
 	{	
 		//TODO: Change number for different board, for now exists board_1.txt and board_2.txt
-		GameModel.getInstance().initGame(2);
+		// If board number = 0, uses standard game
+		GameModel.getInstance().initGame(0);
 		
 		addKeyListener(this);
 		

@@ -121,44 +121,72 @@ public class GameModel implements Serializable{
 	 */
 	public void readBoardFile(int boardNumber){
 
-		int board_size = 0;
-		int nMonsters = 0; 
-		int boardInt [][];
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("board_files/board_");
-		sb.append(boardNumber);
-		sb.append(".txt");
-		String fileName = sb.toString();
-
-		try 
+		if(boardNumber != 0)
 		{
-			File fileIn = new File(fileName);
-			Scanner scanner = new Scanner(fileIn);
+			int board_size = 0;
+			int nMonsters = 0; 
+			int boardInt [][];
 
-			board_size = scanner.nextInt();
-			nMonsters = scanner.nextInt();
+			StringBuilder sb = new StringBuilder();
+			sb.append("board_files/board_");
+			sb.append(boardNumber);
+			sb.append(".txt");
+			String fileName = sb.toString();
 
-			boardInt = new int[board_size][board_size];
+			try 
+			{
+				File fileIn = new File(fileName);
+				Scanner scanner = new Scanner(fileIn);
 
-			for(int i=0; i<board_size; i++){
-				for(int j=0; j<board_size; j++){
-					boardInt[i][j] = scanner.nextInt();
+				board_size = scanner.nextInt();
+				nMonsters = scanner.nextInt();
+
+				boardInt = new int[board_size][board_size];
+
+				for(int i=0; i<board_size; i++){
+					for(int j=0; j<board_size; j++){
+						boardInt[i][j] = scanner.nextInt();
+					}
 				}
-			}
 
-			scanner.close();
-			
+				scanner.close();
+
+				//Initializes board game
+				BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
+				setBoard(boardBuilt.getResult());
+
+				//Initializes monsters and player
+				addMonsters(nMonsters);
+				addPlayer(board_size);
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+		else //STANDARD GAME
+		{
+			int nMonsters = 4;
+			int board_size = 11;
+			int boardInt [][] = {
+					{0,0,0,0,0,0,0,0,0,0,0},
+					{0,1,1,1,1,1,1,1,1,1,0},
+					{0,1,0,2,0,2,0,2,0,1,0},
+					{0,1,1,1,2,1,2,1,1,1,0},
+					{0,1,0,2,0,2,0,2,0,1,0},
+					{0,1,1,1,2,1,2,1,1,1,0},
+					{0,1,0,2,0,2,0,2,0,1,0},
+					{0,1,1,1,2,1,1,1,1,1,0},
+					{0,1,0,2,0,2,0,2,0,1,0},
+					{0,1,1,1,1,1,1,1,1,1,0},
+					{0,0,0,0,0,3,0,0,0,0,0},
+			};
 			//Initializes board game
 			BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
 			setBoard(boardBuilt.getResult());
-			
+
 			//Initializes monsters and player
 			addMonsters(nMonsters);
 			addPlayer(board_size);
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 	
