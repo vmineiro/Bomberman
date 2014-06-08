@@ -1,16 +1,17 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 import model.GameModel;
 import model.Position;
 import model.board.BoardExit;
 import model.board.ItemExploding;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
-import model.monster.Monster;
 import model.monster.MonsterAlive;
 import model.monster.MonsterDead;
-import model.player.Bomb;
 import model.player.Player;
 import model.player.PlayerAlive;
 import model.player.PlayerDead;

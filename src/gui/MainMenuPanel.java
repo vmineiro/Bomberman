@@ -1,30 +1,17 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.ImageProducer;
-import java.io.IOException;
 
 import javax.swing.Box;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-
-import model.GameModel;
 
 
 
@@ -32,15 +19,6 @@ import model.GameModel;
  * The Class MainMenuPanel.
  */
 public class MainMenuPanel extends JPanel {
-	
-	/** The new game. */
-	private boolean newGame = false;
-	
-	/** The load game. */
-	private boolean loadGame = false;
-	
-	/** The config settings. */
-	private boolean configSettings = false;
 	
 	/** The main window. */
 	private MainWindow mainWindow;

@@ -6,14 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-import model.GameChar;
 import model.GameModel;
 import model.Position;
-import java.io.Serializable;
 
 
 /**

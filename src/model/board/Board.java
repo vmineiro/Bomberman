@@ -9,6 +9,7 @@ import model.Position;
 /**
  * This class represents the game board.
  */
+@SuppressWarnings("serial")
 public class Board implements Serializable{
 	
 	/** The maze. */

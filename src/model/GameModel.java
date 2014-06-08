@@ -1,8 +1,6 @@
 package model;
 
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -15,17 +13,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import javax.swing.Timer;
-
 import model.board.Board;
-import model.board.BoardExit;
 import model.board.BoardFactory;
-import model.board.Item;
-import model.board.ItemActive;
-import model.board.ItemHidden;
-import model.board.ItemInactive;
-import model.board.ItemPath;
-import model.board.UndestructibleWall;
 import model.monster.Monster;
 import model.player.Player;
 

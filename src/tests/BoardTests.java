@@ -3,8 +3,6 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import model.GameModel;
-import model.Position;
 import model.board.Board;
 import model.board.BoardExit;
 import model.board.BoardFactory;
@@ -17,10 +15,6 @@ import model.board.ItemInactive;
 import model.board.ItemPath;
 import model.board.ItemState;
 import model.board.UndestructibleWall;
-import model.monster.Monster;
-import model.player.Player;
-import model.player.PlayerAlive;
-import model.player.PlayerDead;
 
 import org.junit.Test;
 
