@@ -121,46 +121,85 @@ public class GameModel implements Serializable{
 	 */
 	public void readBoardFile(int boardNumber){
 
-		int board_size = 0;
-		int nMonsters = 0; 
-		int boardInt [][];
-
-		StringBuilder sb = new StringBuilder();
-		sb.append("board_files/board_");
-		sb.append(boardNumber);
-		sb.append(".txt");
-		String fileName = sb.toString();
-
-		try 
+		if(boardNumber != 0)
 		{
-			File fileIn = new File(fileName);
-			Scanner scanner = new Scanner(fileIn);
+			int board_size = 0;
+			int nMonsters = 0; 
+			int boardInt [][];
 
-			board_size = scanner.nextInt();
-			nMonsters = scanner.nextInt();
+			StringBuilder sb = new StringBuilder();
+			sb.append("board_files/board_");
+			sb.append(boardNumber);
+			sb.append(".txt");
+			String fileName = sb.toString();
 
-			boardInt = new int[board_size][board_size];
+			try 
+			{
+				File fileIn = new File(fileName);
+				Scanner scanner = new Scanner(fileIn);
 
-			for(int i=0; i<board_size; i++){
-				for(int j=0; j<board_size; j++){
-					boardInt[i][j] = scanner.nextInt();
+				board_size = scanner.nextInt();
+				nMonsters = scanner.nextInt();
+
+				boardInt = new int[board_size][board_size];
+
+				for(int i=0; i<board_size; i++){
+					for(int j=0; j<board_size; j++){
+						boardInt[i][j] = scanner.nextInt();
+					}
 				}
+
+				scanner.close();
+
+				//Initializes board game
+				BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
+				setBoard(boardBuilt.getResult());
+
+				//Initializes monsters and player
+				addMonsters(nMonsters);
+				addPlayer(board_size);
+
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
 			}
-
-			scanner.close();
-			
-			//Initializes board game
-			BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
-			setBoard(boardBuilt.getResult());
-			
-			//Initializes monsters and player
-			addMonsters(nMonsters);
-			addPlayer(board_size);
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		}
+		else //STANDARD GAME
+		{
+			standardInitGame(4);
 		}
 	}
+	
+	/**
+	 * Initializes standard game
+	 * @param n_Monsters
+	 */
+	public void standardInitGame(int n_Monsters) {
+		
+		int board_size = 11;
+		int boardInt [][] = {
+				{0,0,0,0,0,0,0,0,0,0,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,2,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,2,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,1,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,0,0,0,0,3,0,0,0,0,0},
+		};
+		
+		//Initializes board game
+		BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
+		setBoard(boardBuilt.getResult());
+
+		//Initializes monsters and player
+		addMonsters(n_Monsters);
+		addPlayer(board_size);
+	}
+	
+	
 	
 	/**
 	 * Adds monsters to the game
@@ -262,17 +301,23 @@ public class GameModel implements Serializable{
 	 */
 	public Position getNextMov(Player playerMoving){
 		
-		if(pressedUp){
-			return playerMoving.getBoardPosition().add(UP);
-		}
-		else if(pressedDown){
-			return playerMoving.getBoardPosition().add(DOWN);
-		}
-		else if(pressedLeft){
-			return playerMoving.getBoardPosition().add(LEFT);
-		}
-		else if(pressedRight){
-			return playerMoving.getBoardPosition().add(RIGHT);
+		if((playerMoving.getBoardPosition().getCol() > 0) && (playerMoving.getBoardPosition().getCol() < board.getMaze().length))
+		{
+			if((playerMoving.getBoardPosition().getLine() > 0) && (playerMoving.getBoardPosition().getLine() < board.getMaze().length))
+			{
+				if(pressedUp){
+					return playerMoving.getBoardPosition().add(UP);
+				}
+				else if(pressedDown){
+					return playerMoving.getBoardPosition().add(DOWN);
+				}
+				else if(pressedLeft){
+					return playerMoving.getBoardPosition().add(LEFT);
+				}
+				else if(pressedRight){
+					return playerMoving.getBoardPosition().add(RIGHT);
+				}
+			}
 		}
 		
 		return playerMoving.getBoardPosition();
@@ -393,8 +438,6 @@ public class GameModel implements Serializable{
 	public boolean gameOver(){
 		
 		if(getPlayers().getCurrentState().isDead()){
-			//TODO: Delete System.out
-			System.out.println("Player is dead");
 			return true;
 		}
 		

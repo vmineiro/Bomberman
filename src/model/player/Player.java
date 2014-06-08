@@ -103,6 +103,14 @@ public class Player implements GameChar, Serializable{
 	}
 	
 	/**
+	 * Returns available bombs
+	 * @return
+	 */
+	public int availableBombs(){
+		return availableBombs;
+	}
+	
+	/**
 	 * Adds the bomb.
 	 */
 	public void addBomb(){
@@ -157,7 +165,6 @@ public class Player implements GameChar, Serializable{
 	 * Monster visits board exit item in game board
 	 */ 
 	public void visitBoardExit(BoardExit item){
-		//TODO: Add check isActive()
 		updateBoardPosition(nextPlayerPosition);
 		checkDeath(item);
 	}
@@ -181,8 +188,6 @@ public class Player implements GameChar, Serializable{
 	 * @param vMonster
 	 */
 	public void visit(Monster vMonster){
-		//TODO: DELETE
-		System.out.println("PLAYER MATOU SE");
 		setCurrentState(getCurrentState().die());
 	}	
 

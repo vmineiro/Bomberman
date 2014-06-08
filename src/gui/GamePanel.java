@@ -50,8 +50,17 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	//=============================================================
 	
+<<<<<<< HEAD
 	public GamePanel(final MainWindow mainWindow)
 	{		
+=======
+	public GamePanel()
+	{	
+		//TODO: Change number for different board, for now exists board_1.txt and board_2.txt
+		// If board number = 0, uses standard game
+		GameModel.getInstance().initGame(0);
+		
+>>>>>>> master
 		addKeyListener(this);
 		this.mainWindow = mainWindow;
 		

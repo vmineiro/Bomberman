@@ -60,7 +60,6 @@ public class BoardFactory implements Serializable{
 	 */
 	public BoardExit createBoardExit(){
 		BoardExit be = new BoardExit();
-		be.setCurrentState(new ItemHidden());
 		return be;		
 	}
 
