@@ -204,7 +204,10 @@ public class PlayerTests {
 	@Test
 	public void winTests(){
 
-		GameModel.getInstance().standardInitGame(1);
+		GameModel.getInstance().standardInitGame(0);
+		GameModel.getInstance().addMonsters(1);
+		GameModel.getInstance().getMonsters().get(0).setCurrentState(new MonsterAlive());
+		GameModel.getInstance().getPlayers().setCurrentState(new PlayerAlive());
 		assertFalse("Game not over - Monster alive", GameModel.getInstance().gameOver());
 		
 		GameModel.getInstance().getMonsters().get(0).setCurrentState(new MonsterDead());

@@ -121,7 +121,7 @@ public class GameModel implements Serializable{
 	 */
 	public void readBoardFile(int boardNumber){
 
-		if(boardNumber != 0)
+		if(boardNumber > 0)
 		{
 			int board_size = 0;
 			int nMonsters = 0; 
@@ -200,7 +200,12 @@ public class GameModel implements Serializable{
 		addPlayer(board_size);
 	}
 	
-	
+	/**
+	 * Reset GameModel singleton instance (For testing use only)
+	 */
+	public void resetGameModel(){
+		uniqueGameModel = new GameModel();
+	}
 	
 	/**
 	 * Adds monsters to the game
