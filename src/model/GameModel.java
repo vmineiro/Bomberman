@@ -121,7 +121,7 @@ public class GameModel implements Serializable{
 	 */
 	public void readBoardFile(int boardNumber){
 
-		if(boardNumber != 0)
+		if(boardNumber > 0)
 		{
 			int board_size = 0;
 			int nMonsters = 0; 
