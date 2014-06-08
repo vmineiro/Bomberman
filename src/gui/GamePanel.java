@@ -67,15 +67,6 @@ public class GamePanel extends JPanel implements KeyListener
 		
 		int key = e.getKeyCode();
 		
-		if (!mainWindow.isRunning())
-		{
-			if(key == keyPause) {
-				mainWindow.runGame();
-				return;
-			}
-			return;
-		}
-
 		if(key == keyUp)
 		{
 			GameModel.getInstance().updateKeyUp();

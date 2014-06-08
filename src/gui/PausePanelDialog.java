@@ -135,11 +135,10 @@ public class PausePanelDialog extends JDialog{
 			}
 		});
 		panel_4.add(btnMainMenu);
+		
+		
 		this.setVisible(true);
-
-
 		this.requestFocusInWindow();
-
 		setLocationRelativeTo(this.mainWindow.getFrame());
 	}
 

@@ -155,9 +155,12 @@ public class MainWindow {
 		if (refreshTimer.isRunning()){
 			refreshTimer.stop();
 			pausePanel = new PausePanelDialog(this,true);
+			pausePanel.requestFocusInWindow();
 		}
 		else {
+			gamePanel.requestFocusInWindow();
 			refreshTimer.start();
+			
 		}
 		
 	}

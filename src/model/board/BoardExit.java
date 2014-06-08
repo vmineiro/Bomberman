@@ -53,8 +53,8 @@ public class BoardExit extends Item implements Serializable{
 	 * @param monster the monster
 	 */
 	public void accept(Monster monster){
-		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
-		monster.visitBoardExit(this);
+//		if (this.state.getClass() == ItemHidden.class || this.bomb != null) return;
+//		monster.visitBoardExit(this);
 	}
 
 	public void setCurrentState(ItemState state) {
