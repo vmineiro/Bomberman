@@ -49,11 +49,11 @@ public class GameModel implements Serializable{
 	/** The monsters. */
 	private ArrayList<Monster> monsters;
 	
-	/** Game Logic Timer */
-	private Timer gameTimer;
+//	/** Game Logic Timer */
+//	private Timer gameTimer;
 	
-	/** Game Logic refresh rate */
-	private static final int LOGIC_RATE = 250;
+//	/** Game Logic refresh rate */
+//	private static final int LOGIC_RATE = 250;
 	
 	/** Key Pressed Up */
 	private boolean pressedUp = false;
@@ -104,14 +104,14 @@ public class GameModel implements Serializable{
 		
 		readBoardFile(board_number);
 
-		ActionListener gameTimerListener = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e) {
-				GameModel.getInstance().update();	
-			}
-		};
-
-		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
-		gameTimer.start();
+//		ActionListener gameTimerListener = new ActionListener(){ 
+//			public void actionPerformed(ActionEvent e) {
+//				GameModel.getInstance().update();	
+//			}
+//		};
+//
+//		gameTimer = new Timer(LOGIC_RATE, gameTimerListener);
+//		gameTimer.start();
 
 	}
 	
@@ -195,7 +195,8 @@ public class GameModel implements Serializable{
 		setBoard(boardBuilt.getResult());
 
 		//Initializes monsters and player
-		addMonsters(n_Monsters);
+//		addMonsters(n_Monsters);
+		addMonsters(1);
 		addPlayer(board_size);
 	}
 	
@@ -243,12 +244,10 @@ public class GameModel implements Serializable{
 			getBoard().getExitItem().setCurrentState(getBoard().getExitItem().getCurrentState().openExit());
 		}
 		
-		if(GameModel.getInstance().gameOver()){
-			gameTimer.stop();
-			
-			//TODO: DELETE AFTER TESTING
-			System.out.println("GAME OVER");
-		}		
+//		if(GameModel.getInstance().gameOver()){
+//			gameTimer.stop();
+//
+//		}		
 	}
 	
 	/**
@@ -442,8 +441,6 @@ public class GameModel implements Serializable{
 		}
 		
 		if(getPlayers().getBoardPosition().equals(getBoard().getExitPos())){
-			//TODO: Delete System.out
-			System.out.println("Player won");
 			return true;
 		}
 		

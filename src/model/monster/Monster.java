@@ -29,6 +29,8 @@ public class Monster implements GameChar, Serializable{
 	private static final Position DOWN = new Position(1,0);
 	private static final Position LEFT = new Position(0,-1);
 	private static final Position RIGHT = new Position(0,1);
+	private static final int UPDATE_RATE = 3;
+	
 
 	/** The state. */
 	private MonsterState state;
@@ -44,6 +46,9 @@ public class Monster implements GameChar, Serializable{
 	
 	/** The Animation of the Item. */
 	private BufferedImage monsterImg;
+	
+	private int nextUpdateCounter;
+	private boolean moved;
 
 	// =============================================================
 	
@@ -54,6 +59,8 @@ public class Monster implements GameChar, Serializable{
 		this.state = new MonsterAlive();
 		this.boardPosition = new Position();
 		this.nextMonsterPosition = new Position();
+		this.nextUpdateCounter = UPDATE_RATE;
+		this.moved = false;
 		
 		try 
 		{
@@ -97,8 +104,19 @@ public class Monster implements GameChar, Serializable{
 	 * Update Monster
 	 */
 	public void update(){
-		nextMonsterPosition = generateNextMov();
-		GameModel.getInstance().getBoard().getItem(nextMonsterPosition).accept(this);
+		
+		if (nextUpdateCounter == 0) {
+			while (!moved){
+				nextMonsterPosition = generateNextMov();
+				GameModel.getInstance().getBoard().getItem(nextMonsterPosition).accept(this);
+			}
+			moved = false;
+			nextUpdateCounter = UPDATE_RATE;
+		} else {
+			nextUpdateCounter--;
+		}
+		
+		
 	}
 
 	/**
@@ -159,6 +177,7 @@ public class Monster implements GameChar, Serializable{
 	 * Monster visits path item in game board
 	 */
 	public void visitPath(ItemPath item){
+		moved = true;
 		moveMonster(item);
 		checkDeath(item);
 		checkCollision();

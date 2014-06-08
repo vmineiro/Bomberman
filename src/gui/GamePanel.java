@@ -20,12 +20,7 @@ import javax.swing.Timer;
  */
 public class GamePanel extends JPanel implements KeyListener
 {	
-	/** Game refresh rate */
-	private static final int REFRESH_RATE = 60;
-	
-	/** The game timer */
-	private Timer refreshTimer;
-	
+		
 	/** The key up. */
 	private int keyUp = KeyEvent.VK_UP;
 	
@@ -43,49 +38,19 @@ public class GamePanel extends JPanel implements KeyListener
 	
 	/** The key pauPause. */
 	private int keyPause = KeyEvent.VK_ESCAPE;
-	
-	ActionListener gameTimerListener;
 
 	private MainWindow mainWindow;
 	
 	//=============================================================
 	
-<<<<<<< HEAD
+
 	public GamePanel(final MainWindow mainWindow)
 	{		
-=======
-	public GamePanel()
-	{	
-		//TODO: Change number for different board, for now exists board_1.txt and board_2.txt
-		// If board number = 0, uses standard game
-		GameModel.getInstance().initGame(0);
-		
->>>>>>> master
 		addKeyListener(this);
 		this.mainWindow = mainWindow;
 		
-		gameTimerListener = new ActionListener(){ 
-			public void actionPerformed(ActionEvent e) {
-				repaint();
-				
-				if(GameModel.getInstance().gameOver()){
-					
-					
-					if (GameModel.getInstance().getMonsters().size() == 0){
-						JOptionPane.showMessageDialog(GamePanel.this.mainWindow.getFrame(),"You WIN!");
-					} else {
-						JOptionPane.showMessageDialog(GamePanel.this.mainWindow.getFrame(),"You LOST!");
-					}
-					
-					refreshTimer.stop();
-					setVisible(false);
-					GamePanel.this.mainWindow.gotoMainMenu();
-				}
-				
-			}
-		};
-		refreshTimer = new Timer(REFRESH_RATE, gameTimerListener);
-		refreshTimer.start();
+		
+		
 	}
 	
 	/**
@@ -102,10 +67,10 @@ public class GamePanel extends JPanel implements KeyListener
 		
 		int key = e.getKeyCode();
 		
-		if (!refreshTimer.isRunning())
+		if (!mainWindow.isRunning())
 		{
 			if(key == keyPause) {
-				refreshTimer.start();
+				mainWindow.runGame();
 				return;
 			}
 			return;
@@ -133,7 +98,7 @@ public class GamePanel extends JPanel implements KeyListener
 		}
 		else if(key == keyPause)
 		{
-			refreshTimer.stop();
+			mainWindow.pauseGame();
 		}
 		
 	}

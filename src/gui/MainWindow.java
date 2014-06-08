@@ -5,9 +5,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.border.EmptyBorder;
@@ -23,9 +27,17 @@ public class MainWindow {
 	/** The game panel */
 	private GamePanel gamePanel;
 
-	private GameSettings settingsPanel;
+	private SettingsDialog settingsPanel;
+
+	private PausePanelDialog pausePanel;
 	
+	/** The game timer */
+	private Timer refreshTimer;
 	
+	/** Game refresh rate */
+	private static final int REFRESH_RATE = 60;
+	
+	private ActionListener gameTimerListener;
 
 	/**
 	 * Launch the application.
@@ -90,7 +102,28 @@ public class MainWindow {
 		
 		frame.getContentPane().removeAll();
 		
+		//TODO integrate game model
+		GameModel.getInstance().initGame(0);
+		
 		gamePanel = new GamePanel(this);
+		
+		gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				
+				GameModel.getInstance().update();
+				gamePanel.repaint();
+				
+				if(GameModel.getInstance().gameOver()){
+				
+					gameEnded();
+					
+				}
+				
+			}
+		};
+		
+		refreshTimer = new Timer(REFRESH_RATE, gameTimerListener);
+		refreshTimer.start();
 		
 		frame.getContentPane().add(gamePanel);
 		
@@ -104,8 +137,38 @@ public class MainWindow {
 	public void configSettings() {
 		
 
-		settingsPanel = new GameSettings(this,true);
+		settingsPanel = new SettingsDialog(this.frame,true);
 		
+		
+	}
+	
+	public void pauseGame() {
+		
+		refreshTimer.stop();
+		pausePanel = new PausePanelDialog(this,true);
+		
+	}
+
+	public boolean isRunning() {
+		return refreshTimer.isRunning();
+	}
+
+	public void runGame() {
+		refreshTimer.start();		
+	}
+	
+	
+	public void gameEnded(){
+		
+		if (GameModel.getInstance().getMonsters().size() == 0){
+			JOptionPane.showMessageDialog(frame,"You WIN!");
+		} else {
+			JOptionPane.showMessageDialog(frame,"You LOST!");
+		}
+		
+		refreshTimer.stop();
+		gamePanel.setVisible(false);
+		gotoMainMenu();
 		
 	}
 
