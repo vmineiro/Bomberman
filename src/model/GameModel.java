@@ -199,7 +199,12 @@ public class GameModel implements Serializable{
 		addPlayer(board_size);
 	}
 	
-	
+	/**
+	 * Reset GameModel singleton instance (For testing use only)
+	 */
+	public void resetGameModel(){
+		uniqueGameModel = new GameModel();
+	}
 	
 	/**
 	 * Adds monsters to the game
