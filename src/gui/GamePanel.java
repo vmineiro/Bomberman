@@ -62,7 +62,7 @@ public class GamePanel extends JPanel implements KeyListener
 				if(GameModel.getInstance().gameOver()){
 					
 					
-					if (GameModel.getInstance().getMonstersAlive() == 0){
+					if (GameModel.getInstance().getMonsters().size() == 0){
 						JOptionPane.showMessageDialog(GamePanel.this.mainWindow.getFrame(),"You WIN!");
 					} else {
 						JOptionPane.showMessageDialog(GamePanel.this.mainWindow.getFrame(),"You LOST!");
