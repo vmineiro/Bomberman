@@ -173,7 +173,7 @@ public class GameModel implements Serializable{
 	 * Initializes standard game
 	 * @param n_Monsters
 	 */
-	private void standardInitGame(int n_Monsters) {
+	public void standardInitGame(int n_Monsters) {
 		
 		int board_size = 11;
 		int boardInt [][] = {
