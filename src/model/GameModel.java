@@ -195,8 +195,8 @@ public class GameModel implements Serializable{
 		setBoard(boardBuilt.getResult());
 
 		//Initializes monsters and player
-//		addMonsters(n_Monsters);
-		addMonsters(1);
+		addMonsters(n_Monsters);
+//		addMonsters(1);
 		addPlayer(board_size);
 	}
 	
@@ -453,14 +453,12 @@ public class GameModel implements Serializable{
 	public void draw(Graphics g, int width, int height){
 		
 		GameModel.getInstance().getBoard().draw(g, width, height);
-		
-		GameModel.getInstance().getPlayers().draw(g, width, height);
-		
+				
 		for(Monster monster : monsters){
 			monster.draw(g, width, height);
 		}
 		
-		
+		GameModel.getInstance().getPlayers().draw(g, width, height);
 	}
 }
 

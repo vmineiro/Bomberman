@@ -245,6 +245,7 @@ public class SettingsDialog extends JDialog {
 		}
 		
 		this.pack();
+		this.setLocationRelativeTo(frame);
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}

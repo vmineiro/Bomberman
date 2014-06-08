@@ -4,6 +4,7 @@ import java.awt.Container;
 import java.awt.EventQueue;
 
 import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -12,9 +13,12 @@ import javax.swing.Timer;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import model.GameModel;
 
@@ -38,6 +42,9 @@ public class MainWindow {
 	private static final int REFRESH_RATE = 60;
 	
 	private ActionListener gameTimerListener;
+	
+	private JFileChooser fileChooser;
+	
 
 	/**
 	 * Launch the application.
@@ -67,7 +74,7 @@ public class MainWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(200, 50, 700, 650);
+		frame.setBounds(200, 50, 500, 450);
 		frame.getContentPane().setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);		
@@ -86,6 +93,8 @@ public class MainWindow {
 
 	public void gotoMainMenu() {
 		
+		frame.getContentPane().removeAll();
+		
 		mainMenu = new MainMenuPanel(this);
 		
 		frame.getContentPane().add(mainMenu);
@@ -103,7 +112,7 @@ public class MainWindow {
 		frame.getContentPane().removeAll();
 		
 		//TODO integrate game model
-		GameModel.getInstance().initGame(0);
+		GameModel.getInstance().initGame(1);
 		
 		gamePanel = new GamePanel(this);
 		
@@ -136,7 +145,6 @@ public class MainWindow {
 
 	public void configSettings() {
 		
-
 		settingsPanel = new SettingsDialog(this.frame,true);
 		
 		
@@ -144,8 +152,13 @@ public class MainWindow {
 	
 	public void pauseGame() {
 		
-		refreshTimer.stop();
-		pausePanel = new PausePanelDialog(this,true);
+		if (refreshTimer.isRunning()){
+			refreshTimer.stop();
+			pausePanel = new PausePanelDialog(this,true);
+		}
+		else {
+			refreshTimer.start();
+		}
 		
 	}
 
@@ -171,5 +184,58 @@ public class MainWindow {
 		gotoMainMenu();
 		
 	}
+	
+	
+	public void loadGame() {
+		
+		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");
+		
+		fileChooser = new JFileChooser();
+		fileChooser.setMultiSelectionEnabled(false);
+		fileChooser.setFileFilter(filter);
+		
+		int returnVal = fileChooser.showOpenDialog(frame.getContentPane());
+		
+		if (returnVal == JFileChooser.APPROVE_OPTION){
+			
+			String path = fileChooser.getSelectedFile().getAbsolutePath();
+			
+			try {
+				GameModel.getInstance().loadGame(path);
+			} catch (ClassNotFoundException | IOException e1) {
+				JOptionPane.showMessageDialog(frame,"Error while loading the game");
+			}
+
+			// TODO load the game
+			startNewGame();
+		}
+		
+	}
+
+	public void saveGame() {
+			
+		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");
+		
+		fileChooser = new JFileChooser();
+		fileChooser.setMultiSelectionEnabled(false);
+		fileChooser.setFileFilter(filter);
+		
+		int returnVal = fileChooser.showSaveDialog(frame.getContentPane());
+		
+		if (returnVal == JFileChooser.APPROVE_OPTION){
+			
+			String path = fileChooser.getSelectedFile().getAbsolutePath();
+
+			try {
+				GameModel.getInstance().saveGame(path);
+				JOptionPane.showMessageDialog(frame,"Game Saved");
+			} catch (IOException e1) {
+				JOptionPane.showMessageDialog(frame,"Error while saving the game");
+			}
+			
+		}
+		
+	}
+
 
 }
