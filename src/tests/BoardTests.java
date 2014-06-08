@@ -77,7 +77,7 @@ public class BoardTests {
 		
 		/* Inactive State Tests */
 		itemState01 = itemState01.explosionEnds();
-		assertTrue(ItemActive.class == itemState01.getClass());
+		assertTrue(ItemInactive.class == itemState01.getClass());
 		
 		itemState01 = itemState01.pickUp();
 		assertTrue(ItemInactive.class == itemState01.getClass());
@@ -139,7 +139,7 @@ public class BoardTests {
 			e.printStackTrace();
 		}
 		
-		assertFalse(path.isActive());	
+		assertTrue(path.isActive());	
 		
 	}	
 
@@ -156,10 +156,10 @@ public class BoardTests {
 		
 		Item boardExit = new BoardExit();
 
-		assertTrue(ItemHidden.class == boardExit.getCurrentState().getClass());
+		assertTrue(ItemInactive.class == boardExit.getCurrentState().getClass());
 		
 		boardExit.explode();
-		assertEquals(ItemDetonating.class, boardExit.getCurrentState().getClass());
+		assertEquals(ItemInactive.class, boardExit.getCurrentState().getClass());
 		assertFalse(boardExit.isExploding());
 		assertFalse(boardExit.isActive());
 		
@@ -169,13 +169,13 @@ public class BoardTests {
 			e.printStackTrace();
 		}
 		
-		assertTrue(boardExit.isActive());		
+		assertFalse(boardExit.isActive());		
 		
 
 			
 		boardExit.explode();
-		assertEquals(ItemExploding.class, boardExit.getCurrentState().getClass());
-		assertTrue(boardExit.isExploding());
+		assertEquals(ItemInactive.class, boardExit.getCurrentState().getClass());
+		assertFalse(boardExit.isExploding());
 		
 		try {
 			Thread.sleep(3000);
