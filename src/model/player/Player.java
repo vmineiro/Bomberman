@@ -103,6 +103,14 @@ public class Player implements GameChar, Serializable{
 	}
 	
 	/**
+	 * Returns available bombs
+	 * @return
+	 */
+	public int availableBombs(){
+		return availableBombs;
+	}
+	
+	/**
 	 * Adds the bomb.
 	 */
 	public void addBomb(){
