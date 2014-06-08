@@ -1,54 +1,89 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import java.awt.GridLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 
 public class SettingsDialog extends JDialog {
 
-	private final JPanel keysPanel = new JPanel();
+	private JPanel keysPanel = new JPanel();
+	
+	private boolean newSettings = false;
+	
 	private JTextField upP1;
-	private JTextField upP2;
+	
+	/** The selected up key. */
+    private int upKeyP1;
+    
+    /** The selected down key. */
+    private int downKeyP1;
+    
+    /** The selected left key. */
+    private int leftKeyP1;
+    
+    /** The selected right key. */
+    private int rightKeyP1;
+    
+    /** The drop bomb key. */
+    private int bombKeyP1;
+    
+    /** The drop bomb key. */
+    private int explodeBombKeyP1;
+    
+	private int explodeBombKeyP2;
+
+	private int bombKeyP2;
+
+	private int rightKeyP2;
+
+	private int downKeyP2;
+
+	private int leftKeyP2;
+
+	private int upKeyP2;
+    
 	private JTextField leftP1;
 	private JTextField downP1;
 	private JTextField rightP1;
 	private JTextField dropBombP1;
 	private JTextField detonateBombP1;
+	
+	private JTextField upP2;
 	private JTextField detonateBombP2;
 	private JTextField dropBombP2;
 	private JTextField rightP2;
 	private JTextField downP2;
 	private JTextField leftP2;
-	
-	KeyListener teclaPressionada;
 
+	private GamePanel gamePanel;
+
+
+	
 
 	/**
 	 * Create the dialog.
+	 * @param gamePanel 
 	 */
-	public SettingsDialog(JFrame frame, boolean modal) {
+	public SettingsDialog(JFrame frame, boolean modal, GamePanel gamePanel) {
 		super(frame, modal);
+		this.gamePanel = gamePanel;
+		
+		loadGameSettings();
 		
 		this.setTitle("Game Settings");
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -73,81 +108,188 @@ public class SettingsDialog extends JDialog {
 					player1.add(label);
 				}
 				{
-					JLabel lblMoveUp = new JLabel("Move Up:");
+					JButton lblMoveUp = new JButton("Move Up:");
+					lblMoveUp.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							upKeyP1 = e.getKeyCode();
+							upP1.setText(KeyEvent.getKeyText(upKeyP1));
+							
+						}
+					});
 					player1.add(lblMoveUp);
 				}
 				{
 					upP1 = new JTextField();
-					upP1.addMouseListener(new MouseAdapter() {
-						@Override
-						public void mouseClicked(MouseEvent e) {
-							
-							teclaPressionada = new KeyListener() {
-								
-								@Override
-								public void keyTyped(KeyEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								
-								@Override
-								public void keyReleased(KeyEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								
-								@Override
-								public void keyPressed(KeyEvent e) {
-									novaTecla(upP1,e);			
-								}
-							};
-						}
-					});
+					upP1.setEnabled(false);
+					upP1.setText(KeyEvent.getKeyText(upKeyP1));
 					player1.add(upP1);
 					upP1.setColumns(5);
 				}
 				{
-					JLabel lblMoveLeft = new JLabel("Move Left:");
+					JButton lblMoveLeft = new JButton("Move Left:");
+					lblMoveLeft.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							leftKeyP1 = e.getKeyCode();
+							leftP1.setText(KeyEvent.getKeyText(leftKeyP1));
+							
+						}
+					});
 					player1.add(lblMoveLeft);
 				}
 				{
 					leftP1 = new JTextField();
+					leftP1.setEnabled(false);
+					leftP1.setText(KeyEvent.getKeyText(leftKeyP1));
 					player1.add(leftP1);
 					leftP1.setColumns(5);
 				}
 				{
-					JLabel lblMoveDown = new JLabel("Move Down:");
+					JButton lblMoveDown = new JButton("Move Down:");
+					lblMoveDown.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							downKeyP1 = e.getKeyCode();
+							downP1.setText(KeyEvent.getKeyText(downKeyP1));
+							
+						}
+					});
 					player1.add(lblMoveDown);
 				}
 				{
 					downP1 = new JTextField();
+					downP1.setEnabled(false);
+					downP1.setText(KeyEvent.getKeyText(downKeyP1));
 					player1.add(downP1);
 					downP1.setColumns(5);
 				}
 				{
-					JLabel lblMoveRight = new JLabel("Move Right:");
+					JButton lblMoveRight = new JButton("Move Right:");
+					lblMoveRight.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							rightKeyP1 = e.getKeyCode();
+							rightP1.setText(KeyEvent.getKeyText(rightKeyP1));
+							
+						}
+					});
 					player1.add(lblMoveRight);
 				}
 				{
 					rightP1 = new JTextField();
+					rightP1.setEnabled(false);
+					rightP1.setText(KeyEvent.getKeyText(rightKeyP1));
 					player1.add(rightP1);
 					rightP1.setColumns(5);
 				}
 				{
-					JLabel lblDropBomb = new JLabel("Drop Bomb:");
+					JButton lblDropBomb = new JButton("Drop Bomb:");
+					lblDropBomb.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							bombKeyP1= e.getKeyCode();
+							dropBombP1.setText(KeyEvent.getKeyText(bombKeyP1));
+							
+						}
+					});
 					player1.add(lblDropBomb);
 				}
 				{
 					dropBombP1 = new JTextField();
+					dropBombP1.setEnabled(false);
+					dropBombP1.setText(KeyEvent.getKeyText(bombKeyP1));
 					player1.add(dropBombP1);
 					dropBombP1.setColumns(5);
 				}
 				{
-					JLabel lblDetonateBomb = new JLabel("Detonate Bomb:");
+					JButton lblDetonateBomb = new JButton("Detonate Bomb:");
+					lblDetonateBomb.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							explodeBombKeyP1 = e.getKeyCode();
+							detonateBombP1.setText(KeyEvent.getKeyText(explodeBombKeyP1));
+							
+						}
+					});
 					player1.add(lblDetonateBomb);
 				}
 				{
 					detonateBombP1 = new JTextField();
+					detonateBombP1.setEnabled(false);
+					detonateBombP1.setText(KeyEvent.getKeyText(explodeBombKeyP1));				
 					player1.add(detonateBombP1);
 					detonateBombP1.setColumns(6);
 				}
@@ -163,66 +305,198 @@ public class SettingsDialog extends JDialog {
 				keysPanel.add(player2);
 				player2.setLayout(new GridLayout(7, 2, 2, 2));
 				{
-					JLabel lblP1 = new JLabel("Player 2");
-					player2.add(lblP1);
+					JLabel lblP2 = new JLabel("Player 1");
+					player2.add(lblP2);
 				}
 				{
 					JLabel label = new JLabel("");
 					player2.add(label);
 				}
 				{
-					JLabel lblMoveUp_1 = new JLabel("Move Up");
-					player2.add(lblMoveUp_1);
+					JButton lblMoveUp = new JButton("Move Up:");
+					lblMoveUp.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							upKeyP2 = e.getKeyCode();
+							upP2.setText(KeyEvent.getKeyText(upKeyP2));
+							
+						}
+					});
+					player2.add(lblMoveUp);
 				}
 				{
 					upP2 = new JTextField();
+					upP2.setEnabled(false);
+					upP2.setText(KeyEvent.getKeyText(upKeyP2));
 					player2.add(upP2);
 					upP2.setColumns(5);
 				}
 				{
-					JLabel lblMoveLeft = new JLabel("Move Left:");
+					JButton lblMoveLeft = new JButton("Move Left:");
+					lblMoveLeft.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							leftKeyP2 = e.getKeyCode();
+							leftP2.setText(KeyEvent.getKeyText(leftKeyP2));
+							
+						}
+					});
 					player2.add(lblMoveLeft);
 				}
 				{
 					leftP2 = new JTextField();
+					leftP2.setEnabled(false);
+					leftP2.setText(KeyEvent.getKeyText(leftKeyP2));
 					player2.add(leftP2);
 					leftP2.setColumns(5);
 				}
 				{
-					JLabel lblMoveDown = new JLabel("Move Down:");
+					JButton lblMoveDown = new JButton("Move Down:");
+					lblMoveDown.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							downKeyP2 = e.getKeyCode();
+							downP2.setText(KeyEvent.getKeyText(downKeyP2));
+							
+						}
+					});
 					player2.add(lblMoveDown);
 				}
 				{
 					downP2 = new JTextField();
+					downP2.setEnabled(false);
+					downP2.setText(KeyEvent.getKeyText(downKeyP2));
 					player2.add(downP2);
 					downP2.setColumns(5);
 				}
 				{
-					JLabel lblMoveRight = new JLabel("Move Right:");
+					JButton lblMoveRight = new JButton("Move Right:");
+					lblMoveRight.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							rightKeyP2 = e.getKeyCode();
+							rightP2.setText(KeyEvent.getKeyText(rightKeyP2));
+							
+						}
+					});
 					player2.add(lblMoveRight);
 				}
 				{
 					rightP2 = new JTextField();
+					rightP2.setEnabled(false);
+					rightP2.setText(KeyEvent.getKeyText(rightKeyP2));
 					player2.add(rightP2);
 					rightP2.setColumns(5);
 				}
 				{
-					JLabel lblDropBomb = new JLabel("Drop Bomb:");
+					JButton lblDropBomb = new JButton("Drop Bomb:");
+					lblDropBomb.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							bombKeyP2= e.getKeyCode();
+							dropBombP2.setText(KeyEvent.getKeyText(bombKeyP2));
+							
+						}
+					});
 					player2.add(lblDropBomb);
 				}
 				{
 					dropBombP2 = new JTextField();
+					dropBombP2.setEnabled(false);
+					dropBombP2.setText(KeyEvent.getKeyText(bombKeyP2));
 					player2.add(dropBombP2);
 					dropBombP2.setColumns(5);
 				}
 				{
-					JLabel lblDetonateBomb = new JLabel("Detonate Bomb:");
+					JButton lblDetonateBomb = new JButton("Detonate Bomb:");
+					lblDetonateBomb.addKeyListener(new KeyListener() {
+						
+						@Override
+						public void keyTyped(KeyEvent e) {
+							
+						}
+						
+						@Override
+						public void keyReleased(KeyEvent e) {
+							keysPanel.repaint();
+							
+						}
+						
+						@Override
+						public void keyPressed(KeyEvent e) {
+							explodeBombKeyP2 = e.getKeyCode();
+							detonateBombP2.setText(KeyEvent.getKeyText(explodeBombKeyP2));
+							
+						}
+					});
 					player2.add(lblDetonateBomb);
 				}
 				{
 					detonateBombP2 = new JTextField();
+					detonateBombP2.setEnabled(false);
+					detonateBombP2.setText(KeyEvent.getKeyText(explodeBombKeyP2));				
 					player2.add(detonateBombP2);
-					detonateBombP2.setColumns(5);
+					detonateBombP2.setColumns(6);
 				}
 			}
 		}
@@ -233,12 +507,52 @@ public class SettingsDialog extends JDialog {
 			getContentPane().add(buttonPane);
 			{
 				JButton okButton = new JButton("OK");
+				okButton.addMouseListener(new MouseListener() {
+					
+					@Override
+					public void mouseReleased(MouseEvent e) {}
+					
+					@Override
+					public void mousePressed(MouseEvent e) {}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {}
+					
+					@Override
+					public void mouseEntered(MouseEvent e) {}
+					
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						setNewSettings();
+						setVisible(false);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
 				JButton cancelButton = new JButton("Cancel");
+				cancelButton.addMouseListener(new MouseListener() {
+					
+					@Override
+					public void mouseReleased(MouseEvent e) {}
+					
+					@Override
+					public void mousePressed(MouseEvent e) {}
+					
+					@Override
+					public void mouseExited(MouseEvent e) {}
+					
+					@Override
+					public void mouseEntered(MouseEvent e) {}
+					
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						setNewSettings(false);
+						setVisible(false);
+					}
+				});
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
@@ -249,13 +563,57 @@ public class SettingsDialog extends JDialog {
 		this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		this.setVisible(true);
 	}
+
+
+
+
+	private void loadGameSettings() {
 	
-	
-	// TODO game mode
-	private void novaTecla(JTextField tfld, KeyEvent e){
 		
-		tfld.setText(KeyEvent.getKeyText(e.getKeyCode()));
-		tfld.setFocusable(false);
+	    upKeyP1 = gamePanel.getKeyUpP1();
+	    downKeyP1 = gamePanel.getKeyDownP1();
+	    leftKeyP1 = gamePanel.getKeyLeftP1();
+	    rightKeyP1 = gamePanel.getKeyRightP1();
+	    bombKeyP1 = gamePanel.getKeyDropBombP1();
+	    explodeBombKeyP1 = gamePanel.getKeyExploBombP1();
+    
+		explodeBombKeyP2 = gamePanel.getKeyExploBombP2();
+		bombKeyP2 = gamePanel.getKeyDropBombP2();
+		rightKeyP2 = gamePanel.getKeyRightP2();
+		downKeyP2 = gamePanel.getKeyDownP2();
+		leftKeyP2 = gamePanel.getKeyLeftP2();
+		upKeyP2 = gamePanel.getKeyUpP2();
+		
 	}
 
+
+	private void setNewSettings() {
+	    gamePanel.setKeyUpP1(upKeyP1);
+	    gamePanel.setKeyDownP1(downKeyP1);
+	    gamePanel.setKeyLeftP1(leftKeyP1);
+	    gamePanel.setKeyRightP1(rightKeyP1);
+	    gamePanel.setKeyDropBombP1(bombKeyP1);
+	    gamePanel.setKeyExploBombP1(explodeBombKeyP1);
+    
+		gamePanel.setKeyExploBombP2(explodeBombKeyP2);
+		gamePanel.setKeyDropBombP2(bombKeyP2);
+		gamePanel.setKeyRightP2(rightKeyP2);
+		gamePanel.setKeyDownP2(downKeyP2);
+		gamePanel.setKeyLeftP2(leftKeyP2);
+		gamePanel.setKeyUpP2(upKeyP2);
+		
+	}
+
+
+	public boolean newSettings() {
+		return newSettings;
+	}
+
+
+
+
+	public void setNewSettings(boolean newSettings) {
+		this.newSettings = newSettings;
+	}
+	
 }

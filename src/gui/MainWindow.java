@@ -145,11 +145,14 @@ public class MainWindow {
 
 	public void configSettings() {
 		
-		settingsPanel = new SettingsDialog(this.frame,true);
+		if (gamePanel == null) {
+			gamePanel = new GamePanel(this);
+		}
 		
+		settingsPanel = new SettingsDialog(this.frame,true, gamePanel);
 		
 	}
-	
+
 	public void pauseGame() {
 		
 		if (refreshTimer.isRunning()){
