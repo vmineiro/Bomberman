@@ -165,30 +165,41 @@ public class GameModel implements Serializable{
 		}
 		else //STANDARD GAME
 		{
-			int nMonsters = 4;
-			int board_size = 11;
-			int boardInt [][] = {
-					{0,0,0,0,0,0,0,0,0,0,0},
-					{0,1,1,1,1,1,1,1,1,1,0},
-					{0,1,0,2,0,2,0,2,0,1,0},
-					{0,1,1,1,2,1,2,1,1,1,0},
-					{0,1,0,2,0,2,0,2,0,1,0},
-					{0,1,1,1,2,1,2,1,1,1,0},
-					{0,1,0,2,0,2,0,2,0,1,0},
-					{0,1,1,1,2,1,1,1,1,1,0},
-					{0,1,0,2,0,2,0,2,0,1,0},
-					{0,1,1,1,1,1,1,1,1,1,0},
-					{0,0,0,0,0,3,0,0,0,0,0},
-			};
-			//Initializes board game
-			BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
-			setBoard(boardBuilt.getResult());
-
-			//Initializes monsters and player
-			addMonsters(nMonsters);
-			addPlayer(board_size);
+			standardInitGame(4);
 		}
 	}
+	
+	/**
+	 * Initializes standard game
+	 * @param n_Monsters
+	 */
+	private void standardInitGame(int n_Monsters) {
+		
+		int board_size = 11;
+		int boardInt [][] = {
+				{0,0,0,0,0,0,0,0,0,0,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,2,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,2,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,2,1,1,1,1,1,0},
+				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,0,0,0,0,3,0,0,0,0,0},
+		};
+		
+		//Initializes board game
+		BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
+		setBoard(boardBuilt.getResult());
+
+		//Initializes monsters and player
+		addMonsters(n_Monsters);
+		addPlayer(board_size);
+	}
+	
+	
 	
 	/**
 	 * Adds monsters to the game
