@@ -62,6 +62,16 @@ public abstract class Item implements Serializable{
 			steelImg = ImageIO.read(new File("img/steel.png"));
 		} catch (IOException e) {}
 	}
+	
+	public void loadImgItem(){
+		try {	
+			wallImg = ImageIO.read(new File("img/wall_1.png"));
+			pathImg = ImageIO.read(new File("img/path.png"));
+			explosionImg = ImageIO.read(new File("img/explosion_center.png"));
+			exitImg = ImageIO.read(new File("img/exit.png"));
+			steelImg = ImageIO.read(new File("img/steel.png"));
+		} catch (IOException e) {}
+	}
 
 	
 	/**

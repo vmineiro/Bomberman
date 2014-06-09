@@ -396,7 +396,10 @@ public class GameModel implements Serializable{
 		ObjectOutputStream os = new ObjectOutputStream(fileOut);
 
 		/* Write the game in a file */
-		os.writeObject(this);
+		//os.writeObject(this);
+		
+		//TODO:
+		os.writeObject(board);
 
 		fileOut.close();
 		os.close();
@@ -415,13 +418,18 @@ public class GameModel implements Serializable{
 		ObjectInputStream is = new ObjectInputStream(fileIn);
 
 		/* load the saved game in the file to the object tempGame */
-		GameModel tempGame = (GameModel)is.readObject();
+		//GameModel tempGame = (GameModel)is.readObject();
+		
+		//TODO:
+		Board board_t = (Board)is.readObject();
+		board_t.loadImgBoard();
+		getInstance().board = board_t;
 
 		is.close();
 		fileIn.close();
 
 		/* Change the Current Game */
-		setGame(tempGame);
+		//setGame(tempGame);
 	}
 
 	/**

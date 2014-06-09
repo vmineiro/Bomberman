@@ -245,6 +245,7 @@ public class MainWindow {
 				GameModel.getInstance().loadGame(path);
 			} catch (ClassNotFoundException | IOException e1) {
 				JOptionPane.showMessageDialog(frame,"Error while loading the game");
+				e1.printStackTrace();
 			}
 		}
 		
@@ -265,7 +266,7 @@ public class MainWindow {
 		
 		if (returnVal == JFileChooser.APPROVE_OPTION){
 			
-			String path = fileChooser.getSelectedFile().getAbsolutePath();	
+			String path = fileChooser.getSelectedFile().getAbsolutePath() + ".ser";
 			
 			try {
 				GameModel.getInstance().saveGame(path);

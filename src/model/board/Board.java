@@ -31,6 +31,14 @@ public class Board implements Serializable{
 	public void setMaze(Item[][] maze){
 		this.maze = maze;
 	}
+	
+	public void loadImgBoard(){
+		for(int i=0; i<maze.length;i++){
+			for(int j=0; j<maze.length;j++){
+				maze[i][j].loadImgItem();
+			}
+		}
+	}
 
 	/**
 	 * Gets the item, on the line i and column j, form the maze.
