@@ -37,7 +37,7 @@ public class Player implements GameChar, Serializable{
 	private int availableBombs = 1;
 	
 	/** The Animation of the Item. */
-	private BufferedImage bombermanImg;
+	private transient BufferedImage bombermanImg;
 	
 	//============================================================================
 	
