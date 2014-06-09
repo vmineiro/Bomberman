@@ -17,9 +17,7 @@ public class Position implements Serializable{
 	/**
 	 * Instantiates a new position.
 	 */
-	public Position(){
-
-	}
+	public Position(){}
 	
 	/**
 	 * Constructor.
@@ -31,13 +29,6 @@ public class Position implements Serializable{
 	{
 		this.line = lin;
 		this.col = col;
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#finalize()
-	 */
-	public void finalize() throws Throwable {
-
 	}
 	
 	/**
