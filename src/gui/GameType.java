@@ -19,24 +19,11 @@ public class GameType extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Launch the application.
-	 *
-	 * @param args the arguments
-	 */
-	public static void main(String[] args) {
-		try {
-			GameType dialog = new GameType();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
 	 * Create the dialog.
 	 */
 	public GameType() {
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setVisible(true);
 		setBounds(100, 100, 200, 175);
 		setTitle("Game Type");
 		getContentPane().setLayout(new BorderLayout());
