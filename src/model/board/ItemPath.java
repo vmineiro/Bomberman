@@ -17,34 +17,13 @@ import model.player.Player;
  */
 public class ItemPath extends Item implements Serializable{
 	
-	/**  The wall image. */
-	BufferedImage wallImg;
-	
-	/** The path image. */
-	BufferedImage pathImg;
-	
-	/**  The path exploding image. */
-	BufferedImage explodingImg;
-	
 	/**
 	 * Instantiates a new path.
 	 */
 	public ItemPath(){
-		
 		super();
 		setCurrentState(new ItemHidden());
-		
-		try {
-			pathImg = ImageIO.read(new File("img/path.png"));
-			wallImg = ImageIO.read(new File("img/wall_1.png"));
-			explodingImg = ImageIO.read(new File("img/explosion_center.png"));
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
 	}
-
-
 
 	/**
 	 * Accept.
@@ -56,9 +35,7 @@ public class ItemPath extends Item implements Serializable{
 		if (this.state.getClass() == ItemInactive.class  || this.bomb != null) return;
 		
 		player.visitPath(this);
-	}
-
-	
+	}	
 	
 	/**
 	 * Accept.
@@ -79,15 +56,6 @@ public class ItemPath extends Item implements Serializable{
 	@Override
 	public void setCurrentState(ItemState state) {
 		this.state = state;
-
-		if (this.state.getClass() == ItemHidden.class) {
-			setAnimation(wallImg);
-		} else if (this.state.getClass() == ItemDetonating.class || this.state.getClass() == ItemExploding.class) {
-			setAnimation(explosionImg);
-		} else {
-			setAnimation(pathImg);
-		}
-		
 	}
 
 	/**
@@ -103,13 +71,12 @@ public class ItemPath extends Item implements Serializable{
 		if(this.bomb != null){
 			g.drawImage(bomb.getImgBomb(), pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 114, null);
 		}else if(isExploding()){
-			g.drawImage(explodingImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 96, 97, null);
+			g.drawImage(explosionImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 96, 97, null);
 		}else if(!isActive()){
 			g.drawImage(wallImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 128, 128, null);
 		}else{
 			g.drawImage(pathImg, pos_c*width, pos_l*height, (pos_c*width)+width, (pos_l*height)+height, 0, 0, 124, 113, null);
 		}
-		
 	}
 	
 	

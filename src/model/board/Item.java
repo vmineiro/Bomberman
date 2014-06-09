@@ -28,9 +28,6 @@ public abstract class Item implements Serializable{
 	
 	/** The state. */
 	protected ItemState state;
-	
-	/** The Animation of the Item. */
-	protected BufferedImage animation;
 
 	/** The bomb in this item. */
 	protected Bomb bomb;
@@ -38,30 +35,32 @@ public abstract class Item implements Serializable{
 	/**  Timer to finish explosion. */
 	private Timer countDown;
 	
-	
 	/** The wall image. */
-	BufferedImage wallImg;
+	protected transient BufferedImage wallImg;
 	
 	/** The path image. */
-	BufferedImage pathImg;
+	protected transient BufferedImage pathImg;
 	
 	/** The explosion image. */
-	BufferedImage explosionImg;
-
+	protected transient BufferedImage explosionImg;
+	
+	/** The board exit image. */
+	protected transient BufferedImage exitImg;
+	
+	/** The steel image. */
+	protected transient BufferedImage steelImg;
 
 	/**
 	 * Instantiates a new item.
 	 */
 	public Item(){
-		
-		try {
-			
-			wallImg = ImageIO.read(new File("img/wall01.png"));
-			pathImg = ImageIO.read(new File("img/wall01.png"));
-			explosionImg = ImageIO.read(new File("img/wall01.png"));
-			
+		try {	
+			wallImg = ImageIO.read(new File("img/wall_1.png"));
+			pathImg = ImageIO.read(new File("img/path.png"));
+			explosionImg = ImageIO.read(new File("img/explosion_center.png"));
+			exitImg = ImageIO.read(new File("img/exit.png"));
+			steelImg = ImageIO.read(new File("img/steel.png"));
 		} catch (IOException e) {}
-		
 	}
 
 	
@@ -147,18 +146,7 @@ public abstract class Item implements Serializable{
 		this.bomb = null;
 		
 		return explosionContinue;
-	}
-	
-	
-	/**
-	 * Sets the animation.
-	 *
-	 * @param animation the new animation
-	 */
-	public void setAnimation(BufferedImage animation) {
-		this.animation = animation;
-	}
-	
+	}	
 	
 	/**
 	 * Manages the visit by the player.

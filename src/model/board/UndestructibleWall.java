@@ -16,33 +16,14 @@ import model.player.Player;
  * The Class UndestructibleWall.
  */
 public class UndestructibleWall extends Item implements Serializable{
-	
-	
-	/** The steel image. */
-	BufferedImage steelImg;
 
 	/**
 	 * Instantiates a new undestructible wall.
 	 */
 	public UndestructibleWall(){
 		super();
-		
-		try {
-			
-			steelImg = ImageIO.read(new File("img/steel.png"));
-			
-			setCurrentState(new ItemInactive());
-			
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
-		
-		
-	}
-
-	
-	
+		setCurrentState(new ItemInactive());
+	}	
 
 	/**
 	 * Accept.
@@ -50,17 +31,13 @@ public class UndestructibleWall extends Item implements Serializable{
 	 * @param player the player
 	 */
 	public void accept(Player player){}
-
-	
 	
 	/**
 	 * Accept.
 	 *
 	 * @param monster the monster
 	 */
-	public void accept(Monster monster){}
-
-	
+	public void accept(Monster monster){}	
 	
 	/* (non-Javadoc)
 	 * @see model.board.Item#explode()
@@ -70,16 +47,12 @@ public class UndestructibleWall extends Item implements Serializable{
 		return false;
 	}
 
-
-
 	/* (non-Javadoc)
 	 * @see model.board.Item#setCurrentState(model.board.ItemState)
 	 */
 	@Override
 	public void setCurrentState(ItemState state) {
-		this.state = state;
-		setAnimation(steelImg);
-		
+		this.state = state;		
 	}
 	
 	/**

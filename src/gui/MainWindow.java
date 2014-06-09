@@ -265,13 +265,16 @@ public class MainWindow {
 		
 		if (returnVal == JFileChooser.APPROVE_OPTION){
 			
-			String path = fileChooser.getSelectedFile().getAbsolutePath();
-
+			//String path = fileChooser.getSelectedFile().getName();
+			
+			String path = "saved_games/save1.dat";
+			
 			try {
 				GameModel.getInstance().saveGame(path);
 				JOptionPane.showMessageDialog(frame,"Game Saved");
 			} catch (IOException e1) {
 				JOptionPane.showMessageDialog(frame,"Error while saving the game");
+				e1.printStackTrace();
 			}
 			
 		}
