@@ -54,6 +54,15 @@ public class Player implements GameChar, Serializable{
 		} catch (IOException e) {}
 	}
 	
+	public void loadImgPlayer(){
+		
+		try 
+		{
+			bombermanImg = ImageIO.read(new File("img/bomberman.gif"));			
+		} catch (IOException e) {}
+		
+	}
+	
 	/**
 	 * Get board position.
 	 *
