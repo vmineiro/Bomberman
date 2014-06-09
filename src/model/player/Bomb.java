@@ -56,7 +56,7 @@ public class Bomb implements Serializable{
 	private Timer proTimer;
 
 	/**  The animation for the bomb. */
-	private BufferedImage bombImg;
+	private transient BufferedImage bombImg;
 
 	//=======================================================
 
