@@ -229,7 +229,7 @@ public class MainWindow {
 	 */
 	public void loadGame() {
 		
-		FileFilter filter = new FileNameExtensionFilter("Game files only", "dat");
+		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");
 		
 		fileChooser = new JFileChooser();
 		fileChooser.setMultiSelectionEnabled(false);
@@ -255,7 +255,7 @@ public class MainWindow {
 	 */
 	public void saveGame() {
 			
-		FileFilter filter = new FileNameExtensionFilter("Game files only", "dat");
+		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");
 		
 		fileChooser = new JFileChooser();
 		fileChooser.setMultiSelectionEnabled(false);
