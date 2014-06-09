@@ -265,7 +265,7 @@ public class MainWindow {
 		
 		if (returnVal == JFileChooser.APPROVE_OPTION){
 			
-			String path = fileChooser.getSelectedFile().getName();
+			String path = fileChooser.getSelectedFile().getAbsolutePath();
 			
 			try {
 				GameModel.getInstance().saveGame(path);
