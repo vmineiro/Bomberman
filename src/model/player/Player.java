@@ -63,6 +63,10 @@ public class Player implements GameChar, Serializable{
 		return boardPosition;
 	}
 	
+	public Position getNextBoardPosition(){
+		return nextPlayerPosition;
+	}
+	
 	/**
 	 * Update board position.
 	 *
