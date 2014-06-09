@@ -55,7 +55,7 @@ public class Monster implements GameChar, Serializable{
 	//private int speed = 1; 
 	
 	/** The Animation of the Item. */
-	private BufferedImage monsterImg;
+	private transient BufferedImage monsterImg;
 	
 	/** The next update counter. */
 	private int nextUpdateCounter;
