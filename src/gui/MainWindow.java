@@ -255,7 +255,7 @@ public class MainWindow {
 	 */
 	public void saveGame() {
 			
-		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");
+		FileFilter filter = new FileNameExtensionFilter("Game files only", "dat");
 		
 		fileChooser = new JFileChooser();
 		fileChooser.setMultiSelectionEnabled(false);
