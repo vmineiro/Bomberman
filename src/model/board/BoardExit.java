@@ -19,10 +19,10 @@ import java.io.Serializable;
 public class BoardExit extends Item implements Serializable{
 	
 	/** The board exit image. */
-	BufferedImage boardExitImg;
+	private transient BufferedImage boardExitImg;
 	
 	/**  The board exit open image. */
-	BufferedImage exitOpenImg;
+	private transient BufferedImage exitOpenImg;
 
 	/**
 	 * Instantiates a new board exit.
