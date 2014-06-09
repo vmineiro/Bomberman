@@ -216,6 +216,9 @@ public class MainWindow {
 		
 		refreshTimer.stop();
 		gamePanel.setVisible(false);
+		GameModel.getInstance().resetGameModel();
+		GameModel.getInstance();
+		GameModel.getInstance().initGame(1);
 		gotoMainMenu();
 		
 	}
