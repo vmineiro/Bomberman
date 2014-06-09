@@ -27,19 +27,19 @@ public class Monster implements GameChar, Serializable{
 
 	//Random Monster Movement
 	/** The Constant UP. */
-	private static final Position UP = new Position(-1,0);
+	private final Position UP = new Position(-1,0);
 	
 	/** The Constant DOWN. */
-	private static final Position DOWN = new Position(1,0);
+	private final Position DOWN = new Position(1,0);
 	
 	/** The Constant LEFT. */
-	private static final Position LEFT = new Position(0,-1);
+	private final Position LEFT = new Position(0,-1);
 	
 	/** The Constant RIGHT. */
-	private static final Position RIGHT = new Position(0,1);
+	private final Position RIGHT = new Position(0,1);
 	
 	/** The Constant UPDATE_RATE. */
-	private static final int UPDATE_RATE = 3;
+	private final int UPDATE_RATE = 3;
 	
 
 	/** The state. */
@@ -49,10 +49,7 @@ public class Monster implements GameChar, Serializable{
 	private Position boardPosition;
 	
 	/**  The next board position. */
-	private Position nextMonsterPosition;
-	
-	/** The speed. */
-	//private int speed = 1; 
+	private Position nextMonsterPosition; 
 	
 	/** The Animation of the Item. */
 	private transient BufferedImage monsterImg;
