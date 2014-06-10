@@ -280,6 +280,31 @@ public class MainWindow {
 	 */
 	public void loadGame() {
 		
+		frame.getContentPane().removeAll();
+
+		GameModel.getInstance().initGame();
+
+		gamePanel = new GamePanel(this);
+
+		gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				
+				GameModel.getInstance().update();
+				gamePanel.repaint();
+
+				if(GameModel.getInstance().gameOver()){
+
+					gameEnded();
+
+				}
+
+			}
+		};	
+		
+		frame.getContentPane().add(gamePanel);
+		gamePanel.requestFocusInWindow();
+		frame.getContentPane().repaint();
+		
 		FileFilter filter = new FileNameExtensionFilter("Game files only", "ser");
 		
 		fileChooser = new JFileChooser();
@@ -299,6 +324,9 @@ public class MainWindow {
 				e1.printStackTrace();
 			}
 		}	
+		
+		refreshTimer = new Timer(REFRESH_RATE, gameTimerListener);
+		refreshTimer.start();
 	}
 
 	/**

@@ -85,9 +85,7 @@ public class GamePanel extends JPanel implements KeyListener
 	 * @param g the g
 	 */
 	public void paintComponent(Graphics g) 
-	{	
-		System.out.println("UPDATE");
-		
+	{			
 		super.paintComponent(g);
 		GameModel.getInstance().draw(g, getWidth(), getHeight());
 	}	

@@ -103,7 +103,8 @@ public class MainMenuPanel extends JPanel {
 					
 					@Override
 					public void actionPerformed(ActionEvent e) {
-											
+								
+						setVisible(false);
 						MainMenuPanel.this.mainWindow.loadGame();
 						
 					}
