@@ -38,7 +38,7 @@ public class MainWindow {
 	private Timer refreshTimer;
 	
 	/**  Game refresh rate. */
-	private static final int REFRESH_RATE = 60;
+	private static final int REFRESH_RATE = 100;
 	
 	/** The game timer listener. */
 	private ActionListener gameTimerListener;
