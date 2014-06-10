@@ -32,6 +32,9 @@ public class Player implements GameChar, Serializable{
 	/**  The next board position. */
 	private Position nextPlayerPosition;
 	
+	/** The Player draw position */
+	private Position drawPlayerPosition;
+	
 	/** The state. */
 	private PlayerState state;
 	
@@ -62,6 +65,7 @@ public class Player implements GameChar, Serializable{
 	 */
 	public Player(){
 		this.boardPosition = new Position();
+		this.drawPlayerPosition = new Position();
 		this.state = new PlayerAlive();
 		this.animBomberman = new ArrayList<BufferedImage>();
 		
@@ -142,6 +146,10 @@ public class Player implements GameChar, Serializable{
 	
 	public Position getNextBoardPosition(){
 		return nextPlayerPosition;
+	}
+	
+	public void updateDrawPosition(Position n_pos){
+		this.drawPlayerPosition = n_pos;
 	}
 	
 	/**
@@ -308,16 +316,64 @@ public class Player implements GameChar, Serializable{
 		int n = GameModel.getInstance().getBoard().getMaze().length;
 		int dstImgWid = width / n;
 		int dstImgHei = height / n;
-	
-		g.drawImage(this.animBomberman.get(indexAnimArray), boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
-				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 32, 56, null);
 		
-		incAnimArray();
+		int linPixels = drawPlayerPosition.getLine() * dstImgHei;
+		int colPixels = drawPlayerPosition.getCol() * dstImgWid;
+		
+		int linBPix = boardPosition.getLine() * dstImgHei;
+		int colBPix = boardPosition.getCol() * dstImgWid;
+		
+		if(linBPix == linPixels && colBPix == colPixels)
+		{
+			g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+			incAnimArray();
+		}
+		else if(colBPix != colPixels) 
+		{
+			if(colBPix > colPixels)
+			{
+				for(int i=0; i<dstImgWid; i++){
+					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					colPixels = colPixels + 1;				
+					incAnimArray();
+				}
+			}
+			else
+			{
+				for(int i=0; i<dstImgWid; i++){
+					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					colPixels = colPixels - 1;				
+					incAnimArray();
+				}
+			}
+		}
+		else if(linBPix != linPixels)
+		{
+			if(linBPix > linPixels)
+			{
+				for(int i=0; i<dstImgWid; i++){
+					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					linPixels = linPixels + 1;				
+					incAnimArray();
+				}
+			}
+			else
+			{
+				for(int i=0; i<dstImgWid; i++){
+					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					linPixels = linPixels - 1;				
+					incAnimArray();
+				}
+			}
+		}
+
+		updateDrawPosition(boardPosition);		
 	}
 	
 	public void incAnimArray(){
 		indexAnimArray = (indexAnimArray + 1) % animBomberman.size();
 	}
+
 }
 
 //end Player

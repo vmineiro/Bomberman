@@ -201,6 +201,7 @@ public class GameModel implements Serializable{
 	 */
 	public void addPlayer(int boardSize){		
 		this.players.updateBoardPosition(new Position(boardSize-2,boardSize-2));
+		this.players.updateDrawPosition(this.players.getBoardPosition());
 	}
 	
 	/**
