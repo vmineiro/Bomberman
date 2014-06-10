@@ -33,12 +33,6 @@ public class SettingsDialog extends JDialog {
 	/** The keys panel. */
 	private JPanel keysPanel = new JPanel();
 	
-	//TODO:
-	private JPanel boardPanel;
-	private JList boardList;
-	private JLabel boardName;
-	private JScrollPane boardScroller;
-	
 	/** The new settings. */
 	private boolean newSettings = false;
 	
@@ -116,28 +110,6 @@ public class SettingsDialog extends JDialog {
 
 	/** The game panel. */
 	private GamePanel gamePanel;
-	
-	public void createWidgets(){
-		boardPanel = new JPanel();
-		
-		boardName = new JLabel("Select board: ");
-		
-		String[] data = {"Board 1", "Board 2"};
-		boardList = new JList(data);
-		boardList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		boardList.setLayoutOrientation(JList.VERTICAL);
-		boardList.setVisibleRowCount(-1);
-		
-		boardScroller = new JScrollPane(boardList);
-		boardScroller.setPreferredSize(new Dimension(100, 80));
-		
-	}
-	
-	public void addWidgets(Container cont){
-		boardPanel.add(boardName);
-		boardPanel.add(boardScroller);
-		cont.add(boardPanel);
-	}
 
 	/**
 	 * Create the dialog.
@@ -154,10 +126,6 @@ public class SettingsDialog extends JDialog {
 		
 		this.setTitle("Game Settings");
 		getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		
-		//TODO:
-		createWidgets();
-		addWidgets(getContentPane());
 		
 		{
 			JPanel panel = new JPanel();
