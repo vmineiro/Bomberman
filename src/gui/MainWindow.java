@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
@@ -81,9 +82,6 @@ public class MainWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);		
 		
-		
-		GameModel.getInstance();
-		
 		gotoMainMenu();	
 
 		
@@ -114,17 +112,16 @@ public class MainWindow {
 		frame.getContentPane().repaint();
 		
 	}
-
-
-
+	
 	/**
 	 * Start new game.
 	 */
+
 	public void startNewGame() {
 		
 		frame.getContentPane().removeAll();
 		
-		GameModel.getInstance().initGame(1);
+		GameModel.getInstance().initGame();
 		
 		gamePanel = new GamePanel(this);
 		
@@ -152,8 +149,8 @@ public class MainWindow {
 		
 		frame.getContentPane().repaint();
 		
-		
 	}
+
 
 	/**
 	 * Config settings.
@@ -218,9 +215,63 @@ public class MainWindow {
 		gamePanel.setVisible(false);
 		GameModel.getInstance().resetGameModel();
 		GameModel.getInstance();
-		GameModel.getInstance().initGame(1);
+		GameModel.getInstance().initGame();
 		gotoMainMenu();
 		
+	}
+	
+	/**
+	 * Load board
+	 */
+	public void loadBoard() {
+		
+		frame.getContentPane().removeAll();
+
+		GameModel.getInstance().initGame();
+
+		gamePanel = new GamePanel(this);
+
+		gameTimerListener = new ActionListener(){ 
+			public void actionPerformed(ActionEvent e) {
+				
+				GameModel.getInstance().update();
+				gamePanel.repaint();
+
+				if(GameModel.getInstance().gameOver()){
+
+					gameEnded();
+
+				}
+
+			}
+		};	
+		
+		frame.getContentPane().add(gamePanel);
+		gamePanel.requestFocusInWindow();
+		frame.getContentPane().repaint();
+		
+		FileFilter filter = new FileNameExtensionFilter("Game files only", "txt");
+		
+		fileChooser = new JFileChooser();
+		fileChooser.setMultiSelectionEnabled(false);
+		fileChooser.setFileFilter(filter);
+		
+		int returnVal = fileChooser.showOpenDialog(frame.getContentPane());
+		
+		if (returnVal == JFileChooser.APPROVE_OPTION){
+			
+			String path = fileChooser.getSelectedFile().getAbsolutePath();
+			
+			try {
+				GameModel.getInstance().readBoardFile(path);
+			} catch (FileNotFoundException e1) {
+				JOptionPane.showMessageDialog(frame,"Error while loading the game");
+				e1.printStackTrace();
+			}
+		}
+		
+		refreshTimer = new Timer(REFRESH_RATE, gameTimerListener);
+		refreshTimer.start();		
 	}
 	
 	
@@ -247,8 +298,7 @@ public class MainWindow {
 				JOptionPane.showMessageDialog(frame,"Error while loading the game");
 				e1.printStackTrace();
 			}
-		}
-		
+		}	
 	}
 
 	/**

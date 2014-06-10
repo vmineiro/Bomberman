@@ -76,10 +76,7 @@ public class GamePanel extends JPanel implements KeyListener
 	public GamePanel(final MainWindow mainWindow)
 	{		
 		addKeyListener(this);
-		this.mainWindow = mainWindow;
-		
-		
-		
+		this.mainWindow = mainWindow;	
 	}
 	
 	/**
@@ -88,7 +85,9 @@ public class GamePanel extends JPanel implements KeyListener
 	 * @param g the g
 	 */
 	public void paintComponent(Graphics g) 
-	{		
+	{	
+		System.out.println("UPDATE");
+		
 		super.paintComponent(g);
 		GameModel.getInstance().draw(g, getWidth(), getHeight());
 	}	

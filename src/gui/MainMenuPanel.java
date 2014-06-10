@@ -70,6 +70,29 @@ public class MainMenuPanel extends JPanel {
 				panel.add(btnNewGame);
 			}
 		}
+		
+		//TODO:
+		{
+			JPanel panel = new JPanel();
+			this.add(panel);
+			panel.setLayout(new BorderLayout(0, 0));
+			{
+				JButton btnNewGame = new JButton("Load Board");
+				btnNewGame.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						setVisible(false);
+						MainMenuPanel.this.mainWindow.loadBoard();
+						
+					}
+				});
+				panel.add(btnNewGame);
+			}
+		}
+		//======================================================================
+		
 		{
 			JPanel panel = new JPanel();
 			this.add(panel);
@@ -87,7 +110,7 @@ public class MainMenuPanel extends JPanel {
 				});
 				panel.add(btnLoadGame);
 			}
-		}
+		}		
 		{
 			JPanel panel = new JPanel();
 			this.add(panel);

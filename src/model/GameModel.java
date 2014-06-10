@@ -92,63 +92,53 @@ public class GameModel implements Serializable{
 	 *
 	 * @param board_number is the of the
 	 */
-	public void initGame(int board_number){
+	public void initGame(){
 		
-		readBoardFile(board_number);
+		standardInitGame(4);
 
 	}
+
 	
 	/**
 	 * Reads board file and launches game.
 	 *
 	 * @param boardNumber the board number
 	 */
-	public void readBoardFile(int boardNumber){
+	public void readBoardFile(String boardPath) throws FileNotFoundException{
+		
+		int board_size = 0;
+		int nMonsters = 0; 
+		int boardInt [][];
 
-		if(boardNumber > 0)
+		String fileName = boardPath;
+
+		try 
 		{
-			int board_size = 0;
-			int nMonsters = 0; 
-			int boardInt [][];
+			File fileIn = new File(fileName);
+			Scanner scanner = new Scanner(fileIn);
 
-			StringBuilder sb = new StringBuilder();
-			sb.append("board_files/board_");
-			sb.append(boardNumber);
-			sb.append(".txt");
-			String fileName = sb.toString();
+			board_size = scanner.nextInt();
+			nMonsters = scanner.nextInt();
 
-			try 
-			{
-				File fileIn = new File(fileName);
-				Scanner scanner = new Scanner(fileIn);
+			boardInt = new int[board_size][board_size];
 
-				board_size = scanner.nextInt();
-				nMonsters = scanner.nextInt();
-
-				boardInt = new int[board_size][board_size];
-
-				for(int i=0; i<board_size; i++){
-					for(int j=0; j<board_size; j++){
-						boardInt[i][j] = scanner.nextInt();
-					}
+			for(int i=0; i<board_size; i++){
+				for(int j=0; j<board_size; j++){
+					boardInt[i][j] = scanner.nextInt();
 				}
-
-				scanner.close();
-
-				//Initializes board game
-				BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
-				setBoard(boardBuilt.getResult());
-
-				//Initializes monsters and player
-				addMonsters(nMonsters);
-				addPlayer(board_size);
-
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
 			}
-		}
-		else //STANDARD GAME
-		{
+
+			scanner.close();
+
+			//Initializes board game
+			BoardFactory boardBuilt = new BoardFactory(board_size, boardInt);
+			setBoard(boardBuilt.getResult());
+
+			//Initializes monsters and player
+			addMonsters(nMonsters);
+			addPlayer(board_size);
+
+		} catch (FileNotFoundException e) {
 			standardInitGame(4);
 		}
 	}
@@ -164,13 +154,13 @@ public class GameModel implements Serializable{
 		int boardInt [][] = {
 				{0,0,0,0,0,0,0,0,0,0,0},
 				{0,1,1,1,1,1,1,1,1,1,0},
-				{0,1,0,2,0,2,0,2,0,1,0},
-				{0,1,1,1,2,1,2,1,1,1,0},
-				{0,1,0,2,0,2,0,2,0,1,0},
-				{0,1,1,1,2,1,2,1,1,1,0},
-				{0,1,0,2,0,2,0,2,0,1,0},
-				{0,1,1,1,2,1,1,1,1,1,0},
-				{0,1,0,2,0,2,0,2,0,1,0},
+				{0,2,0,2,0,2,0,2,0,2,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,2,0,2,0,2,0,2,0,2,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,2,0,2,0,2,0,2,0,2,0},
+				{0,1,1,1,1,1,1,1,1,1,0},
+				{0,2,0,2,0,2,0,2,0,2,0},
 				{0,1,1,1,1,1,1,1,1,1,0},
 				{0,0,0,0,0,3,0,0,0,0,0},
 		};
