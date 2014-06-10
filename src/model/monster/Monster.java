@@ -78,6 +78,13 @@ public class Monster implements GameChar, Serializable{
 		} catch (IOException e) {}
 	}
 	
+	public void loadImgMons(){
+		try 
+		{
+			monsterImg = ImageIO.read(new File("img/monster_s.png"));			
+		} catch (IOException e) {}
+	}
+	
 	/**
 	 * Get Monster board position.
 	 *

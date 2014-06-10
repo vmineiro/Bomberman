@@ -399,7 +399,8 @@ public class GameModel implements Serializable{
 		//os.writeObject(this);
 		
 		//TODO:
-		os.writeObject(board);
+		GameBox gBox = new GameBox(players, board, monsters);
+		os.writeObject(gBox);
 
 		fileOut.close();
 		os.close();
@@ -421,15 +422,26 @@ public class GameModel implements Serializable{
 		//GameModel tempGame = (GameModel)is.readObject();
 		
 		//TODO:
-		Board board_t = (Board)is.readObject();
+		GameBox gBox_t = (GameBox)is.readObject();
+		
+		Player player_t = gBox_t.getPlayerBox();
+		player_t.loadImgPlayer();
+		
+		Board board_t = gBox_t.getBoardBox();
 		board_t.loadImgBoard();
-		getInstance().board = board_t;
+		
+		ArrayList<Monster> mons_t = gBox_t.getMonsterBox();
+		for(Monster monst_pos : mons_t){
+			monst_pos.loadImgMons();
+		}
+		
+		players = player_t;
+		board = board_t;
+		monsters = mons_t;
 
 		is.close();
 		fileIn.close();
 
-		/* Change the Current Game */
-		//setGame(tempGame);
 	}
 
 	/**
