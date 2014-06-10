@@ -15,7 +15,9 @@ import model.board.Item;
 import model.board.ItemPath;
 import model.board.UndestructibleWall;
 import model.monster.Monster;
+
 import java.io.Serializable;
+import java.util.ArrayList;
 
 
 /**
@@ -36,8 +38,22 @@ public class Player implements GameChar, Serializable{
 	/** The numbers of available bombs. */
 	private int availableBombs = 1;
 	
-	/** The Animation of the Item. */
-	private transient BufferedImage bombermanImg;
+	/** The Animation of the Item. */	
+	private transient BufferedImage bombermanImg1;
+	private transient BufferedImage bombermanImg2;
+	private transient BufferedImage bombermanImg3;
+	private transient BufferedImage bombermanImg4;
+	private transient BufferedImage bombermanImg5;
+	private transient BufferedImage bombermanImg6;
+	private transient BufferedImage bombermanImg7;
+	private transient BufferedImage bombermanImg8;
+	private transient BufferedImage bombermanImg9;
+	private transient BufferedImage bombermanImg10;
+	private transient BufferedImage bombermanImg11;
+	private transient BufferedImage bombermanImg12;
+	
+	private transient ArrayList<BufferedImage> animBomberman;
+	private int indexAnimArray = 0;
 	
 	//============================================================================
 	
@@ -47,20 +63,72 @@ public class Player implements GameChar, Serializable{
 	public Player(){
 		this.boardPosition = new Position();
 		this.state = new PlayerAlive();
+		this.animBomberman = new ArrayList<BufferedImage>();
 		
 		try 
 		{
-			bombermanImg = ImageIO.read(new File("img/bomberman.gif"));			
+			bombermanImg1 = ImageIO.read(new File("img/bomberman1.png"));
+			bombermanImg2 = ImageIO.read(new File("img/bomberman2.png"));
+			bombermanImg3 = ImageIO.read(new File("img/bomberman3.png"));
+			bombermanImg4 = ImageIO.read(new File("img/bomberman4.png"));
+			bombermanImg5 = ImageIO.read(new File("img/bomberman5.png"));
+			bombermanImg6 = ImageIO.read(new File("img/bomberman6.png"));
+			bombermanImg7 = ImageIO.read(new File("img/bomberman7.png"));
+			bombermanImg8 = ImageIO.read(new File("img/bomberman8.png"));
+			bombermanImg9 = ImageIO.read(new File("img/bomberman9.png"));
+			bombermanImg10 = ImageIO.read(new File("img/bomberman10.png"));
+			bombermanImg11 = ImageIO.read(new File("img/bomberman11.png"));
+			bombermanImg12 = ImageIO.read(new File("img/bomberman12.png"));
+			
 		} catch (IOException e) {}
+		
+		animBomberman.add(bombermanImg1);
+		animBomberman.add(bombermanImg2);
+		animBomberman.add(bombermanImg3);
+		animBomberman.add(bombermanImg4);
+		animBomberman.add(bombermanImg5);
+		animBomberman.add(bombermanImg6);
+		animBomberman.add(bombermanImg7);
+		animBomberman.add(bombermanImg8);
+		animBomberman.add(bombermanImg9);
+		animBomberman.add(bombermanImg10);
+		animBomberman.add(bombermanImg11);
+		animBomberman.add(bombermanImg12);
 	}
 	
 	public void loadImgPlayer(){
 		
+		this.animBomberman = new ArrayList<BufferedImage>();
+		
 		try 
 		{
-			bombermanImg = ImageIO.read(new File("img/bomberman.gif"));			
+			bombermanImg1 = ImageIO.read(new File("img/bomberman1.png"));
+			bombermanImg2 = ImageIO.read(new File("img/bomberman2.png"));
+			bombermanImg3 = ImageIO.read(new File("img/bomberman3.png"));
+			bombermanImg4 = ImageIO.read(new File("img/bomberman4.png"));
+			bombermanImg5 = ImageIO.read(new File("img/bomberman5.png"));
+			bombermanImg6 = ImageIO.read(new File("img/bomberman6.png"));
+			bombermanImg7 = ImageIO.read(new File("img/bomberman7.png"));
+			bombermanImg8 = ImageIO.read(new File("img/bomberman8.png"));
+			bombermanImg9 = ImageIO.read(new File("img/bomberman9.png"));
+			bombermanImg10 = ImageIO.read(new File("img/bomberman10.png"));
+			bombermanImg11 = ImageIO.read(new File("img/bomberman11.png"));
+			bombermanImg12 = ImageIO.read(new File("img/bomberman12.png"));
+			
 		} catch (IOException e) {}
 		
+		animBomberman.add(bombermanImg1);
+		animBomberman.add(bombermanImg2);
+		animBomberman.add(bombermanImg3);
+		animBomberman.add(bombermanImg4);
+		animBomberman.add(bombermanImg5);
+		animBomberman.add(bombermanImg6);
+		animBomberman.add(bombermanImg7);
+		animBomberman.add(bombermanImg8);
+		animBomberman.add(bombermanImg9);
+		animBomberman.add(bombermanImg10);
+		animBomberman.add(bombermanImg11);
+		animBomberman.add(bombermanImg12);
 	}
 	
 	/**
@@ -143,9 +211,11 @@ public class Player implements GameChar, Serializable{
 	 *
 	 * @param animation the new animation
 	 */
+	/*
 	public void setAnimation(BufferedImage animation){
 		this.bombermanImg = animation;
 	}
+	*/
 	
 	/**
 	 * Checks player death.
@@ -239,8 +309,14 @@ public class Player implements GameChar, Serializable{
 		int dstImgWid = width / n;
 		int dstImgHei = height / n;
 	
-		g.drawImage(this.bombermanImg, boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
+		g.drawImage(this.animBomberman.get(indexAnimArray), boardPosition.getCol()*dstImgWid, boardPosition.getLine()*dstImgHei, 
 				(boardPosition.getCol()*dstImgWid)+dstImgWid, (boardPosition.getLine()*dstImgHei)+dstImgHei, 0, 0, 32, 56, null);
+		
+		incAnimArray();
+	}
+	
+	public void incAnimArray(){
+		indexAnimArray = (indexAnimArray + 1) % animBomberman.size();
 	}
 }
 
