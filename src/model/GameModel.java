@@ -187,6 +187,7 @@ public class GameModel implements Serializable{
 	 * @param nMonsters is the number of game monsters
 	 */
 	public void addMonsters(int nMonsters){
+		monsters.clear();
 		for(int i=0; i<nMonsters; i++){
 			Monster monst = new Monster();
 			monst.setBoardPosition(new Position(1,1));

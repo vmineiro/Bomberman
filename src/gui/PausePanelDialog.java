@@ -56,7 +56,6 @@ public class PausePanelDialog extends JDialog{
 
 		JPanel panel_1 = new JPanel();
 		panel_2.add(panel_1);
-		panel_1.setPreferredSize(new Dimension(100,150));
 		panel_1.setLayout(new GridLayout(3, 1, 0, 0));
 
 		JButton btnNewButton = new JButton("Resume");
@@ -65,6 +64,7 @@ public class PausePanelDialog extends JDialog{
 		JButton btnSaveGame = new JButton("Save Game");
 		panel_1.add(btnSaveGame);
 
+		/*
 		JButton btnLoadGame = new JButton("Load Game");
 		panel_1.add(btnLoadGame);
 		btnLoadGame.addActionListener(new ActionListener() {
@@ -72,6 +72,8 @@ public class PausePanelDialog extends JDialog{
 				PausePanelDialog.this.mainWindow.loadGame();
 			}
 		});
+		*/
+		
 		btnSaveGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PausePanelDialog.this.mainWindow.saveGame();
