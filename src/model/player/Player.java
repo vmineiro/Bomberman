@@ -41,22 +41,28 @@ public class Player implements GameChar, Serializable{
 	/** The numbers of available bombs. */
 	private int availableBombs = 1;
 	
-	/** The Animation of the Item. */	
-	private transient BufferedImage bombermanImg1;
-	private transient BufferedImage bombermanImg2;
-	private transient BufferedImage bombermanImg3;
-	private transient BufferedImage bombermanImg4;
-	private transient BufferedImage bombermanImg5;
-	private transient BufferedImage bombermanImg6;
-	private transient BufferedImage bombermanImg7;
-	private transient BufferedImage bombermanImg8;
-	private transient BufferedImage bombermanImg9;
-	private transient BufferedImage bombermanImg10;
-	private transient BufferedImage bombermanImg11;
-	private transient BufferedImage bombermanImg12;
-	
-	private transient ArrayList<BufferedImage> animBomberman;
+	/** The Animation of the Item. */
 	private int indexAnimArray = 0;
+	
+	private transient ArrayList<BufferedImage> animDown;
+	private transient BufferedImage bm_down_0;
+	private transient BufferedImage bm_down_1;
+	private transient BufferedImage bm_down_2;
+	
+	private transient ArrayList<BufferedImage> animUp;
+	private transient BufferedImage bm_up_0;
+	private transient BufferedImage bm_up_1;
+	private transient BufferedImage bm_up_2;
+	
+	private transient ArrayList<BufferedImage> animLeft;
+	private transient BufferedImage bm_left_0;
+	private transient BufferedImage bm_left_1;
+	private transient BufferedImage bm_left_2;
+	
+	private transient ArrayList<BufferedImage> animRight;
+	private transient BufferedImage bm_right_0;
+	private transient BufferedImage bm_right_1;
+	private transient BufferedImage bm_right_2;
 	
 	//============================================================================
 	
@@ -67,72 +73,91 @@ public class Player implements GameChar, Serializable{
 		this.boardPosition = new Position();
 		this.drawPlayerPosition = new Position();
 		this.state = new PlayerAlive();
-		this.animBomberman = new ArrayList<BufferedImage>();
+		
+		this.animDown = new ArrayList<BufferedImage>();
+		this.animUp = new ArrayList<BufferedImage>();
+		this.animLeft = new ArrayList<BufferedImage>();
+		this.animRight = new ArrayList<BufferedImage>();
 		
 		try 
 		{
-			bombermanImg1 = ImageIO.read(new File("img/bomberman1.png"));
-			bombermanImg2 = ImageIO.read(new File("img/bomberman2.png"));
-			bombermanImg3 = ImageIO.read(new File("img/bomberman3.png"));
-			bombermanImg4 = ImageIO.read(new File("img/bomberman4.png"));
-			bombermanImg5 = ImageIO.read(new File("img/bomberman5.png"));
-			bombermanImg6 = ImageIO.read(new File("img/bomberman6.png"));
-			bombermanImg7 = ImageIO.read(new File("img/bomberman7.png"));
-			bombermanImg8 = ImageIO.read(new File("img/bomberman8.png"));
-			bombermanImg9 = ImageIO.read(new File("img/bomberman9.png"));
-			bombermanImg10 = ImageIO.read(new File("img/bomberman10.png"));
-			bombermanImg11 = ImageIO.read(new File("img/bomberman11.png"));
-			bombermanImg12 = ImageIO.read(new File("img/bomberman12.png"));
+			bm_down_0 = ImageIO.read(new File("img/bm_down_0.png"));
+			bm_down_1 = ImageIO.read(new File("img/bm_down_1.png"));
+			bm_down_2 = ImageIO.read(new File("img/bm_down_2.png"));
+			
+			bm_up_0 = ImageIO.read(new File("img/bm_up_0.png"));
+			bm_up_1 = ImageIO.read(new File("img/bm_up_1.png"));
+			bm_up_2 = ImageIO.read(new File("img/bm_up_2.png"));
+			
+			bm_left_0 = ImageIO.read(new File("img/bm_left_0.png"));
+			bm_left_1 = ImageIO.read(new File("img/bm_left_1.png"));
+			bm_left_2 = ImageIO.read(new File("img/bm_left_2.png"));
+			
+			bm_right_0 = ImageIO.read(new File("img/bm_right_0.png"));
+			bm_right_1 = ImageIO.read(new File("img/bm_right_1.png"));
+			bm_right_2 = ImageIO.read(new File("img/bm_right_2.png"));
 			
 		} catch (IOException e) {}
 		
-		animBomberman.add(bombermanImg1);
-		animBomberman.add(bombermanImg2);
-		animBomberman.add(bombermanImg3);
-		animBomberman.add(bombermanImg4);
-		animBomberman.add(bombermanImg5);
-		animBomberman.add(bombermanImg6);
-		animBomberman.add(bombermanImg7);
-		animBomberman.add(bombermanImg8);
-		animBomberman.add(bombermanImg9);
-		animBomberman.add(bombermanImg10);
-		animBomberman.add(bombermanImg11);
-		animBomberman.add(bombermanImg12);
+		animDown.add(bm_down_0);
+		animDown.add(bm_down_1);
+		animDown.add(bm_down_2);
+		
+		animUp.add(bm_up_0);
+		animUp.add(bm_up_1);
+		animUp.add(bm_up_2);
+		
+		animLeft.add(bm_left_0);
+		animLeft.add(bm_left_1);
+		animLeft.add(bm_left_2);
+		
+		animRight.add(bm_right_0);
+		animRight.add(bm_right_1);
+		animRight.add(bm_right_2);
 	}
 	
 	public void loadImgPlayer(){
 		
-		this.animBomberman = new ArrayList<BufferedImage>();
+		this.animDown = new ArrayList<BufferedImage>();
+		this.animUp = new ArrayList<BufferedImage>();
+		this.animLeft = new ArrayList<BufferedImage>();
+		this.animRight = new ArrayList<BufferedImage>();
 		
 		try 
 		{
-			bombermanImg1 = ImageIO.read(new File("img/bomberman1.png"));
-			bombermanImg2 = ImageIO.read(new File("img/bomberman2.png"));
-			bombermanImg3 = ImageIO.read(new File("img/bomberman3.png"));
-			bombermanImg4 = ImageIO.read(new File("img/bomberman4.png"));
-			bombermanImg5 = ImageIO.read(new File("img/bomberman5.png"));
-			bombermanImg6 = ImageIO.read(new File("img/bomberman6.png"));
-			bombermanImg7 = ImageIO.read(new File("img/bomberman7.png"));
-			bombermanImg8 = ImageIO.read(new File("img/bomberman8.png"));
-			bombermanImg9 = ImageIO.read(new File("img/bomberman9.png"));
-			bombermanImg10 = ImageIO.read(new File("img/bomberman10.png"));
-			bombermanImg11 = ImageIO.read(new File("img/bomberman11.png"));
-			bombermanImg12 = ImageIO.read(new File("img/bomberman12.png"));
+			bm_down_0 = ImageIO.read(new File("img/bm_down_0.png"));
+			bm_down_1 = ImageIO.read(new File("img/bm_down_1.png"));
+			bm_down_2 = ImageIO.read(new File("img/bm_down_2.png"));
+			
+			bm_up_0 = ImageIO.read(new File("img/bm_up_0.png"));
+			bm_up_1 = ImageIO.read(new File("img/bm_up_1.png"));
+			bm_up_2 = ImageIO.read(new File("img/bm_up_2.png"));
+			
+			bm_left_0 = ImageIO.read(new File("img/bm_left_0.png"));
+			bm_left_1 = ImageIO.read(new File("img/bm_left_1.png"));
+			bm_left_2 = ImageIO.read(new File("img/bm_left_2.png"));
+			
+			bm_right_0 = ImageIO.read(new File("img/bm_right_0.png"));
+			bm_right_1 = ImageIO.read(new File("img/bm_right_1.png"));
+			bm_right_2 = ImageIO.read(new File("img/bm_right_2.png"));
 			
 		} catch (IOException e) {}
+
+		animDown.add(bm_down_0);
+		animDown.add(bm_down_1);
+		animDown.add(bm_down_2);
 		
-		animBomberman.add(bombermanImg1);
-		animBomberman.add(bombermanImg2);
-		animBomberman.add(bombermanImg3);
-		animBomberman.add(bombermanImg4);
-		animBomberman.add(bombermanImg5);
-		animBomberman.add(bombermanImg6);
-		animBomberman.add(bombermanImg7);
-		animBomberman.add(bombermanImg8);
-		animBomberman.add(bombermanImg9);
-		animBomberman.add(bombermanImg10);
-		animBomberman.add(bombermanImg11);
-		animBomberman.add(bombermanImg12);
+		animUp.add(bm_up_0);
+		animUp.add(bm_up_1);
+		animUp.add(bm_up_2);
+		
+		animLeft.add(bm_left_0);
+		animLeft.add(bm_left_1);
+		animLeft.add(bm_left_2);
+		
+		animRight.add(bm_right_0);
+		animRight.add(bm_right_1);
+		animRight.add(bm_right_2);
 	}
 	
 	/**
@@ -325,7 +350,7 @@ public class Player implements GameChar, Serializable{
 		
 		if(linBPix == linPixels && colBPix == colPixels)
 		{
-			g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+			g.drawImage(this.animDown.get(1), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
 			incAnimArray();
 		}
 		else if(colBPix != colPixels) 
@@ -333,7 +358,7 @@ public class Player implements GameChar, Serializable{
 			if(colBPix > colPixels)
 			{
 				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					g.drawImage(this.animRight.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
 					colPixels = colPixels + 1;				
 					incAnimArray();
 				}
@@ -341,7 +366,7 @@ public class Player implements GameChar, Serializable{
 			else
 			{
 				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					g.drawImage(this.animLeft.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
 					colPixels = colPixels - 1;				
 					incAnimArray();
 				}
@@ -352,7 +377,7 @@ public class Player implements GameChar, Serializable{
 			if(linBPix > linPixels)
 			{
 				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					g.drawImage(this.animDown.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
 					linPixels = linPixels + 1;				
 					incAnimArray();
 				}
@@ -360,7 +385,7 @@ public class Player implements GameChar, Serializable{
 			else
 			{
 				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animBomberman.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 32, 56, null);
+					g.drawImage(this.animUp.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
 					linPixels = linPixels - 1;				
 					incAnimArray();
 				}
@@ -371,7 +396,7 @@ public class Player implements GameChar, Serializable{
 	}
 	
 	public void incAnimArray(){
-		indexAnimArray = (indexAnimArray + 1) % animBomberman.size();
+		indexAnimArray = (indexAnimArray + 1) % animDown.size();
 	}
 
 }
