@@ -34,6 +34,8 @@ public class Player implements GameChar, Serializable{
 	
 	/** The Player draw position */
 	private Position drawPlayerPosition;
+	private boolean calcDrawPos = false;
+	private boolean drawInc = false;
 	
 	/** The state. */
 	private PlayerState state;
@@ -208,7 +210,7 @@ public class Player implements GameChar, Serializable{
 	 * Update.
 	 */
 	public void update(){
-		nextPlayerPosition = GameModel.getInstance().getNextMov(this);
+		nextPlayerPosition = GameModel.getInstance().getNextMov(this);		
 		GameModel.getInstance().getBoard().getItem(nextPlayerPosition).accept(this);
 	}
 	
@@ -244,11 +246,6 @@ public class Player implements GameChar, Serializable{
 	 *
 	 * @param animation the new animation
 	 */
-	/*
-	public void setAnimation(BufferedImage animation){
-		this.bombermanImg = animation;
-	}
-	*/
 	
 	/**
 	 * Checks player death.
@@ -283,7 +280,11 @@ public class Player implements GameChar, Serializable{
 	 * @param item the item
 	 */
 	public void visitPath(ItemPath item){
-		updateBoardPosition(nextPlayerPosition);
+		
+		//TODO:
+		//updateBoardPosition(nextPlayerPosition);
+		drawInc = true;
+		
 		checkDeath(item);
 	}
 	
@@ -300,7 +301,10 @@ public class Player implements GameChar, Serializable{
 	 * @param item the item
 	 */ 
 	public void visitBoardExit(BoardExit item){
-		updateBoardPosition(nextPlayerPosition);
+		//TODO:
+		//updateBoardPosition(nextPlayerPosition);
+		drawInc = true;
+		
 		checkDeath(item);
 	}
 	
@@ -339,60 +343,56 @@ public class Player implements GameChar, Serializable{
 	public void draw(Graphics g, int width, int height){
 		
 		int n = GameModel.getInstance().getBoard().getMaze().length;
-		int dstImgWid = width / n;
-		int dstImgHei = height / n;
+		int dstImgWid = (int)Math.round((double)width / n);
+		int dstImgHei = (int)Math.round((double)height / n);
 		
-		int linPixels = drawPlayerPosition.getLine() * dstImgHei;
-		int colPixels = drawPlayerPosition.getCol() * dstImgWid;
+		if(!calcDrawPos){
+			updateDrawPosition(new Position(boardPosition.getLine()*dstImgHei, boardPosition.getCol()*dstImgWid));
+			calcDrawPos = true;
+		}
 		
-		int linBPix = boardPosition.getLine() * dstImgHei;
-		int colBPix = boardPosition.getCol() * dstImgWid;
+		int linPixels = drawPlayerPosition.getLine();
+		int colPixels = drawPlayerPosition.getCol();
 		
-		if(linBPix == linPixels && colBPix == colPixels)
+		//TODO:
+		int offset = 10;
+
+		if(GameModel.getInstance().checkKeyRight() && drawInc)
 		{
-			g.drawImage(this.animDown.get(1), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
+			g.drawImage(this.animRight.get(indexAnimArray), colPixels, linPixels-offset, colPixels+dstImgWid, linPixels+dstImgHei-offset, 0, 0, 25, 25, null);
+			colPixels = colPixels + 20;				
 			incAnimArray();
 		}
-		else if(colBPix != colPixels) 
+		else if(GameModel.getInstance().checkKeyLeft() && drawInc)
 		{
-			if(colBPix > colPixels)
-			{
-				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animRight.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
-					colPixels = colPixels + 1;				
-					incAnimArray();
-				}
-			}
-			else
-			{
-				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animLeft.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
-					colPixels = colPixels - 1;				
-					incAnimArray();
-				}
-			}
+			g.drawImage(this.animLeft.get(indexAnimArray), colPixels, linPixels-offset, colPixels+dstImgWid, linPixels+dstImgHei-offset, 0, 0, 25, 25, null);
+			colPixels = colPixels - 20;				
+			incAnimArray();
 		}
-		else if(linBPix != linPixels)
+		else if(GameModel.getInstance().checkKeyDown() && drawInc)
 		{
-			if(linBPix > linPixels)
-			{
-				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animDown.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
-					linPixels = linPixels + 1;				
-					incAnimArray();
-				}
-			}
-			else
-			{
-				for(int i=0; i<dstImgWid; i++){
-					g.drawImage(this.animUp.get(indexAnimArray), colPixels, linPixels, colPixels+dstImgWid, linPixels+dstImgHei, 0, 0, 25, 25, null);
-					linPixels = linPixels - 1;				
-					incAnimArray();
-				}
-			}
+			g.drawImage(this.animDown.get(indexAnimArray), colPixels, linPixels-offset, colPixels+dstImgWid, linPixels+dstImgHei-offset, 0, 0, 25, 25, null);
+			linPixels = linPixels + 20;				
+			incAnimArray();
+		}
+		else if(GameModel.getInstance().checkKeyUp() && drawInc)
+		{
+			g.drawImage(this.animUp.get(indexAnimArray), colPixels, linPixels-offset, colPixels+dstImgWid, linPixels+dstImgHei-offset, 0, 0, 25, 25, null);
+			linPixels = linPixels - 20;				
+			incAnimArray();
+		}
+		else
+		{
+			g.drawImage(this.animDown.get(1), colPixels, linPixels-offset, colPixels+dstImgWid, linPixels+dstImgHei-offset, 0, 0, 25, 25, null);
 		}
 
-		updateDrawPosition(boardPosition);		
+		updateDrawPosition(new Position(linPixels,colPixels));
+		drawInc = false;
+		
+		double auxLine = (double)linPixels / (height/n); 
+		double auxCol = (double)colPixels / (width / n);
+		
+		updateBoardPosition(new Position((int)Math.round(auxLine),(int)Math.round(auxCol)));		
 	}
 	
 	public void incAnimArray(){

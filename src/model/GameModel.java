@@ -202,7 +202,6 @@ public class GameModel implements Serializable{
 	 */
 	public void addPlayer(int boardSize){		
 		this.players.updateBoardPosition(new Position(boardSize-2,boardSize-2));
-		this.players.updateDrawPosition(this.players.getBoardPosition());
 	}
 	
 	/**
@@ -236,12 +235,20 @@ public class GameModel implements Serializable{
 		players.update();
 	}
 	
+	public boolean checkKeyUp(){
+		return this.pressedUp;
+	}
+	
 	/**
 	 * Update key pressed to DOWN.
 	 */
 	public void updateKeyDown(){
 		this.pressedDown = true;
 		players.update();
+	}
+	
+	public boolean checkKeyDown(){
+		return this.pressedDown;
 	}
 	
 	/**
@@ -252,12 +259,20 @@ public class GameModel implements Serializable{
 		players.update();
 	}
 	
+	public boolean checkKeyLeft(){
+		return this.pressedLeft;
+	}
+	
 	/**
 	 * Update key pressed to RIGHT.
 	 */
 	public void updateKeyRight(){
 		this.pressedRight = true;
 		players.update();
+	}
+	
+	public boolean checkKeyRight(){
+		return this.pressedRight;
 	}
 	
 	/**
